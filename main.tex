@@ -138,6 +138,10 @@ pdfborder=0 0 0,  %removes outlines around hyper links in online display
   columns=fullflexible
 } 
 
+% algorithm
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+
 % margin mark
 \usepackage[color, leftbars]{changebar}
 \setlength\changebarsep{10pt}
@@ -153,6 +157,22 @@ pdfborder=0 0 0,  %removes outlines around hyper links in online display
 
 % timeline
 \usepackage{pgfgantt}
+
+% edgeworth design goals
+\usepackage{enumitem}
+
+% edgeworth ui labels
+% figure annotation
+\usetikzlibrary{calc}
+\definecolor{labelColor}{RGB}{64,81,182}
+\newcommand{\uilabel}[1]{\protect\tikz [font=\sffamily, baseline={($ (current bounding box.center) - (0,.3em) $)}] \fill[fill=labelColor] (0,0em) circle (0.6em) node[text=white] {#1};}
+
+% algorithm position
+\usepackage{float}
+
+% table
+\usepackage{caption}
+\captionsetup[table]{skip=5pt} % Adjusts space between the table caption and the table
 
 % chinese
 % \usepackage{xeCJK}
@@ -244,393 +264,13 @@ TODO
 % Other than that, just make it look good...
 
 
-\chapter*{Prelude}
-
-\vspace{-30pt}
-
-Trigonometric identities are often presented as a big list of rules. 
-
-\noindent\includegraphics[width=\linewidth]{assets/prelude/trig-identities.pdf}
-
-
-\noindent Students are often asked to solve problems by applying a subset of those rules, \eg, $sin(0 - \theta) = -sin(\theta)$.
-
-\begin{figure*}[h]
-    \centering
-    \includegraphics[width=0.75\linewidth]{assets/prelude/symbolic-transform.pdf}
-    % \vspace{-10pt}
-\end{figure*}
-
-\setlength{\columnsep}{1em}
-\setlength{\intextsep}{0em}
-\begin{wrapfigure}{r}{.23\textwidth}
-\vspace{-10pt}
-  \begin{center}
-    \includegraphics[width=0.23\textwidth]{assets/prelude/unit-circle.pdf}
-  \end{center}
-\end{wrapfigure}
-
-A useful visual representation of this concept is the unit circle: on a Cartesian plane with a circle of radius $1$ centered at the origin, concrete values of trig functions are represented visually and rules are implicitly encoded as geometric transformations. For instance, the value of $sin(\theta)$ is the y-coordinate of a point on the circle, where the ray from the origin to the point forms angle $\theta$ with the x-axis.
-
-To derive the identity rule visually, one only needs to note that $-\theta$ is a reflection about the x-axis, and observe that the y-coordinate is now a negative number. Instead of having to memorize a big set of rules, one can reduce this problem to a simple operation on the visual representation of a unit circle.
-
-\vspace{10pt}
-\begin{figure*}[h]
-    \centering
-    \includegraphics[width=0.70\linewidth]{assets/prelude/visual-transform.pdf}
-    % \vspace{-10pt}
-\end{figure*}
-
-By translating the symbols to a visual representation, a unit circle, a student completely bypasses the tedious memorization of trig identities. While this is a much more retainable and robust representation for students, are we teaching representations like this to students? What does it take for students to internalize it? 
-
-\chapter{Introduction}
-
-``Mental pictures'' and ``visual intuition'' capture how people make sense of abstract concepts and see solutions to hard problems in a visual way. Hadamard described numerous examples of mathematicians doing exactly this in \emph{The Mathematician's Mind}~\cite{Hadamard1997a}, later summarized by Alan Kay~\cite{doingWithImages}:
-
-\begin{quote}
-Jacques Hadamard, the famous French mathematician, in the late stages of his life, decided to poll his 99 buddies, who made up together the 100 great mathematicians and physicists on the earth, and he asked them, ``How do you do your thing?'' They were all personal friends of his, so they wrote back depositions. Only a few, out of the hundred, claimed to use mathematical symbology at all. Quite a surprise. All of them said they did it mostly in imagery or figurative terms.
-\end{quote}
-
-Learning research suggests that visual representations of knowledge are powerful tools for thought. Visual representations like diagrams enable more robust learning \cite{multimediaLearning} and abstract and flexible problem solving~\cite{Koedinger1990a, pictureAlgebra, DiagramsThousandWords}. Importantly, when people work with visuals, they build better conceptual understanding and more flexible mental models that go beyond memorized procedures~\cite{multipleReps}.
-
-\setlength{\columnsep}{1em}
-\setlength{\intextsep}{0em}
-\begin{wrapfigure}{r}{.45\textwidth}
-\vspace{-10pt}
-  \begin{center}
-    \includegraphics[width=0.45\textwidth]{assets/chapter-1/grounding-rectangle.pdf}
-  \end{center}
-\end{wrapfigure}
-
-Let me use a diagram to capture this: the \textbf{grounding rectangle} represents two pathways to learning and problem solving: One can perform symbol-to-symbol transformations (SS, or “symbol pushing”) or through an \textcolor[HTML]{8C91C2}{alternative diagrammatic pathway}: a symbol-to-diagram translation (SV), a diagram-to-diagram transformation (VV), and finally a diagram-to-symbol translation (VS).
-
-Research on expertise development suggests a need for substantial exposure involving repetition in varied contexts or deliberate practice \cite{deliberatePractice} to acquire the perceptual chunks \cite{chunkingModels, perceptualLearningExpertise} that support accurate interpretation and use of visual representations~\cite{Koedinger1990a}. Through enough practice, learning the two paths in the grounding rectangle can produce better, more robust memory \cite{dualCoding}, learning~\cite{multipleReps, multimediaLearning, cotraining}, and future reasoning, both in providing flexibility and in supporting error recovery \cite{groundedAndAbstractReps}.
-
-In reality, there seems to be an over-abundance of symbolic practice, continuing Kay's train of thought:
-
-\begin{quote}
-    The sad part of the diagram is that every child in the United States is taught math and physics through this [symbolic] channel. The channel that almost no adult creative mathematician or physicist uses to do it... They use this channel to communicate, but not to do their thing.
-\end{quote}
-
-Diagrammatic practice is rare due to the significant cost of authoring diagrammatic problems. Existing diagramming tools often require hours of low-level tweaking of geometric primitives and do not capture the core task of diagramming: representing ideas visually. In other words, these tools lack \emph{representational salience}. As a result, the diagrams created by existing tools don't have semantics, as they are merely a collection of pixels and geometric blobs.  
-
-In prior work, colleagues and I built \Penrose, a diagramming platform that explicitly encodes visual representations in domain-specific languages (DSLs)~\cite{penrose}. In this thesis proposal, I argue that this explicit encoding can be leveraged to (1) reduce the programming effort of producing diagrammatic problems at scale and (2) simplify the workflow of authoring interactive diagrams. The resulting diagrams also carry rich semantics, and I propose to use them to (3) provide useful, automated feedback to students. My thesis statement summarizes the above:
-
-\vspace{10pt}
-\boxtext{
-\textbf{Encoding visual representations in diagramming tools simplifies programming of interactive visual activities that provide students with automated feedback at scale.}
-}
-\vspace{10pt}
-
-The expected contributions of this work are:
-
-\begin{enumerate}
-    \item \emph{Need-finding studies} on challenges authors face.
-    \item \emph{A platform of tools} based on the visual encoding of \Penrose for mass-production of diagrams (\cref{chp:edgeworth}) and rapid authoring of interactive diagrams (\cref{chp:ipenrose}).
-    \item \emph{A theoretical framework} of the grounding rectangle, which guides the design of tools presented in this proposal.
-\end{enumerate}
-
-\begin{proposed}
-\textbf{Note.} This proposal contains a mix of completed, in-progress, and proposed projects. In the rest of this document, proposed work will be marked in orange on the left margin. 
-\end{proposed}
-
-\chapter{Understanding the diagramming process and encoding visual representations}
-\label{chp:diagrammingAndPenrose}
-
-Before diving into the educational context, it's important to understand why creating diagrams is hard in the first place. This chapter discusses an interview study on how domain experts including educators use diagramming tools~\cite{naturalDiagramming}, and briefly shows how this study informs the design of \Penrose, the technical basis for tools presented in this proposal. 
-
-\section{How domain experts create diagrams and implications for tool design}
-\label{sec:naturalDiagramming}
-
-Existing diagramming tools stand in tension between: a) General-purpose drawing tools such as Illustrator and Figma that offer simple pen-and-canvas or box-and-arrow metaphors, but are viscous~\cite{cognitiveDimensions}---users must constantly commit to exact positions, sizes, and styling of shapes. b) Dedicated diagramming tools such as Lucidchart and Gliffy that allow rapid changes, but rely heavily on templates, limiting diagrammers to a fixed set of visual representations. This relatively limited support for diagramming in tools is in part because the process of diagramming is poorly understood. For instance, how do diagrammers utilize the strengths and cope with the limitations of their tools? Which tools are chosen for what purposes?  Such a detailed understanding of the process can help design interactive tools to support diagramming.
-
-I conducted interviews with 18 domain experts from a wide variety of disciplines such as math, computer science, architecture, and education. The interviews reveal that diagrammers have diverse interactions with visual representations in both physical sketches and digital tools, including finding, creating, storing, and reusing representations. 
-
-One implication of our results is the opportunity to design tools informed by the processes of diagramming, and practices that domain experts already use, making digital diagramming more intuitive and efficient. Here are four key opportunities for natural~\cite{naturalProgramming} diagramming tools that allow diagrammers to express their ideas visually the same way they think about them:
-
-\begin{itemize} 
-    \item \textit{Exploration support}: supporting exploratory behaviors such as undo and backtracking during both abstract-level, breath-first exploration of the design space and low-level refinements of visual details.
-    \item \textit{Representation salience}: allowing explicit creation and management of visual representations, \ie, the \emph{mappings} from domain constructs to shapes instead of geometric primitives themselves.
-    \item \textit{Live engagement}: providing diagrammers with the sense of agency by designing for liveness and directness of the diagramming experience. 
-    \item \textit{Vocabulary correspondence}: enabling diagrammers to interact with their diagrams using vocabularies that is conventional in their domain.
-\end{itemize}
-
-\section{The design of \Penrose}
-\label{sec:penrose}
-
-Informed by the results from the interview study, colleagues and I have developed \Penrose, a language-based diagramming platform~\cite{penrose}. The core \Penrose system addresses \textbf{representation salience} and \textbf{vocabulary correspondence}: it has first-class support for creating and reusing visual representations and translates familiar math-like notation into one or more possible visual representations. To accomplish this, \Penrose decomposes the concerns of diagramming into two domain-specific languages (DSLs) with distinct purposes: \colorbox[HTML]{E7F3E7}{\Substance} contains the mathematical content in math notation. \colorbox[HTML]{DDDEED}{\Style} explicitly specifies mappings from mathematical objects to visual icons. 
-
-\setlength{\columnsep}{1em}
-\setlength{\intextsep}{0em}
-\begin{wrapfigure}{r}{.45\textwidth}
-\vspace{-10pt}
-  \begin{center}
-    \includegraphics[width=0.45\textwidth]{assets/chapter-2/penrose-trio.pdf}
-  \end{center}
-\end{wrapfigure}
-
-Instead of a limited focus on one specific domain (as in GraphViz~\cite{graphviz} for graph theory or GroupExplorer~\footnote{\url{https://github.com/nathancarter/group-explorer}} for group theory), \Penrose is extensible to user-defined domains of diagramming. Both \Substance and \Style are parametrized by a \colorbox[HTML]{DBDBDB}{\Domain} schema that defines all possible objects (\eg, \sub{Set}) and relations (\eg, \sub{IsSubset}) in a particular domain, which can be used by associated \Substance and \Style programs. In addition to user-extensibility, a formally encoded domain also enables automatic generation of \Penrose diagrams. 
-
-\Penrose compiles a \textbf{trio} of \Domain, \Substance, and \Style into a constrained optimization problem defined by a set of graphical constraints (\eg, arrows that represent vectors should start from the origin). The optimization problem is in standard form, \ie, minimization of an objective function subject to equality and inequality constraints~\cite{convexOptimization}. Such problems may be solved with many standard methods. \Penrose currently uses an exterior point method~\cite{exteriorPoint} that starts with an infeasible point and pushes it toward a feasible configuration via progressively stiffer penalty functions---mirroring a process often used by hand.
-
-The design of \Penrose is driven by the design goals of reuse and scalability, and therefore is suitable for large-scale generation of visual content. The system is scalable and reusable in several dimensions:
-    
-% \setlength{\columnsep}{1em}
-% \setlength{\intextsep}{0em}
-% \begin{wrapfigure}{r}{.45\textwidth}
-% \vspace{-10pt}
-%   \begin{center}
-%     \includegraphics[width=0.45\textwidth]{assets/chapter-2/func-continuous-discrete-vert.pdf}
-%   \end{center}
-% \end{wrapfigure}
-
-\vspace{1em}
-\begin{figure}[h]
-\begin{minipage}[b]{0.48\linewidth}
-$\bullet$ The optimization problem produced by \Penrose often has multiple solutions, and each point in the solution space corresponds to an alternative diagram. No program changes are required to generate these alternatives.
-    \vspace{3pt}
-
-$\bullet$ For a visual representation encoded by a \Style program, a wide range of notations (\ie, \Substance programs) can be visualized without any changes to \Style. In the figure on the left, a single discrete \Style program is used to visualize three \Substance programs that describe injective, surjective, and bijective functions.
-    \vspace{3pt}
-
-$\bullet$ Conversely, multiple \Style{} programs can be applied to the same \Substance{} program, generating alternative visual representations of the same underlying entities. The \Substance programs in the figure are also visualized by an alternative continuous \Style.
-\end{minipage}
-\hfill
-\begin{minipage}[b]{0.5\linewidth}
-    \centering
-    \includegraphics[width=\textwidth]{assets/chapter-2/injection-surjection-bijection.pdf}
-\end{minipage}
-\end{figure}
-    
-With the extensible design, \Penrose can automatically generate diagrams from many different domains using familiar syntax. \Penrose-generated geometry, real analysis, ray-tracing, set theory, and algebra are shown below.
-
-\vspace{10pt}
-\includegraphics[width=0.95\linewidth]{assets/chapter-2/gallery.pdf}
-
-
-
-
-% \chapter{From encoding to semantics-preserving interactivity}
-% \label{chp:ipenrose}
-
-% Diagrams live in the context of surrounding text, overlaid annotations, and human gestures. The web opens up opportunities for even richer in-context interaction. In education, though students spend more time on digital platforms, they often see diagrams that are presented exactly as before: blurry, static, and ornamental. In addition to their values as an external, static representation of knowledge, diagrams are also beneficial when people learn \emph{with}, instead of \emph{from} them~\cite{learningWithRepresentations}.  Prior work shows interacting with visual representations has unique benefits to learning \cite{drawingToLearn, VisualexplanationsImprovesLearning}. In contrast with a static diagram, \textbf{a semantics-preserving interactive diagram allows students to rapidly explore alternatives, understand the underlying rules of a visual representation, and receive instant feedback on their actions.} Meaningful interaction with diagrams helps students move from passive recognition to active synthesis of visual representations~\cite{bloomRevised}.
-
-% Sadly, interactive diagrams are scarce in the wild. Most interactive documents require authors to be proficient in general-purpose programming and have decent knowledge in handling low-level events like mouse down/up, hover, etc. As a result, a simple interactive diagram often takes up 100s of lines-of-code and can be hard to debug~\cite{callbackSpaghetti, usabilityInteractionTools}. Additionally, because interactive diagrams change a lot, authors often need to reason about a collection of diagrams, making the task even harder.
-
-% \Penrose and \Edgeworth elevate the semantics of diagrams from low-level primitives to mathematically meaningful notations. Specifically, \Penrose encodes both the translational semantics of how notations are translated to diagrams, and the visual semantics of how shape primitives relate to each other expressed as constraints. By exploiting both, we can automatically support semantics-preserving interactive diagrams. In this section, I investigate how to build interactive diagram activities that are automatically derived from \Penrose diagrams and easily created without extensive programming efforts. In short, I propose to \textbf{(1) simplify programming interactive diagrams and (2) provide students with rich, automated feedback by leveraging the encoding of visual representations}. 
-
-% \section{Motivating example}
-% \label{sec:ipenrose-example}
-
-% Consider the first diagram in a popular explorable explanation piece ''Eigenvectors and Eigenvalues Explained Visually~\footnote{\url{https://setosa.io/ev/eigenvectors-and-eigenvalues/}}.''  The diagram is one of a series of interactive diagrams showing the visual properties of eigenvalues and eigenvectors: it shows a visual interpretation of matrices as linear transformations: matrix $A$ with columns $a_1$ and $a_2$ transforms $v$ to $Av$. In the diagram, $a_1$, $a_2$ and $v$ are all draggable. 
-
-% \begin{figure}[h]
-%     \centering
-%     \includegraphics[width=0.8\linewidth]{assets/chapter-4/eigen-visually.pdf}
-% \end{figure}
-
-% Seeing what varies and what doesn't is an important form of \emph{feedback} that fosters conceptual understanding. The reader gains an initial understanding of how columns of $A$ impact $Av$’s value through interacting with the diagram: dragging any of $a_1$, $a_2$ and $v$ affects the position of $Av$. 
-
-% In the original code repository~\footnote{\url{https://github.com/vicapow/explained-visually/tree/master/client/explanations/eigenvectors-and-eigenvalues}}, the authors wrote about a hundred lines of JavaScript with D3.js to make the first diagram. Although D3.js and Angular already provide significant support, it's still a lot of work to handle mouse down/up/hover events, and to keep track of intermediate values during dragging. 
-
-% To reproduce this diagram in \Penrose, one can write a simple \Substance program in the linear algebra domain~\cite[Section 5.4]{penrose}. 
-
-% \begin{figure}[h]
-%     \centering
-%     \includegraphics[width=0.4\linewidth]{assets/chapter-4/eigen-substance.pdf}
-% \end{figure}
-
-% With the core system, the trio generates a static SVG diagram. Under the hood, every \sub{Vector} is represented visually as an arrow starting at the origin ($a_1$, $a_2$), or a single point ($v$). They are all degrees of freedom (DOF) in the optimization problem. In other words, both the x and y-components of the arrow-end of  $a_1$, $a_2$, and the point representing $v$ are free to move on the canvas. Following the original design of the explorable, the system surfaces the DOFs as draggable points. Whenever the user drags the end of one of the arrows, the optimizer takes the new position as a part of the final solution, and solves the rest of the optimization problem. Effectively, by using this simple and generalizable strategy, which I will discuss in the following sections, the system can reproduce the interactive design using the \Penrose trio for a static diagram \emph{without a single line of code added}.
-
-% \section{Semantics-preserving interactivity as feedback}
-% \label{sec:semantic-drag}
-
-% \begin{proposed}
-% \cref{sec:ipenrose-example} is an example of a set of interactive behaviors that can be automatically derived from a \Penrose trio without any additional programming.  Specifically, the example leverages how \Penrose encodes visual semantics: \Penrose compiles a program trio to computational and optimization graphs with degrees-of-freedom (DOF)~\cite[Section 4.1.2-3]{penrose}. Degrees-of-freedom determine a diagram instance in \Penrose. They are ``free'' variables within the computational graph and non-constant root nodes in the optimization graph. DOFs are the key to generate a family of diagrams: by manipulating DOFs, the optimizer solves for different diagrams that satisfy the constraint set defined by the trio. In other words, DOFs are a concise representation for interaction. In this section, I use \emph{dragging} as a case study and show a few ways of manipulating the DOFs in a semantics-preserving manner. 
-
-% As a reasonable default, the system can find positional properties in the DOFs and make them draggable. In \cref{sec:ipenrose-example}, the relevant \Style blocks define a simple computational graph for the \Substance program, where \sty{a_1.data}, \sty{a_2 .data}, and \sty{v.data} are DOFs. \cref{fig:eigen-comp-graph} shows the graph for \sty{a_1}’s properties. To accomplish the interactivity in the example, the system can analyze the computational graph to find DOFs and their aliases, \ie, child nodes that are assigned values of the DOFs. For instance, \sty{a_1.data} is a DOF and \sty{a_1.icon.end} references \sty{a_1.data}. In contrast, \sty{Av.end} is not made draggable because it's not a DOF nor an alias in the computational graph: its value is computed by \sty{matmul(a_1.data, a_2.data)}.
-
-% \vspace{10pt}
-% \begin{figure}[h]
-%     \centering
-%     \includegraphics[width=\linewidth]{assets/chapter-4/eigen-comp-graph.pdf}
-%     \vspace{-30pt}
-%     \caption{\textbf{Left}: relevant blocks in the linear algebra \Style program for \cref{sec:ipenrose-example}. \textbf{Right}: computational graphs for \texttt{a\_1} and \texttt{Av}, where the \texttt{data} field for the former is optimized and that for the latter is computed.}
-%     \label{fig:eigen-comp-graph}
-% \end{figure}
-% \vspace{10pt}
-
-% Once exposed as draggable properties, the user can now change the values of positional DOFs by dragging shapes around. However, since their interaction is situated in an optimization problem, it's important to discuss how an optimizer influences this interaction and manipulates the rest of the diagram in a semantics-preserving way. In \cref{sec:ipenrose-example}, dragging \sty{a_1.icon.end} and \sty{a_2.icon.end} works as intended because they are independent from each other: they don't participate in the same constraints in the computational graph. However, this is not the right interaction for DOFs that participate in the same constraints, which is often the case. In this section, I give two example optimization strategies for supporting semantics-preserving drag.    
-% \subsection{Follow the cursor}
-% \label{sec:follow-the-cursor}
-
-% \vspace{10pt}
-% \begin{figure}[h]
-%     \centering
-%     \includegraphics[width=0.8\linewidth]{assets/chapter-4/drag-expected.pdf}
-%     \caption{Dragging a subset, $B$, in a Venn diagram in an intuitive and semantics-preserving way, where $B$ is always under the cursor and $B \subset A$ is always held true.}
-%     \label{fig:drag-expected}
-% \end{figure}
-% \vspace{10pt}
-
-% Consider the example in \cref{fig:drag-expected}, which shows a simple Venn diagram of sets $A$ and $B$ where $B \subset A$. The underlying rule of this visual representation is that a subset is always visually contained in the superset. An interactive diagram should clearly reveal this rule by keeping this containment relationship true at all times. For instance, if a student drags $B$ to the right, the diagram should change such that $A$ still contains $B$. Importantly, the interaction should be natural, and also make the feedback very clear: as the student is dragging $B$, $B$ must stay under the cursor, and the rest of the diagram should incrementally move with $B$ to maintain the containment relationship.
-
-% Unfortunately, when using the current \Penrose optimizer, dragging either $A$ or $B$  yields counterintuitive results: the optimizer changes arbitrary properties, including the manipulated ones. This is because it optimizes all DOFs simultaneously. In \cref{fig:drag-default}, it moves both $A$ and $B$ to satisfy the containment constraint.  This behavior adds noise to the feedback, and may confuse the student.
-
-% \vspace{10pt}
-% \begin{figure}[h]
-%     \centering
-%     \includegraphics[width=0.75\linewidth]{assets/chapter-4/drag-default.pdf}
-%     \caption{Dragging a subset, $B$, in a Venn diagram in semantics-preserving but counterintuitive way, where $B \subset A$ held true but the shapes appear in random locations.}
-%     \label{fig:drag-default}
-% \end{figure}
-% \vspace{10pt}
-
-% To enable intuitive interactivity, the system can analyze the computational graph again to derive the right behavior. We can achieve this behavior by ``locking'' the DOFs, treating them as constants in the optimizer. Specifically, when a student manipulates DOFs or its aliases, the system locks these DOFs and optimizes the rest as usual. When the student interacts with an object (\ie, dragging to change \sty{x} and \sty{y} of a \sty{Circle}), the system yields the control to the student completely and locks the manipulated properties during optimization. The visual effect is that all other parts of the diagram ``follow'' the student interaction. 
-
-% \subsection{Freeze the world}
-% \label{sec:freeze-the-world}
-
-% Locking the manipulated property is not the only way to maintain the visual semantics. Instead of limiting the optimizer, we could also limit the interaction so they see the effect of changing one or multiple shape properties under constraints. When the student interacts with a shape, the optimizer keeps all other properties locked and continuously uses the energy function to “guide” the student. The techniques involved are different from \cref{sec:follow-the-cursor}. In this case, the student is playing the role of the optimizer, \ie, changing DOFs, while the optimizer only sends feedback to make sure the interaction is semantic. The visual effect is a constrained interaction where the student can only make semantically-valid moves. 
-
-% \vspace{10pt}
-% \begin{figure}[h]
-%     \centering
-%     \includegraphics[width=0.75\linewidth]{assets/chapter-4/unit-circle-drag.pdf}
-%     \caption{The behavior of dragging a point along the unit circle depends on the optimization strategy. \textbf{Left}: ``Follow the cursor'' shifts the entire diagram to follow the point and doesn't correspond to the mathematical semantics. \textbf{Right}: ``Freeze the world'' should be the correct optimization strategy, where the point only moves along the circle, and nothing else changes in the diagram.}
-%     \label{fig:unit-circle-drag}
-% \end{figure}
-% \vspace{10pt}
-
-
-% For instance, \cref{fig:unit-circle-drag} shows a diagram of the unit circle. A natural interaction is to drag the point along the unit circle to see how the values of trig functions change. In this case, the red line shows the value of $sin$. If the optimizer naively follows the cursor, \cref{fig:unit-circle-drag} (right) would be the result, where the rest of the diagram is translated to stay in a valid layout. Instead, it's much more desirable to ``freeze the world'' and constrain the student input within the feasible region—--along the unit circle (\cref{fig:unit-circle-drag} left).
-
-% Together, these two strategies cover a wide range of drag behaviors that are traditionally difficult and time-consuming to implement. Note that these two strategies are not necessarily mutually exclusive. In fact, the system may have a set of default rules for or let the author specify the strategy on a per-DOF basis. For instance, an instructor might apply ``freeze the world'' to show students the valid positions of a component in a diagram, while applying ``follow the cursor'' to the rest of the components to show alternative layouts of the diagram. 
-
-
-% \vspace{10pt}
-% \noindent\textbf{Encoding optimization strategies.} If the author wants to control the optimization strategy, they will need an encoding to do so. Because \Style already has language constructs for matching on shapes, a \Style language extension may be suitable for specifying static strategies per shape, \eg, a shape should always follow the cursor when dragged. However, the current design of \Style may not be suitable for deciding strategies dynamically if needed, \eg, a shape follows the cursor in a certain region of the diagram, and freezes the world on the boundary. 
-% \end{proposed}
-
-% \section{Highlighting and annotation as feedback}
-% \label{sec:highlight-and-annotate}
-
-% \begin{proposed}
-
-% As demonstrated in \cref{chp:edgeworth}, diagram understanding is a vital step towards representational fluency. A significant part of diagram understanding maps to learning the translational semantics of a diagram, \ie, which shape represents what math object. While \Edgeworth helps students practice the mapping between a particular visual representation and symbols, I propose to \textbf{provide on-demand, inter-representational feedback by utilizing the translational semantics of a \Penrose trio}. 
-
-% \subsection{Inter-representational highlighting}
-
-% Students' exposure to visual representations is often limited by traditional media like textbooks and in-person lectures. The mapping between symbolic and visual representations is often scarcely presented via prose, gesture, and carefully designed worked examples. Web-based materials show a much more pervasive use of on-demand highlighting to build up inter-representational connections. However, there’s also a non-trivial authoring burden to meticulously annotate the HTML document and the diagram with CSS classes:
-
-% \vspace{10pt}
-% \begin{figure}[h]
-%     \centering
-%     \includegraphics[width=\linewidth]{assets/chapter-4/euclid-highlight.pdf}
-%     % \label{fig:euclid-highlight}
-% \end{figure}
-% \vspace{10pt}
-
-% If an online textbook or website uses diagrams generated by \Penrose, the author may leverage the translational semantics to automatically provide on-demand highlights. For instance, suppose an author writes an visual explanation in markdown with interleaving \Substance symbols in the prose. The system can automatically generate diagrams by extracting the \Substance symbols and provide highlights for all subsequent references to the same symbols. Since \Penrose can generate alternative diagrams in the same visual presentations, the highlighting can also provide contrasting cases of a particular entity across diagram instances.
-
-% \vspace{10pt}
-% \begin{figure}[h]
-%     \centering
-%     \includegraphics[width=\linewidth]{assets/chapter-4/markup-highlight.pdf}
-% \end{figure}
-% \vspace{10pt}
-
-% Building connections among multiple visual representations also improve learning~\cite{multipleReps}. Because a \Penrose trio is representationally salient, one can swap among alternative \Style programs to get diagrams that visualize the same symbols. Because the \Substance program stays the same, the same strategy also works for highlighting diagram parts across multiple visual representations.
-
-% \vspace{10pt}
-% \begin{figure}[h]
-%     \centering
-%     \includegraphics[width=0.9\linewidth]{assets/chapter-4/multirep-highlight.pdf}
-% \end{figure}
-% \vspace{10pt}
-
-% \subsection{Documentation and program slices as tooltips} 
-
-% \vspace{10pt}
-% \begin{figure}[h]
-%     \centering
-%     \includegraphics[width=\linewidth]{assets/chapter-4/docs-tooltips.pdf}
-% \end{figure}
-% \vspace{10pt}
-
-% In technical documents, symbols and acronyms are often defined once and used everywhere else. To help readers understand them, tools like ScholarPhi and Nota~\cite{scholarPhi, nota} use tooltips to aid readers. In real world publications, authors augment math equations for better readability, too. Diagrams use even more symbolism and can be hard to understand. We propose a lightweight markup language in the form of \Substance documentation for authoring simple \emph{diagram augmentation}. Similar to Idyll~\cite{idyll}, the markup language has a markdown-like syntax, but allows splices of \Substance variables and runtime values. In the frontend, we analyze the \Substance values in each snippet, and trace all related snippets based on variable references. For instance, the snippet about $Av$ refers to both $A$ and $v$, so they appear on the tooltip stack.
-
-% The translational semantics also involve how \Domain, \Substance, and \Style programs relate to each other. Therefore, \Style and \Domain can also be valuable sources of feedback: the \Style program encodes the visual semantics, and the \Domain program captures the grammar of notations. A slice of a \Penrose trio traces the origin of a graphical primitive to the \Domain, \Substance, \Style programs. For instance, without any authoring burden, the system can display slices of the program trio based on object selection. Alternatively, the proposed markup language may be extended to \Domain and \Style, and the system can render inline documentations in all three languages.
-
-% \vspace{10pt}
-% \begin{figure}[h]
-%     \centering
-%     \includegraphics[width=0.75\linewidth]{assets/chapter-4/slices.pdf}
-% \end{figure}
-% \vspace{10pt}
-% \end{proposed}
-
-% \section{Evaluation}
-
-% \begin{proposed}
-% To evaluate the discussed interactive techniques, I plan to conduct comparative case studies between feature-full modern JavaScript libraries (e.g. D3.js) and \Penrose. Research questions for this study include:
-% \begin{itemize}
-%     \item Does the \Penrose-based system simply programming interactive diagrams?
-%     \item Are the interactive features comparable to the hand-written examples? 
-%     \item How expressive is our grammar of interactivity?
-%     \item When does the approach break down?
-% \end{itemize}
-
-% In general, I expect that our system can cover common, important interactive features with significantly less manual effort. In the studies, I plan to collect both quantitative (\eg, lines-of-code, time taken) and qualitative data about authoring interactive diagrams using JS library versus our system. Currently, the candidate pool of examples include:
-
-% \begin{itemize}
-% \item Worked examples and explorable explanations:
-%     \begin{itemize}
-%         \item A Gentle Introduction to Graph Neural Networks: \url{https://distill.pub/2021/gnn-intro/}
-%         \item Explained visually: \url{https://setosa.io/ev/}
-%         \item Explorable explanations: \url{https://explorabl.es/}
-%         \item Gallery of concept visualization: \url{https://conceptviz.github.io/}
-%     \end{itemize}
-% \item Online textbooks and curricula:
-%     \begin{itemize}
-%         \item Seeing theory: \url{https://seeing-theory.brown.edu/}
-%         \item Immersive math: \url{http://immersivemath.com/ila/index.html}
-%         \item Mathigon: \url{https://mathigon.org/}
-%         \item Physically-based rendering: \url{https://pbr-book.org/}
-%         \item Brilliant: \url{https://brilliant.org/}
-%     \end{itemize}
-% \end{itemize}
-% \end{proposed}
-
-% \section{Related work}
-
-% \subsection{Grammars for interactivity}
-
-% Pioneered by the grammar of graphics~\cite{grammarOfGraphics}, researchers in data visualization developed a rich set of tools based on an explicit encoding of the mapping from data to visual primitives~\cite{d3, vega, vegalite}. Notably, Vega-Lite~\cite{vegalite} is a grammar for interactive data visualization. One key to the Vega-Lite grammar is ``selection,'' because the underlying data doesn't change during interaction. In diagramming, this assumption is not always true. The basic building blocks are mostly ``manipulation'' of shapes in relation with the underlying representation. \citet{datavizCriticalReflection} give an extensive review of data visualization authoring tools, including those that support interactivity.
-
-% In addition, the information/data visualization literature also contributed taxonomies and conceptual frameworks of interactivity. For instance, \citet{infovizInteractionFramework} propose 7 general categories of interactive techniques in information visualization: Select, Explore, Reconfigure, Encode, Abstract/Elaborate, Filter, and Connect. Similarly, \citet{interactiveDynamicsTaxonomy} describe a taxonomy of interactive dynamics for visual analysis, which was presented as a list of verbs, too. These frameworks and taxonomies are useful to build upon. Again, the high-level concepts involved for interactive diagrams can change significantly from them because of the differences between diagrams and data/information visualization~\cite{naturalDiagramming}, 
-
-% \subsection{Constraint-based interactivity}
-
-% In the HCI literature, there’s a long line of work on authoring interactive user interfaces using constraints. For instance, Garnet~\cite{garnet} and Amulet~\cite{amulet} use dataflow constraints to build highly interactive UIs. In these systems, the author declaratively specifies constraints on the relationship among graphical elements in terms of data dependencies (i.e. $D = f(l_1, l_2, \dots, l_n)$, and the interactivity is handled by a constraint solver at runtime. Thinglab~\cite{thinglab} supports simultaneous equations for building simulations. At its core, the \Penrose system is a combination of dataflow constraints (computations) and simultaneous equations (constraints and objectives). Therefore, many of the techniques from this line of work may apply to supporting interactivity in \Penrose, such as efficient incremental constraint solving~\cite{deltablue}.
-
-
-% \chapter{\Edgeworth project plan}
-
-% To address the committee feedback from the thesis proposal presentation, this appendix to the proposal document elaborates on \cref{chp:edgeworth}. This elaboration comes in acknowledgment that the committee sees the goals in \cref{chp:ipenrose} as optional.  In this appendix, I summarize the proposed elaboration on \cref{chp:edgeworth}, describe the research hypotheses, and outline the evaluation plan for validating them. The intention of this appendix is to specify all of the required work in the dissertation.
-
-% In the proposal document, \cref{chp:edgeworth} describes the following completed work on \Edgeworth:
-
-% \begin{itemize}
-%     \item Formative interviews with 6 educational content authors
-%     \item Design and implementation of mutation operators in the \Edgeworth mutator
-%     \item A prototype of the \Edgeworth mutator with a configuration-based workflow
-%     \item Preliminary evaluation of the prototype by re-creating problems in a geometry textbook
-% \end{itemize}
-
+% \input{prelude}
+\input{introduction}
+\input{interviews}
+\input{penrose}
 \input{edgeworth}
 \input{edgeworth-eval}
-
+\input{conclusion}
 
 % I will compare the time it takes participants to create content and the quality of the content. 
 % I will recruit previous formative participants for this study and draw from the formative participant pool if needed.
@@ -649,6 +289,6 @@ With the extensible design, \Penrose can automatically generate diagrams from ma
 %\renewcommand{\bibpreamble}{This text goes between the ``Bibliography''
 %  header and the actual list of references}
 \bibliographystyle{thesis-style}
-\bibliography{references} %your bib file
+\bibliography{references,zotero} %your bib file
 
 \end{document}

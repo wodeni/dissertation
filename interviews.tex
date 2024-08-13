@@ -1,0 +1,21 @@
+
+\chapter{Understanding the diagramming process and encoding visual representations}
+\label{chp:interviews}
+
+Before diving into the educational context, it's important to understand why creating diagrams is hard in the first place. This chapter discusses an interview study on how domain experts including educators use diagramming tools~\cite{naturalDiagramming}, and briefly shows how this study informs the design of \Penrose, the technical basis for tools presented in this proposal. 
+
+\section{How domain experts create diagrams and implications for tool design}
+\label{sec:naturalDiagramming}
+
+Existing diagramming tools stand in tension between: a) General-purpose drawing tools such as Illustrator and Figma that offer simple pen-and-canvas or box-and-arrow metaphors, but are viscous~\cite{cognitiveDimensions}---users must constantly commit to exact positions, sizes, and styling of shapes. b) Dedicated diagramming tools such as Lucidchart and Gliffy that allow rapid changes, but rely heavily on templates, limiting diagrammers to a fixed set of visual representations. This relatively limited support for diagramming in tools is in part because the process of diagramming is poorly understood. For instance, how do diagrammers utilize the strengths and cope with the limitations of their tools? Which tools are chosen for what purposes?  Such a detailed understanding of the process can help design interactive tools to support diagramming.
+
+I conducted interviews with 18 domain experts from a wide variety of disciplines such as math, computer science, architecture, and education. The interviews reveal that diagrammers have diverse interactions with visual representations in both physical sketches and digital tools, including finding, creating, storing, and reusing representations. 
+
+One implication of our results is the opportunity to design tools informed by the processes of diagramming, and practices that domain experts already use, making digital diagramming more intuitive and efficient. Here are four key opportunities for natural~\cite{naturalProgramming} diagramming tools that allow diagrammers to express their ideas visually the same way they think about them:
+
+\begin{itemize} 
+    \item \textit{Exploration support}: supporting exploratory behaviors such as undo and backtracking during both abstract-level, breath-first exploration of the design space and low-level refinements of visual details.
+    \item \textit{Representation salience}: allowing explicit creation and management of visual representations, \ie, the \emph{mappings} from domain constructs to shapes instead of geometric primitives themselves.
+    \item \textit{Live engagement}: providing diagrammers with the sense of agency by designing for liveness and directness of the diagramming experience. 
+    \item \textit{Vocabulary correspondence}: enabling diagrammers to interact with their diagrams using vocabularies that is conventional in their domain.
+\end{itemize}

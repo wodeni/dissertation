@@ -1,0 +1,19 @@
+\chapter{Conclusion and Future Work}
+\label{chp:conclusion}
+
+\section{Future work}
+
+We now discuss potential future directions for \Edgeworth. 
+
+\subsection{Mixed-Initiative Integration with AI}
+
+We believe \Edgeworth is both a product of existing AI techniques and a promising platform to assess both domain-specific and general-purpose AI technologies in visual practice authoring. Like many classical AI systems, \Edgeworth makes use of a symbolic description language (\cref{sec:edgeworth-layout}) and mutates the description of the example diagram to search for viable variations. The description language then generates layout constraints that compile to energy functions, the gradients of which drive an optimizer to arrange the diagram layout. In the educational setting, \Edgeworth provides a mixed-initiative~\cite{allen1999mixedinitiative} experience: authors focus on specifying the content and the general direction of variations, while \Edgeworth fully automates the details of variation generation and layout. 
+
+Moreover, the high-level description language of \Edgeworth promotes a potentially more robust integration with LLMs. Current methods of automatic diagram generation using LLMs mainly generate low-level SVG elements and often ``fail to maintain accurate geometric relations or only generating outputs of limited complexity such as single icons or font characters'' \cite{belouadi2024automatikz}. \citet{penrosellm} showed that GPT-4 does not do a good job of generating low-level visual code like SVG. In contrast, when prompted systematically, GPT-4 can reliably generate higher-level \Penrose programs which yield correct and legible diagrams.
+
+A promising direction for future work is to augment \Edgeworth with an LLM. When authoring a diagram, like the example diagram described in \cref{sec:create-scenario}, the \Edgeworth user can specify the diagram in natural language and this augmented version of \Edgeworth can prompt an LLM to generate the example diagram in \Edgeworth's notation. 
+
+
+\subsection{Towards an abundance of adaptable visual learning materials}
+
+In 1954, Jacques Hadamard studied how mathematicians and physicists work, and many of them reported they worked by reasoning about hard problems in visual terms~\mbox{\cite{Hadamard1997a}}. When citing Hadamard in his 1987 talk, Alan Kay lamented the fact that while experts ``do their thing'' visually, students are still learning symbolically~\cite{doingWithImages}. We found that the educators we interviewed echoed Kay's concerns~(\cref{sec:edgeworth-formative}). Notably, educators spend significant effort crafting visual learning materials that suit their needs in the classroom. We believe this effort means much more than copy-pasting and low-level tweaking of shapes in a diagram. Instead, educators encode their teaching context and their expertise in this process. Computational tools should provide enough support to provide better ergonomics for the authoring and adaptation of visual learning materials. As our first step, we built \Edgeworth to let educators use one example diagram as the leverage to generate variations of diagrammatic multiple choice problems. There are ample opportunities to use \Edgeworth to create \textit{problem variations}, too. By simply increasing the number of variations and/or using a variation as a new example diagram, the author can use \Edgeworth to generate diagrams for related problems on the same topic. We plan to study how to leverage \Edgeworth's scalable diagram production for instructional contexts of larger scale.
