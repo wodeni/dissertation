@@ -83,9 +83,16 @@ We recruited 16 participants through advertisement in the university community (
 
 All participants were be asked to complete 4 translation problem authoring tasks, each sampled from the translation study dataset (\cref{sec:edgeworth-case-studies}). For each task, the participant will be given (1) an textual problem prompt and (2) an example diagram (\ie a correct response to the prompt). Participants will create 3 counterexamples (\ie incorrect diagrams to the prompt) of this problem (12 diagrams in total). 
 
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{assets/edgeworth-eval/user-study-tasks.pdf}
+    \caption{Tasks used in the \Edgeworth experimental evaluation.}
+    \label{fig:enter-label}
+\end{figure}
+
 \subsubsection{Experimental Design}
 
-The study was a within-subject design, where we participants use \Edgeworth or Google Drawings to author diagrams in a counterbalanced order. Participants were further divided into two groups that make either chemistry or geometry diagrams, assigned randomly. \cref{tab:edgeworth-experiment-setup} summarizes the setup.
+The study was a within-subject design, where we participants use \Edgeworth and Google Drawings to author diagrams in a counterbalanced order. Participants were further divided into two groups that make either chemistry or geometry diagrams, assigned randomly.  \cref{tab:edgeworth-experiment-setup} summarizes the setup.
 
 \begin{table}[h]
 \centering
@@ -106,7 +113,7 @@ At the start of each study session, participants were given 5-minute tutorials o
 
 Between tasks, participants will be asked to explain how they came up with examples and counterexamples, identified useful edge cases, and interacted with the authoring tool.
 
-\section{Procedure}
+\subsection{Procedure}
 
 
 
@@ -114,11 +121,12 @@ The study sessions will be recorded and transcribed.
 
 
 
-The recording and \Edgeworth data will be analyzed to measure the authoring time for each task. The total authoring time difference between the conventional drawing tool and \Edgeworth will be used to answer R2.1. The time difference between \Edgeworth-config and \Edgeworth-PBD will answer R2.3. I will also observe the relative time participants spend on writing configuration in \Edgeworth-config and \Substance code in \Edgeworth-PBD. This observation will provide an estimate of the overhead of each workflow. Finally, I will compare the time with or without automatic detection (R3.2). 
+The recording and \Edgeworth data were analyzed to measure the authoring time for each task. 
 
 If participants do spend less time with automatic detection enabled, there may be two possible sources of this speedup: (1) they can filter down mutant diagrams in \Edgeworth more quickly, \ie less tool interaction; (2) \Edgeworth helps offload the effort in identifying examples and counterexamples, \ie less example ideation. Participants' answers between tasks will help us determine which of these reasons is dominant (R2.2).
 
-The video recordings will be coded to identify challenges participants encounter in both the conventional drawing tool and configuration-based or PBD \Edgeworth (R2.2, R2.3), and how they interact with the automatic detection result (R3.2). 
+\subsection{Results}
+
 
 
 \section{Expert Walkthrough Demonstration and Feedback (\ref{rq:eco})}
