@@ -75,29 +75,20 @@ To answer \ref{rq:eff}, we conduct an experiment that compares \Edgeworth agains
 
 \subsection{Study Design}
 
+
 \subsubsection{Participants}
 
 We recruited 16 participants through advertisement in the university community (e.g. emails and Slack channels). Participants were screened to have some past experience using digital drawing tools. All participants reported that they have used Google Drawings and/or equivalent tools to make diagrams in the past.
 
-\subsubsection{Tasks}
-
-All participants were be asked to complete 4 translation problem authoring tasks, each sampled from the translation study dataset (\cref{sec:edgeworth-case-studies}). For each task, the participant will be given (1) an textual problem prompt and (2) an example diagram (\ie a correct response to the prompt). Participants will create 3 counterexamples (\ie incorrect diagrams to the prompt) of this problem (12 diagrams in total). 
-
-\begin{figure}
-    \centering
-    \includegraphics[width=\linewidth]{assets/edgeworth-eval/user-study-tasks.pdf}
-    \caption{Tasks used in the \Edgeworth experimental evaluation.}
-    \label{fig:enter-label}
-\end{figure}
 
 \subsubsection{Experimental Design}
 
-The study was a within-subject design, where we participants use \Edgeworth and Google Drawings to author diagrams in a counterbalanced order. Participants were further divided into two groups that make either chemistry or geometry diagrams, assigned randomly.  \cref{tab:edgeworth-experiment-setup} summarizes the setup.
+The study was a within-subject design, where we participants use \Edgeworth and Google Drawings to author diagrams in a counterbalanced order. For each participant, they were given two problem prompts and example diagrams in total, each repeated twice for \Edgeworth and Google Drawings. Participants were further divided into two groups that make either chemistry or geometry diagrams, assigned randomly.  \cref{tab:edgeworth-experiment-setup} summarizes the setup.
 
 \begin{table}[h]
 \centering
 \begin{tabular}{l|llllll}
-Domain & Task 1 & Task 2 & Task 3 & Task 4  \\ \hline
+Domain & Task 1 (Prompt 1) & Task 2 (Prompt 1) & Task 3 (Prompt 2) & Task 4 (Prompt 2)  \\ \hline
 Chemistry &  Google Drawings & \Edgeworth & Google Drawings & \Edgeworth \\
 Chemistry & \Edgeworth & Google Drawings & \Edgeworth & Google Drawings \\
 Geometry &  Google Drawings & \Edgeworth & Google Drawings & \Edgeworth \\
@@ -113,17 +104,23 @@ At the start of each study session, participants were given 5-minute tutorials o
 
 Between tasks, participants will be asked to explain how they came up with examples and counterexamples, identified useful edge cases, and interacted with the authoring tool.
 
-\subsection{Procedure}
 
+\subsection{Tasks and Procedure}
 
+We selected four problem prompts from the translation study dataset (\cref{sec:edgeworth-case-studies}), two from the chemistry domain and two from geometry, shown in \cref{fig:edgeworth-user-study-tasks}. For each task, the participant were given (1) a textual problem prompt and (2) an example diagram (\ie a correct response to the prompt). Participants were then given up to 20 minutes to complete each task, which involve two sub-tasks: (a) participants first re-created one example similar to the given diagram and then (b) made up to 10 incorrect diagrams by editing the diagram produced in sub-task (a). Each sub-task is time-bounded to 10 minutes. 
 
-The study sessions will be recorded and transcribed. 
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\linewidth]{assets/edgeworth-eval/user-study-tasks.pdf}
+    \caption{Tasks used in the \Edgeworth experimental evaluation.}
+    \label{fig:edgeworth-user-study-tasks}
+\end{figure}
 
+The study took about 90 minutes per participant, using a provided MacBook Pro with the latest version of Chrome installed. The study sessions were audio-recorded and transcribed. All participants were compensated \$25 for their time.
 
+% The recording and \Edgeworth data were analyzed to measure the authoring time for each task. 
 
-The recording and \Edgeworth data were analyzed to measure the authoring time for each task. 
-
-If participants do spend less time with automatic detection enabled, there may be two possible sources of this speedup: (1) they can filter down mutant diagrams in \Edgeworth more quickly, \ie less tool interaction; (2) \Edgeworth helps offload the effort in identifying examples and counterexamples, \ie less example ideation. Participants' answers between tasks will help us determine which of these reasons is dominant (R2.2).
+% If participants do spend less time with automatic detection enabled, there may be two possible sources of this speedup: (1) they can filter down mutant diagrams in \Edgeworth more quickly, \ie less tool interaction; (2) \Edgeworth helps offload the effort in identifying examples and counterexamples, \ie less example ideation. Participants' answers between tasks will help us determine which of these reasons is dominant (R2.2).
 
 \subsection{Results}
 
