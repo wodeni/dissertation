@@ -5,6 +5,12 @@
 
 We now discuss potential future directions for \Edgeworth. 
 
+
+\subsection{Automated workflow helps scale up problem production}
+
+Some experts expressed their preference to use open-ended problems, but also noted that these open-ended problems scaled poorly in practice. In contrast to open-ended problems, automated systems that generate multiple-choice problems are easier to scale up and deliver better learning outcomes for more students if used effectively~\cite{Wang2021}. In this paper, we explored how to use \Edgeworth to author a single problem on a particular topic. However, there are ample opportunities to use \Edgeworth to create \textit{problem variations}, too. For instance, \Edgeworth can reliably generate a problem's worth of diagrams within few mutants. The author can also generate problem variations on the same topic by simply increasing the number of mutants. In addition, some \Edgeworth mutants might involve knowledge components that are suitable for problems on another topic. In this case, the author may use the mutant as the example scenario, and run \Edgeworth again to generate diagram variations on that mutant. We plan to study how \Edgeworth can be used in instructional contexts of larger scale.
+
+
 \subsection{Mixed-Initiative Integration with AI}
 
 We believe \Edgeworth is both a product of existing AI techniques and a promising platform to assess both domain-specific and general-purpose AI technologies in visual practice authoring. Like many classical AI systems, \Edgeworth makes use of a symbolic description language (\cref{sec:edgeworth-layout}) and mutates the description of the example diagram to search for viable variations. The description language then generates layout constraints that compile to energy functions, the gradients of which drive an optimizer to arrange the diagram layout. In the educational setting, \Edgeworth provides a mixed-initiative~\cite{allen1999mixedinitiative} experience: authors focus on specifying the content and the general direction of variations, while \Edgeworth fully automates the details of variation generation and layout. 
