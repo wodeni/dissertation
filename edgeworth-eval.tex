@@ -80,10 +80,23 @@ To answer \ref{rq:eff}, we conduct an experiment that compares \Edgeworth agains
 
 We recruited 16 participants through advertisement in the university community (e.g. emails and Slack channels). Participants were screened to have some past experience using digital drawing tools. All participants reported that they have used Google Drawings and/or equivalent tools to make diagrams in the past.
 
+\subsubsection{Tasks}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=.6\linewidth]{assets/edgeworth-eval/user-study-tasks.pdf}
+    \caption{Tasks used in the \Edgeworth experimental evaluation.}
+    \label{fig:edgeworth-user-study-tasks}
+\end{figure}
+
+We selected four problem prompts from the translation problem dataset (\cref{sec:edgeworth-case-studies}), two from the chemistry domain and two from geometry, shown in \cref{fig:edgeworth-user-study-tasks}. For each task, the participant were given (1) a textual problem prompt and (2) an example diagram (\ie a correct response to the prompt). Participants were then given up to 20 minutes to complete each task, which involve two sub-tasks: (a) participants first re-created one example visually similar to the given diagram and then (b) made up to 10 incorrect diagrams by editing the diagram produced in sub-task (a). Each sub-task is time-bounded to 10 minutes. Each participant completed two problem prompts in chemistry or geometry. 
 
 \subsubsection{Experimental Design}
 
-The study was a within-subject design, where we participants use \Edgeworth and Google Drawings to author diagrams in a counterbalanced order. For each participant, they were given two problem prompts and example diagrams in total, each repeated twice for \Edgeworth and Google Drawings. Participants were further divided into two groups that make either chemistry or geometry diagrams, assigned randomly.  \cref{tab:edgeworth-experiment-setup} summarizes the setup.
+% groups
+The study was a within-subject design, where participants used \Edgeworth and Google Drawings to author diagrams in a counterbalanced order. Participants were further divided into two groups that make either chemistry or geometry diagrams, assigned randomly. In the 90-minute study session, each participant was given two problem prompts in total, each repeated twice for \Edgeworth and Google Drawings, so four tasks in total. For instance, a participant in the chemistry-drawing group (first row in \cref{tab:edgeworth-experiment-setup} would 1 correct and up to 10 incorrect diagrams of \ensuremath{\mathrm{HNO_3}}
+
+\cref{tab:edgeworth-experiment-setup} summarizes the setup.
 
 \begin{table}[h]
 \centering
@@ -95,26 +108,20 @@ Geometry &  Google Drawings & \Edgeworth & Google Drawings & \Edgeworth \\
 Geometry & \Edgeworth & Google Drawings & \Edgeworth & Google Drawings \\
 \end{tabular}
 \label{tab:edgeworth-experiment-setup}
-\caption{Participants are divided into 4 groups by the tools they use and diagramming domains.}
+\caption{Participants are divided into 4 groups by the tools they used and diagramming domains of the tasks.}
 \end{table}
-
-
 
 At the start of each study session, participants were given 5-minute tutorials of \Edgeworth and Google Drawings, in which they were guided to draw either a right triangle or the Lewis structure of \ensuremath{\mathrm{O_2}}.
 
-Between tasks, participants will be asked to explain how they came up with examples and counterexamples, identified useful edge cases, and interacted with the authoring tool.
+After completing each task, participants completed a survey that asked them if they agree with the following statements on a 5-point Likert scale:
 
+\begin{itemize}
+  \item I would use this problem for a class that I
+teach.
+  \item The problem is pedagogically useful (\ie students will benefit from doing this problem).  
+  \item The diagrams in the problem are of high visual quality.
+\end{itemize}
 
-\subsection{Tasks and Procedure}
-
-We selected four problem prompts from the translation study dataset (\cref{sec:edgeworth-case-studies}), two from the chemistry domain and two from geometry, shown in \cref{fig:edgeworth-user-study-tasks}. For each task, the participant were given (1) a textual problem prompt and (2) an example diagram (\ie a correct response to the prompt). Participants were then given up to 20 minutes to complete each task, which involve two sub-tasks: (a) participants first re-created one example similar to the given diagram and then (b) made up to 10 incorrect diagrams by editing the diagram produced in sub-task (a). Each sub-task is time-bounded to 10 minutes. 
-
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=\linewidth]{assets/edgeworth-eval/user-study-tasks.pdf}
-    \caption{Tasks used in the \Edgeworth experimental evaluation.}
-    \label{fig:edgeworth-user-study-tasks}
-\end{figure}
 
 The study took about 90 minutes per participant, using a provided MacBook Pro with the latest version of Chrome installed. The study sessions were audio-recorded and transcribed. All participants were compensated \$25 for their time.
 
