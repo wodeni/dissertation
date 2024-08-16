@@ -1,5 +1,26 @@
+\begin{teaserfigure}
+  \centering
+\begin{minipage}{150pt}
+   % @keenan: lstlisting breaks inside the "teaserfigure" environment...
+   % ...using a hack instead!
+   \texttt{\textbf{Point} p, q, r, s} \\
+   \texttt{\textbf{Segment} a := \{p, q\}} \\
+   \texttt{\textbf{Segment} b := \{p, r\}} \\
+   \texttt{\textbf{Point} m := \textbf{Midpoint}(a)} \\
+   \texttt{\textbf{Angle} theta := $\angle$(q, p, r)} \\
+   \texttt{\textbf{Triangle} t := \{p, r, s\}} \\
+   \texttt{\textbf{Ray} w := \textbf{Bisector}(theta)} \\
+   \texttt{\textbf{Ray} h := \textbf{PerpendicularBisector}(a)} \\
+\end{minipage}\hspace{.25in}
+\begin{minipage}{328pt}
+   \includegraphics{penrose/teaser.pdf}
+\end{minipage}
+   \caption{\Penrose{} is a framework for specifying how mathematical statements should be interpreted as visual diagrams.  A clean separation between abstract mathematical objects and their visual representation provides new capabilities beyond existing code- or GUI-based tools.  Here, for instance, the same set of statements \figloc{(left)} is given three different visual interpretations \figloc{(right)}, via Euclidean, spherical, and hyperbolic geometry. (Further samples are shown in \figref{GeometrySamples}.)
+     \label{fig:teaser}
+   }
+\end{teaserfigure}
 
-% Informed by the results from the interview study, colleagues and I have developed \Penrose, a language-based diagramming platform~\cite{penrose}. The core \Penrose system addresses \textbf{representation salience} and \textbf{vocabulary correspondence}: it has first-class support for creating and reusing visual representations and translates familiar math-like notation into one or more possible visual representations. To accomplish this, \Penrose decomposes the concerns of diagramming into two domain-specific languages (DSLs) with distinct purposes: \colorbox[HTML]{E7F3E7}{\Substance} contains the mathematical content in math notation. \colorbox[HTML]{DDDEED}{\Style} explicitly specifies mappings from mathematical objects to visual icons. 
+Informed by the results from the interview study, colleagues and I have developed \Penrose, a language-based diagramming platform~\cite{penrose}. The core \Penrose system addresses \textbf{representation salience} and \textbf{vocabulary correspondence}: it has first-class support for creating and reusing visual representations and translates familiar math-like notation into one or more possible visual representations. To accomplish this, \Penrose decomposes the concerns of diagramming into two domain-specific languages (DSLs) with distinct purposes: \colorbox[HTML]{E7F3E7}{\Substance} contains the mathematical content in math notation. \colorbox[HTML]{DDDEED}{\Style} explicitly specifies mappings from mathematical objects to visual icons. 
 
 % \setlength{\columnsep}{1em}
 % \setlength{\intextsep}{0em}
