@@ -171,6 +171,45 @@ pdfborder=0 0 0,  %removes outlines around hyper links in online display
 \usepackage{float}
 
 % table
+\usepackage{array} % For m{} column specifier
+\usepackage{colortbl}
+\usepackage{multirow}
+
+% Define a command to create a progress bar
+\definecolor{freqColor5}{HTML}{007000}
+\definecolor{freqColor4}{HTML}{238823}
+\definecolor{freqColor3}{HTML}{FFBF00}
+\definecolor{freqColor2}{HTML}{FF6600}
+\definecolor{freqColor1}{HTML}{D2222D}
+
+\usetikzlibrary{calc}
+\newcommand{\progressbar}[1]{%
+    \begin{tikzpicture}[xscale=0.2, yscale=0.2, baseline=(current bounding box.south)]
+        \draw[fill=white] (0, 0) rectangle (5, 1); % Background rectangle
+        \ifdim #1pt<2pt
+            \draw[fill=red] (0, 0) rectangle (#1, 1); % Red for <2
+        \else\ifdim #1pt<3pt
+            \draw[fill=freqColor2] (0, 0) rectangle (#1, 1); % Yellow for <3
+        \else\ifdim #1pt<4pt
+            \draw[fill=freqColor3] (0, 0) rectangle (#1, 1); % Yellow-green for <4
+        \else
+            \draw[fill=freqColor5] (0, 0) rectangle (#1, 1); % Green for >=4
+        \fi\fi\fi
+    \end{tikzpicture}%
+}
+% \newcommand{\progressbar}[1]{%
+% \begin{tikzpicture}[xscale=0.04,yscale=0.1,baseline=(current bounding box.south)]
+%   \draw[fill=white] (0,0) rectangle (10, 1.5);
+% %   \draw[fill=black!30!black] (0,0) rectangle ($(#1/10, 1.5)$);
+% \ifnum#1<4
+%   % \draw[fill=green] (0,0) rectangle ($(#1*2/10, 1.5)$);
+%   \draw[fill=green] (0,0) rectangle ($(10, 1.5)$);
+%   \else
+%   \draw[fill=black] (0,0) rectangle ($(#1*2/10, 1.5)$);
+% \fi
+% \end{tikzpicture}
+% }
+
 % \usepackage{caption}
 % \captionsetup[table] % Adjusts space between the table caption and the table
 
@@ -269,12 +308,28 @@ TODO
 
 
 % \input{prelude}
-\input{introduction}
-\input{interviews}
-\input{penrose}
+\chapter{Introduction}
+% \input{introduction}
+
+\chapter{Understanding the diagramming process and encoding visual representations}
+\label{chp:interviews}
+% \input{interviews}
+
+\chapter{\Penrose: from notations to beautiful diagrams}
+\label{chp:penrose}
+% \input{penrose}
+
+\chapter[\Edgeworth: diagrammatic problem authoring at scale]{\Edgeworth: diagrammatic problem authoring at scale\footnote{This chapter is adapted from \citet[Sections~1--5]{ni_edgeworth_2024}}}
+\label{chp:edgeworth}
 \input{edgeworth}
+
+\chapter{Evaluating \Edgeworth{}}
+\label{chp:edgeworth-eval}
 \input{edgeworth-eval}
-\input{conclusion}
+
+\chapter{Conclusion and Future Work}
+\label{chp:conclusion}
+% \input{conclusion}
 
 % I will compare the time it takes participants to create content and the quality of the content. 
 % I will recruit previous formative participants for this study and draw from the formative participant pool if needed.
