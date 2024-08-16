@@ -89,9 +89,7 @@ After the author picks a sufficient number of diagrams (4 in this case), they ca
 \subsection{Diagram Notation and Layout}
 \label{sec:edgeworth-layout}
 
-\Edgeworth is built on \Penrose~\cref{chp:penrose}. Compared with alternatives, \Penrose offers two advantages: (1) a high-level diagram notation that's easy for authoring and (2) an automatic layout engine. A diagram in \Penrose consists of a textual description of the diagram content (\Substance) and a reusable layout stylesheet. 
-
-\Substance is a simple declarative notation for describing objects and relations in a diagram. As shown in \cref{fig:cocl2-example}, \Substance has three kinds of statements: type statements (\eg \sub{Carbon c}) declare new objects; constructors (\sub{Bond b1 := MakeSingleBond(c, cl1)}) create new objects from existing objects; and predicates (\sub{ZeroValenceElectrons(c)}) indicate relations among objects. A stylesheet translates the \Substance notation to shapes and layout constraints, and then \Penrose solves for diagram layouts automatically. Since \Edgeworth authors only interact with \Substance, we omit the description of the stylesheet language in this paper; more details about stylesheets can be found in the official documentation\footnote{\url{https://penrose.cs.cmu.edu/docs}} and \citet{penrose}.
+\Edgeworth is built on \Penrose~(\cref{chp:penrose}). Compared with alternatives, \Penrose offers two distinct advantages: (1) a high-level diagram notation that's easy for authoring and (2) an automatic layout engine. As discussed in \cref{chp:penrose}, a diagram in \Penrose consists of a textual description of the diagram content (\Substance) and a reusable layout stylesheet (\Style). As a reminder, \cref{fig:cocl2-example} shows the three kinds of \Substance statements: type statements (\eg \sub{Carbon c}) declare new objects; constructors (\sub{Bond b1 := SingleBond(c, cl1)}) create new objects from existing objects; and predicates (\sub{ZeroDots(c)}) indicate relations among objects. 
 
 % \begin{wrapfigure}{r}{0.5\textwidth}
 \begin{figure}[H]
@@ -103,7 +101,7 @@ After the author picks a sufficient number of diagrams (4 in this case), they ca
     \label{fig:cocl2-example}
 \end{figure}
 
-The \Penrose ecosystem offers a wide range of stylesheets for STEM diagrams, and the current \Edgeworth implementation builds on \Penrose's geometry, chemistry, and graph stylesheets for diagram layout. Since the existing \Penrose stylesheets are primarily used to generate a few human-written examples, they lack coverage for variations of \Substance descriptions required by \Edgeworth. To this end, we improved stylesheets, diagram examples, and new standard library functions to \Penrose.
+The current \Edgeworth implementation builds on \Penrose's geometry, chemistry, and graph \Style for diagram layout. Since the existing \Style stylesheets are primarily used to generate a few human-written examples, they lack coverage for variations of \Substance descriptions required by \Edgeworth. To this end, we improved \Style, diagram examples, and new standard library functions to \Penrose to accommodate \Edgeworth.
 
 \Edgeworth is the first application of \Penrose that concurrently optimizes and renders a grid of multiple diagrams. Therefore, we have made significant updates to \Penrose to support \Edgeworth's use case. To make \Edgeworth a performant client-side web application for interactive use, we have migrated from Haskell to TypeScript and made various performance improvements to efficiently run tens of layout optimization jobs in a single session. Compared to the state of \Penrose at the publication of \citet{penrose}, the development of \Edgeworth has helped improve the performance of the system by 100$\times$.
 
@@ -291,7 +289,7 @@ We extend the existing \Penrose chemistry stylesheet to include notation and lay
 % (\eg \cref{fig:cocl2-example} and \cref{fig:edgeworth-problems} bottom-middle)
 . For molecules involved in all 7 problems, the layout algorithm produces high-quality diagrams without any manual manipulation needed from the author. 
 
-To configure \Edgeworth for this domain, we weight edits 100\%. We exclusively weight on edits because we observed that variations of molecules never add or delete atoms and bonds. Although valence electrons may be added or deleted, they are modeled as predicates that can be edited to change the number of electrons for an atom (\eg \sub{ZeroValenceElectrons(H)} $\rightarrow$ \sub{TwoValenceElectrons(H)}) via a \textbf{Replace Function} mutation operation. 
+To configure \Edgeworth for this domain, we weight edits 100\%. We exclusively weight on edits because we observed that variations of molecules never add or delete atoms and bonds. Although valence electrons may be added or deleted, they are modeled as predicates that can be edited to change the number of electrons for an atom (\eg \sub{ZeroDots(H)} $\rightarrow$ \sub{TwoDots(H)}) via a \textbf{Replace Function} mutation operation. 
 
 Figure~\ref{fig:edgeworth-problems} (middle) shows an \Edgeworth Lewis structure problem for hydrogen cyanide, with the correct diagram in the top-left. Incorrect choices for this problem can be generated via mutation. For instance, if a student forgets that nitrogen must have eight surrounding electrons, they might choose the bottom-left option, which was generated by removing the valence electrons around nitrogen. Or, if a student does not know that hydrogen should only have two electrons instead of eight, they might select the top-right choice, which was generated by mutating the number of electrons around hydrogen from zero to six. Finally, if a student does not know that free electrons should be minimized, they might pick the bottom-right diagram, which was generated by mutating up the number of electrons around carbon and nitrogen and changing the triple bond to a double bond.
 
@@ -319,7 +317,7 @@ To configure \Edgeworth for the graph domain, we weight additions 50\%, deletion
 
 Figure~\ref{fig:edgeworth-problems} (right) shows an \Edgeworth problem asking which of four directed graphs have an Euler circuit. The bottom-right diagram does not have an Euler circuit, as can be seen by observing that the sum of $a$'s in-degree and out-degree is odd. In contrast, for the diagram in the bottom-left generated by deleting edge $(a, d)$, every node has an even sum of in-degree and out-degree, and indeed there does exist an Euler circuit. This condition on degree is only sufficient for undirected graphs, though; the diagram in the top-right is generated by flipping edge $(b, c)$ from the bottom-left diagram, but does not have an Euler circuit, thwarting the simple degree counting heuristic. Finally, the simple diagram in the top-left is generated by deleting $d$ and trivially has an Euler circuit. 
 
-\section{Summary}
+% \section{Summary}
 
-TODO
+% TODO
 
