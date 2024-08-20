@@ -200,6 +200,13 @@ pdfborder=0 0 0,  %removes outlines around hyper links in online display
     \end{tikzpicture}%
 }
 
+% RQs
+\newcounter{rqcounter} % Define a new counter for RQs
+\renewcommand{\therqcounter}{RQ\arabic{rqcounter}} % Format the counter as RQ1, RQ2, etc.
+
+\newcounter{rqsupcounter} % Define a new sub-counter for sub-RQs
+\renewcommand{\therqsupcounter}{RQ3.\arabic{rqsupcounter}} % Format the sub-counter as RQ3.1, RQ3.2, etc.
+
 
 
 % \usepackage{caption}

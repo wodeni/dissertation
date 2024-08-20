@@ -53,22 +53,29 @@ Atop \Penrose, I built \Edgeworth, a tool designed to help educators easily crea
 
 \section{Thesis Outline and Research Questions}
 
+
 In \cref{chp:background}, I first provide some historical context and discuss related work on diagram use and diagramming tools. In the rest of this dissertation, I present a body of work that begins with an empirical study on existing diagramming processes and limitations of existing tools (\cref{chp:interviews}). This part of the work is \textit{descriptive} of how authors make diagrams and driven by this research question:
 
-\boxtext{\textbf{RQ1:} \label{rq:diagrammer} How do diagrammers utilize the strengths and cope with the limitations of their diagramming tools?}
+\refstepcounter{rqcounter}\label{rq:diagrammer}
+\boxtext{\textbf{\therqcounter:} How do diagrammers utilize the strengths and cope with the limitations of their diagramming tools?}
+
 
 The findings of this study drive the design and implementation of \Penrose, presented in \cref{chp:penrose}. \Penrose's design responds directly to the limitations identified in current practices, aiming to bridge the gap between abstract conceptualization and tangible representation. Therefore, the research question aligns with \textit{artificial} science ~\cite{simon_sciences_1969}:
 
-\boxtext{\textbf{RQ2:} \label{rq:expressiveness} How effectively can \Penrose's language-based specification express a wide range of diagramming domains without requiring significant modification to the system's core design? }
+\refstepcounter{rqcounter}\label{rq:expressiveness}
+\boxtext{\textbf{\therqcounter:} How effectively can \Penrose's language-based specification express a wide range of diagramming domains without requiring significant modification to the system's core design? }
 
 The subsequent chapters of this dissertation detail how \Edgeworth--an extension designed to generate multiple problem variations from a single diagram--address the identified needs and support the process of diagrammatic problem authoring in educational settings. In \cref{chp:edgeworth}, I present the system design of \Edgeworth and show its expressiveness by collecting a dataset of diagrammatic translation problems in multiple domains. \cref{chp:edgeworth-eval} describes a series of evaluative studies that aim to answer the following research questions about various aspects of \Edgeworth:
 
 \boxtext{
-\textbf{RQ3.1:} \label{rq:mut} Can \Edgeworth reliably generate translation problems with relatively few variations required?
+\refstepcounter{rqsupcounter}\label{rq:mut}
+\textbf{\therqsupcounter:} Can \Edgeworth reliably generate translation problems with relatively few variations required?
 
-\textbf{RQ3.2:} \label{rq:eff} Comparing with a conventional drawing tool, are authors more efficient at making translation problems using \Edgeworth? 
+\refstepcounter{rqsupcounter}\label{rq:eff}
+\textbf{\therqsupcounter:} Comparing with a conventional drawing tool, are authors more efficient at making translation problems using \Edgeworth? 
 
-\textbf{RQ3.3:} \label{rq:eco} Do real-world instructors consider \Edgeworth-generated translation problems to be useful? 
+\refstepcounter{rqsupcounter}\label{rq:eco}
+\textbf{\therqsupcounter:} Do real-world instructors consider \Edgeworth-generated translation problems to be useful? 
 }
 
 In \cref{chp:conclusion}, I assess the contributions and insights developed in this dissertation and outline potential directions for future research of diagramming.
