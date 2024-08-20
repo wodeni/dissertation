@@ -1,13 +1,9 @@
-In this chapter, we discuss three studies to evaluate various aspects of \Edgeworth (\cref{chp:edgeworth}).
-
-\section{Overview and Research Questions}
-
-To effectively scale up visual practice authoring, \Edgeworth must support a diverse set of instructional domains, generate high-quality diagrams consistently, and allow educators to author real-world problems. In \cref{sec:edgeworth-user-study,sec:reliability-eval,sec:expert-feedback}, we evaluate \Edgeworth by answering the following research questions on these qualities:
+In this chapter, we discuss three studies to evaluate various aspects of \Edgeworth (\cref{chp:edgeworth}). To effectively scale up visual practice authoring, \Edgeworth must support a diverse set of instructional domains, generate high-quality diagrams consistently, and allow educators to author real-world problems. In \cref{sec:edgeworth-user-study,sec:reliability-eval,sec:expert-feedback}, we evaluate \Edgeworth by answering the following research questions on these qualities:
 
 \begin{enumerate}[label=RQ\arabic*]
-    \item\label{rq:mut} \textbf{Reliability}: Can \Edgeworth reliably generate translation problems with relatively few variations required?
-    \item\label{rq:eff} \textbf{Efficiency}: comparing with a conventional drawing tool, are authors more efficient at making translation problems using \Edgeworth? 
-    \item\label{rq:eco} \textbf{Ecological validity}: Do real-world instructors consider \Edgeworth-generated translation problems to be useful? 
+    \item\textbf{Reliability}: Can \Edgeworth reliably generate translation problems with relatively few variations required?
+    \item\textbf{Efficiency}: comparing with a conventional drawing tool, are authors more efficient at making translation problems using \Edgeworth? 
+    \item\textbf{Ecological validity}: Do real-world instructors consider \Edgeworth-generated translation problems to be useful? 
 \end{enumerate}
 
 First, we evaluated the reliability of \Edgeworth by labeling 310 diagram variations from translation problem dataset (\cref{sec:edgeworth-case-studies}) by hand. With high inter-rater reliability, the result shows that \Edgeworth can reliably generate diagrams that constitute valid four-choice translation problems, when constrained to 10 variations per problem.
@@ -89,14 +85,14 @@ We recruited 16 participants through advertisement in the university community (
 
 We selected four problem prompts from the translation problem dataset (\cref{sec:edgeworth-case-studies}), two from the chemistry domain and two from geometry, shown in \cref{fig:edgeworth-user-study-tasks}.
 
-We segmented the authoring of the first correct diagram and subsequent incorrect diagrams in the tasks. This segmentation allows us to separately measure the authoring efficiency of creating the example scenario (\cref{sec:create-scenario}) and more counterexamples (\cref{sec:select-diagrams}). For participants who used \Edgeworth, we were particularly interested in the upfront cost of making the first \Substance diagram in the \Penrose editor. 
+We segmented the authoring of the first correct diagram and subsequent incorrect diagrams in the tasks. This segmentation allows us to separately measure the authoring efficiency of creating the example scenario (\cref{sec:create-scenario}) and creating counterexamples (\cref{sec:select-diagrams}). For participants who used \Edgeworth, we were particularly interested in the upfront cost of making the first \Substance diagram in the \Penrose editor. 
 
 For each task, the participant were given (1) a textual problem prompt and (2) an example diagram (\ie a correct response to the prompt). Participants were then given up to 20 minutes to complete each task, which involve two sub-tasks: (a) participants first re-created one example visually similar to the given diagram and then (b) made up to 10 incorrect diagrams by editing the diagram produced in sub-task (a). Each sub-task is time-bounded to 10 minutes. If the participant failed to produce 1 correct diagram in the first segment, they were provided with one so they could continue to the next segment. Each participant completed two problem prompts in chemistry or geometry. 
 
 \subsubsection{Experimental Design}
 
 % groups
-The study was a within-subject design, where participants used \Edgeworth and Google Drawings to author diagrams in a counterbalanced order. Participants were further divided into two groups that make either chemistry or geometry diagrams, assigned randomly. In the 90-minute study session, each participant was given two problem prompts in total, each repeated twice for \Edgeworth and Google Drawings, so four tasks in total. For instance, a participant in the chemistry-drawing group (first row in \cref{tab:edgeworth-experiment-setup} would spend up to 20 minutes making 1 correct and up to 10 incorrect diagrams of \ensuremath{\mathrm{CH_2O}} using Google Drawings first, and then another 20 minutes on the same prompt using \Penrose and \Edgeworth. After that, this participant would repeat the same for   \ensuremath{\mathrm{HNO_3}}. \cref{tab:edgeworth-experiment-setup} summarizes the four groups resulted from the tool and domain assignments.
+The study was a within-subject design, where participants used \Edgeworth and Google Drawings to author diagrams in a counterbalanced order. Participants were further randomly assigned into one of two groups: one group made chemistry diagrams and the second group made geometry diagrams. In the 90-minute study session, each participant was given two problem prompts in total, each repeated twice for \Edgeworth and Google Drawings, so four tasks in total. For instance, a participant in the chemistry-drawing group (first row in \cref{tab:edgeworth-experiment-setup} would spend up to 20 minutes making 1 correct and up to 10 incorrect diagrams of \ensuremath{\mathrm{CH_2O}} using Google Drawings first, and then another 20 minutes on the same prompt using \Penrose and \Edgeworth. After that, this participant would repeat the same for  \ensuremath{\mathrm{HNO_3}}. \cref{tab:edgeworth-experiment-setup} summarizes the four groups resulted from the tool and domain assignments.
 
 \begin{table}
 \centering
@@ -108,7 +104,7 @@ Geometry &  Google Drawings & \Edgeworth & Google Drawings & \Edgeworth \\
 Geometry & \Edgeworth & Google Drawings & \Edgeworth & Google Drawings \\
 \end{tabular}
 \label{tab:edgeworth-experiment-setup}
-\caption{Participants are divided into 4 groups by the tools they used and diagramming domains of the tasks.}
+\caption{Participants were divided into 4 groups by the tools they used and diagramming domains of the tasks.}
 \end{table}
 
 % authoring assistance
@@ -120,7 +116,7 @@ Geometry & \Edgeworth & Google Drawings & \Edgeworth & Google Drawings \\
     \label{fig:edgeworth-user-study-examples}
 \end{figure}
 
-At the start of each study session, participants were given 5-minute tutorials of \Edgeworth and Google Drawings, in which they were guided to draw either a right triangle or the Lewis structure of \ensuremath{\mathrm{O_2}}. The ordering of tutorials match the counterbalanced ordering of Google Drawings and \Edgeworth. Throughout the session, participants had access to one Google Drawings and one \Substance examples. \cref{fig:edgeworth-user-study-examples} shows the two examples in chemistry and geometry. The examples are samples from the translation problem dataset that are visually more complex than the actual study tasks. We provided them to the participants as an authoring aid so that they can copy elements from the examples to save time, analogous to the real-world experience of copying and pasting online examples reported in \cref{sec:edgeworth-formative}.
+At the start of each study session, participants were given 5-minute tutorials of \Edgeworth and Google Drawings, in which they were guided to draw either a right triangle or the Lewis structure of \ensuremath{\mathrm{O_2}}. The ordering of tutorials match the counterbalanced ordering of Google Drawings and \Edgeworth. Throughout the session, participants had access to one Google Drawings example and one \Substance example. \cref{fig:edgeworth-user-study-examples} shows the chemistry and geometry examples. The examples are samples from the translation problem dataset that are visually more complex than the actual study tasks. We provided them to the participants as an authoring aid so that they can copy elements from the examples to save time, analogous to the real-world experience of copying and pasting online examples reported in \cref{sec:edgeworth-formative}.
 
 Participants received no more instructions during the tasks. The experimenter only observed the participant and used a stopwatch to measure the time on task. After completing each task, participants completed a survey that asked them if they agree with the following statements on a 5-point Likert scale:
 
@@ -136,8 +132,8 @@ The study took about 90 minutes per participant, using a provided MacBook Pro wi
 \subsection{Results}
 
 % completion
-\cref{tab:edgeworth-user-study-timing} shows the average total time, diagrams produced, and time per diagram for all participants. The \textbf{Diagram Ct} column in \cref{tab:edgeworth-user-study-timing} shows how many diagrams participants produced in each segment of all tasks on average. Any number lower than 1 for correct segments and 10 for incorrect segments indicates some participants failed. 
-All participants authored 10 incorrect diagrams within 10 minutes using \Edgeworth for both domains. 6 out of 8 participants (11 out of 16 total attempts) failed to do so using Google Drawings in geometry, and 1 out of 8 participants in chemistry. All participants were able to complete the correct diagram for both chemistry prompts using both tools. For the geometry tasks, all participants produced one correct diagram in the first segment using Google Drawings, but 3 failed using \Penrose. 
+\cref{tab:edgeworth-user-study-timing} shows the average total time, diagrams produced, and time per diagram for all participants. The \textbf{Diagram Ct} column in \cref{tab:edgeworth-user-study-timing} shows how many diagrams participants produced in each segment of all tasks on average. Any number lower than 1 for correct segments and 10 for incorrect segments indicates that the corresponding participant did not complete the subtask. 
+All participants authored 10 incorrect diagrams within 10 minutes using \Edgeworth for both domains. 6 out of 8 participants (11 out of 16 total subtasks) failed to do so using Google Drawings for at least one geometry subtask, and 1 out of 8 participants failed in chemistry. All participants were able to complete the correct diagram for both chemistry prompts using both tools. For the geometry tasks, all participants produced one correct diagram in the first segment using Google Drawings, but 3 failed using \Penrose. 
 
 \begin{table}[h!]
 \centering
@@ -168,9 +164,9 @@ A two-way repeated measures ANOVA was conducted to examine the within-subject ef
 \end{figure}
 
 
-For the incorrect segment, the analysis revealed significant differences in task completion times between the tools used, visualized in \cref{fig:timing-violin} \textbf{Right}. In the chemistry domain, participants completed tasks significantly faster (almost 3 times faster) using \Edgeworth (\textit{M} = 150.13s, \textit{SD} = 59.15s) compared to Google Drawings (\textit{M} = 440.63s, \textit{SD} = 113.04s), as indicated by the significant main effect of tool, $F(1, 7) = 53.33, p = 0.0002$. There was no significant effect of the task itself, $F(1, 7) = 1.29, p = 0.293$, suggesting that the difficulty of the tasks was consistent regardless of the tool used. Similarly, in the geometry domain, participants also completed tasks significantly faster (similarly, almost 3 times faster) with \Edgeworth (\textit{M} = 257.25s, \textit{SD} = 139.55s) compared to Google Drawings (\textit{M} = 549.38s, \textit{SD} = 91.28s), with a significant effect of the tool, $F(1, 7) = 90.97, p < 0.0001$. There was a marginal effect of task, $F(1, 7) = 3.64, p = 0.098$, indicating a trend towards task differences that did not reach statistical significance. 
+For the incorrect subtasks, the analysis revealed significant differences in task completion times between the tools used, visualized in \cref{fig:timing-violin} \textbf{Right}. In the chemistry domain, participants completed tasks significantly faster (almost 3 times faster) using \Edgeworth (\textit{M} = 150.13s, \textit{SD} = 59.15s) compared to Google Drawings (\textit{M} = 440.63s, \textit{SD} = 113.04s), as indicated by the significant main effect of tool, $F(1, 7) = 53.33, p = 0.0002$. There was no significant effect of the task itself, $F(1, 7) = 1.29, p = 0.293$, suggesting that the difficulty of the tasks was consistent regardless of the tool used. Similarly, in the geometry domain, participants also completed tasks significantly faster (similarly, almost 3 times faster) with \Edgeworth (\textit{M} = 257.25s, \textit{SD} = 139.55s) compared to Google Drawings (\textit{M} = 549.38s, \textit{SD} = 91.28s), with a significant effect of the tool, $F(1, 7) = 90.97, p < 0.0001$. There was a marginal effect of task, $F(1, 7) = 3.64, p = 0.098$, indicating a trend towards task differences that did not reach statistical significance. 
 
-For the correct tasks, the analysis showed mixed results on \Penrose's performance depending on the domain, illustrated in \cref{fig:timing-violin} \textbf{Left}. In the chemistry domain, participants completed tasks significantly faster using \Penrose (\textit{M} = 144.19s, \textit{SD} = 79.22s) compared to Google Drawings (\textit{M} = 231.81s, \textit{SD} = 129.78s), as indicated by the significant main effect of tool, $F(1, 7) = 6.65, p = 0.037$. There was no significant effect of the task itself, $F(1, 7) = 0.99, p = 0.353$, suggesting that the difficulty of the tasks was consistent regardless of the tool used. In the geometry domain, however, Google Drawings outperformed \Penrose, with participants completing tasks faster using Google Drawings (\textit{M} = 228.5s, \textit{SD} = 71.74s) compared to \Penrose (\textit{M} = 390.94s, \textit{SD} = 149.74s), as indicated by the significant main effect of tool, $F(1, 7) = 15.95, p = 0.005$. Again, there was no significant effect of the task itself, $F(1, 7) = 0.28, p = 0.611$, indicating that the tasks were of similar difficulty across tools.
+For the correct subtasks, the analysis showed mixed results on \Penrose's performance depending on the domain, illustrated in \cref{fig:timing-violin} \textbf{Left}. In the chemistry domain, participants completed tasks significantly faster using \Penrose (\textit{M} = 144.19s, \textit{SD} = 79.22s) compared to Google Drawings (\textit{M} = 231.81s, \textit{SD} = 129.78s), as indicated by the significant main effect of tool, $F(1, 7) = 6.65, p = 0.037$. There was no significant effect of the task itself, $F(1, 7) = 0.99, p = 0.353$, suggesting that the difficulty of the tasks was consistent regardless of the tool used. In the geometry domain, however, Google Drawings outperformed \Penrose, with participants completing tasks faster using Google Drawings (\textit{M} = 228.5s, \textit{SD} = 71.74s) compared to \Penrose (\textit{M} = 390.94s, \textit{SD} = 149.74s), as indicated by the significant main effect of tool, $F(1, 7) = 15.95, p = 0.005$. Again, there was no significant effect of the task itself, $F(1, 7) = 0.28, p = 0.611$, indicating that the tasks were of similar difficulty.
 
 % survey
 
@@ -226,7 +222,7 @@ We recruited domain expert educators of chemistry, geometry, and graph theory. E
         Undergraduate TA           &  3 & Geometry, Graphs    \\
         High School Teacher        & 11 & Geometry, Graphs    \\
     \end{tabular}
-    \caption{Participant demographics in walkthrough demonstration sessions.}
+    \caption{Demographics of walkthrough demonstration participants.}
     % \Description{A table showing the demographics of participants in walkthrough demonstration sessions. It has four columns labeled: ID, Occupation, Teaching Experience, and Domain(s). The entries are: E1 as a MOOC Course Designer with 7 years in Chemistry, E2 as a Professor at a Liberal Arts College with 4 years in Chemistry and Geometry, E3 as a Professor at a Community College with 30 years in Chemistry, E4 as a Professor at a Liberal Arts College with 11 years in Graphs, E5 as a Professor at a Research University with 17 years in Graphs, E6 as a Professor at a Research University with 5 years in Graphs, E7 as a Middle School Teacher with 5 years in Geometry, and E8 as an Elementary School Tutor and Undergraduate TA with 3 years in Geometry and Graphs.}
     \label{tab:demographics}
 \end{table}

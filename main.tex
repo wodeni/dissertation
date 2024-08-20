@@ -46,15 +46,14 @@ pdfborder=0 0 0,  %removes outlines around hyper links in online display
 }
 
 % Approximately 1" margins, more space on binding side
-%\usepackage[letterpaper,twoside,vscale=.8,hscale=.75,nomarginpar]{geometry}
+\usepackage[letterpaper,twoside,vscale=.8,hscale=.75,nomarginpar]{geometry}
 %for general printing (not binding)
-\usepackage[letterpaper,twoside,vscale=.8,hscale=.75,nomarginpar,hmarginratio=1:1]{geometry}
+% \usepackage[letterpaper,twoside,vscale=.8,hscale=.75,nomarginpar,hmarginratio=1:1]{geometry}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Nimo's macros
 
 % latin: https://tex.stackexchange.com/questions/15009/macros-for-common-abbreviations
-
 \usepackage{xspace}
 \newcommand*{\eg}{e.g.\@\xspace}
 \newcommand*{\ie}{i.e.\@\xspace}
@@ -200,18 +199,8 @@ pdfborder=0 0 0,  %removes outlines around hyper links in online display
         \fi\fi\fi
     \end{tikzpicture}%
 }
-% \newcommand{\progressbar}[1]{%
-% \begin{tikzpicture}[xscale=0.04,yscale=0.1,baseline=(current bounding box.south)]
-%   \draw[fill=white] (0,0) rectangle (10, 1.5);
-% %   \draw[fill=black!30!black] (0,0) rectangle ($(#1/10, 1.5)$);
-% \ifnum#1<4
-%   % \draw[fill=green] (0,0) rectangle ($(#1*2/10, 1.5)$);
-%   \draw[fill=green] (0,0) rectangle ($(10, 1.5)$);
-%   \else
-%   \draw[fill=black] (0,0) rectangle ($(#1*2/10, 1.5)$);
-% \fi
-% \end{tikzpicture}
-% }
+
+
 
 % \usepackage{caption}
 % \captionsetup[table] % Adjusts space between the table caption and the table
@@ -262,13 +251,10 @@ Shriram Krishnamurthi, Brown University\\
 \maketitle
 
 \begin{dedication}
-TODO
+To the pool gods.
 \end{dedication}
 
 \pagestyle{plain} % for toc, was empty
-
-%% Obviously, it's probably a good idea to break the various sections of your thesis
-%% into different files and input them into this file...
 
 \begin{abstract}
 ``Mental pictures'' and ``visual intuition'' capture how people make sense of abstract concepts and see solutions to hard problems in a visual way. Learning research suggests that visual representations of knowledge are powerful tools for thought. Visual representations like diagrams enable more robust learning and flexible problem solving. 
@@ -312,9 +298,10 @@ TODO
 
 % \input{prelude}
 \chapter{Introduction}
-% \input{introduction}
+\input{introduction}
 
 \chapter{Background and Related Work}
+\label{chp:background}
 
 \chapter{Understanding the Diagramming Process and Encoding Visual Representations}
 \label{chp:interviews}
@@ -322,7 +309,7 @@ TODO
 
 \chapter{\Penrose: From Notations to Beautiful Diagrams}
 \label{chp:penrose}
-\input{penrose}
+% \input{penrose}
 
 \chapter[\Edgeworth: Diagrammatic Problem Authoring at Scale]{\Edgeworth: Diagrammatic Problem Authoring at Scale\footnote{This chapter is adapted from \citet[Sections~1--5]{ni_edgeworth_2024}}}
 \label{chp:edgeworth}
@@ -336,10 +323,6 @@ TODO
 \label{chp:conclusion}
 % \input{conclusion}
 
-% I will compare the time it takes participants to create content and the quality of the content. 
-% I will recruit previous formative participants for this study and draw from the formative participant pool if needed.
-
-
 % \appendix
 % \include{appendix}
 
@@ -349,10 +332,10 @@ TODO
 
 % By default \bibsection is \chapter*, but we really want this to show
 % up in the table of contents and pdf bookmarks.
-% \renewcommand{\bibsection}{\chapter{\bibname}}
+\renewcommand{\bibsection}{\chapter{\bibname}}
 %\renewcommand{\bibpreamble}{This text goes between the ``Bibliography''
 %  header and the actual list of references}
 \bibliographystyle{thesis-style}
-\bibliography{references,zotero} %your bib file
+\bibliography{zotero} %your bib file
 
 \end{document}

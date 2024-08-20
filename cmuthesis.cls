@@ -44,8 +44,8 @@
 \advance\oddsidemargin by -\textwidth
 \oddsidemargin=.5\oddsidemargin
 \advance\oddsidemargin by -1in % TeX sux
-%
-\let\footnoterule\relax
+% enable footnoterule
+% \let\footnoterule\relax
 \vglue\@cutoutvskip
 \begin{center}
 %\begin{minipage}[t]{4.875in}   % must be a minipage due to \thanks
