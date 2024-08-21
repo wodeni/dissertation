@@ -1,5 +1,5 @@
 
-\begin{figure}[h]
+\begin{figure}[ht]
     \centering
     \includegraphics[width=0.88\linewidth]{assets/edgeworth/translation-problem.pdf}
     \caption{\textbf{left}: a translation problem that helps students discern the structure of linear equations (adapted from~\cite{perceptualLearning}). \textbf{right}: an \Edgeworth generated problem that trains student to recognize diagram configurations~\cite{Koedinger1990a} for triangle congruence.}
@@ -98,7 +98,7 @@ After the author picks a sufficient number of diagrams (4 in this case), they ca
 \Edgeworth is built on \Penrose~(\cref{chp:penrose}). Compared with alternatives, \Penrose offers two distinct advantages: (1) a high-level diagram notation and (2) an automatic layout engine. As discussed in \cref{chp:penrose}, a diagram in \Penrose consists of a textual description of the diagram content (\Substance) and a reusable layout stylesheet (\Style). As a reminder of how the \Substance language works, \cref{fig:cocl2-example} shows the three kinds of \Substance statements: type statements (\eg \sub{Carbon c}) declare new objects; constructors (\sub{Bond b1 := SingleBond(c, cl1)}) create new objects from existing objects; and predicates (\sub{ZeroDots(c)}) indicate relations among objects. 
 
 % \begin{wrapfigure}{r}{0.5\textwidth}
-\begin{figure}[H]
+\begin{figure}[ht]
     % \begin{center}
     \centering
     \includegraphics[width=.6\linewidth]{assets/edgeworth/cocl2-example.pdf}
@@ -341,8 +341,8 @@ Figure~\ref{fig:edgeworth-problems} (right) shows an \Edgeworth problem asking w
 
 \section{Summary}
 
-The chapter introduces \Edgeworth, a tool designed to aim the authoring of diagrammatic problems for educators in STEM. Recognizing the importance of representational fluency--the ability to understand and translate between different forms of representation such as diagrams, symbols, and text--\Edgeworth addresses the challenge educators face in manually creating and maintaining visual content for instructional purposes. By allowing educators to create a single example diagram, \Edgeworth automatically generates numerous variations, simplifying the process of developing diagrammatic problem sets. 
+The chapter introduces \Edgeworth, a tool designed to aid the authoring of diagrammatic problems for educators in STEM. Recognizing the importance of representational fluency--the ability to understand and translate between different forms of representation such as diagrams, symbols, and text--\Edgeworth addresses the challenge educators face in manually creating and maintaining visual content for instructional purposes. By allowing educators to create a single example diagram, \Edgeworth automatically generates numerous variations, simplifying the process of developing diagrammatic problem sets. 
 
-The chapter also covers the system design and functionality of \Edgeworth{}, highlighting its program mutation techniques for generating diagram variations. \Edgeworth's approach is domain-agnostic, making it adaptable across various instructional contexts. To show \Edgeworth's flexibility and expressiveness, we gather a translation problem dataset from Euclidean geometry, general chemistry, and discrete mathematics.
+The chapter also covers the system design of \Edgeworth{} and its program mutation techniques for generating diagram variations. \Edgeworth's approach is domain-agnostic, making it adaptable across various instructional contexts. To show \Edgeworth's flexibility and expressiveness, we gather a translation problem dataset from Euclidean geometry, general chemistry, and discrete mathematics.
 
 
