@@ -208,6 +208,7 @@ pdfborder=0 0 0,  %removes outlines around hyper links in online display
 
 \newcounter{rqsupcounter} % Define a new sub-counter for sub-RQs
 \renewcommand{\therqsupcounter}{RQ3.\arabic{rqsupcounter}} % Format the sub-counter as RQ3.1, RQ3.2, etc.
+% \renewcommand{\therqsupcounter}{RQ\arabic{rqsupcounter}} % Format the sub-counter as RQ1, 2, 3 etc
 
 
 % Penrose chapter imports
@@ -398,7 +399,7 @@ Shriram Krishnamurthi, Brown University\\
 % copyright notice generated automatically from Year and author.
 % permission added if \permission{} given.
 
-\keywords{Stuff, More Stuff}
+% \keywords{Stuff, More Stuff}
 
 \maketitle
 
@@ -409,9 +410,11 @@ To the pool gods.
 \pagestyle{plain} % for toc, was empty
 
 \begin{abstract}
-``Mental pictures'' and ``visual intuition'' capture how people make sense of abstract concepts and see solutions to hard problems in a visual way. Learning research suggests that visual representations of knowledge are powerful tools for thought. Visual representations like diagrams enable more robust learning and flexible problem solving. 
 
-Existing diagramming tools often require hours of low-level tweaking of geometric primitives and do not capture the core task of diagramming: representing ideas visually. \Penrose is a diagramming platform that explicitly encodes visual representations in domain-specific languages. In this thesis proposal, I argue that this explicit encoding can be leveraged to (1) reduce the programming effort of producing diagrammatic problems at scale and (2) simplify the workflow of authoring interactive diagrams. The resulting diagrams also carry rich semantics, and I'll discuss how to use them to (3) provide useful, automated feedback to students. 
+TODO
+% ``Mental pictures'' and ``visual intuition'' capture how people make sense of abstract concepts and see solutions to hard problems in a visual way. Learning research suggests that visual representations of knowledge are powerful tools for thought. Visual representations like diagrams enable more robust learning and flexible problem solving. 
+
+% Existing diagramming tools often require hours of low-level tweaking of geometric primitives and do not capture the core task of diagramming: representing ideas visually. \Penrose is a diagramming platform that explicitly encodes visual representations in domain-specific languages. In this thesis proposal, I argue that this explicit encoding can be leveraged to (1) reduce the programming effort of producing diagrammatic problems at scale and (2) simplify the workflow of authoring interactive diagrams. The resulting diagrams also carry rich semantics, and I'll discuss how to use them to (3) provide useful, automated feedback to students. 
 
 
 \end{abstract}
@@ -422,8 +425,8 @@ TODO
 
 
 \tableofcontents
-\listoffigures
-\listoftables
+% \listoffigures
+% \listoftables
 
 \mainmatter
 
@@ -455,15 +458,17 @@ TODO
 \chapter{Background and Related Work}
 \label{chp:background}
 
-\chapter{Understanding the Diagramming Process and Encoding Visual Representations}
+\chapter[Understanding the Diagramming Process]{Understanding the Diagramming Process\footnote{This chapter is adapted from \textit{How Domain Experts Create Conceptual Diagrams and Implications for Tool Design}~\cite{naturalDiagramming}.}}
 \label{chp:interviews}
 % \input{interviews}
 
-\chapter{\Penrose: From Notations to Beautiful Diagrams}
+\chapter[\Penrose: From Notations to Beautiful Diagrams]{\Penrose: From Notations to Beautiful Diagrams\footnote{
+This chapter is adapted from \textit{\Penrose: From Mathematical Notation to Beautiful Diagrams} \cite{penrose}
+}}
 \label{chp:penrose}
 \input{penrose}
 
-\chapter[\Edgeworth: Diagrammatic Problem Authoring at Scale]{\Edgeworth: Diagrammatic Problem Authoring at Scale\footnote{This chapter is adapted from \citet[Sections~1--5]{ni_edgeworth_2024}}}
+\chapter[\Edgeworth: Diagrammatic Problem Authoring at Scale]{\Edgeworth: Diagrammatic Problem Authoring at Scale\footnote{This chapter is adapted from Sections 1 to 5 of \textit{\Edgeworth: Efficient and Scalable Authoring of Visual Thinking Activities} \cite{ni_edgeworth_2024}}}
 \label{chp:edgeworth}
 \input{edgeworth}
 

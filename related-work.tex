@@ -1,6 +1,17 @@
+% Penrose
+
+\subsection{Diagramming Systems}
+\label{sec:RelatedSystems}
+
+Here we consider how our system design relates to other systems that convert abstract mathematical ideas into visual diagrams.  Other classes of tools, such as general-purpose drawing tools (\eg{}, \emph{Adobe Illustrator}) can also be used to make diagrams, though one quickly runs into barriers, such as for large-scale diagram generation or evolving the style of a large collection of existing diagrams.  A broader discussion of related work can be found in a pilot study we did on how people use diagramming tools~\cite{Ni:2020:HDE}.
+
+There are three main kinds of systems that convert an abstract form of input (\eg{}, an equation or code) into a visual representation.  Language-based systems, such as \textit{TikZ}~\cite{TikZ-Manual} (which builds on \TeX), are domain-agnostic and provide significant flexibility for the visual representation. Their use of ``math-like'' languages influenced the design of \Substance.  However, existing systems do not aim to separate mathematical content from visual representation. For instance, TikZ is domain- and representation-agnostic because it requires diagrams to be specified at a low level (\eg{}, individual coordinates and styles) making programs hard to modify or reuse.  Moreover, since there are only shallow mathematical semantics, it becomes hard to reason about programs at a domain level.
+
+Plotting-based systems, like \emph{Mathematica} and \emph{GeoGebra}~\cite{Hohenwarter:2004:CDG} enable standard mathematical expressions to be used as input and automatically generate attractive diagrams.  Just as a graphing calculator is easy to pick up and use for most students of mathematics, these tools inspired us to provide a ``tiered'' approach to \Penrose{} that makes it accessible to users with less expertise in illustration (\figref{NoviceExpertUsers}). However, much like a graphing calculator, the visual representations in these systems are largely ``canned,'' and the set of easily accessible domains is largely fixed.  For instance, \emph{Mathematica} does not permit user-defined types, and to go beyond system-provided visualization tools, one must provide low-level directives (in the same spirit as tools like \textit{TikZ}).
+
+Finally, systems like \emph{graphviz}~\cite{Graphviz}, and \emph{Geometry Constructions Language}~\cite{Janivcic:2006:GCLC} translate familiar domain-specific language into high-quality diagrams. Here again, the domains are fairly narrow and there is little to no opportunity to expand the language or define new visualizations.  Yet the convenience and power of such systems for their individual domains inspired us to build a system with greater extensibility. More broadly, while all these systems share some design goals with ours, a key distinction is that \Penrose\ is designed from the ground up as an extensible \emph{platform} for building diagramming tools, rather than a monolithic end-user tool.
+
 % Edgeworth 
-
-
 \section{\Edgworth related work}
 \label{sec:edgeworth-related}
 

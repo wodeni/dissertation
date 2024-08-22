@@ -23,6 +23,7 @@
 Informed by the results from the interview study (\cref{chp:interviews}), colleagues and I have developed \Penrose, a language-based diagramming platform~\cite{penrose}. The core \Penrose system addresses \textbf{representation salience} and \textbf{vocabulary correspondence}: it has first-class support for creating and reusing visual representations and translates familiar math-like notation into one or more possible visual representations. To accomplish this, \Penrose decomposes the concerns of diagramming into two domain-specific languages (DSLs) with distinct purposes: \colorbox[HTML]{E7F3E7}{\Substance} contains the mathematical content in math notation. \colorbox[HTML]{DDDEED}{\Style} explicitly specifies mappings from mathematical objects to visual icons. In contrast to tools that specify diagrams via direct manipulation or low-level graphics programming, \Penrose{} enables rapid creation and exploration of diagrams that faithfully preserve the underlying mathematical meaning.  We demonstrate the effectiveness and generality of the system by showing how it can be used to illustrate a diverse set of concepts from mathematics and computer graphics.
 
 \section{Introduction}
+\label{sec:Introduction}
 
 A central goal of this work is to lower the barrier to turning mathematical ideas into effective, high-quality visual diagrams.  In the same way that \TeX\ and \LaTeX\ have democratized mathematical writing by algorithmically codifying best practices of professional typesetters~\cite{Beeton:2016:CMT}, \Penrose{} aims to codify best practices of mathematical illustrators into a format that is reusable and broadly accessible.
 
@@ -54,6 +55,18 @@ Our aim is to build a system for converting abstract mathematical ideas into vis
 
 To achieve these goals, we take inspiration from the way diagrams are often drawn by hand.  In many domains of mathematics, each type of object is informally associated with a standard \emph{visual icon}.  For instance, points are small dots, vectors are little arrows, \etc{}  To produce a diagram, symbols are systematically translated into icons; a diagrammer then works to arrange these icons on the page in a coherent way.  We formalize this process so that diagrams can be generated computationally, rather than by hand.  Specifically,
 
+\begin{figure}[t]
+   \centering
+   \begin{minipage}[c]{.35\linewidth}
+       \caption{High-level pipeline: a compiler translates mathematical statements and a chosen visual representation into a constrained optimization problem.  This problem is then solved numerically to produce one or more diagrams.\label{fig:HighLevelPipeline}}
+   \end{minipage}\hfill
+   \begin{minipage}[c]{.60\linewidth}
+       \includegraphics[width=\linewidth]{assets/penrose/HighLevelPipeline.pdf}
+   \end{minipage}\hfill
+   \vspace{-\baselineskip}
+\end{figure}
+
+
 \vspace{.5\baselineskip}\begin{mdframed}
 The two organizing principles of \Penrose{} are:
    \begin{enumerate}[label=(\roman*)]
@@ -72,22 +85,22 @@ Just as the occupant of Searle's ``Chinese room'' does not actually understand a
 
 \setlength{\columnsep}{1em}
 \setlength{\intextsep}{0em}
-\begin{wrapfigure}{r}{0.3\linewidth}
+\begin{wrapfigure}{r}{0.4\linewidth}
 % \begin{figure}
 % {128pt}
-% \begin{minipage}{33pt}
-% \begin{lstlisting}[language=Sub-ST,escapechar=@,numbers=none]
-% Set A, B
-% Point p
-% A $\subset$ B
-% p $\in$ A
-% p $\notin$ B
-% \end{lstlisting}
-% \end{minipage}
-% \begin{minipage}{89pt}
+\begin{minipage}{60pt}
+\begin{lstlisting}[language=Sub-ST,escapechar=@,numbers=none]
+Set A, B
+Point p
+A $\subset$ B
+p $\in$ A
+p $\notin$ B
+\end{lstlisting}
+\end{minipage}\hfill
+\begin{minipage}{120pt}
   \centering
-  \includegraphics{assets/penrose/sets-inconsistent.pdf}
-% \end{minipage}
+  \includegraphics[width=\linewidth]{assets/penrose/sets-inconsistent.pdf}
+\end{minipage}
    \vspace{-.5\baselineskip}\caption{An optimization-based approach has myriad benefits.  Here a logically inconsistent program fails gracefully, providing visual intuition for \emph{why} the given statements cannot hold.\label{fig:sets-inconsistent}}
 \end{wrapfigure}
 % \end{figure}
@@ -96,19 +109,16 @@ Likewise, a system cannot be expected to solve hard computational or mathematica
 
 The resulting system effectively models diagram generation as a compilation process, where the compilation target is a constrained optimization problem rather than (say) a binary executable or a static image.  Once compiled, this problem can be used and \emph{reused} to generate visual diagrams; \cref{fig:HighLevelPipeline} illustrates the high-level system flow.  From a programming language point of view, a mapping expressed in this framework defines an \emph{executable visual semantics}. That is, it gives a specific, visual, and computable interpretation to what were previously just abstract logical relationships.
 
-\begin{figure}
-   \centering
-   \begin{minipage}[c]{.35\linewidth}
-       \caption{High-level pipeline: a compiler translates mathematical statements and a chosen visual representation into a constrained optimization problem.  This problem is then solved numerically to produce one or more diagrams.\label{fig:HighLevelPipeline}}
-   \end{minipage}\hfill
-   \begin{minipage}[c]{.55\linewidth}
-       \includegraphics[width=\linewidth]{assets/penrose/HighLevelPipeline.pdf}
-   \end{minipage}\hfill
-\end{figure}
+\subsection{Language-Based Specification}
+\label{sec:LanguageBasedSpecification}
 
 \begin{figure}
    \centering
    %\includegraphics{assets/penroseRetargeting.pdf}
+   \begin{minipage}[c]{.30\linewidth}
+   \caption{By specifying diagrams in terms of abstract relationships rather than explicit graphical directives, they are easily adapted to a wide variety of use cases.  Here we use identical \Penrose{} code to generate ray tracing diagrams for several targets (\cref{sec:RayTracing}).  Though the arrangement and number of objects changes in each example, the meaning remains the same.\label{fig:Retargeting}}
+  \end{minipage}\hfill
+  \begin{minipage}[c]{.6\linewidth}
    \begin{overpic}{assets/penrose/Retargeting.pdf}
       \put(60,15) {\parbox{2in}{
          \texttt{\textbf{PathType} t} \\
@@ -116,25 +126,25 @@ The resulting system effectively models diagram generation as a compilation proc
          \texttt{\textbf{Path} p := \textbf{Sample}(t)}
       }}
    \end{overpic}
-   \caption{By specifying diagrams in terms of abstract relationships rather than explicit graphical directives, they are easily adapted to a wide variety of use cases.  Here we use identical \Penrose{} code to generate ray tracing diagrams for several targets (\cref{sec:RayTracing}).  Though the arrangement and number of objects changes in each example, the meaning remains the same.\label{fig:Retargeting}}
+   \end{minipage}
 \end{figure}
 
 
-\subsection{Language-Based Specification}
-\label{sec:LanguageBasedSpecification}
-
 A major decision in \Penrose{} is to use programming languages to specify both mathematical objects (\cref{sec:MathematicalContent}) and their visual representation (\cref{sec:MathematicalVisualization}).  Graphical (\eg sketch-based) specification would demand that users already know how to visualize abstract ideas, and it ties mathematical content to one specific visual representation, which conflicts with \ref{gol:ManyViz}.  A language-based specification provides the level of abstraction needed to separate content from visualization. This technique supports \ref{gol:FamiliarNotation}, since language is the most common means by which mathematical ideas are expressed.  From a system design point of view, a language-based encoding provides a unified representation for identifying and transforming mathematical objects throughout the pipeline.  Moreover, a language-based interface makes it easy for \Penrose{} to provide a \emph{platform} on which other diagramming tools can be built (as in \cref{sec:DevelopmentEnvironment} or \cref{sec:LargeScaleDiagramGeneration}).  One trade-off is that a language-based approach requires users to express themselves in formal mathematical or computational language, making it more difficult for (say) visual artists and designers to contribute new representations.
 
-\begin{figure}[b]\vspace{\baselineskip}
+\begin{figure}[b]\vspace{-\baselineskip}
   \begin{minipage}[c]{.35\linewidth}
     \caption{Similar to the \TeX{} ecosystem, most users need only use the \Substance{} language, but can benefit from packages written by more expert \Domain{} and \Style{} programmers.\label{fig:NoviceExpertUsers}}
   \end{minipage}\hfill
   \begin{minipage}[c]{.55\linewidth}
-     \includegraphics[width=.9\linewidth]{assets/penrose/NoviceExpertUsers.pdf}
+     \includegraphics[scale=1.5]{assets/penrose/NoviceExpertUsers.pdf}
   \end{minipage}\hfill
 \end{figure}
 
 A secondary decision is to split specification of mathematical content and visualization across two domain-specific languages: \Substance{} and \Style{}.  A good analogy is the relationship between HTML \cite{BernersLee:1995:HML}, which specifies content, and CSS~\cite{Lie:2005:CSS}, which describes how it is rendered.  A schema called \Domain{} (analogous to XML or JSON schemas) defines the mathematical domain of interest, supporting \ref{gol:NoFixedDomains}.  In line with \ref{gol:ManyViz}, this division allows the same styles to be reused for different content, and likewise, the same content to be displayed in many different styles.  Our goal is for this division to support an ecosystem where novice users can benefit from packages written by more experienced developers (\cref{fig:NoviceExpertUsers}).  Finally, as in mathematics, the ability to adopt user-defined, domain-specific notation (\cref{sec:MathematicalDomain}) enables efficient expression of complex relationships in a way that is both concise and easy to understand~\cite{Kosar:2012:PCD}.  Encoding ideas directly in the idiom of a problem domain often results in better program comprehension than (say) a sequence of library calls in a general-purpose language~\cite{van2000domain}.  We discuss the scope and limitations of our languages in~\cref{sec:DiscussionandFutureWork}.
+
+
+
 
 
 \subsubsection{Mathematical Domain (\Domain{})}
@@ -201,25 +211,30 @@ A key design challenge is identifying objects that appear in a \Substance{} prog
 \subsection{Optimization-Based Synthesis}
 \label{sec:OptimizationBasedSynthesis}
 
-\begin{figure}[t]
-  \includegraphics{assets/penrose/sets-color-opt.pdf}
+The second major design decision in \Penrose{} is to use constrained optimization to synthesize diagrams satisfying a given specification (\cref{sec:LayoutEngine}).  This approach is again inspired by how people often draw diagrams by hand (\eg using GUI-based tools): visual icons are placed on a canvas and iteratively adjusted until no further improvements can be made.  In difficult scenarios, a diagrammer may try several global arrangements before refining the final design, though typically no more than a few.  Automating this process makes it easy to perform layout tasks that would be tedious by hand (\cref{fig:sets-color-opt}).
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=1.5]{assets/penrose/sets-color-opt.pdf}
   \caption{An optimization-based approach makes it possible to jointly optimize visual attributes that are difficult to coordinate by hand.  Here for instance we optimize color contrast according to the spatial proximity of adjacent disks \figloc{(left to right)}, ultimately discovering a two-color solution \figloc{(far right)}.  The system can also be used to debug the optimization process itself---in this case by drawing the hue of each disk as a dot on a color wheel.\label{fig:sets-color-opt}}
 \end{figure}
-
-The second major design decision in \Penrose{} is to use constrained optimization to synthesize diagrams satisfying a given specification (\cref{sec:LayoutEngine}).  This approach is again inspired by how people often draw diagrams by hand (\eg using GUI-based tools): visual icons are placed on a canvas and iteratively adjusted until no further improvements can be made.  In difficult scenarios, a diagrammer may try several global arrangements before refining the final design, though typically no more than a few.  Automating this process makes it easy to perform layout tasks that would be tedious by hand (\cref{fig:sets-color-opt}).
 
 There are good reasons to believe that an optimization-based approach can scale to very complex diagrams.  First, attractive diagrams need not be optimal in a \emph{global} sense---they should simply not permit obvious \emph{local} improvements, such as text that could easily be moved closer to the item it labels. In fact, disparate local minima can provide useful examples that help build intuition (\cref{fig:enumerate-subsets}).  Second, even sophisticated diagrams have surprisingly few degrees of freedom in comparison to many modern optimization problems (\eg tens or hundreds, versus thousands or millions).  Finally, strategies employed by expert diagrammers can be applied to manage complexity, such as independently optimizing small components of a diagram (akin to nonlinear Gauss-Seidel), rather than optimizing all degrees of freedom simultaneously.
 
 In line with \ref{gol:NoFixedDomains} and \ref{gol:ManyViz}, an optimization-based approach can be applied generically and automatically for any user-defined domain and visual representation, without requiring programmers to think about the details of the layout process.  In our system, the optimization problem is defined using common-sense keywords (\cref{sec:ConstraintsAndObjectives}) in \Style\ and chaining together basic operations (\eg arithmetic).  Since the diagram specification is divorced from the details of the solver, optimization strategies can be changed and improved in future versions of the system while preserving compatibility with existing code.  The main cost of an optimization-based approach is that it puts demands on system design ``upstream'': all expressions used to define a visual style must be differentiable. As discussed in \cref{sec:Solver}, these requirements are largely satisfied via standard techniques (\eg{} by using \textit{automatic differentiation}).
 
 \begin{figure}[t]
+   \begin{minipage}[c]{.5\linewidth}
    \includegraphics{assets/penrose/enumeration.pdf}
+   \end{minipage}\hfill
+   \begin{minipage}[c]{.4\linewidth}
    \caption{A language-based design makes it easy to build tools on top of \Penrose{} that provide additional power. Here we use standard techniques from program synthesis (\cref{sec:LargeScaleDiagramGeneration}) to automatically enumerate how the given relationships can be realized.  Generating such examples helps to see important corner cases that might be missed when drawing diagrams by hand (where perhaps the top-left diagram most easily comes to mind).\label{fig:enumerate-subsets}}
+   \end{minipage}
 \end{figure}
 
 % , and each graphical primitive must support efficient geometric queries (\eg bounding box evaluation and closest point queries). 
 
-In general, diagram optimization is a challenging problem in its own right, which we of course do not aim to solve conclusively in this paper.  Currently, we just use a generic constrained descent solver (\cref{sec:Solver}).  However, we have been pleased to find that this simple approach handles a wide variety of examples from different domains without requiring domain-specific strategies.
+In general, diagram optimization is a challenging problem in its own right, which we of course do not aim to solve conclusively in this chapter.  Currently, we just use a generic constrained descent solver (\cref{sec:Solver}).  However, we have been pleased to find that this simple approach handles a wide variety of examples from different domains without requiring domain-specific strategies.
 
 
 \subsection{Plugins}
@@ -346,12 +361,12 @@ label x2 @$\$$@x_2@$\$$@
 \begin{wrapfigure}{l}{200pt}
    \includegraphics[width=\linewidth]{assets/penrose/StyleNomenclature.pdf}
 \end{wrapfigure}
-\Style{} specifies how expressions in a \Substance{} program are translated into graphical objects and relationships.  It is a declarative specification language that shares many features with CSS.  The core principle is to sketch out basic \emph{rules} (\eg visual icons for basic types) and then refine these rules via \emph{cascading} (\cref{sec:Cascading}).  Each rule uses a \emph{selector} to pattern match on objects and relationships appearing in \Substance{} code (\cref{sec:Selectors}).  A sequence of \emph{declarations} then specifies a corresponding visualization, \eg by emitting graphical primitives or enforcing constraints.  Each declaration either assigns a \emph{value} to a \emph{field} (\cref{sec:ValuesAndExpressions,Fields}) or specifies a \emph{constraint} or \emph{objective} (\cref{sec:ConstraintsAndObjectives}).  An example is shown in \cref{fig:style_linalg}, which defines part of the style used for the \Substance{} program in \cref{fig:substance_linalg} (a full \Style\ is given in the supplemental material).  We will use this example to highlight the basic features of the language.  
+\Style{} specifies how expressions in a \Substance{} program are translated into graphical objects and relationships.  It is a declarative specification language that shares many features with CSS.  The core principle is to sketch out basic \emph{rules} (\eg visual icons for basic types) and then refine these rules via \emph{cascading} (\cref{sec:Cascading}).  Each rule uses a \emph{selector} to pattern match on objects and relationships appearing in \Substance{} code (\cref{sec:Selectors}).  A sequence of \emph{declarations} then specifies a corresponding visualization, \eg by emitting graphical primitives or enforcing constraints.  Each declaration either assigns a \emph{value} to a \emph{field} (\cref{sec:ValuesAndExpressions,sec:Fields}) or specifies a \emph{constraint} or \emph{objective} (\cref{sec:ConstraintsAndObjectives}).  An example is shown in \cref{fig:style_linalg}, which defines part of the style used for the \Substance{} program in \cref{fig:substance_linalg} (a full \Style\ is given in the supplemental material).  We will use this example to highlight the basic features of the language.  
 
-\begin{figure}
+\begin{figure}[p]
 \begin{mdframed}[style=STYCode]
 \begin{lstlisting}[language=Sty-LA,escapechar=@]
-forall VectorSpace U {               -- LinearAlgebra.sty@\label{lin:VectorSpaceRule}@
+forall VectorSpace U {                    -- LinearAlgebra.sty@\label{lin:VectorSpaceRule}@
    U.originX = ? -- to be determined via optimization
    U.originY = ? -- to be determined via optimization
    U.origin = (U.originX, U.originY)
@@ -360,25 +375,22 @@ forall VectorSpace U {               -- LinearAlgebra.sty@\label{lin:VectorSpace
           startY : U.originY
           endX   : U.originX + 1
           endY   : U.originY @\label{lin:VSArrowGeometryEnd}@
-      thickness   : 1.5 @\label{lin:VectorSpaceConstantsBegin}@
-          style   : "solid"
-          color   : Colors.lightGray @\label{lin:VectorSpaceConstantsEnd}@
+      thickness  : 1.5 @\label{lin:VectorSpaceConstantsBegin}@
+          style  : "solid"
+          color  : Colors.lightGray @\label{lin:VectorSpaceConstantsEnd}@
    } -- (similar declarations omitted for the y-axis)
 }
-forall Vector u, VectorSpace U -- match any vector
-where In(u, U) { @\label{lin:VectorElementRule}@            -- in some vector space
+forall Vector u, VectorSpace U where In(u, U) { @\label{lin:VectorElementRule}@            
    u.arrow = Arrow { @\label{lin:VectorIsALittleArrow}@
       startX : U.originX @\label{lin:VectorArrowStart}@
       startY : U.originY
         endX : ? @\label{lin:PendingArrowEnd}@
         endY : ?
-      color : Colors.mediumBlue
+       color : Colors.mediumBlue
    } @\label{lin:VectorIsALittleArrowEnd}@
    u.text = Text {
-        string : u.label -- label from Substance code
-         color : u.arrow.color @\label{lin:VectorLabelColor}@ -- use arrow's color
-             x : ? 
-             y : ?
+      string : u.label -- label from Substance code
+       color : u.arrow.color @\label{lin:VectorLabelColor}@ -- use arrow's color
    }
    u.start = (u.arrow.startX, u.arrow.startY)
    u.end = (u.arrow.endX, u.arrow.endY)
@@ -389,21 +401,19 @@ where In(u, U) { @\label{lin:VectorElementRule}@            -- in some vector sp
 forall Vector u, Vector v @\label{lin:OrthogonalSelector}@
 where Orthogonal(u, v) { @\label{lin:OrthogonalRule}@
    local.perpMark = Curve { @\label{lin:OrthogonalShape}@
-        pathData : orientedSquare(u.shape, v.shape, 
-                                  U.origin, const.perpLen)
+        pathData : orientedSquare(u.shape, v.shape, U.origin, const.perpLen)
         strokeWidth : 2.0
         color : Colors.black
         fill : Colors.white
    } @\label{lin:OrthogonalShapeEnd}@
-     ensure equals(dot(u.vector, v.vector), 0.0) @\label{lin:OrthogonalConstraint}@
+   ensure equals(dot(u.vector, v.vector), 0.0) @\label{lin:OrthogonalConstraint}@
 }
 ... -- (similar rule omitted for Unit)
-Vector `x2` @\label{lin:VectorBacktick}@ {
-   override `x2`.shape.color = Colors.green; @\label{lin:OverrideVectorColor}@
-}
+Vector `x2` @\label{lin:VectorBacktick}@ { override `x2`.shape.color = Colors.green; @\label{lin:OverrideVectorColor}@ }
 \end{lstlisting}
 \end{mdframed}
    \vspace{-.5\baselineskip}\caption{The \Style{} program defining the visual style used in \cref{fig:substance_linalg}, \figloc{right}. Note that this \Style{} program can be reused for many different \Substance{} programs in the same domain.\label{fig:style_linalg}}
+   
 \end{figure}
 
 \subsubsection{Selectors}
@@ -416,10 +426,12 @@ A selector uses pattern matching to specify which objects will be styled by a ru
 
 A cascading mechanism allows rules to be refined for more specialized objects or relationships.  For example, the selector in \cref{lin:VectorBacktick} matches a specific vector, refining an earlier rule that applies to all vectors.  Rule precedence is determined by order in the \Style{} file, and later rules can refer to any previously defined \emph{field} (\cref{sec:Fields}).  The \inlineSTY{\keyword{override}} keyword (\cref{lin:OverrideVectorColor}) hints that a rule will modify an existing field, otherwise the compiler issues a warning.
 
+
 \subsubsection{Fields}
 \label{sec:Fields}
 
 The visual representation of an object is specified by creating \emph{fields} that are assigned \emph{values} (\cref{sec:ValuesAndExpressions}).  For instance, in Lines \ref{lin:VectorIsALittleArrow}--\ref{lin:VectorIsALittleArrowEnd} a field called \inlineSTY{\texttt{u.arrow}} is created and assigned an expression describing an arrow.  Fields are created on assignment and can have any name not conflicting with a reserved word.  Fields not naturally associated with a single object can also be assigned locally to a rule. For instance, \cref{lin:OrthogonalShape} is used to draw a right angle mark between any pair of orthogonal vectors.  Every object automatically has fields \inlineSTY{\texttt{name}} and \inlineSTY{\texttt{label}} storing its \Substance{} name and label string (\resp), as well as any field created via a constructor (\cref{sec:TheDomainSchema}).
+
 
 \subsubsection{Properties}
 \label{sec:Properties}
@@ -443,7 +455,8 @@ Constraints and objectives describe how pending values should behave.  In partic
 \label{sec:LayoutEngine}
 
 \begin{figure}[t]
-  \includegraphics{assets/penrose/CompilationPipeline.pdf}
+  \centering
+  \includegraphics[scale=1.5]{assets/penrose/CompilationPipeline.pdf}
 	\caption{Pipeline view of the layout engine.  Rather than a single static image, compilation yields an optimization problem that can be solved and re-solved to produce many diagrams, or (in principle) used in an interactive tool.\label{fig:CompilationPipeline}}
 \end{figure}
 
@@ -491,16 +504,17 @@ The ASTs are combined to define a \emph{computational graph} that encodes operat
 \label{sec:OptimizationGraphs}
 
 \begin{figure}
-   \begin{minipage}[c]{105pt}
+   \begin{minipage}[c]{.4\linewidth}
       \vspace{-\baselineskip}\caption{Applying the mapping defined by \Style{} code to a \Substance{} program yields a graph that describes how to draw the diagram---here, for part of \cref{fig:substance_linalg}.  Some values are known (in blue), whereas others (in orange) depend on unknowns that must be determined via optimization.\label{fig:build_computation_graph}}
    \end{minipage}\hfill
-   \begin{minipage}[c]{133pt}
-   \includegraphics{assets/penrose/build_computation_graph.pdf}
+   \begin{minipage}[c]{.5\linewidth}
+   \includegraphics[scale=1.5]{assets/penrose/build_computation_graph.pdf}
    \end{minipage}
 \end{figure}
 
 \begin{figure}[t]
-   \includegraphics{assets/penrose/optimization_computation_graph.pdf}
+\centering
+   \includegraphics[scale=1.5]{assets/penrose/optimization_computation_graph.pdf}
    \caption{The computation graph is further expanded to produce graphs representing the objective and constraint space for our optimization problem. From there, we can easily use automatic differentiation to obtain derivatives.  This figure depicts part of the optimization graph for \cref{fig:substance_linalg}.\label{fig:optimization_computation_graph}}
  \end{figure}
  % \setlength{\belowcaptionskip}{-30pt}
@@ -516,7 +530,8 @@ The ASTs are combined to define a \emph{computational graph} that encodes operat
 The optimization graphs produced by the compiler describe an optimization problem in standard form, \ie, minimization of an objective function subject to equality and inequality constraints~\cite[Section 4.1]{Boyd:2004:CO}.  Such problems may be solved with many standard methods. We currently use an \emph{exterior point method}~\cite{Yamashita:2010:PDE} that starts with an infeasible point and pushes it toward a feasible configuration via progressively stiffer penalty functions---mirroring a process often used by hand (\cref{sec:OptimizationBasedSynthesis}).  Moreover, the exterior point mehod is an appropriate choice since (i) a feasible starting point is typically not known (\cref{fig:OptimizationProgress}), and (ii) by converting constraints into progressively stiffer penalty functions, we can use descent algorithms that do not directly support constrained optimization.  In particular, we use L-BFGS with a line search strategy suitable for nonsmooth objectives~\cite{Lewis:2009:NOB}.  Given the rich structure of our optimization graphs, which can be linked back to program semantics, there are plenty of opportunities to improve this generic strategy, such as decomposing the problem into smaller pieces that can be independently optimized, or employing an SMT solver to find a feasible initial state.
 
 \begin{figure}[t]
-   \includegraphics{assets/penrose/OptimizationProgress.pdf}
+   \centering
+   \includegraphics[scale=1.5]{assets/penrose/OptimizationProgress.pdf}
    \caption{Our solver can lay out diagrams even if we do not initially know how to satisfy all the constraints. Here we show several steps of optimization.\label{fig:OptimizationProgress}}
 \end{figure}
 
@@ -538,7 +553,7 @@ A plugin is a piece of external code, written in any language, that is given inf
 \subsection{Rendering}
 \label{sec:Rendering}
 
-In this paper we focused on generating 2D vector graphics, but in principle nothing about our system design limits us to this particular target.  For instance, the constraint-based approach is just as suitable for, say, generating arrangements of 3D objects that can be rendered via photorealistic ray tracing~\cite{Pharr:2016:PBR}, or even constrained interactive diagrams that could be used in virtual reality.  In our current implementation, graphical primitives are translated to SVG-native primitives via \emph{React.js}~\cite{Facebook:2020:RJS} and labels are postprocessed from raw \TeX\ to SVG paths using MathJax~\cite{Cervone:2012:MJ}.  Since \Penrose{} code is typically quite concise, we embed it as metadata into the SVG, easing reproducibility.  We also embed \Substance\ names as tooltips to improve accessibility.
+In this chapter we focused on generating 2D vector graphics, but in principle nothing about our system design limits us to this particular target.  For instance, the constraint-based approach is just as suitable for, say, generating arrangements of 3D objects that can be rendered via photorealistic ray tracing~\cite{Pharr:2016:PBR}, or even constrained interactive diagrams that could be used in virtual reality.  In our current implementation, graphical primitives are translated to SVG-native primitives via \emph{React.js}~\cite{Facebook:2020:RJS} and labels are postprocessed from raw \TeX\ to SVG paths using MathJax~\cite{Cervone:2012:MJ}.  Since \Penrose{} code is typically quite concise, we embed it as metadata into the SVG, easing reproducibility.  We also embed \Substance\ names as tooltips to improve accessibility.
 
 \begin{figure}[t]
    \includegraphics[width=\columnwidth]{assets/penrose/PenroseIDE.jpg}
@@ -548,7 +563,7 @@ In this paper we focused on generating 2D vector graphics, but in principle noth
 \subsection{Development Environment}
 \label{sec:DevelopmentEnvironment}
 
-To facilitate development, we built a web-based IDE (\cref{fig:PenroseIDE}) that highlights the potential for high-level diagramming tools built on \Penrose{}. For instance, since the \Domain{} grammar has a standard structure, the IDE can provide features like autocomplete and syntax highlighting for any domain. We are optimistic that the design choices made in \cref{sec:SystemDesign} will support the use of \Penrose{} as a platform for building diagramming tools beyond the use cases in this paper.
+To facilitate development, we built a web-based IDE (\cref{fig:PenroseIDE}) that highlights the potential for high-level diagramming tools built on \Penrose{}. For instance, since the \Domain{} grammar has a standard structure, the IDE can provide features like autocomplete and syntax highlighting for any domain. We are optimistic that the design choices made in \cref{sec:SystemDesign} will support the use of \Penrose{} as a platform for building diagramming tools beyond the use cases in this chapter.
 
  % and the ability to interactively manipulate elements of a generated diagram.
 % Here, for instance, diagram elements can be dragged around the canvas and re-optimized to preserve the constraints (and hence meaning) of the given programs.  
@@ -579,7 +594,9 @@ The \Penrose\ system is written in Haskell and the rendering frontend is written
 
 % \todo{Revise this introduction to discuss the broad claims}
 
-Our main goal for \Penrose\ was to create a system that can automatically generate diagrams from many different domains using familiar syntax. Here we examine our design by exploring examples from a variety of common domains in mathematics and computer graphics; we also do some basic performance analysis (\cref{sec:PerformanceEvaluation}). All examples in the paper were generated automatically and were not manipulated by hand. However, due to small errors when converting our SVG output to the PDF format required by \texttt{pdflatex}, minor manual editing was required (\eg{} fixing broken transparency).
+Our main goal for \Penrose\ was to create a system that can automatically generate diagrams from many different domains using familiar syntax. Here we examine our design by exploring examples from a variety of common domains in mathematics and computer graphics; we also do some basic performance analysis (\cref{sec:PerformanceEvaluation}). 
+
+% All examples in the paper were generated automatically and were not manipulated by hand. However, due to small errors when converting our SVG output to the PDF format required by \texttt{pdflatex}, minor manual editing was required (\eg{} fixing broken transparency).
 
 % Though this process, we see that \Penrose{} programs allow us codify best practices of expert diagrammers in a way that be easily reused by non-expert users.
 % ^ I'm not sure if we can support this claim...
@@ -593,15 +610,15 @@ Our main goal for \Penrose\ was to create a system that can automatically genera
 
 \setlength{\columnsep}{1em}
 \setlength{\intextsep}{0em}
-\begin{wrapfigure}{l}{160pt}
+\begin{wrapfigure}{l}{140pt}
    \includegraphics[width=\linewidth]{assets/penrose/ExponentialGrowth.pdf}
-\end{wrapfigure}
+\end{wrapfigure}\vspace{-\baselineskip}
 
 A simple example that illustrates many principles of our system design is the domain of basic set theory---\cref{fig:set-styles} shows a complete listing for one of three possible styles.  Notice here the complete absence of explicit coordinates in both the \Substance{} and \Style{} code.  The other two \Style{} programs (not shown) either improve the visual styling, or shift to a different representation where subset inclusion is indicated by a tree-like drawing rather that overlapping disks.  Different representations are especially helpful for different types of examples---for instance, disks must shrink exponentially for deeply nested subsets, whereas a tree diagram remains easy to read (see inset, \textit{left}). One limitation highlighted by this example is that the constraints and objectives appearing in \Style{} are not yet extensible within the language itself---for instance, the statement \inlineSTY{\keyword{ensure} \texttt{contains(y.shape,x.shape)}} translates to a fixed function on the centers and radii of the two disks.
 
 This example also demonstrates the benefit of a more explicit type system, rather than, say, interpreting raw mathematical strings as in \TeX.  In particular, \cref{fig:enumerate-subsets} shows how a \Domain{} schema can be used with program synthesis techniques (\cref{sec:LargeScaleDiagramGeneration}) to automatically enumerate different \emph{logical} instantiations of the given \Substance{} code.  To make this example, there was no need to model sets as an explicit datatype (\eg\ a list of points) nor to assign semantics to these datatypes (such as the impossibility of two sets being both intersecting and nonintersecting). Instead, the program synthesizer can reason purely about the abstract types specified in the \Domain\ schema, letting the constraints defined in the \Style{} define the visual semantics. Thus, the program synthesizer can check if the generated code is valid by simply testing if the constraints defined in \Style{} all evaluate to zero for the optimized diagram.  This example captures an important aspect of our system design: the mapping defined by \Style{} programs not only provides a superficial visual interpretation, but also assigns deeper mathematical meaning.
 
-\begin{figure}
+\begin{figure}[ph]
 \begin{minipage}[t]{\columnwidth}
 \begin{mdframed}[style=DSLCode]
 \begin{lstlisting}[language=Elem,escapechar=@,numbers=none]
@@ -666,19 +683,6 @@ where NotIntersecting(x, y) {
 \subsection{Functions}
 \label{sec:Functions}
 
-% predicate Injection : Map m
-% predicate Surjection : Map m
-% predicate Bijection : Map m
-% predicate PairIn : Point * Point * Map
-
-   A natural concept to build on top of sets is mappings between sets. This example also illustrates the use of plugins (\cref{sec:PlugIns}).  We first add a \inlineDSL{\keyword{Map}} type to the \Domain{} for sets (\cref{sec:Sets}), as well as a constructor \inlineDSL{\texttt{From: Set * Set -> Map}} specifying the domain and codomain of the map.  Here, syntactic sugar\vspace{.5\baselineskip}
-
-   \noindent\inlineDSL{\keyword{notation} \texttt{"f: A -> B" ~ "Map f; From(f, A, B)"}}\vspace{.5\baselineskip}
-
-   \noindent enables one to both declare and define the map via the concise, familiar notation \inlineSUB{\texttt{f: A -> B}}.  In \cref{fig:substance-fn-images} we add predicates \inlineDSL{\keyword{Injection}}, \inlineDSL{\keyword{Surjection}}, and \inlineDSL{\keyword{Bijection}} to the \Domain{} schema to illustrate some basic ideas about maps.  The two different styles of illustration help ease the transition from thinking of mappings between discrete points to thinking of continuous mappings on the real line.  To generate the discrete examples, we wrote a simple plugin (\cref{sec:PlugIns}) that acts as ``glue'' between \Penrose{} and an external SMT solver (another example is shown in \cref{fig:FunctionComposition}).  The compiler uses this plugin to expand the \inlineSUB{\keyword{Map}} objects from \cref{fig:substance-fn-images}, \figloc{top} into specific instances of a new \inlineSUB{\keyword{Point}} type, as well as a new predicate \inlineSUB{\texttt{(a, b) \(\in\) f}} that expresses a map as an explicit list of domain/codomain pairs.  For instance, the map in \cref{fig:substance-fn-images} generates points \inlineSUB{\texttt{\keyword{Point} A0, A1, B0, B1, B2}} with the two predicates \inlineSUB{\texttt{(A0, B1) \(\in\) f}} and \inlineSUB{\texttt{(A1, B2) \(\in\) f}}.  A \Style{} tailored to these types is used to generate diagrams in \cref{fig:substance-fn-images}, \figloc{left}; as in \cref{fig:sets-color-opt}, hue is optimized to enhance contrast between nearby points.  In contrast, the continuous function diagrams in \cref{fig:substance-fn-images}, \figloc{right} do not require an external plugin, but instead constrain the degrees of freedom of a B\'{e}zier curve.  Finally, \cref{fig:FunctionComposition} shows how abstract function composition in \Substance{} is automatically translated into explicit composition of generated functions by the \Style\ program without any \Substance{} writer effort.
-
-% \todo{Revise programs in the functions-domain folder to reflect the Substance programs in the figure}
-
 \begin{figure}
    \centering
    \begin{minipage}[t]{0.33\columnwidth}
@@ -709,10 +713,26 @@ Surjection(f)
 Injection(f)\end{lstlisting}
       \end{mdframed}
    \end{minipage}
-   \begin{minipage}[t]{\columnwidth}    \includegraphics[width=\columnwidth]{assets/penrose/func-continuous-discrete-vert.pdf}
+   \begin{minipage}[t]{\columnwidth}    
+   \centering
+   \includegraphics[scale=1.5]{assets/penrose/func-continuous-discrete-vert.pdf}
    \end{minipage}
    \caption{Different visual representations provide different ways of thinking about an idea.  Here, the notion of injections, bijections, and surjections is illustrated in both discrete \figloc{(left)} and continuous \figloc{(right)} styles.  In the former, functions with the desired properties are randomly generated by an SMT solver, allowing the user to learn from many different examples.\label{fig:substance-fn-images}}
 \end{figure}
+
+
+% predicate Injection : Map m
+% predicate Surjection : Map m
+% predicate Bijection : Map m
+% predicate PairIn : Point * Point * Map
+
+   A natural concept to build on top of sets is mappings between sets. This example also illustrates the use of plugins (\cref{sec:PlugIns}).  We first add a \inlineDSL{\keyword{Map}} type to the \Domain{} for sets (\cref{sec:Sets}), as well as a constructor \inlineDSL{\texttt{From: Set * Set -> Map}} specifying the domain and codomain of the map.  Here, syntactic sugar\vspace{.5\baselineskip}
+
+   \noindent\inlineDSL{\keyword{notation} \texttt{"f: A -> B" ~ "Map f; From(f, A, B)"}}\vspace{.5\baselineskip}
+
+   \noindent enables one to both declare and define the map via the concise, familiar notation \inlineSUB{\texttt{f: A -> B}}.  In \cref{fig:substance-fn-images} we add predicates \inlineDSL{\keyword{Injection}}, \inlineDSL{\keyword{Surjection}}, and \inlineDSL{\keyword{Bijection}} to the \Domain{} schema to illustrate some basic ideas about maps.  The two different styles of illustration help ease the transition from thinking of mappings between discrete points to thinking of continuous mappings on the real line.  To generate the discrete examples, we wrote a simple plugin (\cref{sec:PlugIns}) that acts as ``glue'' between \Penrose{} and an external SMT solver (another example is shown in \cref{fig:FunctionComposition}).  The compiler uses this plugin to expand the \inlineSUB{\keyword{Map}} objects from \cref{fig:substance-fn-images}, \figloc{top} into specific instances of a new \inlineSUB{\keyword{Point}} type, as well as a new predicate \inlineSUB{\texttt{(a, b) \(\in\) f}} that expresses a map as an explicit list of domain/codomain pairs.  For instance, the map in \cref{fig:substance-fn-images} generates points \inlineSUB{\texttt{\keyword{Point} A0, A1, B0, B1, B2}} with the two predicates \inlineSUB{\texttt{(A0, B1) \(\in\) f}} and \inlineSUB{\texttt{(A1, B2) \(\in\) f}}.  A \Style{} tailored to these types is used to generate diagrams in \cref{fig:substance-fn-images}, \figloc{left}; as in \cref{fig:sets-color-opt}, hue is optimized to enhance contrast between nearby points.  In contrast, the continuous function diagrams in \cref{fig:substance-fn-images}, \figloc{right} do not require an external plugin, but instead constrain the degrees of freedom of a B\'{e}zier curve.  Finally, \cref{fig:FunctionComposition} shows how abstract function composition in \Substance{} is automatically translated into explicit composition of generated functions by the \Style\ program without any \Substance{} writer effort.
+
+% \todo{Revise programs in the functions-domain folder to reflect the Substance programs in the figure}
 
 \begin{figure}
    \centering
@@ -735,14 +755,16 @@ Function gf = g(f)\end{lstlisting}
 
 \subsection{Geometry}
 \label{sec:Geometry}
+
+
+Classical geometric figures provide a good opportunity to examine how one can use different \Style{} programs to change not only the superficial style of a diagram, but also its fundamental visual representation.  The familiar ``two-column proof'' exemplifies how, in mathematics, one can make geometric statements without referring to explicit quantities like coordinates and lengths.  Likewise, compass-and-ruler constructions (dating back to the ancient Greeks) show how geometric figures can be specified with only relative constraints.  These modalities are well-captured in the way we write \Substance{} and \Style{} code for geometric diagrams, respectively.  For instance, \cref{fig:ThreeEuclideanStyles}, \figloc{top} gives a listing of geometric assertions that resemble the left column in a two-column proof. This would likely be a natural notation even for intermediate-level students.  A bare-bones \Style{} program for this domain (not shown) comprises basic statements very similar to those used in \cref{fig:style_linalg}, \eg to express the orthogonality of two segments.  (This approach is similar to the special-purpose geometry package \emph{GCLC}~\cite{Janivcic:2006:GCLC}; however, here the domain of objects and visual representations are both extensible at the language level.)
+
 \setlength{\columnsep}{1em}
-\setlength{\intextsep}{0em}
+\setlength{\intextsep}{1em}
 \begin{wrapfigure}{l}{150pt}
    \includegraphics[width=\linewidth]{assets/penrose/EuclideanStyleInspiration.pdf}
    \caption*{Diagrams used as inspiration for the \Style{}s in \cref{fig:ThreeEuclideanStyles}.}
  \end{wrapfigure}
-
-Classical geometric figures provide a good opportunity to examine how one can use different \Style{} programs to change not only the superficial style of a diagram, but also its fundamental visual representation.  The familiar ``two-column proof'' exemplifies how, in mathematics, one can make geometric statements without referring to explicit quantities like coordinates and lengths.  Likewise, compass-and-ruler constructions (dating back to the ancient Greeks) show how geometric figures can be specified with only relative constraints.  These modalities are well-captured in the way we write \Substance{} and \Style{} code for geometric diagrams, respectively.  For instance, \cref{fig:ThreeEuclideanStyles}, \figloc{top} gives a listing of geometric assertions that resemble the left column in a two-column proof. This would likely be a natural notation even for intermediate-level students.  A bare-bones \Style{} program for this domain (not shown) comprises basic statements very similar to those used in \cref{fig:style_linalg}, \eg to express the orthogonality of two segments.  (This approach is similar to the special-purpose geometry package \emph{GCLC}~\cite{Janivcic:2006:GCLC}; however, here the domain of objects and visual representations are both extensible at the language level.)
 
 
 One goal of \Penrose{} is to codify the subjective style choices made by professional illustrators so non-expert users can benefit from their expertise.  \cref{fig:ThreeEuclideanStyles}, \figloc{bottom} cascades on the bare-bones \Style{} program to riff on styles from several existing sources (shown in inset), namely, \emph{Byrne's Euclid}~\cite{Byrne:1847:FSB}, \emph{Wikipedia}~\cite{Wikimedia:2006:IEP}, and a collection of illustrated notes on \emph{discrete differential geometry}~\cite{Crane:2013:DGP}. This figure also illustrates how we can ``mix and match'' different \Style{} and \Substance{} programs. The bulk of these styles (\(\sim\)500 lines) share the same baseline Style code; additional code for a specific style requires less than 100 more lines. To illustrate the Pythagorean theorem (right column), we also used cascading to add diagram-specific features (\eg altitude and extension lines).
@@ -786,7 +808,9 @@ Rectangle CKLE := {C,K,L,E}
    \caption{The cascading design of \Style{} enables one to modify a base style with relatively little code.  Here the two \Substance{} programs from \cref{fig:teaser} and the listing above are visualized in three different styles, all of which build on the same basic constraints and objectives.\label{fig:ThreeEuclideanStyles}}\vspace{-\baselineskip}
 \end{figure}
 
-In the spirit of Hilbert's quip (\cref{sec:SystemDesign}), we can also swap out the basic visual representation of a given set of logical statements.  For instance, any collection of geometric statements that does not assume the \emph{parallel postulate}  can be realized in several different geometries (\cref{fig:teaser}).  To generate this figure, we wrote three \Style{} programs that all match on the same patterns from a common ``neutral geometry'' \Domain{} schema.  Swapping out these \Style{} files then allows users to build intuition about spherical or hyperbolic geometry by exploring how a given figure (expressed via \Substance{}) differs from its Euclidean counterpart.  Such an example could be further enriched by writing styles for different models of hyperbolic geometry (such as half-plane, hyperboloid, or Beltrami-Klein), each of which involves meticulous calculations.  To show that these examples were not cherry-picked, \cref{fig:GeometrySamples} depicts a gallery of samples.
+In the spirit of Hilbert's quip (\cref{sec:SystemDesign}), we can also swap out the basic visual representation of a given set of logical statements.  For instance, any collection of geometric statements that does not assume the \emph{parallel postulate}  can be realized in several different geometries (\cref{fig:teaser}).  To generate this figure, we wrote three \Style{} programs that all match on the same patterns from a common ``neutral geometry'' \Domain{} schema.  Swapping out these \Style{} files then allows users to build intuition about spherical or hyperbolic geometry by exploring how a given figure (expressed via \Substance{}) differs from its Euclidean counterpart.  Such an example could be further enriched by writing styles for different models of hyperbolic geometry (such as half-plane, hyperboloid, or Beltrami-Klein), each of which involves meticulous calculations.  
+
+% To show that these examples were not cherry-picked, \cref{fig:GeometrySamples} depicts a gallery of samples.
 
 Finally, the diagram specification enables us to build ``staged'' diagrams, such as ones illustrating the steps of a proof.  \cref{fig:byrne-stages} successively uncomments lines of \Substance{} code to produce a style of explanation common in textbooks and slides, a strategy which could easily be applied to (say) any two-column proof. In this example, the values of optimized variables are fixed by hand; an interesting question is how this might be done automatically.
 
@@ -797,7 +821,6 @@ Finally, the diagram specification enables us to build ``staged'' diagrams, such
 \begin{figure}[t]
    \includegraphics[width=\columnwidth]{assets/penrose/byrne-stages.pdf}
    \caption{Once a complex diagram has been built, it can be easily broken into pieces or stages by, \eg commenting out lines of \Substance{} code.  Here we illustrate steps in Euclid's proof of the Pythagorean theorem, turning Byrne's static figure \figloc{(far right)} into a progressive ``comic strip.''\label{fig:byrne-stages}}
-   \label{fig:byrne-stages}
  \end{figure}
  
 
@@ -812,13 +835,15 @@ In mathematics, complexity is built up by composing simple statements. The mappi
 In \Penrose{}, examples from linear algebra demonstrate compositionality.  The \Style{} declaration on \cref{lin:VectorIsALittleArrowEnd} of \cref{fig:style_linalg} defines the visual icon for a vector (a 2D arrow).  Suppose we now want to illustrate \emph{linear maps}, denoted by \(f\), which have two defining properties: linearity of vector addition (\(f(u+v) = f(u)+f(v)\) for all vectors \(u,v\)) and homogeneity of scalar multiplication (\(f(cu) = cf(u)\) for all vectors \(u\) and scalars \(c\)).  Successive \Style\ rules cascade on \cref{fig:style_linalg} to define how these logical operations  should be mapped to visual transformations.  For example, application of a linear map \(f\) is represented by a literal $2 \times 2$ matrix-vector multiply; the image vector \(f(u)\) also inherits the color of the argument \(u\). The map itself is visually represented by a labeled arrow, and the domain and target spaces by coordinate planes on either side. The \Style{} programmer need not compose these directives explicitly; the compiler does the tedious job of translating \Substance{} statements (\cref{fig:linearMap}, \figloc{top}) into a composition of graphical statements that define a diagram (\cref{fig:linearMap}, \figloc{bottom}).  Moreover, since the \Style{} program faithfully represents the underlying mathematics, we observe the expected properties, \eg the arrow for \(f(u_1+u_2)\) is the same as the arrow for \(f(u_1)+f(u_2)\).  Automatically checking consistency of the visual representation based on analysis of a richer \Domain{} schema would be an interesting topic for future work.
 
 % (addition, scaling, and application of linear maps)
-\setlength{\columnsep}{1em}
-\setlength{\intextsep}{0em}
-\begin{wrapfigure}{l}{140pt}
-   \includegraphics[width=\linewidth]{assets/penrose/LinearAlgebra1D.pdf}
-\end{wrapfigure}
+% \setlength{\columnsep}{1em}
+% \setlength{\intextsep}{0em}
+% \begin{figure}{l}{140pt}
+\begin{center}
+\includegraphics[width=140pt]{assets/penrose/LinearAlgebra1D.pdf}
+\end{center}
+% \end{wrapfigure}
 
-Finally, the inset (left) shows an alternative representation for vectors and scalars as signed and unsigned quantities ($u_1$ and $c$, \resp{}) on the number line.  The benefit of a 1D representation is that the remaining dimension can be used to illustrate different concepts, in this case relating the magnitude of a product to an area.  The ability to switch between representations can be pedagogically valuable, such as for transitioning from lower to higher mathematics.
+Finally, the inset (above) shows an alternative representation for vectors and scalars as signed and unsigned quantities ($u_1$ and $c$, \resp{}) on the number line.  The benefit of a 1D representation is that the remaining dimension can be used to illustrate different concepts, in this case relating the magnitude of a product to an area.  The ability to switch between representations can be pedagogically valuable, such as for transitioning from lower to higher mathematics.
 
 \begin{figure}
   \begin{minipage}[t]{0.45\columnwidth}
@@ -883,7 +908,7 @@ v3 := c * v1 \end{lstlisting}
 %     \end{overpic}
 % \caption{A simple \Substance{} program that specifies that several vectors are added results in a gallery of diagrams illustrating the given relationships. \label{fig:PenroseWorkingLA}}
 
-\begin{figure}[ht]
+\begin{figure}
 \begin{mdframed}[style=SUBCode]
 \begin{minipage}[t]{.47\columnwidth}
 \begin{lstlisting}[language=Sub-mesh,escapechar=@,numbers=none]
@@ -908,12 +933,14 @@ SimplicialSet LkE $\subseteq$ K
 LkE := SetMinus(ClStE, StClE)\end{lstlisting}
 \end{minipage}
 \end{mdframed}
+   \centering
    \includegraphics{assets/penrose/mesh-figure.pdf}
    \caption{A language-based specification makes it easy to visually inspect data structures or assemble progressive diagrams with only minor changes to program code.  Here we draw the simplicial \emph{link} by building it up from simpler constituent operations.\label{fig:substance-mesh-clst}}
 \end{figure}
 
-\begin{figure}[h]
-   \includegraphics[width=\columnwidth]{assets/penrose/mesh-examples.pdf}
+\begin{figure}
+   \centering
+   \includegraphics[scale=1.5]{assets/penrose/mesh-examples.pdf}
    \caption{Domain-specific notation makes it easy to explore an idea by trying out many different examples.  Here several subsets of a simplicial complex are specified \figloc{(top)} to explore the definition of the ``link'' \figloc{(bottom}).  An external plugin generates random example meshes, further enriching exploration.\label{fig:mesh-examples}}
 \end{figure}
 
@@ -957,10 +984,6 @@ To make these examples in \Penrose{}, we follow a pattern similar to the discret
 \subsection{Ray Tracing}
 \label{sec:RayTracing}
 
-Our final example constructs light path diagrams, which are often used to illustrate ideas in physically-based rendering.  The \Substance{} code expresses types of light paths via Heckbert's regular expression notation.  For instance, the expression \inlineSUB{\texttt{L(D|S)S*E}} specifies a family of light paths that start at a light source (\inlineSUB{\texttt{L}}), bounce off a diffuse or specular object (\inlineSUB{\texttt{S|D}}), then bounce off zero or more specular objects (\inlineSUB{\texttt{S*}}), then enter the ``eye'' or camera (\inlineSUB{\texttt{E}}).  One or more paths can then be declared that have a given form (\cref{fig:rt-multiple-paths}).  The challenge in generating a diagram from such a specification is that there must be geometry in the scene that supports the given path(s).  For instance, for a fixed eye, light, and mirror, there may simply be no path of the form \texttt{LSE}.  Rather than meticulously constructing a valid scene by hand, we can use a simple \Style{} program to jointly optimize the scene geometry and the light path by specifying constraints such as equality of incoming and outgoing angles at a specular bounce.  The set of objects in the scene is generated by a simple plugin that expands the regular expression into a set of compatible objects (\eg a mirror for each specular bounce).  This plugin also uses the canvas size to choose appropriate scene and path complexity according to the target output device (\cref{fig:Retargeting}).  Diagrams for more intricate light transport phenomena could be generated by calling an actual ray tracer (such as \emph{PBRT}~\cite{Pharr:2016:PBR}) to trace and rejection-sample paths by path type.  The added value of generating the final diagrams with \Penrose{} is that initial path and scene geometry generated by the external code can be further optimized to meet other design goals, such as the canvas size. Additionally, the visual style of a large collection of diagrams (\eg for a set of course notes) can easily be adjusted after the fact.
-
-In our experience, \Penrose{} acts as a \emph{nexus} for diagram generation. It connects disparate components, such as language-based specification and ray tracing, into a diagramming tool that provides the system-level benefits described in \cref{sec:Introduction}.
-
 \begin{figure}
    % PathType t1, t2, t3
    % HasForm (t1, "L(D|S)SE")
@@ -971,9 +994,16 @@ In our experience, \Penrose{} acts as a \emph{nexus} for diagram generation. It 
    % p1 := Sample(t1)
    % p2 := Sample(t2)
    % p3 := Sample(t3)
-   \includegraphics[width=\linewidth]{assets/penrose/rt-multiple-paths.pdf}
+   \centering
+   \includegraphics[scale=1.5]{assets/penrose/rt-multiple-paths.pdf}
    \caption{When drawing ray tracing diagrams by hand, it can be difficult to construct geometry that permits the desired path types.  Here we jointly optimize path and scene geometry to match multiple path types simultaneously.  Shown are several diagrams generated for the same program.\label{fig:rt-multiple-paths}}
 \end{figure}
+
+
+Our final example constructs light path diagrams, which are often used to illustrate ideas in physically-based rendering.  The \Substance{} code expresses types of light paths via Heckbert's regular expression notation.  For instance, the expression \inlineSUB{\texttt{L(D|S)S*E}} specifies a family of light paths that start at a light source (\inlineSUB{\texttt{L}}), bounce off a diffuse or specular object (\inlineSUB{\texttt{S|D}}), then bounce off zero or more specular objects (\inlineSUB{\texttt{S*}}), then enter the ``eye'' or camera (\inlineSUB{\texttt{E}}).  One or more paths can then be declared that have a given form (\cref{fig:rt-multiple-paths}).  The challenge in generating a diagram from such a specification is that there must be geometry in the scene that supports the given path(s).  For instance, for a fixed eye, light, and mirror, there may simply be no path of the form \texttt{LSE}.  Rather than meticulously constructing a valid scene by hand, we can use a simple \Style{} program to jointly optimize the scene geometry and the light path by specifying constraints such as equality of incoming and outgoing angles at a specular bounce.  The set of objects in the scene is generated by a simple plugin that expands the regular expression into a set of compatible objects (\eg a mirror for each specular bounce).  This plugin also uses the canvas size to choose appropriate scene and path complexity according to the target output device (\cref{fig:Retargeting}).  Diagrams for more intricate light transport phenomena could be generated by calling an actual ray tracer (such as \emph{PBRT}~\cite{Pharr:2016:PBR}) to trace and rejection-sample paths by path type.  The added value of generating the final diagrams with \Penrose{} is that initial path and scene geometry generated by the external code can be further optimized to meet other design goals, such as the canvas size. Additionally, the visual style of a large collection of diagrams (\eg for a set of course notes) can easily be adjusted after the fact.
+
+In our experience, \Penrose{} acts as a \emph{nexus} for diagram generation. It connects disparate components, such as language-based specification and ray tracing, into a diagramming tool that provides the system-level benefits described in \cref{sec:Introduction}.
+
 
 
 % This is the selector for positioning the mirror for a specular bounce, which is interesting but too long/involved to include
@@ -1032,7 +1062,7 @@ We hope to support an iterative workflow where the system's performance does not
 
 \begin{figure}
   \centering
-  \includegraphics[width=\columnwidth]{assets/penrose/optimization-graph.pdf}
+  \includegraphics[width=.7\columnwidth]{assets/penrose/optimization-graph.pdf}
   \caption{To stress-test the system and collect timing information, we generated and visualized random \Substance\ programs of different sizes, revealing that optimization dominates the execution time.
     \label{fig:optimization-performance}
   }
@@ -1040,13 +1070,13 @@ We hope to support an iterative workflow where the system's performance does not
 
 \begin{figure}
   \centering
-  \includegraphics[width=\columnwidth]{assets/penrose/compilation-graph.pdf}
+  \includegraphics[width=.7\columnwidth]{assets/penrose/compilation-graph.pdf}
   \caption{We evaluated the performance of the \Penrose{} compiler by running it on a large collection of programs, showing that the execution time of the compiler grows slowly as the number of selector matches increases.
     \label{fig:compilation-performance}
   }
 \end{figure}
 
-We have not focused on performance tuning, so a fully-interactive experience is not yet possible with \Penrose{}. With our current na\"ive implementation, \Penrose{} generated 70\% of the figures in this paper in under 10 seconds. However, some figures took significantly longer (\eg{} \cref{fig:teaser}, \cref{fig:DomainInterop}, and \cref{fig:ThreeEuclideanStyles}), up to a few minutes. To assess the system's performance, we used diagrams generated in \cref{sec:LargeScaleDiagramGeneration} to simulate arbitrary user inputs and measured the time to produce each diagram. To analyze the relative performance of different parts of the system, we separately timed the four stages in the layout engine (\cref{sec:LayoutEngine}): compilation, optimization, label generation, and rendering.  Timing was measured on a 2017 MacBook Pro; note that performance in our web-based IDE (\cref{sec:DevelopmentEnvironment}) is slower due to the cost of editor services and communication with the browser.  As shown in \cref{fig:optimization-performance}, optimization dominates execution time, though the time to convergence grows slowly with the size of the optimization problem. The second slowest part is the compiler, though \cref{fig:compilation-performance} shows that compilation time grows linearly with the number of selector matches, suggesting that the compiler scales well.
+We have not focused on performance tuning, so a fully-interactive experience is not yet possible with \Penrose{}. With our current na\"ive implementation, \Penrose{} generated 70\% of the figures in this chapter in under 10 seconds. However, some figures took significantly longer (\eg{} \cref{fig:teaser}, \cref{fig:DomainInterop}, and \cref{fig:ThreeEuclideanStyles}), up to a few minutes. To assess the system's performance, we used diagrams generated in \cref{sec:LargeScaleDiagramGeneration} to simulate arbitrary user inputs and measured the time to produce each diagram. To analyze the relative performance of different parts of the system, we separately timed the four stages in the layout engine (\cref{sec:LayoutEngine}): compilation, optimization, label generation, and rendering.  Timing was measured on a 2017 MacBook Pro; note that performance in our web-based IDE (\cref{sec:DevelopmentEnvironment}) is slower due to the cost of editor services and communication with the browser.  As shown in \cref{fig:optimization-performance}, optimization dominates execution time, though the time to convergence grows slowly with the size of the optimization problem. The second slowest part is the compiler, though \cref{fig:compilation-performance} shows that compilation time grows linearly with the number of selector matches, suggesting that the compiler scales well.
 
 We are optimistic about our ability to improve the optimization speed, since we are currently using only a simple, generic solver that we implemented ourselves. (See \cref{sec:Solver} and \cref{sec:DiscussionandFutureWork} for further discussion.) In our experience, optimization often slowed by objectives that involve all pairs of a large collection of objects, especially for label placement, where all labels ``repel'' all others.  Here one could apply standard acceleration strategies for \(n\)-body problems, such as the Barnes-Hut algorithm~\cite{Barnes:1986:barneshut}.  Moreover, though it may take time for diagrams to finish, the optimization-based approach provides near-instantaneous \emph{feedback} for most diagrams by displaying the first few steps of the optimization process.  These proto-diagrams typically provide enough information about the final layout that the user can halt optimization and continue iterating on the design.
 

@@ -1,5 +1,11 @@
 In this chapter, we discuss three studies to evaluate various aspects of \Edgeworth (\cref{chp:edgeworth}). To effectively scale up visual practice authoring, \Edgeworth must support a diverse set of instructional domains, generate high-quality diagrams consistently, and allow educators to author real-world problems. In \cref{sec:edgeworth-user-study,sec:reliability-eval,sec:expert-feedback}, we evaluate \Edgeworth by answering the following research questions on these qualities:
 
+% self-contained RQs
+% \refstepcounter{rqsupcounter}\label{rq:mut}
+% \refstepcounter{rqsupcounter}\label{rq:eff}
+% \refstepcounter{rqsupcounter}\label{rq:eco}
+
+
 \begin{itemize}
     \item\textbf{Reliability} (\ref{rq:mut}): Can \Edgeworth reliably generate translation problems with relatively few variations required?
     \item\textbf{Efficiency} (\ref{rq:eff}): comparing with a conventional drawing tool, are authors more efficient at making translation problems using \Edgeworth? 
@@ -8,7 +14,7 @@ In this chapter, we discuss three studies to evaluate various aspects of \Edgewo
 
 First, we evaluated the reliability of \Edgeworth by labeling 310 diagram variations from translation problem dataset (\cref{sec:edgeworth-case-studies}) by hand. With high inter-rater reliability, the result shows that \Edgeworth can reliably generate diagrams that constitute valid four-choice translation problems, when constrained to 10 variations per problem.
 
-Second, we performed a user study to measure authors' efficiency at creating translation problems using \Edgeworth, compared with a conventional drawing tool. The results show that authors are about 3 times faster at making diagrammatic options for translation problems using \Edgeworth compared to Google Drawings. 
+Second, we performed a user study to measure authors' efficiency at creating translation problems using \Edgeworth, compared with a conventional drawing tool. The results show that once authors make a correct diagram, they are about 3 times faster at making diagrammatic options for translation problems using \Edgeworth compared to Google Drawings. 
 
 Finally, we conducted walkthrough demonstrations with 9 educators that have experience creating problems. The goal of the demonstrations was to obtain feedback on the ecological validity of \Edgeworth-generated problems and the usefulness of \Edgeworth in general. Overall, these experts found \Edgeworth-generated problems to contain pedagogically useful variations and high visual quality. They provided detailed feedback on individual diagram variations and suggested how \Edgeworth might fit into their instructional contexts. 
 
@@ -176,10 +182,10 @@ In the per-task survey, summarized in \cref{tab:edgeworth-user-study-survey}, pa
 
 % MANOVA
 
-A Multivariate Analysis of Variance (MANOVA) was performed on the survey data to quantitatively assess the impact of the tool (\Edgeworth{} vs. Google Drawings) and the domain (chemistry vs. geometry) on three dependent variables corresponding to the survey questions. \Edgeworth{} was generally perceived more favorably across these dimensions compared to Google Drawings.The results showed a significant effect of the tool on the combined dependent variables, with Wilks' lambda indicating that the choice of tool had a statistically significant influence on the survey responses, $F(3, 59) = 3.3995$, $p = 0.0235$. The domain (chemistry vs. geometry) did not have a significant effect on the combined dependent variables, $F(3, 59) = 0.7550$, $p = 0.5239$. A significant intercept observed in the analysis, $F(3, 59) = 217.9321$, $p < 0.0001$, suggests that the overall mean response across all groups was significantly different from zero, indicating that participants generally provided positive ratings across all survey items.
+We conducted a Multivariate Analysis of Variance (MANOVA) on the survey data to quantitatively assess the impact of the tool (\Edgeworth{} vs. Google Drawings) and the domain (chemistry vs. geometry) on three dependent variables corresponding to the survey questions. The results showed a significant effect of the tool on the combined dependent variables, with Wilks' lambda indicating that the choice of tool had a statistically significant influence on the survey responses, $F(3, 59) = 3.3995$, $p = 0.0235$. The domain (chemistry vs. geometry) did not have a significant effect on the combined dependent variables, $F(3, 59) = 0.7550$, $p = 0.5239$. A significant intercept observed in the analysis, $F(3, 59) = 217.9321$, $p < 0.0001$, suggests that the overall mean response across all groups was significantly different from zero, indicating that participants generally provided positive ratings across all survey items. In summary, \Edgeworth{} was perceived more favorably across the three survey questions compared to Google Drawings.
 
 
-\begin{table}[h!]
+\begin{table}[t]
 \centering
 \begin{tabular}{l|l|l|l|l}
 \hline
@@ -196,15 +202,15 @@ A Multivariate Analysis of Variance (MANOVA) was performed on the survey data to
     & Google Drawings 
     & \progressbar{3.38} 3.38 & \progressbar{3.50} 3.50 & \progressbar{3.44} 3.44 \\ \hline
 \end{tabular}
-\caption{Survey responses for chemistry and geometry tasks using \Edgeworth and Google Drawings.}
+\caption{Survey responses for chemistry and geometry tasks using \Edgeworth and Google Drawings. Higher numbers (visualized in green hue) indicates positive responses and lower numbers (yellow and red hue) negative responses.}
 \label{tab:edgeworth-user-study-survey}
 \end{table}
 
 \subsection{Discussion}
 
-The results show a trade-off between the time taken to create correct diagrams using \Penrose and the efficiency of generating incorrect variations using \Edgeworth. Participants might spend more time on the initial correct diagram using \Penrose, but are significantly and consistently faster at making incorrect diagrams using \Edgeworth, a 3--4$\times$ speed gain over Google Drawings. For example, in geometry, while the initial correct diagram took more time with \Penrose ($390.94$s per diagram versus $228.50$s with Google Drawings), the time per incorrect diagram was still more efficient with \Edgeworth ($25.73$s) compared to Google Drawings ($100.90$s). 
+The results show a trade-off between the time taken to create correct diagrams using \Penrose and the efficiency of generating incorrect variations using \Edgeworth. Participants might spend more time on the initial correct diagram using \Penrose, but are significantly and consistently faster at making incorrect diagrams using \Edgeworth than Google Drawings. On average, participants were 3--4$\times$ faster using \Edgeworth. In geometry, the initial correct diagram took more time with \Penrose ($390.94$s per diagram versus $228.50$s with Google Drawings), but the time per incorrect diagram was much lower with \Edgeworth ($25.73$s) compared to Google Drawings ($100.90$s). 
 
-The initial investment in the first \Substance program differs depending on the language complexity and layout consistency. Generally speaking, the \Penrose chemistry domain is simpler to learn in than the geometry domain. The chemistry domain has a simpler grammar consisting of atoms, bonds, and valance electrons. The layout for chemistry diagrams is also more stable and consistent. In contrast, the \Penrose geometry domain includes many predicates among points, line segments, lines, rays, angles, and so on. The geometry \Style is also less polished than that of chemistry. We observed that participants were sometimes confused by one bad layout produced by \Penrose, and doubted the correctness of their \Substance programs. The timing data in the correct segment shows the difference: participants were $1.7\times$ faster to make the correct diagram using \Penrose on average in chemistry, but $1.7\times$ slower in geometry.
+The initial investment in the first \Substance program differs depending on the language complexity and layout consistency. Generally speaking, the \Penrose chemistry domain is simpler to learn than the \Penrose geometry domain. The chemistry domain has a simpler grammar consisting of atoms, bonds, and valance electrons. The layout for chemistry diagrams is also more stable and consistent. In contrast, the \Penrose geometry domain includes many predicates among points, line segments, lines, rays, angles, and so on. The geometry \Style is also less polished than that of chemistry. We observed that participants were sometimes confused by bad layouts produced by \Penrose, and doubted the correctness of their \Substance programs. The timing data in the correct segment shows the difference: participants were $1.7\times$ faster to make the correct diagram using \Penrose on average in chemistry, but $1.7\times$ slower in geometry.
 
 
 \section{Expert Walkthrough Demonstration and Feedback (\ref{rq:eco})}
@@ -295,22 +301,7 @@ We discuss some limitations to the studies presented in this chapter.
 % \subsection{Sample Size and Generalizability}
 % The sample sizes in the user study and expert walkthrough were relatively small, with only 16 participants in the user study and 9 expert educators in the walkthrough sessions. This limited number of participants may not fully represent the broader population of educators or the variety of instructional contexts in which \Edgeworth might be applied. Consequently, the generalizability of the findings to other domains, educational settings, or different types of diagrammatic problems is limited.
 
-\begin{figure}[t]
-    \centering
-    \includegraphics[width=\linewidth]{assets/edgeworth-eval/p4-drawings.pdf}
-    \includegraphics[width=\linewidth]{assets/edgeworth-eval/p4-edgeworth.png}
-    \caption{Screenshots of Google Drawings (top) and \Edgeworth selections (bottom) of diagrams by participants of the user study (\cref{sec:edgeworth-user-study}).}
-    \label{fig:edgeworth-user-study-shortcuts}
-\end{figure}
 
-
-\subsection{Authoring speed versus problem quality}
-
-Participants in the user study described in \cref{sec:edgeworth-user-study} were not screened for their prior experience nor expertise in diagrammatic problem authoring. In fact, a majority of them are undergraduate students. Therefore, their judgment of what make a good problem (or lack thereof) might influence the task performance data reported in \cref{sec:edgeworth-user-study}. Theoretically, to get through the tasks, participants could pick incorrect diagrams at random using \Edgeworth, or make minimal edits to the correct diagram to get alternatives using Google Drawings. To address this limitation of the user study, We conducted the expert demonstration walkthroughs \cref{sec:expert-feedback} to gain a deeper understanding of the ecological validity of \Edgeworth-generated problems.
-
-During the user study, we did in fact observe participants taking shortcuts in both conditions. Here we show some examples of them and contrast them with the experts' opinions. For instance, \cref{fig:edgeworth-user-study-shortcuts} (top) shows a pattern of making small edits to the correct diagram to quickly produce incorrect diagrams. These edits avoids moving many diagram components around while maintaining a good layout. The similar layouts of atoms and bonds contrast experts' feedback on isomorphic diagrams (\cref{sec:isomorphic-diagrams}, \eg \quotei{some students get stuck into thinking that the concept is only communicated when the diagram is drawn [exactly] that way.} by E2). As another example for \Edgeworth, \cref{fig:edgeworth-user-study-shortcuts} (bottom) shows two diagrams selected by a participant as suitable incorrect answers for chemistry prompt 1 in \cref{fig:edgeworth-user-study-tasks}. Per their feedback in \cref{sec:edgeworth-expert-standards}, E3 would not accept ``Mutated Diagram \#6'' in the figure as a good incorrect options, because it \quotei{violated the octet rule in egregious or blatantly egregious way.}~\footnote{The Carbon (C) atom in the diagram has 6 valance electrons, 2 double bonds, and one single bond, which is way beyond the expected 8 electrons and bonds combined per the octet rule.} Notably, as we discussed in \cref{sec:edgeworth-expert-standards}, experts did not agree on a single standard of high problem quality among themselves. 
-
-Overall, while participants took shortcuts in both user study conditions, we cannot conclude how much impact their quality standards have on the task performance. The expert demonstration walkthroughs showed a diversity of standards among experienced educations. Therefore, future research is needed to tease out the effect of problem quality on authoring speed of diagrammatic problems.
 
 \subsection{Ecological Validity}
 
@@ -327,6 +318,23 @@ Participants in the user study were provided with brief tutorials on using \Edge
 % \subsection{Technical Constraints and Evolution}
 
 Both \Penrose and \Edgeworth are still under development, and the studies were conducted on particular versions of them. As they evolve, with potential updates and improvements, the findings presented here might become outdated. Future research would need to re-evaluate the tool's performance and usability in light of new changes. 
+
+\subsection{Authoring speed versus problem quality}
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=\linewidth]{assets/edgeworth-eval/p4-drawings.pdf}
+    \includegraphics[width=\linewidth]{assets/edgeworth-eval/p4-edgeworth.png}
+    \caption{Screenshots of Google Drawings \figloc{(top)} and \Edgeworth selections \figloc{(bottom)} of diagrams by P4 of the user study (\cref{sec:edgeworth-user-study}). They are instances of ``shortcuts'' participants took when using both tools, avoiding large layout edits \figloc{(top)} in Google Drawings and selecting counterexamples seemingly at random in \Edgeworth \figloc{(bottom)}. }
+    \label{fig:edgeworth-user-study-shortcuts}
+\end{figure}
+
+
+Participants in the user study described in \cref{sec:edgeworth-user-study} were not screened for their prior experience nor expertise in diagrammatic problem authoring. In fact, a majority of them are undergraduate students. Therefore, their judgment of what make a good problem (or lack thereof) might influence the task performance data reported in \cref{sec:edgeworth-user-study}. Theoretically, to get through the tasks, participants could pick incorrect diagrams at random using \Edgeworth, or make minimal edits to the correct diagram to get alternatives using Google Drawings. To address this limitation of the user study, we conducted  expert demonstration walkthroughs \cref{sec:expert-feedback} to gain a deeper understanding of the ecological validity of \Edgeworth-generated problems.
+
+During the user study, we did in fact observe participants taking shortcuts in both conditions. Here we show some examples of them and contrast them with the experts' opinions. For instance, \cref{fig:edgeworth-user-study-shortcuts} (top) shows P4's pattern of making small edits to the correct diagram to quickly produce incorrect diagrams. These edits avoids moving many diagram components around while maintaining a good layout. The similar layouts of atoms and bonds contrast experts' feedback on isomorphic diagrams (\cref{sec:isomorphic-diagrams}, \eg \quotei{some students get stuck into thinking that the concept is only communicated when the diagram is drawn [exactly] that way.} by E2). As another example for \Edgeworth, \cref{fig:edgeworth-user-study-shortcuts} (bottom) shows two diagrams selected by a participant as suitable incorrect answers for chemistry prompt 1 (\textit{Which of the following diagrams shows the correct Lewis structure for \ensuremath{\mathrm{CH_2O}}?}) in \cref{fig:edgeworth-user-study-tasks}. Per their feedback in \cref{sec:edgeworth-expert-standards}, E3 would not accept ``Mutated Diagram \#6'' in the figure as a good incorrect options, because it \quotei{violated the octet rule in egregious or blatantly egregious way.}~\footnote{The Carbon (C) atom in the diagram has 6 valance electrons, 2 double bonds, and one single bond, which is way beyond the expected 8 electrons and bonds combined per the octet rule.} Notably, as we discussed in \cref{sec:edgeworth-expert-standards}, experts did not agree on a single standard of high problem quality among themselves. 
+
+Overall, while participants took shortcuts in both user study conditions, we do not know how much impact their quality standards have on the task performance. Importantly, there is not a single standard for ``good'' judgment of problem quality, as the expert demonstration walkthroughs showed a diversity of standards among experienced educators. Therefore, future research is needed to tease out (1) what is an acceptable quality standard for diagrammatic translation problems and (2) the effect of problem quality on authoring speed of diagrammatic problems. 
 
 \section{Summary}
 
