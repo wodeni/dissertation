@@ -55,8 +55,8 @@ pdfborder=0 0 0,  %removes outlines around hyper links in online display
 
 % latin: https://tex.stackexchange.com/questions/15009/macros-for-common-abbreviations
 \usepackage{xspace}
-\newcommand*{\eg}{e.g.\@\xspace}
-\newcommand*{\ie}{i.e.\@\xspace}
+\newcommand*{\eg}{e.g.,\@\xspace}
+\newcommand*{\ie}{i.e.,\@\xspace}
 \newcommand*{\apriori}{a priori\@\xspace}
 
 \makeatletter
@@ -210,6 +210,149 @@ pdfborder=0 0 0,  %removes outlines around hyper links in online display
 \renewcommand{\therqsupcounter}{RQ3.\arabic{rqsupcounter}} % Format the sub-counter as RQ3.1, RQ3.2, etc.
 
 
+% Penrose chapter imports
+\usepackage{mdframed}
+\usepackage{overpic}
+\newcommand{\figloc}[1]{\textit{#1}}
+\usepackage{listings, multicol} % code listings w/ formatting
+\lstset{keepspaces=true}
+
+\lstdefinelanguage{Sub-LA}{
+  morekeywords={Vector, VectorSpace, Scalar, LinearMap, In, Orthogonal, EqualLength, Unit, Autolabel, Label, All, Default},
+  morecomment=[l][\color{gray}]{--}
+}
+
+\lstdefinelanguage{Sub-tensor}{
+  morekeywords={Dim, Vector, Matrix, Scalar, Autolabel, Label, All, Default},
+  morecomment=[l][\color{gray}]{--}
+}
+
+\lstdefinelanguage{Sub-nn}{
+  morekeywords={Dim, Vector, Matrix, Scalar, Function, vec, softmax, L, Autolabel, Label, All, Default},
+  morecomment=[l][\color{gray}]{--}
+}
+
+\lstdefinelanguage{Sub-mesh}{
+  morekeywords={SimplicialComplex, Edge, Vertex, InVS, SimplicialSet, IsSubsetOf, Star, Subcomplex, SetMinus, Union, Closure, Link, Result, AutoLabel, Label, All, Default},
+  morecomment=[l][\color{gray}]{--}
+}
+
+\lstdefinelanguage{Sub-geom}{
+  morekeywords={Table, Chair, BeerMug, Tavern, Plate, Point, Midpoint, Bisector, Triangle, Right, Obtuse, Acute, Angle, Line, Segment, Square, Rectangle, On, Parallel, PerpendicularBisector, Ray, Disjoint, Altitude, Endpoint, On, Perpendicular},
+  morecomment=[l][\color{gray}]{--}
+}
+
+\lstdefinelanguage{Sty-LA}{
+  morekeywords={Vector, VectorSpace, Scalar, LinearMap, Arrow, Rectangle, Arc, Dot, AnchorPoint, CurlyBrace, Parallelogram, Line, global, forall, where, above, below, with, ensure, encourage, override, layer, ALL, CANVAS, delete},
+  morecomment=[l][\color{gray}]{--}
+}
+
+\lstdefinelanguage{Elem}{
+  morekeywords={type, function, notation, predicate},
+  morecomment=[l][\color{gray}]{--}
+}
+
+\lstdefinelanguage{Sub-RA}{
+  morekeywords={Reals, Real, Interval, Function, IsDifferentiable, IsDiscontinuous, Point, Autolabel, Pt, Label, NoLabel, All, Default},
+  morecomment=[l][\color{gray}]{--}
+}
+
+\lstdefinelanguage{Sub-SET}{
+  morekeywords={Autolabel, Pt, Label, NoLabel, All, Default, Set, IsSubset, NotIntersecting},
+  morecomment=[l][\color{gray}]{--}
+}
+
+\lstdefinelanguage{Sty-RA}{
+  morekeywords={Reals, Real, Interval, Function, Differentiable, Diff, Discontinuous, Point, Pt, LeftBounded, LeftClopen, Open, Bounded, Arrow, Rectangle, Arc, Dot, AnchorPoint, CurlyBrace, Parallelogram, Line, Tick, DoubleArrow, Bracket, Region, Curve, Paren, global, forall, where, above, below, with, ensure, encourage, override, layer, ALL, CANVAS, delete, Auto, optimized},
+  morecomment=[l][\color{gray}]{--}
+}
+
+\lstdefinelanguage{Sub-RT}{
+  morekeywords={Scene, In, String, HasForm, PathSample, Sample, SceneSatisfies, AutoLabel, Diagram, LightSource, Camera, PathType, Path, VertexType, BounceType, DiffuseBounce, SpecularBounce, GlossyBounce, sample, Autolabel, Pt, Label, NoLabel, All, Default},
+  morecomment=[l][\color{gray}]{--}
+}
+
+\lstdefinelanguage{Sty-RT}{
+  morekeywords={Diagram, LightSource, Camera, PathType, Path, VertexType, BounceType, DiffuseBounce, SpecularBounce, GlossyBounce, InList, Sublist, sample, PathVertex, Path, InVP, Hits, PathType, DiffuseObject, PathEdge, SpecularObject, Arrow, Rectangle, Arc, Dot, AnchorPoint, CurlyBrace, Parallelogram, Line, Tick, DoubleArrow, Bracket, Region, Curve, Paren, global, forall, where, above, below, with, ensure, encourage, override, layer, ALL, CANVAS, delete, Auto, optimized, plugin},
+  morecomment=[l][\color{gray}]{--}
+}
+
+\lstdefinelanguage{Sub-ST}{
+  morekeywords={Set, Point, Map, Intersection, Union, Subtraction, CartesianProduct, Difference, Subset, AddPoint, Apply, From, Empty, Nonempty, Intersect, Nonintersecting, IsSubset, NotSubset, PointIn, PointNotIn, Injection, Not, Surjection, Bijection, Autolabel, Label, All, Default},
+  morecomment=[l][\color{gray}]{--}
+}
+
+\lstdefinelanguage{Sty-ST}{
+  morekeywords={Set, Point, Map, Intersection, Union, Subtraction, CartesianProduct, Difference, Subset, AddPoint, Apply, From, Empty, Nonempty, Intersect, Nonintersecting, IsSubset, NotSubset, PointIn, PointNotIn, Injection, Surjection, Bijection, global, forall, where, above, below, with, ensure, encourage, override, layer, ALL, CANVAS, delete},
+  morecomment=[l][\color{gray}]{--}
+}
+
+\lstset{
+  basicstyle=\small\ttfamily,
+  columns=flexible,
+  breaklines=true,
+  mathescape=true,
+  numbers=left
+}
+
+% mdframed style for Domain code
+\definecolor{DslBGColor}{rgb}{0.95,0.95,0.95}
+\definecolor{DslLineColor}{rgb}{0.85,0.85,0.85}
+\mdfdefinestyle{DSLCode}{
+    backgroundcolor=DslBGColor,
+    linecolor=DslLineColor,
+    linewidth=1pt,
+    innertopmargin=8pt,
+    innerbottommargin=8pt,
+    innerleftmargin=8pt,
+    innerrightmargin=8pt
+ }
+
+% mdframed style for Substance code
+\definecolor{SubBGColor}{rgb}{0.92,0.97,0.92}
+\definecolor{SubLineColor}{rgb}{0.87,0.92,0.87}
+\mdfdefinestyle{SUBCode}{
+    backgroundcolor=SubBGColor,
+    linecolor=SubLineColor,
+    linewidth=1pt,
+    innertopmargin=8pt,
+    innerbottommargin=8pt,
+    innerleftmargin=8pt,
+    innerrightmargin=8pt
+ }
+
+% mdframed style for Style code
+\definecolor{StyBGColor}{rgb}{0.95,0.95,1.00}
+\definecolor{StyLineColor}{rgb}{0.9,0.9,0.95}
+\mdfdefinestyle{STYCode}{
+    backgroundcolor=StyBGColor,
+    linecolor=StyLineColor,
+    linewidth=1pt,
+    innertopmargin=8pt,
+    innerbottommargin=8pt,
+    innerleftmargin=8pt,
+    innerrightmargin=8pt
+ }
+
+\usepackage{tikz}
+\newcommand\inlineDSL[2][]{\ \tikz[overlay]\node[draw,inner sep=2pt, anchor=text, rectangle, thick, color=DslLineColor, fill=DslBGColor, text=black,] {#2};\phantom{#2}\ }
+\newcommand\inlineSUB[2][]{\ \tikz[overlay]\node[draw,inner sep=2pt, anchor=text, rectangle, thick, color=SubLineColor, fill=SubBGColor, text=black,] {#2};\phantom{#2}\ }
+\newcommand\inlineSTY[2][]{\ \tikz[overlay]\node[draw,inner sep=2pt, anchor=text, rectangle, thick, color=StyLineColor, fill=StyBGColor, text=black,] {#2};\phantom{#2}\ }
+
+\newcommand{\keyword}[1]{\texttt{\textbf{#1}}}
+\usepackage{amssymb}
+\usepackage{upgreek}
+\newcommand{\resp}{\emph{resp.}} % "respectively"
+\def\ContinueLineNumber{\lstset{firstnumber=last}}
+
+% typewriter font
+\usepackage{inconsolata} % Load the Inconsolata font
+\renewcommand{\ttdefault}{zi4} % Set Inconsolata as the default typewriter font
+
+
+% Goals
+\newcounter{goalcounter} % Define a new counter for RQs
+\renewcommand{\thegoalcounter}{Goal \arabic{goalcounter}} % Format the counter as RQ1, RQ2, etc.
 
 % \usepackage{caption}
 % \captionsetup[table] % Adjusts space between the table caption and the table
@@ -318,13 +461,13 @@ TODO
 
 \chapter{\Penrose: From Notations to Beautiful Diagrams}
 \label{chp:penrose}
-% \input{penrose}
+\input{penrose}
 
 \chapter[\Edgeworth: Diagrammatic Problem Authoring at Scale]{\Edgeworth: Diagrammatic Problem Authoring at Scale\footnote{This chapter is adapted from \citet[Sections~1--5]{ni_edgeworth_2024}}}
 \label{chp:edgeworth}
 \input{edgeworth}
 
-\chapter{Evaluating \Edgeworth{}}
+\chapter[Evaluating \Edgeworth{}]{Evaluating \Edgeworth{}\footnote{This chapter is partly adapted from \citet[Sections~6--7]{ni_edgeworth_2024}.}}
 \label{chp:edgeworth-eval}
 \input{edgeworth-eval}
 

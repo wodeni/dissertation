@@ -91,10 +91,7 @@ For each task, the participant were given (1) a textual problem prompt and (2) a
 
 \subsubsection{Experimental Design}
 
-% groups
-The study was a within-subject design, where participants used \Edgeworth and Google Drawings to author diagrams in a counterbalanced order. Participants were further randomly assigned into one of two groups: one group made chemistry diagrams and the second group made geometry diagrams. In the 90-minute study session, each participant was given two problem prompts in total, each repeated twice for \Edgeworth and Google Drawings, so four tasks in total. For instance, a participant in the chemistry-drawing group (first row in \cref{tab:edgeworth-experiment-setup} would spend up to 10 minutes making 1 correct diagram (correct segment) and then up to 10 minutes to make incorrect diagrams of \ensuremath{\mathrm{CH_2O}} using Google Drawings (incorrect segment) first, and then another 20 minutes on the same prompt using \Penrose for the correct segment and \Edgeworth for the incorrect segment. After that, this participant would repeat the same for  \ensuremath{\mathrm{HNO_3}}. \cref{tab:edgeworth-experiment-setup} summarizes the four groups resulted from the tool and domain assignments.
-
-\begin{table}
+\begin{table}[t]
 \centering
 \begin{tabular}{l|llllll}
 Domain & Task 1 (Prompt 1) & Task 2 (Prompt 1) & Task 3 (Prompt 2) & Task 4 (Prompt 2)  \\ \hline
@@ -103,9 +100,15 @@ Chemistry & \Edgeworth & Google Drawings & \Edgeworth & Google Drawings \\
 Geometry &  Google Drawings & \Edgeworth & Google Drawings & \Edgeworth \\
 Geometry & \Edgeworth & Google Drawings & \Edgeworth & Google Drawings \\
 \end{tabular}
-\label{tab:edgeworth-experiment-setup}
-\caption{Participants were divided into 4 groups by the tools they used and diagramming domains of the tasks. Each row corresponds to the task sequence of one of the groups. Participants used both \Edgeworth and Google Drawings to author problems for two prompts in chemistry or geometry (\cref{fig:edgeworth-user-study-tasks}).}
+\caption{Participants were divided into 4 groups by the tools they used and diagramming domains of the tasks. Each row corresponds to the task sequence of one of the groups. Participants used both \Edgeworth and Google Drawings to author problems for two prompts in chemistry or geometry (\cref{fig:edgeworth-user-study-examples}).} \label{tab:edgeworth-experiment-groups}
 \end{table}
+
+% groups
+The study was a within-subject design, where participants were divided into four groups by the ordering of tools they use and diagramming domains of their tasks. Participants used both \Edgeworth and Google Drawings to author diagrams in a random counterbalanced order. Participants were further randomly assigned into one of two subgroups: one subgroup made chemistry diagrams and the second subgroup made geometry diagrams. \cref{tab:edgeworth-experiment-groups} summarizes the four groups that resulted from the tool and domain assignments. Each group had four participants.
+
+In the 90-minute study session, each participant was given two problem prompts in total, each repeated twice for \Edgeworth and Google Drawings, so four tasks in total. For instance, a participant in the chemistry-drawing group (the first row in \cref{tab:edgeworth-experiment-groups}) would spend up to 10 minutes making 1 correct diagram (correct segment) and then up to 10 minutes to make incorrect diagrams of \ensuremath{\mathrm{CH_2O}} using Google Drawings (incorrect segment) first, and then another 20 minutes on the same prompt using \Penrose for the correct segment and \Edgeworth for the incorrect segment. After that, this participant would repeat the same for  \ensuremath{\mathrm{HNO_3}}.
+
+
 
 % authoring assistance
 
@@ -121,8 +124,7 @@ At the start of each study session, participants were given 5-minute tutorials o
 Participants received no more instructions during the tasks. The experimenter only observed the participant and used a stopwatch to measure the time on task. After completing each task, participants completed a survey that asked them if they agree with the following statements on a 5-point Likert scale:
 
 \begin{itemize}
-  \item I would use this problem for a class that I
-teach.
+  \item I would use this problem for a class that I teach.
   \item The problem is pedagogically useful (\ie students will benefit from doing this problem).  
   \item The diagrams in the problem are of high visual quality.
 \end{itemize}
@@ -164,9 +166,9 @@ A two-way repeated measures ANOVA was conducted to examine the within-subject ef
 \end{figure}
 
 
-For the incorrect segments, the analysis revealed significant differences in task completion times between the tools used, visualized in \cref{fig:timing-violin} \textbf{Right}. In the chemistry domain, participants completed tasks significantly faster (almost 3 times faster) using \Edgeworth (\textit{M} = 150.13s, \textit{SD} = 59.15s) compared to Google Drawings (\textit{M} = 440.63s, \textit{SD} = 113.04s), as indicated by the significant main effect of tool, $F(1, 7) = 53.33, p = 0.0002$. There was no significant effect of the task itself, $F(1, 7) = 1.29, p = 0.293$, suggesting that the difficulty of the tasks was consistent regardless of the tool used. Similarly, in the geometry domain, participants also completed tasks significantly faster (similarly, almost 3 times faster) with \Edgeworth (\textit{M} = 257.25s, \textit{SD} = 139.55s) compared to Google Drawings (\textit{M} = 549.38s, \textit{SD} = 91.28s), with a significant effect of the tool, $F(1, 7) = 90.97, p < 0.0001$. There was a marginal effect of task, $F(1, 7) = 3.64, p = 0.098$, indicating a trend towards task differences that did not reach statistical significance. 
+For the incorrect segments, the analysis revealed significant differences in task completion times between the tools used, visualized in \cref{fig:timing-violin} (right). In the chemistry domain, participants completed tasks significantly faster (almost 3 times faster) using \Edgeworth (\textit{M} = 150.13s, \textit{SD} = 59.15s) compared to Google Drawings (\textit{M} = 440.63s, \textit{SD} = 113.04s), as indicated by the significant main effect of tool, $F(1, 7) = 53.33, p = 0.0002$. There was no significant effect of the task itself, $F(1, 7) = 1.29, p = 0.293$, suggesting that the difficulty of the tasks was consistent regardless of the tool used. Similarly, in the geometry domain, participants also completed tasks significantly faster (similarly, almost 3 times faster) with \Edgeworth (\textit{M} = 257.25s, \textit{SD} = 139.55s) compared to Google Drawings (\textit{M} = 549.38s, \textit{SD} = 91.28s), with a significant effect of the tool, $F(1, 7) = 90.97, p < 0.0001$. There was a marginal effect of task, $F(1, 7) = 3.64, p = 0.098$, indicating a trend towards task differences that did not reach statistical significance. 
 
-For the correct segments, the analysis showed mixed results on \Penrose's performance depending on the domain, illustrated in \cref{fig:timing-violin} \textbf{Left}. In the chemistry domain, participants completed tasks significantly faster using \Penrose (\textit{M} = 144.19s, \textit{SD} = 79.22s) compared to Google Drawings (\textit{M} = 231.81s, \textit{SD} = 129.78s), as indicated by the significant main effect of tool, $F(1, 7) = 6.65, p = 0.037$. There was no significant effect of the task itself, $F(1, 7) = 0.99, p = 0.353$. In the geometry domain, however, Google Drawings outperformed \Penrose, with participants completing tasks faster using Google Drawings (\textit{M} = 228.5s, \textit{SD} = 71.74s) compared to \Penrose (\textit{M} = 390.94s, \textit{SD} = 149.74s), as indicated by the significant main effect of tool, $F(1, 7) = 15.95, p = 0.005$. Again, there was no significant effect of the task itself, $F(1, 7) = 0.28, p = 0.611$.
+For the correct segments, the analysis showed mixed results on \Penrose's performance depending on the domain, illustrated in \cref{fig:timing-violin} (left). In the chemistry domain, participants completed tasks significantly faster using \Penrose (\textit{M} = 144.19s, \textit{SD} = 79.22s) compared to Google Drawings (\textit{M} = 231.81s, \textit{SD} = 129.78s), as indicated by the significant main effect of tool, $F(1, 7) = 6.65, p = 0.037$. There was no significant effect of the task itself, $F(1, 7) = 0.99, p = 0.353$. In the geometry domain, however, Google Drawings outperformed \Penrose, with participants completing tasks faster using Google Drawings (\textit{M} = 228.5s, \textit{SD} = 71.74s) compared to \Penrose (\textit{M} = 390.94s, \textit{SD} = 149.74s), as indicated by the significant main effect of tool, $F(1, 7) = 15.95, p = 0.005$. Again, there was no significant effect of the task itself, $F(1, 7) = 0.28, p = 0.611$.
 
 % survey
 
@@ -255,7 +257,7 @@ Overall, experts were happy with the problems they assembled with \Edgeworth-gen
 
 \subsection{Expert Feedback}
 
-% \subsubsection{Experts provided positive qualitative feedback on \Edgeworth}
+\subsubsection{Experts provided positive qualitative feedback on \Edgeworth}
 % fast and good
 Experts reacted positively to \Edgeworth. They found \Edgeworth to be a \quotei{perfect fit} (E1, E6, E8) for generating multiple-choice problems, especially \quotei{low-stake} (E2, E3, E5, E6, E8, E9) quizzes that \quotei{incentivize [students] to keep up with the class} (E8). Experts said the automatic layout of \Edgeworth \quotei{draws things really fast} (E5), \quotei{saves you the time of drawing multiple structures} (E3), and produces \quotei{beautiful} (E4, E7) diagrams. Comparing with their existing tools, \Edgeworth is a \quotei{nice time-saver} (E3) and the translation problems they authored during the session would take an \quotei{enormous amount of work} (E4), \quotei{infinitely longer than this took} (E6).
 
@@ -263,21 +265,23 @@ Notably, experts pointed out that \Edgeworth aids creativity by promoting \quote
 
 In addition, experts commented that \Edgeworth can enable them to give students more practice. For instance, E4 noted that \quotei{there's a feedback loop where \dots{} if I had a really good tool for generating nice multi-choice questions, then I could envision doing that much more frequently.}  
 
-% Importantly, in the context of student authoring problems themselves, E7 thinks that lowering the barrier of problem authoring help students \quotei{feel they have ownership in their learning as well as sharing their ownership with other students in the class.}
+Importantly, in the context of student authoring problems themselves, E7 thinks that lowering the barrier of problem authoring help students \quotei{feel they have ownership in their learning as well as sharing their ownership with other students in the class.}
 
-% \subsubsection{Experts used visual selection to express diverse standards on diagram quality}
+\subsubsection{Experts used visual selection to express diverse standards on diagram quality}
+\label{sec:edgeworth-expert-standards}
 
-% When rating diagram mutants, experts agreed with diagram ratings of \cref{sec:reliability-eval}, but expressed unique standards for selecting answer choices (\cref{sec:expert-procedure}). Since experts had different standards, they selected different diagrams to assemble problems. This suggests \Edgeworth's use of visual selection met experts' needs.
+When rating diagram mutants, experts agreed with diagram ratings of \cref{sec:reliability-eval}, but expressed unique standards for selecting answer choices (\cref{sec:expert-procedure}). Since experts had different standards, they selected different diagrams to assemble problems. This suggests \Edgeworth's use of visual selection met experts' needs.
 
-% One group of experts (E2, E4, E6, E7, E8, \hl{E9}) preferred to maintain a balanced mix of answer choices, \quotei{at least one that's obviously correct, at least one that's obviously incorrect, and then \dots{} two where you have to think about that a little bit} (E6). One rationale was to \quotei{make sure [the problem] is challenging enough, but also has some things that are accessible to students that haven't completely mastered the material} (E4). Another was to teach \quotei{the process of elimination} (E7, \hl{E9}). Another group of experts (E1, E3, E5) had much higher standards for including a mutant in a multiple-choice problem. For example, E1 preferred problems to contain one correct answer and multiple distractor options that are \quotei{less obvious} such that students won't \quotei{pattern match without looking at the details.}
+One group of experts (E2, E4, E6, E7, E8, E9) preferred to maintain a balanced mix of answer choices, \quotei{at least one that's obviously correct, at least one that's obviously incorrect, and then \dots{} two where you have to think about that a little bit} (E6). One rationale was to \quotei{make sure [the problem] is challenging enough, but also has some things that are accessible to students that haven't completely mastered the material} (E4). Another was to teach \quotei{the process of elimination} (E7, E9). Another group of experts (E1, E3, E5) had much higher standards for including a mutant in a multiple-choice problem. For example, E1 preferred problems to contain one correct answer and multiple distractor options that are \quotei{less obvious} such that students won't \quotei{pattern match without looking at the details.}
 
-% % On a problem that E2 accepted 7 out of 10 mutants as good incorrect options, E3 discarded 8 out of 10 because they \quotei{violated the octet rule in egregious or blatantly egregious way.} However, E3 said whether the octet rule can be broken depends on \quotei{where students are in the course.}
+On a problem that E2 accepted 7 out of 10 mutants as good incorrect options, E3 discarded 8 out of 10 because they \quotei{violated the octet rule in egregious or blatantly egregious way.} However, E3 said whether the octet rule can be broken depends on \quotei{where students are in the course.}
 
-% The difference of standards is highly individual. From E2's knowledge of \quotei{colleagues [who] only give difficult distractors} and \quotei{certain profs [who] are legendary for having really hard multiple choice,} they guessed that harder problems \quotei{motivate the students to try harder,} but also pointed out that it \quotei{only works for certain students in my experience.} E3 stated that their choice in diagrams \quotei{hinges upon my perception of whether students will automatically disqualify something,} which they admitted is \quotei{a certain premise or bias.}  In E3's words: \quotei{Wow, it's really tough to \dots{} completely take off the instructor hat.} 
+The difference of standards is highly individual. From E2's knowledge of \quotei{colleagues [who] only give difficult distractors} and \quotei{certain profs [who] are legendary for having really hard multiple choice,} they guessed that harder problems \quotei{motivate the students to try harder,} but also pointed out that it \quotei{only works for certain students in my experience.} E3 stated that their choice in diagrams \quotei{hinges upon my perception of whether students will automatically disqualify something,} which they admitted is \quotei{a certain premise or bias.}  In E3's words: \quotei{Wow, it's really tough to \dots{} completely take off the instructor hat.} 
 
-% This comment reflects the concept of \textit{expert blind spot} in learning sciences literature, where experts fail to \quotei{understand the processes of novices who are struggling to understand new ideas during their constructive learning process} ~\cite{expertBlindspot}.
+This comment reflects the concept of \textit{expert blind spot} in learning sciences literature, where experts fail to \quotei{understand the processes of novices who are struggling to understand new ideas during their constructive learning process} ~\cite{expertBlindspot}.
 
-% \subsubsection{Experts selected isomorphic diagrams to build conceptual understanding}
+\subsubsection{Experts selected isomorphic diagrams to build conceptual understanding}
+\label{sec:isomorphic-diagrams}
 
 \Edgeworth sometimes produces isomorphic diagrams, \ie diagrams with identical content but different layouts. These diagrams occur when \Edgeworth's mutations have no net impact on the example diagram, \eg the mutator removes an edge from a graph and adds it back. Surprisingly, experts found value in these isomorphic diagrams. 
 In their geometry course, E2 said that their textbook's diagrams \quotei{get drawn the same way over and over again. And some students get stuck into thinking that the concept is only communicated when the diagram is drawn [exactly] that way.} When assembling a problem about the $HCN$ molecule, E3 compared two isomorphic variations, and picked one over another because \quotei{it's drawn the opposite \dots which is interesting and I think students are going to get it wrong.}  Similarly, E1 finds isomorphic diagrams to be useful for \quotei{molecules with resonance structures.} 
@@ -286,25 +290,43 @@ E5 found isomorphic planar graphs to be particularly useful because students fin
 
 \section{Limitations of the Studies}
 
-We discuss some limitations to the studies presented in this chapter.
+We discuss some limitations to the studies presented in this chapter. 
 
 % \subsection{Sample Size and Generalizability}
 % The sample sizes in the user study and expert walkthrough were relatively small, with only 16 participants in the user study and 9 expert educators in the walkthrough sessions. This limited number of participants may not fully represent the broader population of educators or the variety of instructional contexts in which \Edgeworth might be applied. Consequently, the generalizability of the findings to other domains, educational settings, or different types of diagrammatic problems is limited.
 
-\subsection{Domain Specificity}
-The studies primarily focused on specific instructional domains, including chemistry, geometry, and graph theory. While these domains were chosen from the translation problem dataset, the studies are limited by the scope of the dataset itself. The performance and effectiveness of \Edgeworth might vary when applied to other fields that require different types of visual problem representations, which were not explored in this research.
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=\linewidth]{assets/edgeworth-eval/p4-drawings.pdf}
+    \includegraphics[width=\linewidth]{assets/edgeworth-eval/p4-edgeworth.png}
+    \caption{Screenshots of Google Drawings (top) and \Edgeworth selections (bottom) of diagrams by participants of the user study (\cref{sec:edgeworth-user-study}).}
+    \label{fig:edgeworth-user-study-shortcuts}
+\end{figure}
+
+
+\subsection{Authoring speed versus problem quality}
+
+Participants in the user study described in \cref{sec:edgeworth-user-study} were not screened for their prior experience nor expertise in diagrammatic problem authoring. In fact, a majority of them are undergraduate students. Therefore, their judgment of what make a good problem (or lack thereof) might influence the task performance data reported in \cref{sec:edgeworth-user-study}. Theoretically, to get through the tasks, participants could pick incorrect diagrams at random using \Edgeworth, or make minimal edits to the correct diagram to get alternatives using Google Drawings. To address this limitation of the user study, We conducted the expert demonstration walkthroughs \cref{sec:expert-feedback} to gain a deeper understanding of the ecological validity of \Edgeworth-generated problems.
+
+During the user study, we did in fact observe participants taking shortcuts in both conditions. Here we show some examples of them and contrast them with the experts' opinions. For instance, \cref{fig:edgeworth-user-study-shortcuts} (top) shows a pattern of making small edits to the correct diagram to quickly produce incorrect diagrams. These edits avoids moving many diagram components around while maintaining a good layout. The similar layouts of atoms and bonds contrast experts' feedback on isomorphic diagrams (\cref{sec:isomorphic-diagrams}, \eg \quotei{some students get stuck into thinking that the concept is only communicated when the diagram is drawn [exactly] that way.} by E2). As another example for \Edgeworth, \cref{fig:edgeworth-user-study-shortcuts} (bottom) shows two diagrams selected by a participant as suitable incorrect answers for chemistry prompt 1 in \cref{fig:edgeworth-user-study-tasks}. Per their feedback in \cref{sec:edgeworth-expert-standards}, E3 would not accept ``Mutated Diagram \#6'' in the figure as a good incorrect options, because it \quotei{violated the octet rule in egregious or blatantly egregious way.}~\footnote{The Carbon (C) atom in the diagram has 6 valance electrons, 2 double bonds, and one single bond, which is way beyond the expected 8 electrons and bonds combined per the octet rule.} Notably, as we discussed in \cref{sec:edgeworth-expert-standards}, experts did not agree on a single standard of high problem quality among themselves. 
+
+Overall, while participants took shortcuts in both user study conditions, we cannot conclude how much impact their quality standards have on the task performance. The expert demonstration walkthroughs showed a diversity of standards among experienced educations. Therefore, future research is needed to tease out the effect of problem quality on authoring speed of diagrammatic problems.
 
 \subsection{Ecological Validity}
+
+The studies primarily focused on specific instructional domains, including chemistry, geometry, and graph theory. While these domains were chosen from the translation problem dataset, the studies are limited by the scope of the dataset itself. The performance and effectiveness of \Edgeworth might vary when applied to other fields that require different types of visual problem representations, which were not explored in this research.
+
 Although the expert walkthroughs provided valuable feedback on the ecological validity of \Edgeworth-generated problems, the artificial nature of the study environment might not fully capture the complexities and constraints of real-world educational settings. The experts' feedback were based on hypothetical scenarios and short-term interactions with the tool, which may not fully reflect the challenges and demands of long-term usage in a classroom or curriculum development context.
 
-\subsection{Tool Familiarity and Learning Curve}
+\subsection{Tool}
 Participants in the user study were provided with brief tutorials on using \Edgeworth and Google Drawings, which may not have been sufficient for them to become fully proficient with these tools. The learning curve associated with \Penrose and \Edgeworth, especially their unique approach to generating diagrammatic problems, might have influenced the results, particularly in the efficiency evaluation. Participants with more extensive experience or training in using either tool might exhibit different levels of efficiency and satisfaction than those observed in the study.
 
-\subsection{Focus on Multiple-Choice Problems}
-The studies were designed around the generation and evaluation of multiple-choice problems, which, while useful in many educational contexts, represent only a subset of the types of problems educators might want to create. Other problem types such as open-ended questions or interactive exercises, were not explored.
+% \subsection{Focus on Multiple-Choice Problems}
+% The studies were designed around the generation and evaluation of multiple-choice problems, which, while useful in many educational contexts, represent only a subset of the types of problems educators might want to create. Other problem types such as open-ended questions or interactive exercises, were not explored.
 
-\subsection{Technical Constraints and Evolution}
-Finally, \Edgeworth is a tool still under development, and the studies were conducted on a particular version of the software. As the tool evolves, with potential updates and improvements, the findings presented here might become outdated. Future research would need to re-evaluate the tool's performance and usability in light of these changes.
+% \subsection{Technical Constraints and Evolution}
+
+Both \Penrose and \Edgeworth are still under development, and the studies were conducted on particular versions of them. As they evolve, with potential updates and improvements, the findings presented here might become outdated. Future research would need to re-evaluate the tool's performance and usability in light of new changes. 
 
 \section{Summary}
 
