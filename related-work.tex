@@ -1,3 +1,66 @@
+% Natural programming
+\section{Diagramming process}
+
+This section provides background on three areas of related work that informed our research: research on the theory behind conceptual diagrams, existing tools for visualization, and empirical research on diagramming-related activities. Related work that is directly relevant to the implications of our work is described in the Implications section. 
+
+\subsection{Conceptual diagrams and their benefits}
+
+% What diagrams are
+Conceptual diagrams differ from data visualizations, which are visual representations of concrete and factual, rather than conceptual, information. Data visualization techniques enable people to understand how quantities relate to each other and gain valuable factual knowledge about the world. Ervin~\cite{designWithDiagrams} distinguishes between \emph{pictorial} and \emph{propositional} graphics: instead of directly depicting data, diagrams (propositional graphics in Ervin's terms) constitute knowledge and embody media-independent abstractions for inference-making~\cite{DiagramsThousandWords}. In addition to knowledge representation, conceptual diagrams are also a medium for creativity and exploration, since they do not require early commitments to design decisions and focus on the \emph{form} of possible solutions~\cite{ConceptualArchDesign}.
+
+% diagrams, as they are, are already pretty helpful
+Diagrams have been shown to have cognitive benefits to reasoning and problem solving~\cite{DiagramsThousandWords, emergentProperties, multimediaPrinciple}. Compared to textual representations, diagrams facilitate fast recognition and direct inference by making the most relevant information explicit and easily findable~\cite{DiagramsThousandWords}. As an external representation of abstract structures of tasks, diagrams can work together with one's mental representation and are an indispensable part for accomplishing distributed cognitive tasks~\cite{DistributedCognitive}. Hegarty and Kozhevnikov~\cite{visualSpatialProblemSolving} distinguish between \emph{pictorial} and \emph{schematic} visual representations and show that schematic representations of relative spatial relationships significantly outperform pictorial ones that encode visual appearances.
+
+% diagrams, when people make them, are even more helpful
+In addition to their values as an external, static representation of knowledge, diagrams are also beneficial when people learn \emph{with}, instead of \emph{from} them~\cite{learningWithRepresentations}.
+In educational contexts, explicit training of drawing, including the creation of new visual representations and adoption of new ones, significantly improve students' ability to work with multiple representations and improve learning, reasoning, and communication skills~\cite{drawingToLearn}. Moreover, creating diagrams as visual explanations also improves learning, since they can act as a check for completeness and a medium for inference~\cite{VisualexplanationsImprovesLearning}. In general, people do not need formal training in visual design to create and interpret effective diagrams and learners at all levels can benefit tremendously from creating diagrams~\cite{ABC}.
+
+% Goal of our study
+Bill Thurston famously wrote "people have very powerful facilities for taking in information visually... On the other hand, they do not have a very good built-in facility for \emph{inverse vision}, that is, turning an internal spatial understanding back into a two-dimensional image~\cite{billThurston}." In our study, we investigate how domain experts transform high-level concepts to diagrams.
+
+\subsection{Existing designs of diagramming tools}
+
+% Intro
+Although many diagramming tools support both text-based and graphical interfaces, we categorize current diagramming tools by their dominant mode of interaction: programming-language based (PL) tools and direct manipulation (DM) tools. 
+
+% Programming languages: DSL, general purpose
+We use PL tools to refer to text-based diagramming tools, including imperative or declarative programming languages, libraries, frameworks, and embedded domain-specific languages. General-purpose tools such as Processing~\cite{processing}, Asymtote~\cite{asymptote}, PGF/TikZ, and Paper.js~\footnotelink{http://paperjs.org/} provide program constructs that model graphical primitives and operations akin to those in Scalable Vector Graphics (SVG)~\cite{SVGStandard}. Many of their shared disadvantages are well summarized in TikZ's manual~\cite{TikZ-Manual}: ``steep learning curve, no WYSIWYG, small changes require a long recompilation time, and the code does not really ``show'' how things will look like.'' Domain-specific tools allow diagram specifications that are higher-level and specialized to the problem domain to smoothen the learning curve. They are developed either from scratch (\eg~GraphViz and the DOT language for graph visualization~\cite{Graphviz}) or on top of general-purpose tools (\eg~TikZ's extensions, \texttt{tkz-euclide} for Euclidean geometry). However, many of them still inherit the other disadvantages from above. 
+
+DM tools represent interactive diagramming tools that support WYSIWYG interfaces and direct interaction with shapes. Akin to PL tools, general-purpose DM tools such as Adobe Illustrator, Inkscape, and Figma also have similar sets of primitives, but often provide a large number of widgets or drawing tools (\eg~Illustrator CC has nearly 100 built-in tools~\footnotelink{https://helpx.adobe.com/illustrator/user-guide.html}). To overcome the disadvantage of their highly manual interaction model, both Illustrator and Inkscape provide language bindings or command-line tools for automation, but they still suffer from the above problems of PL tools. Popular domain-specific diagramming tools such as draw.io and Gliffy are template editors that provide predefined, mostly box-and-arrow style shapes, limiting users to a narrow set of diagrams. Research prototypes such as Sketchpad~\cite{sketchpad} and ThingLab~\cite{thinglab} automate diagram layout using constraint solving, but many edit actions like selection and shape construction remain manual. Other prototypes like Apparatus~\footnotelink{http://aprt.us/} and Bret Victor's dynamic visualization tool~\cite{dynamicViz} incorporate some limited programmatic operations (\eg~macro recording, variable declaration, and computed properties) via direct interactions. 
+
+% 3 Wave of data visualization: the point is, diagramming tools haven't caught up with the dataviz trend
+% Statement of our goals
+As discussed by Satyanarayan \etal{} in \cite{reflectionsVis}, data visualization tools have transformed over the past decade. The major advances are characterized by three ``waves'': (1) improvement of individual charts' quality, (2) theories and tools that enable mass-production of visualizations, and (3) the convergence of tools~\cite{thirdWaveViz}. Whereas the benefits of conceptual diagrams are clear and theoretical foundations exist, most of the diagramming tools are still not easily scalable and there are large gaps in existing technologies, notably between PL and DM tools. In other words, the \nth{2} wave of conceptual diagramming is still not here. In this paper, we aim to gain a deep understanding of people's diagramming process to drive the design of tools that fill these gaps.
+
+\subsection{Empirical studies on diagramming-related activities}
+
+Although conceptual diagrams are widely studied as a powerful visual representation in multiple domains, there has not been a significant amount of prior work that focuses on the \emph{authoring} of conceptual diagrams, especially with digital tools. 
+
+However, prior work in related activities such as note-taking and whiteboarding suggests some insights for both understanding these activities and opportunities for tool design. Studies on sketches in STEM~\cite{Whiteboards} and software engineering~\cite{Whiteboards-Ko} suggest a need for automating the process of sketching and preserving transient sketches such as whiteboard drawings with appropriate tools. In similar activities such as annotating documents, personal annotations undergo dramatic changes such as significant substantiation and clarification when they are shared on public platforms~\cite{Annotations}. Digitization of the analog pen-and-paper interface attempts to make the transformation process smoother. While digital ink tools imitate the pen-and-paper experience and provide more versatility and power, there still exist gaps between the manual and digital experience of sketching due to conflicting affordances of analog pen and digital ink~\cite{AsWeMayInk}. 
+
+Given the lack on the prior work on this topic,  this paper directly investigates the process of creating conceptual diagrams using digital tools.
+
+ 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Not used
+
+
+% User-centered design is good
+% Recent research demonstrated significant usability and efficiency gains when empirical data are used to motivate tool design. For instance, Playful Palette~\cite{PlayfulPalette} addresses visual artists' needs elicited from a pilot user study and showed effectiveness by increasing the usage of distinct colors by 39\% and amplifying artists' creativity. The design of Data Illustrator was informed by intensive interviews with graphic designers and the result was a tool that enhanced users abilities to compose visualizations~\cite{DataIllustrator}. Our goal in this paper is to study the process of creating conceptual diagrams to drive the design of tools that support this process. 
+
+
+% \subsection{Empirical studies on diagramming-related activities}
+
+% \todoi{go through this section again and consider removing it}
+
+% Empirical studies on diagramming and related domains have revealed cognitive and behavioral patterns of how people interact with external representations such as diagrams and notes. These findings inform our study of how domain experts create conceptual diagrams.
+
+% Grammel \etal{} found that, When making information visualizations, novices tend to operate on higher-level constructs in both the data and visual spaces: they prefer to operate on their high-level mental models of the data rather than data attributes; they also tend to use composite visual constructs (\eg~bars and tree nodes) rather than primitives (\eg~polygons and circles)~\cite{NoviceInfoviz}. 
+
+% % Do domain experts, who have a better grasp of the semantic meaning of data, use similar generic visual constructs? In this study, we investigate how conceptual diagrammer find and construct high-level representations to aid their thinking. 
+
+% Studies on sketches in STEM~\cite{Whiteboards} and software engineering~\cite{Whiteboards-Ko} suggest a need for automating the process of sketching and preserving transient sketches such as whiteboard drawings with appropriate tools. In similar activities such as annotating documents, personal annotations undergo dramatic changes such as significant substantiation and clarification when they are shared on public platforms~\cite{Annotations}. Digitization of the analog pen-and-paper interface attempts to make the transformation process smoother. While digital ink tools imitate the pen-and-paper experience and provide more versatility and power, there still exist gaps between the manual and digital experience of sketching due to conflicting affordances of analog pen and digital ink~\cite{AsWeMayInk}. In this paper, we investigate the process of transforming sketches to digital, formal versions. 
+
 % Penrose
 
 \subsection{Diagramming Systems}

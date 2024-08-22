@@ -210,6 +210,14 @@ pdfborder=0 0 0,  %removes outlines around hyper links in online display
 \renewcommand{\therqsupcounter}{RQ3.\arabic{rqsupcounter}} % Format the sub-counter as RQ3.1, RQ3.2, etc.
 % \renewcommand{\therqsupcounter}{RQ\arabic{rqsupcounter}} % Format the sub-counter as RQ1, 2, 3 etc
 
+% Interviews chapter imports
+\usepackage{subcaption}
+\newcommand\itquote[1]{\hangindent=1em\hangafter=0
+``\textit{#1}''}
+\newcommand{\latin}[1]{{\it #1}}
+
+
+
 
 % Penrose chapter imports
 \usepackage{mdframed}
@@ -460,7 +468,7 @@ TODO
 
 \chapter[Understanding the Diagramming Process]{Understanding the Diagramming Process\footnote{This chapter is adapted from \textit{How Domain Experts Create Conceptual Diagrams and Implications for Tool Design}~\cite{naturalDiagramming}.}}
 \label{chp:interviews}
-% \input{interviews}
+\input{interviews}
 
 \chapter[\Penrose: From Notations to Beautiful Diagrams]{\Penrose: From Notations to Beautiful Diagrams\footnote{
 This chapter is adapted from \textit{\Penrose: From Mathematical Notation to Beautiful Diagrams} \cite{penrose}
