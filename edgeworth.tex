@@ -2,7 +2,7 @@
 \begin{figure}[ht]
     \centering
     \includegraphics[width=0.88\linewidth]{assets/edgeworth/translation-problem.pdf}
-    \caption{\textbf{left}: a translation problem that helps students discern the structure of linear equations (adapted from~\cite{perceptualLearning}). \textbf{right}: an \Edgeworth generated problem that trains student to recognize diagram configurations~\cite{Koedinger1990a} for triangle congruence.}
+    \caption{\textbf{left}: a translation problem that helps students discern the structure of linear equations (adapted from~\cite{kellman_perceptual_2010}). \textbf{right}: an \Edgeworth generated problem that trains student to recognize diagram configurations~\cite{perceptualChunks} for triangle congruence.}
     \label{fig:translation-problem}
 \end{figure}
 
@@ -17,13 +17,13 @@
 
 \section{Introduction}
 
-Effective use of visual representations requires a certain level of \emph{representational fluency} that's achievable through deliberate practice and repetition~\cite{metarepresentation, representationalFluency}. Recognizing how words, symbols, and diagrams relate to each other is an important first step of achieving fluency. Prior work has shown that these contrasting cases, \ie  discrimination and mapping, among representations significantly improve students' ability to translate among representations~\cite{perceptualLearning}.
+Effective use of visual representations requires a certain level of \emph{representational fluency} that's achievable through deliberate practice and repetition~\cite{disessa_meta-representation_2000, representationalFluency}. Recognizing how words, symbols, and diagrams relate to each other is an important first step of achieving fluency. Prior work has shown that these contrasting cases, \ie  discrimination and mapping, among representations significantly improve students' ability to translate among representations~\cite{kellman_perceptual_2013}.
 
-To train students' representational fluency, educators often create problem sets that involve numerous contrasting cases of a particular visual representation. For instance, \cref{fig:translation-problem}~shows two examples of \emph{translation problems}, where the problem asks students to determine diagrammatic \emph{examples} and \emph{counterexamples} of a textual description and vice versa. Importantly, these examples and counterexamples have varying degrees of differences from the given diagram or text, and carefully picking examples on this spectrum has a big impact on learning~\cite{samenessAndDifference}.
+To train students' representational fluency, educators often create problem sets that involve numerous contrasting cases of a particular visual representation. For instance, \cref{fig:translation-problem}~shows two examples of \emph{translation problems}, where the problem asks students to determine diagrammatic \emph{examples} and \emph{counterexamples} of a textual description and vice versa. Importantly, these examples and counterexamples have varying degrees of differences from the given diagram or text, and carefully picking examples on this spectrum has a big impact on learning~\cite{marton_sameness_2006}.
 
 Traditionally, educators author visual practice by drawing diagrams by hand. In formative interviews (\cref{sec:edgeworth-formative}), educators reported the vital role of visual practice in their instruction, but noted the tedium of authoring due to tool limitations, leading to fewer diagrams used than desired. Manual authoring can hardly keep up with the growth of STEM learners and demand for more visual practice.
 
-As a first step towards scaling up visual practice authoring, we built \Edgeworth, a diagrammatic problem generator. \Edgeworth generates \emph{translation problems}, an effective type of visual practice~\cite{perceptualLearning} that ask students to determine diagrammatic \emph{examples} and \emph{counterexamples} of a textual/symbolic description (\cref{fig:translation-problem}). To help authors get the most out of one diagram, \Edgeworth contributes a ``build once, generate many'' authoring paradigm: Instead of manually editing diagrams to get variations, the author creates a single diagram and \Edgeworth automatically generates diagram variations (\cref{fig:teaser}\uilabel{1}\uilabel{2}). The interaction design of \Edgeworth allows the author to visually select diagram variations to rapidly form translation problems (\cref{fig:teaser}\uilabel{3}\uilabel{4}). Given the diversity of instructional contexts in STEM, we designed \Edgeworth to be domain-agnostic: it uses a generic program mutation technique~(\cref{sec:edgeworth-mutation}) to change the author-provided diagram to produce variations. 
+As a first step towards scaling up visual practice authoring, we built \Edgeworth, a diagrammatic problem generator. \Edgeworth generates \emph{translation problems}, an effective type of visual practice~\cite{kellman_perceptual_2013} that ask students to determine diagrammatic \emph{examples} and \emph{counterexamples} of a textual/symbolic description (\cref{fig:translation-problem}). To help authors get the most out of one diagram, \Edgeworth contributes a ``build once, generate many'' authoring paradigm: Instead of manually editing diagrams to get variations, the author creates a single diagram and \Edgeworth automatically generates diagram variations (\cref{fig:teaser}\uilabel{1}\uilabel{2}). The interaction design of \Edgeworth allows the author to visually select diagram variations to rapidly form translation problems (\cref{fig:teaser}\uilabel{3}\uilabel{4}). Given the diversity of instructional contexts in STEM, we designed \Edgeworth to be domain-agnostic: it uses a generic program mutation technique~(\cref{sec:edgeworth-mutation}) to change the author-provided diagram to produce variations. 
 
 In this chapter, we discuss formative interviews that drove the design of \Edgeworth{} and then walk through the technical implementation of \Edgeworth.
 
@@ -118,7 +118,7 @@ The current \Edgeworth implementation builds on \Penrose's geometry, chemistry, 
 % what is program mutation and why it's a good fit
 \Edgeworth generates diagram variations by mutating the example diagram written in \Substance. 
 % what the operators are
-We purposely designed the system to include a small set of simple mutation operations. Since compilation errors in \Substance will not produce diagrams, all of the mutations are type-safe. Similar to generic tree-editing algorithms~\cite{gumtree}, \Edgeworth supports 3 kinds of mutation operators: \textbf{Add}, \textbf{Delete}, and \textbf{Edit}. 
+We purposely designed the system to include a small set of simple mutation operations. Since compilation errors in \Substance will not produce diagrams, all of the mutations are type-safe. Similar to generic tree-editing algorithms~\cite{Falleri2014}, \Edgeworth supports 3 kinds of mutation operators: \textbf{Add}, \textbf{Delete}, and \textbf{Edit}. 
 
 \textbf{Add} appends a statement. \textbf{Delete} removes a statement and all other statements that refer to the original statement. \textbf{Edit} modifies a statement. There are several categories of \textbf{Edit} operations. Each \textbf{Edit} category contains a \emph{guard} and an \emph{action}. The guard checks if the operator is applicable to the given \Substance statement, and the action performs the mutation. For instance, \textbf{Replace Arguments} is only applicable when the current context has existing variables of the desired type. 
 \begin{itemize}[leftmargin=*]
@@ -175,7 +175,7 @@ As shown in \cref{sec:edgeworth-mutation}, the design of the \Edgeworth mutator 
 
 \subsection{Numerical and textual variations}
 
-\Edgeworth cannot produce numerical and textual variations like traditional problem generators~\cite{CTAT, ASSISTment} do. It is, however, possible to build this functionality on top of \Edgeworth to produce further problem variations. 
+\Edgeworth cannot produce numerical and textual variations like traditional problem generators~\cite{aleven_cognitive_2006, ASSISTment} do. It is, however, possible to build this functionality on top of \Edgeworth to produce further problem variations. 
 
 % \cref{sec:problem-generation} further discusses this possibility in the context of existing template-based problem generation tools.
 
@@ -227,7 +227,7 @@ On average, \Edgeworth's diagram notation is compact and simple. The description
 %     \caption{An example problem in Holt \textit{Geometry}~\cite{burger2007holt} about triangle congruence (left) replicated in \Edgeworth (right). Colored shadings are added for clarity.}
 %     \label{fig:geometry-problem}
 % \end{figure}
-We sample 17 Euclidean geometry problems from Holt \textit{Geometry} \cite{burger2007holt}, a high school geometry textbook. \cref{fig:edgeworth-problems} (left) shows an example problem. The textbook uses a consistent visual style of predominantly black line segments and dots with text labels. Most diagrammatic problems are presented as one diagram followed by one or more multiple-choice problems. We've recast the problems as diagrammatic translation problems.
+We sample 17 Euclidean geometry problems from Holt \textit{Geometry} \cite{holtGeometry}, a high school geometry textbook. \cref{fig:edgeworth-problems} (left) shows an example problem. The textbook uses a consistent visual style of predominantly black line segments and dots with text labels. Most diagrammatic problems are presented as one diagram followed by one or more multiple-choice problems. We've recast the problems as diagrammatic translation problems.
 
 For this domain, we build on the existing geometry stylesheet from \Penrose \cite[Section~5.3]{penrose} for diagram layout. There are many different types of entities in geometry, and we found that \textbf{Add} tend to introduce elements to the diagram that obviously do not pertain to the question prompt.
 Through some trial-and-error, we settled on weighting deletions 20\%, edits 80\%, and adds 0\% to achieve reasonable results. The reason we weight edits higher than deletions is that many of our geometry problems ask about specific named points, and deletions can make the diagram invalid by removing points that are mentioned in the prompt.

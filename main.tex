@@ -38,7 +38,7 @@
 \usepackage{fullpage}
 \usepackage{graphicx}
 \usepackage{amsmath}
-\usepackage[numbers,sort]{natbib}
+% \usepackage[numbers,sort]{natbib}
 \usepackage{subfigure}
 \hypersetup{
 pageanchor=true,plainpages=false,bookmarksnumbered,
@@ -370,6 +370,30 @@ pdfborder=0 0 0,  %removes outlines around hyper links in online display
 % chinese
 % \usepackage{xeCJK}
 
+% biblatex
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage[backend=biber,style=numeric,citestyle=numeric,maxbibnames=99,natbib=true]{biblatex}
+% \DeclareFieldFormat[article, inbook, incollection, inproceedings, misc, thesis, unpublished]{titlecase}{\MakeTitleCase{#1}}
+
+
+% Show all authors with their full names
+\AtEveryBibitem{%
+  \clearfield{doi} % Remove DOI
+  \clearfield{url} % Remove URL
+  \clearfield{place} % Remove place
+  \clearname{editor} % Optional: remove editors
+  \clearfield{urlyear} % https://tex.stackexchange.com/questions/149506/biblatex-urldate-set-to-today
+  \clearfield{isbn} % Remove isbn
+  \clearfield{issn} % Remove issn
+  \clearfield{note} % Remove notes
+}
+
+% Make sure that full names of authors are used
+% \DeclareNameAlias{author}{given-family}
+\addbibresource{zotero.bib}
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
@@ -497,10 +521,17 @@ This chapter is adapted from \textit{\Penrose: From Mathematical Notation to Bea
 
 % By default \bibsection is \chapter*, but we really want this to show
 % up in the table of contents and pdf bookmarks.
-\renewcommand{\bibsection}{\chapter{\bibname}}
+% \renewcommand{\bibsection}{\chapter{\bibname}}
 %\renewcommand{\bibpreamble}{This text goes between the ``Bibliography''
 %  header and the actual list of references}
-\bibliographystyle{thesis-style}
-\bibliography{zotero} %your bib file
+% \bibliographystyle{thesis-style}
+% \bibliography{zotero} %your bib file
+
+% Make sure the bibliography appears in the table of contents
+\cleardoublepage
+% Print the bibliography with a chapter heading
+\printbibliography[heading=bibintoc]
+% \bibliographystyle{thesis-style}
+
 
 \end{document}
