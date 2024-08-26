@@ -80,8 +80,8 @@ pdfborder=0 0 0,  %removes outlines around hyper links in online display
 \newcommand*{\Style}{\textsc{Style}\xspace}
 \newcommand*{\Edgeworth}{\textsc{Edgeworth}\xspace}
 
-% thesis statement
-\newcommand{\boxtext}[1]{\begin{center} \fbox{ \parbox{0.95\linewidth}{ #1 }} \end{center} }
+% thesis statement and research questions
+\newcommand{\boxtext}[1]{\vspace{1em}\begin{center} \fbox{ \parbox{0.95\linewidth}{ #1 }} \end{center}\vspace{1em} }
 
 % fancy ref
 \usepackage[capitalise, noabbrev]{cleveref}
@@ -376,6 +376,21 @@ pdfborder=0 0 0,  %removes outlines around hyper links in online display
 \usepackage[backend=biber,style=numeric,citestyle=numeric,maxbibnames=99,natbib=true]{biblatex}
 % \DeclareFieldFormat[article, inbook, incollection, inproceedings, misc, thesis, unpublished]{titlecase}{\MakeTitleCase{#1}}
 
+\DeclareCiteCommand{\citetitleyear}
+{\boolfalse{citetracker}%
+  \boolfalse{pagetracker}}
+{\ifciteindex
+  {\indexfield{indextitle}}
+  {}%
+  \printfield[citetitle]{labeltitle}%
+  \setunit{\addspace}%
+  \printtext[parens]{%
+    \usebibmacro{prenote}%
+    \printfield{year}\printfield{extrayear}%
+    \usebibmacro{postnote}}}
+{\multicitedelim}
+{}
+
 
 % Show all authors with their full names
 \AtEveryBibitem{%
@@ -489,6 +504,7 @@ TODO
 
 \chapter{Background and Related Work}
 \label{chp:background}
+% \input{related-work}
 
 \chapter[Understanding the Diagramming Process]{Understanding the Diagramming Process\footnote{This chapter is adapted from \textit{How Domain Experts Create Conceptual Diagrams and Implications for Tool Design}~\cite{naturalDiagramming}.}}
 \label{chp:interviews}
