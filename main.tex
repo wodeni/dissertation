@@ -368,12 +368,25 @@ pdfborder=0 0 0,  %removes outlines around hyper links in online display
 
 
 % chinese
-% \usepackage{xeCJK}
+% no indent because the main document language is english
+% https://mirrors.ibiblio.org/CTAN/language/chinese/ctex/ctex.pdf
+\usepackage[fontset=ubuntu,noindent,scheme=plain]{ctex}
+\usepackage[T1]{fontenc}
+\usepackage[protrusion=true,expansion=true]{microtype}
+\usepackage{setspace}
+\setstretch{1.0}
+\setlength{\baselineskip}{\dimexpr 1.2\fontdimen6\font\relax}
+
+% nth
+\usepackage[super]{nth}
+
 
 % biblatex
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
-\usepackage[backend=biber,style=numeric,citestyle=numeric,maxbibnames=99,natbib=true]{biblatex}
+\usepackage[backend=biber,style=numeric,citestyle=numeric,maxbibnames=99,natbib=true,maxcitenames=2,backref,backrefstyle=none]{biblatex}
+\renewbibmacro{in:}{} % https://tex.stackexchange.com/questions/10682/suppress-in-biblatex
+
 % \DeclareFieldFormat[article, inbook, incollection, inproceedings, misc, thesis, unpublished]{titlecase}{\MakeTitleCase{#1}}
 
 \DeclareCiteCommand{\citetitleyear}
@@ -427,7 +440,7 @@ pdfborder=0 0 0,  %removes outlines around hyper links in online display
 \title{ 
 {\bf Developing conceptual understanding through interactive diagramming}}
 
-\author{Wode ``Nimo'' Ni}
+\author{Wode ``Nimo'' Ni 倪沃德}
 \date{\today}
 \Year{2024}
 \trnumber{CMU-S3D-24-XXX}
@@ -504,29 +517,30 @@ TODO
 
 \chapter{Background and Related Work}
 \label{chp:background}
-% \input{related-work}
+\input{related-work}
 
-\chapter[Understanding the Diagramming Process]{Understanding the Diagramming Process\footnote{This chapter is adapted from \textit{How Domain Experts Create Conceptual Diagrams and Implications for Tool Design}~\cite{naturalDiagramming}.}}
+\chapter[Understanding the Diagramming Process]{Understanding the Diagramming Process\footnote{This chapter is adapted from \citetitle{naturalDiagramming}~\cite{naturalDiagramming}.}}
 \label{chp:interviews}
 \input{interviews}
 
 \chapter[\Penrose: From Notations to Beautiful Diagrams]{\Penrose: From Notations to Beautiful Diagrams\footnote{
-This chapter is adapted from \textit{\Penrose: From Mathematical Notation to Beautiful Diagrams} \cite{penrose}
+This chapter is adapted from \citetitle{penrose}~\cite{penrose}
 }}
 \label{chp:penrose}
+
 \input{penrose}
 
-\chapter[\Edgeworth: Diagrammatic Problem Authoring at Scale]{\Edgeworth: Diagrammatic Problem Authoring at Scale\footnote{This chapter is adapted from Sections 1 to 5 of \textit{\Edgeworth: Efficient and Scalable Authoring of Visual Thinking Activities} \cite{ni_edgeworth_2024}}}
+\chapter[\Edgeworth: Diagrammatic Problem Authoring at Scale]{\Edgeworth: Diagrammatic Problem Authoring at Scale\footnote{This chapter is adapted from Sections 1 to 5 of \citetitle{ni_edgeworth_2024}~\cite{ni_edgeworth_2024}}}
 \label{chp:edgeworth}
 \input{edgeworth}
 
-\chapter[Evaluating \Edgeworth{}]{Evaluating \Edgeworth{}\footnote{This chapter is partly adapted from \citet[Sections~6--7]{ni_edgeworth_2024}.}}
+\chapter[Evaluating \Edgeworth{}]{Evaluating \Edgeworth{}\footnote{This chapter is partly adapted from Sections~6 to 7 of \citetitle{ni_edgeworth_2024}~\cite{ni_edgeworth_2024}}}
 \label{chp:edgeworth-eval}
 \input{edgeworth-eval}
 
 \chapter{Conclusion and Future Work}
 \label{chp:conclusion}
-% \input{conclusion}
+\input{conclusion}
 
 % \appendix
 % \include{appendix}

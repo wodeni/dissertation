@@ -27,7 +27,7 @@ Informed by the results from the interview study (\cref{chp:interviews}), we dev
 
 A central goal of \Penrose{} is to lower the barrier to turning mathematical ideas into effective, high-quality visual diagrams.  In the same way that \TeX\ and \LaTeX\ have democratized mathematical writing by algorithmically codifying best practices of professional typesetters~\cite{Beeton:2016:CMT}, \Penrose{} aims to codify best practices of mathematical illustrators into a format that is reusable and broadly accessible.
 
-Our approach is rooted in the natural separation in mathematics between abstract definitions and concrete representations. In particular, the \Penrose{} system is centered around the specification of a \emph{mapping} from mathematical objects to visual icons (\cref{sec:SystemDesign}).  Such mappings are expressed via domain-specific languages (DSLs) that reflect familiar mathematical notation and can be applied to obtain new capabilities that are difficult to achieve using existing tools (\cref{sec:RelatedSystems}).  A key distinction is that \Penrose{} programs encode a \emph{family} of possible visualizations, rather than one specific diagram.  Hence, effort put into diagramming can easily be reused, modified, and generalized.  This approach has several broad-reaching benefits:
+Our approach is rooted in the natural separation in mathematics between abstract definitions and concrete representations. In particular, the \Penrose{} system is centered around the specification of a \emph{mapping} from mathematical objects to visual icons (\cref{sec:SystemDesign}).  Such mappings are expressed via domain-specific languages (DSLs) that reflect familiar mathematical notation and can be applied to obtain new capabilities that are difficult to achieve using existing tools (\cref{sec:related-systems}).  A key distinction is that \Penrose{} programs encode a \emph{family} of possible visualizations, rather than one specific diagram.  Hence, effort put into diagramming can easily be reused, modified, and generalized.  This approach has several broad-reaching benefits:
 
 \begin{itemize}
    \item \textbf{Accessibility.} Novice users can generate diagrams by simply typing mathematical statements in familiar notation, leveraging the efforts of more expert package developers.
@@ -132,7 +132,8 @@ The resulting system effectively models diagram generation as a compilation proc
 
 A major decision in \Penrose{} is to use programming languages to specify both mathematical objects (\cref{sec:MathematicalContent}) and their visual representation (\cref{sec:MathematicalVisualization}).  Graphical (\eg sketch-based) specification would demand that users already know how to visualize abstract ideas, and it ties mathematical content to one specific visual representation, which conflicts with \ref{gol:ManyViz}.  A language-based specification provides the level of abstraction needed to separate content from visualization. This technique supports \ref{gol:FamiliarNotation}, since language is the most common means by which mathematical ideas are expressed.  From a system design point of view, a language-based encoding provides a unified representation for identifying and transforming mathematical objects throughout the pipeline.  Moreover, a language-based interface makes it easy for \Penrose{} to provide a \emph{platform} on which other diagramming tools can be built (as in \cref{sec:DevelopmentEnvironment} or \cref{sec:LargeScaleDiagramGeneration}).  One trade-off is that a language-based approach requires users to express themselves in formal mathematical or computational language, making it more difficult for (say) visual artists and designers to contribute new representations.
 
-\begin{figure}[b]\vspace{-\baselineskip}
+\begin{figure}[b]
+% \vspace{-\baselineskip}
   \begin{minipage}[c]{.35\linewidth}
     \caption{Most \Penrose{} users need only use the \Substance{} language, but can benefit from packages written by more expert \Domain{} and \Style{} programmers. This is similar to the \TeX ecosystem, where most users only write documents, but benefit from expert-authored packages.\label{fig:NoviceExpertUsers}}
   \end{minipage}\hfill
@@ -608,11 +609,13 @@ Our main goal for \Penrose\ was to create a system that can automatically genera
 \subsection{Sets}
 \label{sec:Sets}
 
-\setlength{\columnsep}{1em}
-\setlength{\intextsep}{0em}
-\begin{wrapfigure}{l}{140pt}
-   \includegraphics[width=\linewidth]{assets/penrose/ExponentialGrowth.pdf}
-\end{wrapfigure}\vspace{-\baselineskip}
+% \setlength{\columnsep}{1em}
+% \setlength{\intextsep}{0em}
+% \begin{wrapfigure}{l}{140pt}
+\begin{center}
+   \includegraphics[width=.7\linewidth]{assets/penrose/life.pdf}
+\end{center}
+% \end{wrapfigure}\vspace{-\baselineskip}
 
 A simple example that illustrates many principles of our system design is the domain of basic set theory---\cref{fig:set-styles} shows a complete listing for one of three possible styles.  Notice here the complete absence of explicit coordinates in both the \Substance{} and \Style{} code.  The other two \Style{} programs (not shown) either improve the visual styling, or shift to a different representation where subset inclusion is indicated by a tree-like drawing rather that overlapping disks.  Different representations are especially helpful for different types of examples---for instance, disks must shrink exponentially for deeply nested subsets, whereas a tree diagram remains easy to read (see inset, \textit{left}). One limitation highlighted by this example is that the constraints and objectives appearing in \Style{} are not yet extensible within the language itself---for instance, the statement \inlineSTY{\keyword{ensure} \texttt{contains(y.shape,x.shape)}} translates to a fixed function on the centers and radii of the two disks.
 
@@ -934,7 +937,7 @@ LkE := SetMinus(ClStE, StClE)\end{lstlisting}
 \end{minipage}
 \end{mdframed}
    \centering
-   \includegraphics{assets/penrose/mesh-figure.pdf}
+   \includegraphics[scale=1.5]{assets/penrose/mesh-figure.pdf}
    \caption{A language-based specification makes it easy to visually inspect data structures or assemble progressive diagrams with only minor changes to program code.  Here we draw the simplicial \emph{link} by building it up from simpler constituent operations.\label{fig:substance-mesh-clst}}
 \end{figure}
 

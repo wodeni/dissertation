@@ -1,35 +1,46 @@
 \section{Motivation}
 \label{sec:motivation}
 
-Experts solve difficult problems by representing ideas visually. In \citetitle{doingWithImages}, Alan Kay described the widespread use of visual representations among experts in math and physics:\footnote{Originally published in \citetitleyear{hadamard_psychology_1945}\cite{hadamard_mathematicians_1945, hadamard_mathematicians_1997}.}
-\begin{quote}
-Jacques Hadamard, the famous French mathematician, in the late stages of his life, decided to poll his 99 buddies, who made up together the 100 great mathematicians and physicists on the earth, and he asked them, ``How do you do your thing?'' They were all personal friends of his, so they wrote back depositions. Only a few, out of the hundred, claimed to use mathematical symbology at all. Quite a surprise. All of them said they did it mostly in imagery or figurative terms.
-\end{quote}
-
-\noindent Sadly, while experts solve problems visually, students learn through symbolic practice, continuing Kay's train of thought:
+Experts often solve difficult problems by representing ideas visually. In \citetitle{doingWithImages}, Alan Kay describes the widespread use of visual representations among experts in math and physics\footnote{Kay is summarizing Jacques Hadamard's book entitled~\citetitleyear{hadamard_mathematicians_1945}\cite{hadamard_mathematicians_1945}.}:
 
 \begin{quote}
-    The sad part\dots{}is that every child in the United States is taught math and physics through this [symbolic] channel, the channel that almost no adult creative mathematician or physicist uses to do it\dots{} They use this channel to communicate, but not to do their thing.~\cite{doingWithImages}
+Jacques Hadamard, the famous French mathematician, in the late stages of his life, decided to poll his 99 buddies, who made up together the 100 great mathematicians and physicists on the earth, and he asked them, ``How do you do your thing?'' They were all personal friends of his, so they wrote back depositions. Only a few, out of the hundred, claimed to use mathematical symbology at all. Quite a surprise. All of them said they did it mostly in imagery or figurative terms.\cite[52:43]{doingWithImages}
 \end{quote}
 
-Learning science research corroborates Kay's insight that visual representations are powerful tools of thought, and further suggest that students benefit from \textit{external} visual representations. External representations like diagrams enable more robust learning \cite{mayer_multimedia_2002} and abstract and flexible problem solving~\cite{koedinger_emergent_1992,perceptualChunks,whyDiagramWorth}. Importantly, when students work with symbols and diagrams together, they build better conceptual understanding and more flexible mental models that go beyond memorized procedures~\cite{multipleReps}. 
+Cognitive science research corroborates Kay's insight that visual representations are powerful tools of thought. In a more controlled setting,  \citet{perceptualChunks} showed evidence of experts using an internal diagrammatic representation to skip steps when solving geometry proof problems. In \citetitle{whyDiagramWorth}, \citet{whyDiagramWorth} theorized that effective diagrammatic representations are computationally more efficient and thus help problem-solving.
+
+One caveat, as suggested in the ``(sometimes)'' in the title of \cite{whyDiagramWorth}, is that the efficacy of diagrams depends on both the diagram design and the problem-solver's ability to use diagrams. In the same talk, Kay lamented that while experts seemed to have this ability, students were not getting enough training to do the same.  Kay continues:
+
+\begin{quote}
+    The sad part\dots{}is that every child in the United States is taught math and physics through this [symbolic] channel, the channel that almost no adult creative mathematician or physicist uses to do it\dots{} They use this channel to communicate, but not to do their thing.~\cite[54:36]{doingWithImages}
+\end{quote}
+
+Learning science researchers have advocated for explicitly using diagrams in the learning process to enable more robust learning \cite{mayer_multimedia_2002}. They further suggested that when students work with symbols and diagrams together, they build better conceptual understanding and more flexible mental models that go beyond memorized procedures~\cite{multipleReps,kellman_perceptual_2010,groundedFeedback}. 
 
 Diagramming complex concepts involves transforming abstract ideas into tangible illustrations. While experts have powerful visual intuitions in their heads, it's difficult to communicate them to each other and teach them to students. As William Thurston noted in \citetitle{thurston_proof_1994}:
+
 \begin{quote}
-   People have very powerful facilities for taking in information visually or kinesthetically, and thinking with their spatial sense. On the other hand, they do not have a very good built-in facility for inverse vision, that is, turning an internal spatial understanding back into a two-dimensional image. Consequently, mathematicians usually have fewer and poorer figures in their papers and books than in their heads.~\cite{thurston_proof_1994}
+   People have very powerful facilities for taking in information visually or kinesthetically, and thinking with their spatial sense. On the other hand, they do not have a very good built-in facility for inverse vision, that is, turning an internal spatial understanding back into a two-dimensional image. Consequently, mathematicians usually have fewer and poorer figures in their papers and books than in their heads.~\cite[p. 164]{thurston_proof_1994}
 \end{quote}
+
 \noindent
-Indeed, this ``inverse vision'' process demands both a deep understanding of the subject matter and, at present, expertise in graphical design and tools--skills that are not commonly found together. As a result, despite the demand for diagrams, the ability to create them is limited to a small group of specialists~\cite{coulon_importance_2024}. Further, the diagrams made by these experts are one of their kind, as others cannot easily replicate their work. Consequently, much of the research literature and learning materials is sparsely or poorly illustrated.
+Indeed, this ``inverse vision'' process demands both a deep understanding of the subject matter and, at present, expertise in graphical design and tools---skills that are not commonly found together. As a result, despite the demand for diagrams, the ability to create effective diagrams is limited to a small group of specialists~\cite{coulon_importance_2024}. Further, the diagrams made by these experts cannot be easily reproduced. Consequently, much of the research literature and learning materials are sparsely or poorly illustrated.
 
-This dissertation aims to bring diagrams and visual intuition to more people by identifying the tooling challenges in diagramming and building a series of artifacts that help people author and reuse diagrams
+This dissertation aims to bring diagrams and visual intuition to more people by identifying the tooling challenges in diagramming and building a series of artifacts that help people author and reuse diagrams.
 
-\section{Thesis Overview}
+\section{Thesis Overview and Research Questions}
 
-I~\footnote{All the work presented in this proposal was carried out in collaboration with others, and to recognize this, I use ``we'' rather than the singular first person in the subsequent chapters.} investigated how experts create diagrams via semi-structured interviews (\cref{chp:interviews}). The study revealed that diagramming tools should be \textit{representationally salient}: tools should allow authors to define visual representations for domain-specific concepts in a manageable, scalable, and reusable way. 
+I~\footnote{All the work presented in this proposal was carried out in collaboration with others, and to recognize this, I use ``we'' rather than the singular first person in the subsequent chapters.} investigated how experts create diagrams via semi-structured interviews (\cref{chp:interviews}), focusing on the following research question:
 
-Existing diagramming tools often require hours of low-level tweaking of geometric primitives and do not capture the core task of diagramming: representing ideas visually. Consequently, the diagrams created by existing tools don't have semantics, as they are merely a collection of pixels and geometric blobs. Others who want to build upon existing diagrams often cannot reproduce the work, because diagrams are currently delivered in low-level formats such as rasterized images and Scalable Vector Graphics (SVG). 
+\refstepcounter{rqcounter}\label{rq:diagrammer}
+\boxtext{\textbf{\therqcounter:} How do diagrammers utilize the strengths and cope with the limitations of their diagramming tools?}
 
-To address this problem, I designed a tool called \Penrose, which supports representational salience (\cref{chp:penrose}). Diagrams made in \Penrose contain the \emph{source information} of diagram design: using \Penrose, diagram authors encode domain-specific concepts and how to visually represent them in plain-text languages. \Penrose generates diagrams from this encoding through automatic layout. I demonstrate the effectiveness and generality of the system by showing how it can be used to encode visual representations across a wide range of domains.
+\noindent The interviews revealed that existing diagramming tools often require hours of low-level tweaking of geometric primitives and do not capture the core task of diagramming: representing ideas visually. Consequently, the diagrams created by existing tools don't have semantics, as they are merely a collection of pixels and geometric blobs. Others who want to build upon existing diagrams often cannot reproduce the work, because diagrams are currently delivered in low-level formats such as rasterized images and Scalable Vector Graphics (SVG). The results from the interviews led to a series of design goals for next-generation diagramming tools, one of which is \textit{representation salience}: tools should allow authors to define visual representations for domain-specific concepts in a manageable, scalable, and reusable way. 
+
+To support representational salience, I designed a tool called \Penrose (\cref{chp:penrose}). Diagrams made in \Penrose contain the \emph{source information} of diagram design: using \Penrose, diagram authors encode domain-specific concepts and how to visually represent them in plain-text languages. \Penrose generates diagrams from this encoding through automatic layout. I demonstrate the effectiveness and generality of the system by showing how it can be used to encode visual representations across a wide range of domains:
+
+\refstepcounter{rqcounter}\label{rq:expressiveness}
+\boxtext{\textbf{\therqcounter:} How effectively can \Penrose's language-based specification express a wide range of diagramming domains without requiring significant modification to the system's core design? }
 
 \Penrose has several potential audiences of users and use cases. I chose to validate its usefulness for making diagrammatic problems because:
 
@@ -39,7 +50,20 @@ To address this problem, I designed a tool called \Penrose, which supports repre
     \item problem authors is a concrete user group that have high demand for more diagrams and use them for social good.
 \end{itemize}
 
-Atop \Penrose, I built \Edgeworth, a tool designed to help educators easily create visual problems (\cref{chp:edgeworth}). \Edgeworth works in two main ways: firstly, it takes a single diagram from the user and systematically alters it to produce many variations, which the educator can then choose from to create multiple problems. Secondly, it automates the layout of diagrams using \Penrose, ensuring consistent high quality without the need for manual adjustments. To assess \Edgeworth, I carried out: a technical evaluation to evaluate reliability, a user study to evaluate efficiency, and expert walkthrough demonstrations to evaluate ecological validity (\cref{chp:edgeworth-eval}). 
+Atop \Penrose, I built \Edgeworth, a tool designed to help educators easily create visual problems (\cref{chp:edgeworth}). \Edgeworth works in two main ways: firstly, it takes a single diagram from the user and systematically alters it to produce many variations, which the educator can then choose from to create multiple problems. Secondly, it automates the layout of diagrams using \Penrose, ensuring consistent high quality without the need for manual adjustments. To assess \Edgeworth, I aim to answer the following research questions about various aspects of the system:
+
+\boxtext{
+\refstepcounter{rqsupcounter}\label{rq:mut}
+\textbf{\therqsupcounter~Reliability:} Can \Edgeworth reliably generate translation problems with relatively few variations required?
+
+\refstepcounter{rqsupcounter}\label{rq:eff}
+\textbf{\therqsupcounter~Efficiency:} Comparing with a conventional drawing tool, are authors more efficient at making translation problems using \Edgeworth? 
+
+\refstepcounter{rqsupcounter}\label{rq:eco}
+\textbf{\therqsupcounter~Ecological validity:} Do real-world instructors consider \Edgeworth-generated translation problems to be useful? 
+}
+
+To answer these questions, I carried out: a technical evaluation to evaluate reliability, a user study to evaluate efficiency, and expert walkthrough demonstrations to evaluate ecological validity (\cref{chp:edgeworth-eval}). 
 
 % My thesis statement summarizes the above:
 
@@ -59,30 +83,9 @@ Atop \Penrose, I built \Edgeworth, a tool designed to help educators easily crea
 % \end{enumerate}
 
 
-\section{Thesis Outline and Research Questions}
+\section{Thesis Outline}
 
 
-In \cref{chp:background}, I first provide some historical context and discuss related work on diagram use and diagramming tools. In the rest of this dissertation, I present a body of work that begins with an empirical study on existing diagramming processes and limitations of existing tools (\cref{chp:interviews}). This part of the thesis is \textit{descriptive} empirical research.  In it, I investigate how the diagramming process, and focus on the following research question:
 
-\refstepcounter{rqcounter}\label{rq:diagrammer}
-\boxtext{\textbf{\therqcounter:} How do diagrammers utilize the strengths and cope with the limitations of their diagramming tools?}
-
-The findings of this study drive the design and implementation of \Penrose, presented in \cref{chp:penrose}. \Penrose's design responds directly to the limitations identified in current practices, aiming to bridge the gap between abstract conceptualization and tangible representation. Therefore, the research contribution is the \textit{artifact}~\cite{wobbrock_research_2016} of a novel diagramming system:
-
-\refstepcounter{rqcounter}\label{rq:expressiveness}
-\boxtext{\textbf{\therqcounter:} How effectively can \Penrose's language-based specification express a wide range of diagramming domains without requiring significant modification to the system's core design? }
-
-The subsequent chapters of this dissertation detail how \Edgeworth address the identified needs and support the process of diagrammatic problem authoring in educational settings. In \cref{chp:edgeworth}, I present the system design of \Edgeworth and show its expressiveness by collecting a dataset of diagrammatic translation problems in multiple domains. \cref{chp:edgeworth-eval} describes a series of evaluative studies that aim to answer the following research questions about various aspects of \Edgeworth:
-
-\boxtext{
-\refstepcounter{rqsupcounter}\label{rq:mut}
-\textbf{\therqsupcounter~Reliability:} Can \Edgeworth reliably generate translation problems with relatively few variations required?
-
-\refstepcounter{rqsupcounter}\label{rq:eff}
-\textbf{\therqsupcounter~Efficiency:} Comparing with a conventional drawing tool, are authors more efficient at making translation problems using \Edgeworth? 
-
-\refstepcounter{rqsupcounter}\label{rq:eco}
-\textbf{\therqsupcounter~Ecological validity:} Do real-world instructors consider \Edgeworth-generated translation problems to be useful? 
-}
-
-In \cref{chp:conclusion}, I assess the contributions and insights developed in this dissertation and outline potential directions for future research of diagramming.
+In \cref{chp:background}, I first provide some historical context and discuss related work on diagram use and diagramming tools. In the rest of this dissertation, I present a body of work that is a mix of \textit{descriptive} empirical research and \textit{artifacts} of novel interactive tools~\cite{wobbrock_research_2016}.  \cref{chp:interviews} is an empirical study on existing diagramming processes and limitations of existing tools.
+The findings of this study drive the design and implementation of \Penrose, presented in \cref{chp:penrose}. \Penrose's design responds directly to the limitations identified in current practices, aiming to bridge the gap between abstract conceptualization and tangible representation. Therefore, the research contribution is the artifact~\cite{wobbrock_research_2016} of a novel diagramming system. The subsequent chapters detail how \Edgeworth, another artifact contribution built atop \Penrose, address the identified needs and support the process of diagrammatic problem authoring in educational settings. In \cref{chp:edgeworth}, I present the system design of \Edgeworth and show its expressiveness by collecting a dataset of diagrammatic translation problems in multiple domains. \cref{chp:edgeworth-eval} describes a series of evaluative studies of \Edgeworth. In \cref{chp:conclusion}, I assess the contributions and insights developed in this dissertation and outline potential directions for future research of diagramming.

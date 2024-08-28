@@ -2,6 +2,9 @@
 
 \LoadClassWithOptions{book}
 
+\RequirePackage{fontspec}
+\defaultfontfeatures{Ligatures=TeX}
+
 
 %% dkoes - Here's a bunch of stuff taken from mjz-titlepage.sty that makes
 % a pretty CMU techreport acceptable title page
