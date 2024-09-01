@@ -7,10 +7,13 @@
   \label{fig:interviews-teaser}
 \end{figure}
 
+
+
+
 \section{Introduction}
 
 % Why ED is important
-Visual representations of knowledge allow us to understand and disseminate information more effectively than text alone~\cite{promiseOfMultimediaLearning}. This chapter focuses on conceptual diagrams, which communicate conceptual, procedural, and metacognitive knowledge~\cite{bloomRevised} in visual form. \emph{Conceptual diagrams} (sometimes also called \emph{explanatory diagrams} or \emph{concept visualization}~\cite{conceptViz}), provide a graphical overview of conceptual models---the relationship between concrete and abstract entities~\cite{infographics}. By giving abstract concepts visual representations, these diagrams help explain concepts to oneself and communicate them with others. Explaining concepts using visuals is profoundly important for dissemination of scientific knowledge and for learning. 
+Visual representations of knowledge allow us to understand and disseminate information more effectively than text alone~\cite{promiseOfMultimediaLearning}. This chapter focuses on conceptual diagrams, which communicate conceptual, procedural, and metacognitive knowledge~\cite{bloomRevised} in visual form (\cref{sec:diagrams}). By giving abstract concepts visual representations, these diagrams help explain concepts to oneself and communicate them with others. Explaining concepts using visuals is profoundly important for dissemination of scientific knowledge and for learning. 
 
 % For instance, the use of diagrams in a scientific publication positively correlates with higher scientific impact~\cite{Viziometrics}. Further, creating diagrams improves learning, both when diagrams are created for others~\cite{clark2016learning}, and when they are created for self-explanation~\cite{CreatingVisualExplanationsImprovesLearning}. 
 
@@ -21,14 +24,14 @@ Visual representations of knowledge allow us to understand and disseminate infor
 % Tools for ED is too old!
 % Whereas the tooling for data visualization improved significantly in the past decade~\cite{visSurvey}, tools for creating conceptual diagrams are still limited. 
 
-While conceptual diagramming is clearly an important form of knowledge work, unfortunately, tools for creating conceptual diagrams are still limited. Current tools for diagramming of conceptual, procedural, and metacognitive knowledge~\cite{bloomRevised} stand in tension between: a) General-purpose drawing tools such as Illustrator and Figma that offer simple pen-and-canvas or box-and-arrow metaphors, but are \emph{viscous}~\cite{green_usability_1996}---users must constantly commit to exact positions, sizes, and styling of shapes. b) Dedicated diagramming tools such as Lucidchart and Gliffy that allow rapid changes, but rely heavily on templates, limiting diagrammers to a fixed set of visual representations. 
+While conceptual diagramming is clearly an important form of knowledge work, unfortunately, tools for creating conceptual diagrams are still limited. Current tools for diagramming stand in tension between: a) General-purpose drawing tools such as Illustrator and Figma that offer simple pen-and-canvas or box-and-arrow metaphors, but are \emph{viscous}~\cite{green_usability_1996}---users must constantly commit to exact positions, sizes, and styling of shapes. b) Dedicated diagramming tools such as Lucidchart and Gliffy that allow rapid changes, but rely heavily on templates, limiting diagrammers to a fixed set of visual representations. 
 
-This paper argues that this relatively limited support for diagramming in tools is in part because the process of diagramming is poorly understood. For instance, often diagrammers start with informal media such as paper or whiteboards, and edit diagrams digitally before they are presented, but how do diagrammers manage the evolution of diagrams? How do diagrammers utilize the strengths and cope with the limitations of their tools? Which tools are chosen for what purposes?  Such a detailed understanding of the process can help design interactive tools to support diagramming. 
+We argue that this relatively limited support for diagramming in tools is in part because the process of diagramming is poorly understood. For instance, often diagrammers start with informal media such as paper or whiteboards, and edit diagrams digitally before they are presented, but how do diagrammers manage the evolution of diagrams? How do diagrammers utilize the strengths and cope with the limitations of their tools? Which tools are chosen for what purposes?  Such a detailed understanding of the process can help design interactive tools to support diagramming. 
 
 % Summary of the results
-This chapter contributes a description of the process of creating conceptual diagrams, the difficulties people face while diagramming, and opportunities for tool design. These findings are based on interviews with 18 domain experts from a wide variety of disciplines such as math, computer science, architecture, and education. Our interviews reveal that diagrammers have diverse interactions with visual representations in both physical sketches and digital tools, including finding, creating, storing, and reusing representations. When diagrammers transition from sketches to digital tools, their tool selections are  influenced by their \emph{sense of control} over object placement and diagram layout. Participants were concerned with two kinds of control: local object placement, and global diagram layout. Current tools, both those that use programming languages (PL) and those that use direct manipulation (DM) as their interactive metaphor trade-off one kind of control to support the other more effectively. Consequently, we found that diagrammers invented their own set of \latin{ad hoc} and personal reuse patterns to iterate, simplify, and automate the diagramming workflow. 
+This chapter contributes a description of the process of creating conceptual diagrams, the difficulties people face while diagramming, and opportunities for tool design. In \cref{sec:interview-methods}, we describe how we conducted interviews with 18 domain experts from a wide variety of disciplines such as math, computer science, architecture, and education. The findings presented in \cref{sec:interview-results} reveal that diagrammers have diverse interactions with visual representations in both physical sketches and digital tools, including finding, creating, storing, and reusing representations. When diagrammers transition from sketches to digital tools, their tool selections are influenced by their \emph{sense of control} over object placement and diagram layout. Participants were concerned with two kinds of control: local object placement, and global diagram layout. Current tools, both those that use programming languages (PL) and those that use direct manipulation (DM) as their interactive metaphor trade-off one kind of control to support the other more effectively. Consequently, we found that diagrammers invented their own set of \latin{ad hoc} and personal reuse patterns to iterate, simplify, and automate the diagramming workflow. 
 
-One implication of our results is the opportunity to design tools informed by the processes of diagramming, and practices that domain experts already use, making digital diagramming more intuitive and efficient. We identify four key opportunities for \textbf{natural}~\cite{myers_natural_2004} diagramming tools that allow diagrammers to express their ideas visually the same way they think about them:
+One implication of our results is the opportunity to design tools informed by the processes of diagramming, and practices that domain experts already use, making digital diagramming more intuitive and efficient. In \cref{sec:natural-diagramming}, we identify four key opportunities for \textbf{natural}~\cite{myers_natural_2004} diagramming tools that allow diagrammers to express their ideas visually the same way they think about them:
 %
 \begin{itemize} [noitemsep,topsep=-4pt,parsep=2pt,partopsep=0pt]
     \item \textit{Exploration support}: supporting exploratory behaviors such as undo and backtracking during both abstract-level, breath-first exploration of the design space and low-level refinements of visual details.
@@ -52,13 +55,14 @@ For each of the opportunities, we survey existing techniques from relevant areas
 % Currently not used: When do diagrammers move from informal media to digital media, and what difficulties do they face?
 
 \section{Method}
+\label{sec:interview-methods}
 
-\subsubsection{Participants and recruitment} 
+\subsubsection{Participants and Recruitment} 
 We conducted interviews with 18 participants (13 male, 5 female). Participants were recruited through posts on social media, and our research group website. Of these, four participants were university faculty, 10 were PhD students or postdocs, one was a professional masters student, one was a K-12 math instructor, one is an independent software developer, and one is an enterprise software engineer. Prospective participants filled out a survey which allowed us to screen participants for our interviews. We selected the interviewees based on the following criteria: the interviewee (1) creates conceptual diagrams on a frequent basis and (2) uses digital diagramming tools to create these diagrams. 
 
 Because we had more potential interviewees than we originally envisioned (64 in all), we used a saturation method~\cite{socialResearchMethods} to determine the number of participants. We conducted several batches of interviews (with 2-3 interviews per batch consisting of diverse participants), and did a preliminary analysis of the transcripts from each batch. When the analysis stopped revealing new insights, we stopped interviewing more participants. 
 
-\subsubsection{Semi-structured interviews}
+\subsubsection{Semi-structured Interviews}
  
 Interviews lasted between 30 and 80 minutes and were semi-structured. Interviews were conducted either in person (7 participants) or online using Skype (11 participants.) We encouraged participants to bring any digital and hand drawn diagrams that they had previously created that they could share with us. We also encouraged them to have a pen and paper (or a whiteboard) available to draw during the interview. 
 
@@ -96,6 +100,7 @@ We employed thematic analysis methods \cite{thematicAnalysisInPsych} to analyze 
 Finally, the authors analyzed the codes by clustering lower-level codes during multiple interactive discussion sessions. Through the higher-level clusters, a few themes with high numbers of codes emerged, such as \emph{Reuse} and \emph{Representation}. We present these themes and the resulting insights next.
 
 \section{Results}
+\label{sec:interview-results}
 
 % Top-level TODOs
 %----------------
@@ -296,10 +301,11 @@ Another participant collects commonly used diagram components in a personal libr
 
 
 \section{Implications: Natural Diagramming}
+\label{sec:natural-diagramming}
 
 The results discussed above suggest unique strengths and weaknesses of existing PL and DM diagramming tools. This section offers some possibilities to combine the strengths of PL and DM tools and create more intuitive and efficient next-generation tools. Just as previous work advocated for creating programming tools ``for people to express their ideas in the same way they think about them''~\cite{myers_natural_2004} as an opportunity for \emph{natural programming}, we advocate for creating diagramming tools for \textbf{natural diagramming}. Natural diagramming presents four distinct opportunities to leverage the strengths while alleviating the weaknesses of existing tools: exploration support, representation salience, live engagement, and vocabulary correspondence. We end the description of each of these natural diagramming opportunities by highlighting existing techniques that may be further developed to achieve it. 
 
-\subsection{Exploration support}
+\subsection{Exploration Support}
 
 Exploration pervades the diagramming process for making conceptual diagrams, from choosing representation to determining stylistic details. We characterize two types of exploratory activities by adopting terms from Goel~\cite{sketchesOfThought}: (a) \emph{Lateral transformations} involve ideation and exploration at the high-level to broaden the design space, \eg{} finding the appropriate visual representation for forces in Figure~\ref{fig:forcediagram}. (b) \emph{Vertical transformations} 
  are more detailed refinements to a pre-determined visual representation, such as deciding the arrowhead style in Figure~\ref{fig:forcediagram}b.
@@ -320,7 +326,7 @@ Finally, in addition to better support for history management, another approach 
 
 % TODO: \textsc{lillicon}~\cite{lillicon} infers multiple representations of the same grayscale vector graphics.
 
-\subsection{Representation salience}
+\subsection{Representation Salience}
 
 % Intro
 Constructing and interpreting representations are crucial skills for learning new concepts and developing domain expertise~\cite{ainsworth_drawing_2011}. Many of our participants track prior representations, curate reuse libraries, search for ones created by others, and inventively create new ones in their \emph{representation finding} phase. This suggests an opportunity for natural diagramming tools that support \textbf{representation salience}, treating visual representations as first-class entities and providing operations to easily interact with them. 
@@ -349,7 +355,7 @@ Traditional direct manipulation interfaces can be augmented by novel interaction
 
 There have been also significant advances in programming languages to support liveness. \emph{Live programming} techniques can provide responsive and continuous feedback on program changes. The methodology has been increasingly adopted in computer science education, web development, and traditional programming environments~\cite{mcdirmid_living_2007, wysiwyc, SEEDE}. Tanimoto~\cite{Viva-Liveness} proposes four levels of liveness with the top level featuring ``stream-driven updates'' and ``informative, significant, responsive and live'' visual representations of programs' dynamic behaviors. Techniques such as incremental compilation and type inference~\cite{mcdirmid_superglue_2006} and typed holes~\cite{typedHoles} allow fast compilation and facilitate liveness of programming environments. However, many live programming systems only offer one-way updates from the program to its output visual representation, inhibiting the opportunities for direct interactions with the visuals.
 
-\subsection{Vocabulary correspondence}
+\subsection{Vocabulary Correspondence}
 
 % Intro
 Conceptual diagrams are made of ``abstract and topological''~\cite{designingWithDiagrams} shapes that are mapped from domain objects in the \emph{content model}~\cite{fundamentalDesignVars}. In Figure \ref{fig:forcediagram}b, the concept of two counteracting forces (domain objects) is mapped to two arrows, but the exact styling and lengths of the arrows do not change the meaning of the diagram. As a result, users' vocabularies for conceptual diagramming are often abstract, topological, and domain-specific. Therefore, there is an opportunity for natural diagramming tools that support \textbf{vocabulary correspondence} by having a grammar or an interface that directly maps to users' vocabulary for diagramming. 
@@ -411,7 +417,7 @@ Another way to model abstract and topological relationships is using high-level 
 
 % Exploration of diagram layouts can require significant manual effort and impose cognitive load on diagrammers. Since constraints are high-level and semantically closer to diagrammers' cognitive units, they can be leveraged to automatically explore design alternatives from succinct specifications. In addition to the fixed set of constraints provided by CAD tools, diagrammers can benefit significantly from a natural diagramming tool that lets them specify and customize high-level constraints. Supporting more global constraints such as symmetry and overlapping can further paramatrize parts or the entire diagram, rather than geometries in the CAD case. 
 
-\section{Conclusion and future work}
+\section{Conclusion and Future Work}
 
 Conceptual diagrams are essential for understanding concepts, communicating ideas, and improving instructions effectively in many fields. This chapter provides the first empirical study of how domain experts create conceptual diagrams.
 
@@ -421,4 +427,4 @@ Based on our results, we introduce the concept of \textbf{natural diagramming} a
 
 Future work can leverage the substantial amount of conceptual diagrams that exist in the wild and perform large-scale analysis to gain a more quantitative understanding of existing diagrams. Similarly, it is possible to leverage the large number of current diagramming tools, some of which support a subset of natural diagramming. In particular, it may be possible to isolate and quantify the benefits of each opportunity of natural diagramming introduced in this chapter by analysing existing tools. A deeper, more systematic analysis of the relationships and trade-offs among the four natural diagramming opportunities may further inform tool designers to make design decisions more critically. Further, this study does not focus on collaboration support for conceptual diagramming. Future work may explore how to support, for instance, \textit{vocabulary correspondence} when multiple diagrammers from diverse backgrounds collaborate on a single conceptual diagram. 
 
-Natural diagramming embodies our vision for future diagramming tools---tools that seamlessly and naturally translate diagrammers' high-level ideas to beautiful and illustrative diagrams. This chapter advances this goal by articulating a concrete vision for systems designers to create more effective diagramming tools.
+Natural diagramming embodies our vision for future diagramming tools---tools that seamlessly and naturally translate diagrammers' high-level ideas to beautiful and illustrative diagrams. This chapter articulates a concrete vision for systems designers to create more effective diagramming tools. In subsequent chapters, we present \Penrose{} (\cref{chp:penrose}) and \Edgeworth{} (\cref{chp:edgeworth,chp:edgeworth-eval}), two tools designed with this vision in mind.

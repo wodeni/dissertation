@@ -267,7 +267,7 @@ pdfborder=0 0 0,  %removes outlines around hyper links in online display
 }
 
 \lstdefinelanguage{Sub-SET}{
-  morekeywords={Autolabel, Pt, Label, NoLabel, All, Default, Set, IsSubset, NotIntersecting},
+  morekeywords={Autolabel, Pt, Label, NoLabel, All, Default, Set, Equal, IsSubset, NotIntersecting},
   morecomment=[l][\color{gray}]{--}
 }
 
@@ -384,7 +384,7 @@ pdfborder=0 0 0,  %removes outlines around hyper links in online display
 % biblatex
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
-\usepackage[backend=biber,style=numeric,citestyle=numeric,maxbibnames=99,natbib=true,maxcitenames=2,backref,backrefstyle=none]{biblatex}
+\usepackage[backend=biber,style=numeric,citestyle=numeric,maxbibnames=99,natbib=true,maxcitenames=2,backref,backrefstyle=none,firstinits=true ]{biblatex}
 \renewbibmacro{in:}{} % https://tex.stackexchange.com/questions/10682/suppress-in-biblatex
 
 % \DeclareFieldFormat[article, inbook, incollection, inproceedings, misc, thesis, unpublished]{titlecase}{\MakeTitleCase{#1}}
@@ -471,7 +471,12 @@ To the pool gods.
 
 \begin{abstract}
 
-TODO
+Visual representations are powerful tools for learning and communication, yet existing diagramming tools often limit the accessibility and effectiveness of these representations. To address this, I conducted a series of empirical studies to understand how domain experts create diagrams and identified key limitations in current tools.
+
+The findings from these studies informed the design of two tools: \Penrose and \Edgeworth. \Penrose is a language-based system that allows authors to encode domain-specific concepts and their visual representations. It automates the layout and generation of diagrams, allowing for scalable, reusable, and consistent representations across a wide range of domains.
+
+\Edgeworth, built atop \Penrose, enables educators to create and reuse diagrammatic problems efficiently by automating the generation of variations and maintaining high-quality layouts. We evaluate \Edgeworth through technical assessments, user studies, and expert feedback. The results demonstrate \Edgeworth improve the efficiency and effectiveness of diagram creation, particularly in educational contexts where visual representations are crucial for fostering deeper understanding. 
+
 % ``Mental pictures'' and ``visual intuition'' capture how people make sense of abstract concepts and see solutions to hard problems in a visual way. Learning research suggests that visual representations of knowledge are powerful tools for thought. Visual representations like diagrams enable more robust learning and flexible problem solving. 
 
 % Existing diagramming tools often require hours of low-level tweaking of geometric primitives and do not capture the core task of diagramming: representing ideas visually. \Penrose is a diagramming platform that explicitly encodes visual representations in domain-specific languages. In this thesis proposal, I argue that this explicit encoding can be leveraged to (1) reduce the programming effort of producing diagrammatic problems at scale and (2) simplify the workflow of authoring interactive diagrams. The resulting diagrams also carry rich semantics, and I'll discuss how to use them to (3) provide useful, automated feedback to students. 
@@ -524,17 +529,16 @@ TODO
 \input{interviews}
 
 \chapter[\Penrose: From Notations to Beautiful Diagrams]{\Penrose: From Notations to Beautiful Diagrams\footnote{
-This chapter is adapted from \citetitle{penrose}~\cite{penrose}
-}}
+This chapter is adapted from ``\citefield{penrose}{title}''~\cite{penrose}.}}
 \label{chp:penrose}
 
 \input{penrose}
 
-\chapter[\Edgeworth: Diagrammatic Problem Authoring at Scale]{\Edgeworth: Diagrammatic Problem Authoring at Scale\footnote{This chapter is adapted from Sections 1 to 5 of \citetitle{ni_edgeworth_2024}~\cite{ni_edgeworth_2024}}}
+\chapter[\Edgeworth: Diagrammatic Problem Authoring at Scale]{\Edgeworth: Diagrammatic Problem Authoring at Scale\footnote{This chapter is adapted from Sections 1 to 5 of ``\citefield{ni_edgeworth_2024}{title}''~\cite{ni_edgeworth_2024}.}}
 \label{chp:edgeworth}
 \input{edgeworth}
 
-\chapter[Evaluating \Edgeworth{}]{Evaluating \Edgeworth{}\footnote{This chapter is partly adapted from Sections~6 to 7 of \citetitle{ni_edgeworth_2024}~\cite{ni_edgeworth_2024}}}
+\chapter[Evaluating \Edgeworth{}]{Evaluating \Edgeworth{}\footnote{This chapter is partly adapted from Sections~6 to 7 of ``\citefield{ni_edgeworth_2024}{title}''~\cite{ni_edgeworth_2024}.}}
 \label{chp:edgeworth-eval}
 \input{edgeworth-eval}
 

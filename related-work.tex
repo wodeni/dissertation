@@ -1,57 +1,64 @@
-This chapter provides background on diagrams in general, existing diagramming tools, and research on using diagrams for learning.
-
-\section{Diagrams}
-
-\citet{tversky_diagrams_2017,tversky_visualizing_2011} defines diagrams as \quotei{an arrangement of marks on a virtual page (stone, paper, or screen) that represents a set of ideas and their relations}. This definition is broad enough to enough many ancient and modern graphical representations of ideas, including graphs, charts, infographics, and many more. Under this definition, diagrams are perhaps one of the oldest form of human communication and expression. For instance, \cref{fig:ancient-diagrams} shows a few examples of diagrams in ancient times around the world. 
-
-\begin{figure}
+\begin{figure}[h]
     \centering
     \includegraphics[width=\linewidth]{assets/related-work/historical-diagrams.pdf}
     \caption{Several examples of ancient diagrams, from left to right: (1) Phases of the Moon: Abu Rayhan Muhammad ibn Ahmad al-Biruni (Iranian, 973-1048), (2) Babylonian clay tablet diagramming an approximation of $\sqrt{2}$ (1900 -1700 BCE), and (3) Geometric proof of the Pythagorean theorem in Zhoubi Suanjing 周髀算经 (1st century BCE).}
     \label{fig:ancient-diagrams}
 \end{figure}
 
-% 
+This chapter provides background on diagrams in general, existing diagramming tools, and research on using diagrams for learning.
 
-In this dissertation, we focus on a particular kind of diagrams: \textit{conceptual} diagrams~\cite{naturalDiagramming}. Conceptual diagrams differ from charts and data visualizations, which are visual representations of concrete and factual, rather than conceptual, information. Data visualization techniques enable people to understand how quantities relate to each other and gain valuable factual knowledge about the world. \citet{designWithDiagrams} distinguishes between \emph{pictorial} and \emph{propositional} graphics: instead of directly depicting data, diagrams (propositional graphics in \citeauthor{designWithDiagrams}'s terms) constitute knowledge and embody media-independent abstractions for inference-making~\cite{whyDiagramWorth}. In addition to knowledge representation, conceptual diagrams are also a medium for creativity and exploration, since they do not require early commitments to design decisions and focus on the \emph{form} of possible solutions~\cite{ConceptualArchDesign}.
+\section{Diagrams}
+\label{sec:diagrams}
+
+\citet{tversky_diagrams_2017,tversky_visualizing_2011} defines diagrams as \quotei{an arrangement of marks on a virtual page (stone, paper, or screen) that represents a set of ideas and their relations}. This definition is broad enough to include many ancient and modern graphical representations of ideas, including graphs, charts, infographics, and many more. Under this definition, diagrams are perhaps one of the oldest form of human communication and expression. For instance, \cref{fig:ancient-diagrams} shows a few examples of diagrams in ancient times around the world. There are many more definitions of diagrams (for example, \cite{bender_culture_2010,card_readings_1999,infographics,arnheim_visual_1969,tufte1983visual}), and this chapter does not aim to provide a comprehensive discussion of how diagrams are defined. Rather, we examine two aspects of a diagram to motivate the types of graphics this dissertation focuses to build tools for: content and utility.
+
+First, this dissertation contribute tools (\cref{chp:penrose,chp:edgeworth}) that produce diagrams that depict logical, non-quantitative \textit{concepts}, rather than quantitative data. As we will discuss in \cref{sec:related-systems,chp:interviews}, this focus on conceptual diagrams is largely driven by the absence of tools for making this type of diagrams. For our purposes, the specific non-example of conceptual diagrams is statistical graphics~\cite{wilkinson_grammar_2012}. which largely depict quantitative data and have a long line of tooling work that focus on authoring. 
+
+The second aspect is the utility of diagrams, which set them apart from decorative paintings, photos, floor plans, and more. \citet{designWithDiagrams} distinguishes between \emph{pictorial} and \emph{propositional} graphics: instead of directly visualizing data or depicting naturalistic scenes, diagrams (propositional graphics in \citeauthor{designWithDiagrams}'s terms) ``constitute knowledge and embody media-independent abstractions for inference-making.'' The specific utility of diagrams for inference-making is significant enough to prompt psychologists and cognitive scientists to study their role in problem-solving and learning. Diagrams have been shown to have cognitive benefits to reasoning and problem-solving~\cite{whyDiagramWorth, koedinger_emergent_1992, mayer_multimedia_2002}. Compared to textual representations, diagrams facilitate fast recognition and direct inference by making the most relevant information explicit and easily findable~\cite{whyDiagramWorth}. As an external representation of abstract structures of tasks, diagrams can work together with one's mental representation and are an indispensable part for accomplishing distributed cognitive tasks~\cite{DistributedCognitive}. Akin to \citet{designingWithDiagrams}, \citet{hegarty_types_1999} distinguish between \emph{pictorial} and \emph{schematic} visual representations and show that schematic representations of relative spatial relationships significantly outperform pictorial ones that encode visual appearances. In addition to their values as an external, static representation of knowledge, diagrams are also beneficial when people learn \emph{with}, instead of \emph{from} them~\cite{tippett_what_2016}. In educational contexts, explicit training of drawing, including the creation of new visual representations and adoption of new ones, significantly improve students' ability to work with multiple representations and improve learning, reasoning, and communication skills~\cite{ainsworth_drawing_2011}. Moreover, creating diagrams as visual explanations also improves learning, since they can act as a check for completeness and a medium for inference~\cite{bobek_creating_2016}. In general, people do not need formal training in visual design to create and interpret effective diagrams and learners at all levels can benefit tremendously from creating diagrams~\cite{ABC}.
+
+Beyond diagrams' utility for more efficient cognitive inference and learning, logicians, mathematicians, and philosophers have argued for diagrams' fundamental role in reasoning. Historically, diagrams were often dismissed as mere illustrations---supplementary tools rather than central components of logical arguments. This traditional view has been predominantly influenced by the dominance of symbolic languages in the history of logic, where precision and formal rigor were prioritized over visual representation~\cite{shin_diagrams_2018}. Peirce's existential graphs~\cite{peirce_collected_1931} are a form of diagrammatic logic that he argued could represent logical relations in a manner both clearer and more intuitive than traditional symbolic logic. Peirce believed that existential graphs could express logical relationships with a degree of generality and precision that rivals, if not surpasses, that of symbolic logic, particularly in their ability to represent the continuity of logical processes. Jon Barwise and John Etchemendy's work on the importance of diagrams in logical reasoning~\cite{barwise_visual_2019} aligns closely with the earlier insights of Peirce. Peirce's existential graphs, which visually represent logical propositions and their relationships, serve as a precursor to Barwise's concept of ``heterogeneous reasoning,''~\cite{barwise_heterogeneous_1993} where visual and symbolic methods are integrated to solve logical problems more effectively. 
+
+
+% In addition to knowledge representation, conceptual diagrams are also a medium for creativity and exploration, since they do not require early commitments to design decisions and focus on the \emph{form} of possible solutions~\cite{ConceptualArchDesign}.
 
 % TODO: diagrams generate information
 
-\section{Benefits of diagrams}
-
-
-% diagrams, as they are, are already pretty helpful
-Diagrams have been shown to have cognitive benefits to reasoning and problem solving~\cite{whyDiagramWorth, koedinger_emergent_1992, mayer_multimedia_2002}. Compared to textual representations, diagrams facilitate fast recognition and direct inference by making the most relevant information explicit and easily findable~\cite{whyDiagramWorth}. As an external representation of abstract structures of tasks, diagrams can work together with one's mental representation and are an indispensable part for accomplishing distributed cognitive tasks~\cite{DistributedCognitive}. Akin to \citet{designingWithDiagrams}, \citet{hegarty_types_1999} distinguish between \emph{pictorial} and \emph{schematic} visual representations and show that schematic representations of relative spatial relationships significantly outperform pictorial ones that encode visual appearances.
-
-% diagrams, when people make them, are even more helpful
-In addition to their values as an external, static representation of knowledge, diagrams are also beneficial when people learn \emph{with}, instead of \emph{from} them~\cite{tippett_what_2016}. In educational contexts, explicit training of drawing, including the creation of new visual representations and adoption of new ones, significantly improve students' ability to work with multiple representations and improve learning, reasoning, and communication skills~\cite{ainsworth_drawing_2011}. Moreover, creating diagrams as visual explanations also improves learning, since they can act as a check for completeness and a medium for inference~\cite{bobek_creating_2016}. In general, people do not need formal training in visual design to create and interpret effective diagrams and learners at all levels can benefit tremendously from creating diagrams~\cite{ABC}.
+% \subsection{Cognitive benefits of diagrams for learning and problem-solving}
+% \label{sec:diagram-benefits}
 
 \section{Learning how to use diagrams}
 
-In this section, we provide background on why students need to practice for better fluency in visual representations and how diagram variations help students practice.
+
+Whether for more efficient problem-solving or logical reasoning, one must learn how to use them properly. At the end of \citetitle{whyDiagramWorth}, \citet{whyDiagramWorth} noted that:
+
+\begin{quote}
+[D]iagrams are useful only to those who know the appropriate computational processes for taking advantage of them. Furthermore, a problem solver often also needs the knowledge of how to construct a ``good'' diagram that lets him take advantage of the virtues [of diagrams] we discussed.~\cite[p.~99]{whyDiagramWorth}
+\end{quote}
+
+In this section, we provide background on why students need to practice for better fluency in visual representations and how diagram variations may help students practice using them more effectively. 
 
 \subsection{Representational fluency and contrasting cases}
 
 Representational fluency refers to the ability to quickly understand a visual representation and to use it to solve domain-specific tasks~\cite{multipleReps}. To become representationally fluent, an important first step is to identify meaningful aspects of a particular representation. \citet{kellman_perceptual_2010} show that mapping between symbolic and visual representations leads to intuitions about the way equivalent structures relate to each other. The learning that results from constructing connections between symbols and diagrams can be more flexible. Students are better at transferring their learning from the problems they have explicitly practiced to more open-ended problems and their conceptual understanding is better~\cite{25learning}. 
 
-In addition to mapping between representations, \citet{marton_sameness_2006} also showed that contrasting cases help students discern crucial parts of a particular representation. Early on, students benefit from discerning instances and noninstances that differ in only one dimension of variation. As students become more fluent, a \emph{fusion} of multiple varying dimensions in problems may be necessary~\cite{chik_simultaneity_2004}.
+In addition to mapping between representations, \citet{marton_sameness_2006} also showed that contrasting cases help students discern crucial parts of a particular representation. Early on, students benefit from discerning instances and noninstances that differ in only one dimension of variation. As students become more fluent, a \emph{fusion} of multiple varying dimensions in problems may be necessary~\cite{chik_simultaneity_2004}. \citet{arnheim_visual_1969} characterized this need for many diagrams (or animation of diagrams) in \citetitle{arnheim_visual_1969}:
+
+\begin{quote}
+The usual illustrations in textbooks and on the blackboard help to make a problem visible, but they also freeze it at one phase of the range to which the proposition refers. Therefore, they tempt the student to mistake accidental circumstances for essential ones. The solution is not to leave out illustrations but either to produce mobile models\dots{} or, at least, to use immobile illustrations in such a way that the student realizes which of their dimensions are variables. ~\cite[p. 182]{arnheim_visual_1969}
+\end{quote}
 
 \subsection{Multiplicity of examples}
 
-In addition to training representational fluency, multiple examples and repeated, varied practice are well-documented strategies for broader learning goals in the learning science literature. Many studies have demonstrated substantial STEM learning benefits for multiple worked examples per topic \cite{pashler_organizing_2007}. Equally important is research indicating the importance of active learning \cite{chi_icap_2014,deslauriers_measuring_2019} and repeated practice \cite{deliberatePractice,schnackenberg_learner_1998} that occurs within varied contexts \cite{PV94,rohrer_shuffling_2007} and involves direct explanatory feedback \cite{kellman_perceptual_2010}.
+Indeed, in addition to training representational fluency, multiple examples and repeated, varied practice are well-documented strategies for broader learning goals in the learning science literature. Many studies have demonstrated substantial STEM learning benefits for multiple worked examples per topic \cite{pashler_organizing_2007}. Equally important is research indicating the importance of active learning \cite{chi_icap_2014,deslauriers_measuring_2019} and repeated practice \cite{deliberatePractice,schnackenberg_learner_1998} that occurs within varied contexts \cite{PV94,rohrer_shuffling_2007} and involves direct explanatory feedback \cite{kellman_perceptual_2010}.
 
-\citet{rau_conditions_2017} reports that, unfortunately, providing support for representational fluency is time-consuming with current tools. Our formative data (\cref{sec:edgeworth-formative}) confirmed this claim and revealed barriers resulting from the limitations of diagram authoring tools. To address these limitations, \Edgeworth aims to simplify the workflow for creating diagram variations for repeated practice. 
+\citet{rau_conditions_2017} reports that, unfortunately, providing computational support for representational fluency is time-consuming with current tools. Our formative study (\cref{sec:edgeworth-formative}) confirmed this claim and revealed barriers resulting from the limitations of diagram authoring tools. To address these limitations, \Edgeworth (\cref{chp:edgeworth,chp:edgeworth-eval}) aims to simplify the workflow for creating diagram variations for repeated practice. 
 
 
-\section{How to make diagrams}
-
-% TODO: why make diagrams digitally?
-
-\subsection{Digital diagramming tools}
+\section{Digital diagramming tools}
 \label{sec:related-systems}
 
 % Intro
-Although many diagramming tools support both text-based and graphical interfaces, we categorize current diagramming tools by their dominant mode of interaction: programming-language based (PL) tools and direct manipulation (DM) tools. 
+As this dissertation investigates diagram authoring empirically (\cref{chp:interviews}) and contributes a new diagramming tool (\Penrose, \cref{chp:penrose}), we survey existing digital tools for making diagrams. Although many diagramming tools support both text-based and graphical interfaces, we categorize current diagramming tools by their dominant mode of interaction: programming-language based (PL) tools and direct manipulation (DM) tools. 
 
 % Programming languages: DSL, general purpose
 We use PL tools to refer to text-based diagramming tools, including imperative or declarative programming languages, libraries, frameworks, and embedded domain-specific languages. General-purpose tools such as Processing~\cite{Reas:2006:PPM}, Asymtote~\cite{Bowman:2008:AVG}, PGF/TikZ, and Paper.js~\footnote{\url{http://paperjs.org/}} provide program constructs that model graphical primitives and operations akin to those in Scalable Vector Graphics (SVG)~\cite{SVGStandard}. Many of their shared disadvantages are well summarized in TikZ's manual~\cite{TikZ-Manual}: ``steep learning curve, no WYSIWYG, small changes require a long recompilation time, and the code does not really ``show'' how things will look like.'' Domain-specific tools allow diagram specifications that are higher-level and specialized to the problem domain to smoothen the learning curve. They are developed either from scratch (\eg~GraphViz and the DOT language for graph visualization~\cite{Graphviz}) or on top of general-purpose tools (\eg~TikZ's extensions, \texttt{tkz-euclide} for Euclidean geometry). However, many of them still inherit the other disadvantages from above. 
@@ -113,8 +120,10 @@ As discussed by \citet{satyanarayan_critical_2020}, data visualization tools hav
 % \section{Background and Related Work}
 
 
-\subsection{Tools for Problem Generation}
+\section{Tools for Problem Generation}
 \label{sec:problem-generation}
+
+In addition to making standalone diagrams, this dissertation also covers diagrammatic problem authoring with \Edgeworth in~\cref{chp:edgeworth,chp:edgeworth-eval}. In this section, we cover related digital systems for practice problem generation in general, and their support for diagram authoring.
 
 \citet{kurdi_systematic_2020} conduct a systematic review of automatic problem generation tools and show that the majority of tools address language learning. In this section, we focus on problem generation tools in STEM learning and discuss how they relate to diagrammatic problem generation and \Edgeworth. 
 

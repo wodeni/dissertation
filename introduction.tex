@@ -1,13 +1,13 @@
 \section{Motivation}
 \label{sec:motivation}
 
-Experts often solve difficult problems by representing ideas visually. In \citetitle{doingWithImages}, Alan Kay describes the widespread use of visual representations among experts in math and physics\footnote{Kay is summarizing Jacques Hadamard's book entitled~\citetitleyear{hadamard_mathematicians_1945}\cite{hadamard_mathematicians_1945}.}:
+In \citetitle{doingWithImages}, Alan Kay describes the widespread use of visual representations among experts in math and physics\footnote{Kay is summarizing Jacques Hadamard's book entitled~\citetitleyear{hadamard_mathematicians_1945}\cite{hadamard_mathematicians_1945}.}:
 
 \begin{quote}
 Jacques Hadamard, the famous French mathematician, in the late stages of his life, decided to poll his 99 buddies, who made up together the 100 great mathematicians and physicists on the earth, and he asked them, ``How do you do your thing?'' They were all personal friends of his, so they wrote back depositions. Only a few, out of the hundred, claimed to use mathematical symbology at all. Quite a surprise. All of them said they did it mostly in imagery or figurative terms.\cite[52:43]{doingWithImages}
 \end{quote}
 
-Cognitive science research corroborates Kay's insight that visual representations are powerful tools of thought. In a more controlled setting,  \citet{perceptualChunks} showed evidence of experts using an internal diagrammatic representation to skip steps when solving geometry proof problems. In \citetitle{whyDiagramWorth}, \citet{whyDiagramWorth} theorized that effective diagrammatic representations are computationally more efficient and thus help problem-solving.
+\noindent Cognitive science research corroborates Kay's insight that visual representations are powerful tools of thought. In a more controlled setting,  \citet{perceptualChunks} showed evidence of experts using an internal diagrammatic representation to skip steps when solving geometry proof problems. In \citetitle{whyDiagramWorth}, \citet{whyDiagramWorth} theorized that effective diagrammatic representations are computationally more efficient and thus help problem-solving.
 
 One caveat, as suggested in the ``(sometimes)'' in the title of \cite{whyDiagramWorth}, is that the efficacy of diagrams depends on both the diagram design and the problem-solver's ability to use diagrams. In the same talk, Kay lamented that while experts seemed to have this ability, students were not getting enough training to do the same.  Kay continues:
 
@@ -15,7 +15,7 @@ One caveat, as suggested in the ``(sometimes)'' in the title of \cite{whyDiagram
     The sad part\dots{}is that every child in the United States is taught math and physics through this [symbolic] channel, the channel that almost no adult creative mathematician or physicist uses to do it\dots{} They use this channel to communicate, but not to do their thing.~\cite[54:36]{doingWithImages}
 \end{quote}
 
-Learning science researchers have advocated for explicitly using diagrams in the learning process to enable more robust learning \cite{mayer_multimedia_2002}. They further suggested that when students work with symbols and diagrams together, they build better conceptual understanding and more flexible mental models that go beyond memorized procedures~\cite{multipleReps,kellman_perceptual_2010,groundedFeedback}. 
+\noindent Learning science researchers have advocated for explicitly using diagrams in the learning process to enable more robust learning \cite{mayer_multimedia_2002}. They further suggested that when students work with symbols and diagrams together, they build better conceptual understanding and more flexible mental models that go beyond memorized procedures~\cite{multipleReps,kellman_perceptual_2010,groundedFeedback}. 
 
 Diagramming complex concepts involves transforming abstract ideas into tangible illustrations. While experts have powerful visual intuitions in their heads, it's difficult to communicate them to each other and teach them to students. As William Thurston noted in \citetitle{thurston_proof_1994}:
 
@@ -30,7 +30,7 @@ This dissertation aims to bring diagrams and visual intuition to more people by 
 
 \section{Thesis Overview and Research Questions}
 
-I~\footnote{All the work presented in this proposal was carried out in collaboration with others, and to recognize this, I use ``we'' rather than the singular first person in the subsequent chapters.} investigated how experts create diagrams via semi-structured interviews (\cref{chp:interviews}), focusing on the following research question:
+I investigated how experts create diagrams via semi-structured interviews (\cref{chp:interviews}), focusing on the following research question\footnote{All the work presented in this proposal was carried out in collaboration with others, and to recognize this, I use ``we'' rather than the singular first person in the subsequent chapters.}:
 
 \refstepcounter{rqcounter}\label{rq:diagrammer}
 \boxtext{\textbf{\therqcounter:} How do diagrammers utilize the strengths and cope with the limitations of their diagramming tools?}
@@ -47,7 +47,7 @@ To support representational salience, I designed a tool called \Penrose (\cref{c
 \begin{itemize}
     \item the learning sciences literature provides ample evidence for the use of them~\cite{multipleReps, mayer_multimedia_2002, blum_combining_1998}.
     \item by making diagrammatic problems using \Penrose, problem authors can inform us about the ecological validity of \Penrose-generated diagrams.
-    \item problem authors is a concrete user group that have high demand for more diagrams and use them for social good.
+    \item problem authors are a concrete user group that have high demand for more diagrams and use them for social good.
 \end{itemize}
 
 Atop \Penrose, I built \Edgeworth, a tool designed to help educators easily create visual problems (\cref{chp:edgeworth}). \Edgeworth works in two main ways: firstly, it takes a single diagram from the user and systematically alters it to produce many variations, which the educator can then choose from to create multiple problems. Secondly, it automates the layout of diagrams using \Penrose, ensuring consistent high quality without the need for manual adjustments. To assess \Edgeworth, I aim to answer the following research questions about various aspects of the system:
