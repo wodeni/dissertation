@@ -7,7 +7,7 @@
   \label{fig:interviews-teaser}
 \end{figure}
 
-
+\cref{chp:introduction,chp:background} laid the foundation by discussing the importance of diagrams in learning and problem-solving and reviewing existing tools for diagramming. This chapter aims to investigate how domain experts create diagrams, examining their methods, the tools they use, and the difficulties they encounter. This chapter presents an empirical study to highlight the gaps in current tools and suggest opportunities for developing more intuitive and effective diagramming solutions that align better with the diagramming processes of experts. 
 
 
 \section{Introduction}
@@ -32,14 +32,14 @@ We argue that this relatively limited support for diagramming in tools is in par
 This chapter contributes a description of the process of creating conceptual diagrams, the difficulties people face while diagramming, and opportunities for tool design. In \cref{sec:interview-methods}, we describe how we conducted interviews with 18 domain experts from a wide variety of disciplines such as math, computer science, architecture, and education. The findings presented in \cref{sec:interview-results} reveal that diagrammers have diverse interactions with visual representations in both physical sketches and digital tools, including finding, creating, storing, and reusing representations. When diagrammers transition from sketches to digital tools, their tool selections are influenced by their \emph{sense of control} over object placement and diagram layout. Participants were concerned with two kinds of control: local object placement, and global diagram layout. Current tools, both those that use programming languages (PL) and those that use direct manipulation (DM) as their interactive metaphor trade-off one kind of control to support the other more effectively. Consequently, we found that diagrammers invented their own set of \latin{ad hoc} and personal reuse patterns to iterate, simplify, and automate the diagramming workflow. 
 
 One implication of our results is the opportunity to design tools informed by the processes of diagramming, and practices that domain experts already use, making digital diagramming more intuitive and efficient. In \cref{sec:natural-diagramming}, we identify four key opportunities for \textbf{natural}~\cite{myers_natural_2004} diagramming tools that allow diagrammers to express their ideas visually the same way they think about them:
-%
-\begin{itemize} [noitemsep,topsep=-4pt,parsep=2pt,partopsep=0pt]
+
+\begin{itemize} 
     \item \textit{Exploration support}: supporting exploratory behaviors such as undo and backtracking during both abstract-level, breath-first exploration of the design space and low-level refinements of visual details.
     \item \textit{Representation salience}: allowing explicit creation and management of visual representations, \ie{} the \emph{mappings} from domain constructs to shapes instead of geometric primitives themselves.
     \item \textit{Live engagement}: providing diagrammers with the sense of agency by designing for liveness and directness of the diagramming experience. 
     \item \textit{Vocabulary correspondence}: enabling diagrammers to interact with their diagrams using vocabularies that is conventional in their domain.
 \end{itemize}
-%
+
 For each of the opportunities, we survey existing techniques from relevant areas to provide tool designers with technical insights on how it might be implemented.
 
 % In short, this paper makes two contributions: first, we offer a deep, qualitative description of the process of conceptual diagramming. Second, based on the findings from this qualitative research, we propose a new framework for designing diagramming tools, \textit{natural diagramming}, describe its properties, and possible routes of implementation. 
