@@ -421,12 +421,14 @@ pdfborder=0 0 0,  %removes outlines around hyper links in online display
 % \DeclareNameAlias{author}{given-family}
 \addbibresource{zotero.bib}
 
+% subsubsection numbering
+\setcounter{secnumdepth}{3}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 % Provides a draft mark at the top of the document. 
-\draftstamp{\today}{DRAFT}
+% \draftstamp{\today}{DRAFT}
 
 % 
 
@@ -477,20 +479,18 @@ To the pool gods.
 
 \pagestyle{plain} % for toc, was empty
 
-% \begin{abstract}
+\begin{abstract}
 
-% Visual representations are powerful tools for learning and communication, yet existing diagramming tools often limit the accessibility and effectiveness of these representations. To address this, I conducted a series of empirical studies to understand how domain experts create diagrams and identified key limitations in current tools.
+Visual representations like diagrams are powerful tools for thought. Diagrams are used extensively to understand abstract relationships, explain complex ideas, and solve difficult problems. 
 
-% The findings from these studies informed the design of two tools: \Penrose and \Edgeworth. \Penrose is a language-based system that allows authors to encode domain-specific concepts and their visual representations. It automates the layout and generation of diagrams, allowing for scalable, reusable, and consistent representations across a wide range of domains.
+I conducted an interview study to understand how domain experts create diagrams and identified key limitations in current tools. To illustrate concepts effectively, experts find appropriate visual representations and translate concepts into concrete shapes. This translation step is not supported explicitly by existing diagramming tools. Our participants reported how they create, adapt, and reuse visual representations using both sketches and digital tools. However, they had trouble using digital tools to transition from sketches and reuse components from earlier diagrams. Based on these results, we suggest four opportunities of diagramming tools---exploration support, representation salience, live engagement, and vocabulary correspondence---that together enable a \emph{natural} diagramming experience. 
 
-% \Edgeworth, built atop \Penrose, enables educators to create and reuse diagrammatic problems efficiently by automating the generation of variations and maintaining high-quality layouts. We evaluate \Edgeworth through technical assessments, user studies, and expert feedback. The results demonstrate \Edgeworth improve the efficiency and effectiveness of diagram creation, particularly in educational contexts where visual representations are crucial for fostering deeper understanding. 
+The findings from these studies informed the design of \Penrose, a language-based system that allows authors to codify domain-specific concepts and their visual representations. In \Penrose, the visual representation is user-defined in a constraint-based specification language; diagrams are then generated automatically via constrained numerical optimization. The system is designed to be user-extensible to many domains. In contrast to tools that specify diagrams via direct manipulation or low-level graphics programming, \Penrose{} enables rapid creation and exploration of diagrams that faithfully preserve the underlying visual representation. I demonstrate the effectiveness and generality of the system by showing how it can be used to illustrate a diverse set of concepts from various domains.
 
-% ``Mental pictures'' and ``visual intuition'' capture how people make sense of abstract concepts and see solutions to hard problems in a visual way. Learning research suggests that visual representations of knowledge are powerful tools for thought. Visual representations like diagrams enable more robust learning and flexible problem solving. 
+Atop \Penrose, I built \Edgeworth, a tool designed to help educators easily create visual problems. \Edgeworth works in two main ways: firstly, it takes a single diagram from the user and systematically alters it to produce many variations, which the educator can then choose from to create multiple problems. Secondly, it automates the layout of diagrams, ensuring consistent high quality without the need for manual adjustments. I collected a dataset of diagrammatic multiple-choice problems to show that \Edgeworth can create problems in three domains: geometry, chemistry, and discrete math. \Edgeworth generated usable answer options within the first 10 diagram variations in 87\% of authored problems. I then performed a user study to measure authors' efficiency at creating translation problems using \Edgeworth, compared with a conventional drawing tool. The results show that once authors make a correct diagram, they are about 3 times faster at making diagrammatic options for translation problems using \Edgeworth compared to Google Drawings. Finally, in response to walkthrough demonstrations, expert educators gave positive feedback on \Edgeworth's utility and the real-world applicability of its outputs.
 
-% Existing diagramming tools often require hours of low-level tweaking of geometric primitives and do not capture the core task of diagramming: representing ideas visually. \Penrose is a diagramming platform that explicitly encodes visual representations in domain-specific languages. In this thesis proposal, I argue that this explicit encoding can be leveraged to (1) reduce the programming effort of producing diagrammatic problems at scale and (2) simplify the workflow of authoring interactive diagrams. The resulting diagrams also carry rich semantics, and I'll discuss how to use them to (3) provide useful, automated feedback to students. 
-
-
-% \end{abstract}
+\Penrose and \Edgeworth demonstrate that codifying visual representations allow diagrams authors to reuse their design effort, produce new diagrams faster, and thus make diagrams at a larger scale.
+\end{abstract}
 
 % \begin{acknowledgments}
 % TODO
@@ -498,8 +498,8 @@ To the pool gods.
 
 
 \tableofcontents
-% \listoffigures
-% \listoftables
+\listoffigures
+\listoftables
 
 \mainmatter
 

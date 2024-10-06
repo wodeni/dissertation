@@ -229,7 +229,7 @@ On average, \Edgeworth's diagram notation is compact and simple. The description
 % \end{figure}
 We sample 17 Euclidean geometry problems from Holt \textit{Geometry} \cite{holtGeometry}, a high school geometry textbook. \cref{fig:edgeworth-problems} (left) shows an example problem. The textbook uses a consistent visual style of predominantly black line segments and dots with text labels. Most diagrammatic problems are presented as one diagram followed by one or more multiple-choice problems. We've recast the problems as diagrammatic translation problems.
 
-For this domain, we build on the existing geometry stylesheet from \Penrose \cite[Section~5.3]{penrose} for diagram layout. There are many different types of entities in geometry, and we found that \textbf{Add} tend to introduce elements to the diagram that obviously do not pertain to the question prompt.
+For this domain, we build on the existing geometry stylesheet from \Penrose \cite[Section~5.3]{penrose} for diagram layout. There are many different types of entities in geometry, and we found that \textbf{Add} tended to introduce elements to the diagram that obviously do not pertain to the question prompt.
 Through some trial-and-error, we settled on weighting deletions 20\%, edits 80\%, and adds 0\% to achieve reasonable results. The reason we weight edits higher than deletions is that many of our geometry problems ask about specific named points, and deletions can make the diagram invalid by removing points that are mentioned in the prompt.
 
 % \begin{wrapfigure}{r}{0.5\textwidth}

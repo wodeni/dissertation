@@ -20,7 +20,7 @@
    }
 \end{figure}
 
-Informed by the results from the interview study (\cref{chp:interviews}), we developed \Penrose, a language-based diagramming platform~\cite{penrose}. The core \Penrose system addresses \textbf{representation salience}: it has first-class support for creating and reusing visual representations. To accomplish this, \Penrose decomposes the concerns of diagramming into two domain-specific languages (DSLs) with distinct purposes: \Substance contains the mathematical content of the diagram. \Style explicitly specifies mappings from mathematical objects to visual icons. In contrast to tools that specify diagrams via direct manipulation or low-level graphics programming, \Penrose{} enables creation and exploration of diagrams that faithfully preserve the underlying mathematical meaning. \cref{sec:Introduction,sec:SystemDesign} explain the overall design goals, \cref{sec:LanguageFramework,sec:LayoutEngine} detail \Penrose{}'s language design and automatic layout engine that powers its runtime. \cref{sec:ExamplesandEvaluation} demonstrates the effectiveness and generality of the system by showing how it can be used to illustrate a diverse set of concepts from mathematics and computer graphics.
+Informed by the results from the interview study (\cref{chp:interviews}), we developed \Penrose, a language-based diagramming platform~\cite{penrose}. The core \Penrose system addresses \textbf{representation salience}: it has first-class support for creating and reusing visual representations. To accomplish this, \Penrose decomposes the concerns of diagramming into two domain-specific languages (DSLs) with distinct purposes: \Substance contains the mathematical content of the diagram. \Style explicitly specifies mappings from mathematical objects to visual icons. In contrast to tools that specify diagrams via direct manipulation or low-level graphics programming, \Penrose{} enables creation and exploration of diagrams that faithfully preserve the underlying mathematical meaning. \cref{sec:Introduction,sec:SystemDesign} explain the overall design goals; \cref{sec:LanguageFramework,sec:LayoutEngine} detail \Penrose{}'s language design and automatic layout engine that powers its runtime. \cref{sec:ExamplesandEvaluation} demonstrates the effectiveness and generality of the system by showing how it can be used to illustrate a diverse set of concepts from mathematics and computer graphics.
 
 \section{Introduction}
 \label{sec:Introduction}
@@ -130,7 +130,7 @@ The resulting system effectively models diagram generation as a compilation proc
 \end{figure}
 
 
-A major decision in \Penrose{} is to use programming languages to specify both mathematical objects (\cref{sec:MathematicalContent}) and their visual representation (\cref{sec:MathematicalVisualization}).  Graphical (\eg sketch-based) specification would demand that users already know how to visualize abstract ideas, and it ties mathematical content to one specific visual representation, which conflicts with \ref{gol:ManyViz}.  A language-based specification provides the level of abstraction needed to separate content from visualization. This technique supports \ref{gol:FamiliarNotation}, since language is the most common means by which mathematical ideas are expressed.  From a system design point of view, a language-based encoding provides a unified representation for identifying and transforming mathematical objects throughout the pipeline.  Moreover, a language-based interface makes it easy for \Penrose{} to provide a \emph{platform} on which other diagramming tools can be built (as in \cref{sec:DevelopmentEnvironment} or \cref{sec:LargeScaleDiagramGeneration}).  One trade-off is that a language-based approach requires users to express themselves in formal mathematical or computational language, making it more difficult for (say) visual artists and designers to contribute new representations.
+A major decision in \Penrose{} is to use programming languages to specify both mathematical objects and their visual representation.  Graphical (\eg sketch-based) specification would demand that users already know how to visualize abstract ideas, and it ties mathematical content to one specific visual representation, which conflicts with \ref{gol:ManyViz}.  A language-based specification provides the level of abstraction needed to separate content from visualization. This technique supports \ref{gol:FamiliarNotation}, since language is the most common means by which mathematical ideas are expressed.  From a system design point of view, a language-based encoding provides a unified representation for identifying and transforming mathematical objects throughout the pipeline.  Moreover, a language-based interface makes it easy for \Penrose{} to provide a \emph{platform} on which other diagramming tools can be built (as in \cref{sec:DevelopmentEnvironment} or \cref{sec:LargeScaleDiagramGeneration}).  One trade-off is that a language-based approach requires users to express themselves in formal mathematical or computational language, making it more difficult for (say) visual artists and designers to contribute new representations.
 
 \begin{figure}[b]
 % \vspace{-\baselineskip}
@@ -285,7 +285,7 @@ assigns fields \texttt{min} and \texttt{max} to an \texttt{Interval}, which can 
 \begin{figure}
 \begin{mdframed}[style=DSLCode]
 \begin{lstlisting}[language=Elem,escapechar=@]
-type Scalar, VectorSpace, Vector      -- LinearAlgebra.dsl @\label{lin:linalg_types}@
+type Scalar, VectorSpace, Vector                            -- LinearAlgebra.dsl @\label{lin:linalg_types}@
 function add: Vector * Vector -> Vector @\label{lin:linalg_functions_begin}@
 function norm: Vector -> Scalar
 function scale: Scalar * Vector -> Vector
@@ -368,7 +368,7 @@ label x2 @$\$$@x_2@$\$$@
 \begin{figure}[p]
 \begin{mdframed}[style=STYCode]
 \begin{lstlisting}[language=Sty-LA,escapechar=@]
-forall VectorSpace U {                    -- LinearAlgebra.sty@\label{lin:VectorSpaceRule}@
+forall VectorSpace U {                                      -- LinearAlgebra.sty@\label{lin:VectorSpaceRule}@
    U.originX = ? -- to be determined via optimization
    U.originY = ? -- to be determined via optimization
    U.origin = (U.originX, U.originY)
@@ -626,7 +626,7 @@ This example also demonstrates the benefit of a more explicit type system, rathe
 \begin{minipage}[t]{\columnwidth}
 \begin{mdframed}[style=DSLCode]
 \begin{lstlisting}[language=Elem,escapechar=@,numbers=none]
-type Set                                   -- Sets.dsl
+type Set                                                             -- Sets.dsl
 predicate Intersecting : Set s1 * Set s2
 predicate IsSubset : Set s1 * Set s2
 predicate Not : Prop p
@@ -646,9 +646,9 @@ E $\subset$ B
 \end{lstlisting}
 \end{minipage}
 \ContinueLineNumber
-\begin{minipage}[t]{.45\columnwidth}
+\begin{minipage}[t]{.5\columnwidth}
 \begin{lstlisting}[language=Sub-mesh,escapechar=@,numbers=none]
-F $\subset$ C       -- Sets.sub
+F $\subset$ C                      -- Sets.sub
 G $\subset$ C
 E $\cap$ D = $\varnothing$
 F $\cap$ G = $\varnothing$
@@ -658,7 +658,7 @@ B $\cap$ C = $\varnothing$
 \begin{minipage}[t]{\columnwidth}
 \begin{mdframed}[style=STYCode]
 \begin{lstlisting}[language=Sty-ST,escapechar=@,numbers=none]
-forall Set x {                       -- Sets-Disks.sty
+forall Set x {                                                 -- Sets-Disks.sty 
     x.shape = Circle { strokeWidth : 0.0 }
     x.text = Text { string : x.label }
     ensure contains(x.shape, x.text)

@@ -1,6 +1,6 @@
 \begin{figure}[h]
   \centering
-  \includegraphics[width=\textwidth]{assets/interviews/teaser-a.pdf}
+  \includegraphics[width=\textwidth]{assets/interviews/teaser-v2.pdf}
   \caption{
       Diagrams explain concepts visually in many domains, \eg{}: (a) Diffie-Hellman key exchange with colors representing prime multiplication~\cite{wiki:crypto}. (b) Linking two views of the Klein 4-group~\cite{OBT}. (c) Unrolling a recurrent LSTM network~\cite{UnderstandLSTM}. (d) Natural numbers as 2D areas in a visual proof~\cite{SystemsOfThought}.
   }
@@ -57,12 +57,12 @@ For each of the opportunities, we survey existing techniques from relevant areas
 \section{Method}
 \label{sec:interview-methods}
 
-\subsubsection{Participants and Recruitment} 
+\subsection{Participants and Recruitment} 
 We conducted interviews with 18 participants (13 male, 5 female). Participants were recruited through posts on social media, and our research group website. Of these, four participants were university faculty, 10 were PhD students or postdocs, one was a professional masters student, one was a K-12 math instructor, one is an independent software developer, and one is an enterprise software engineer. Prospective participants filled out a survey which allowed us to screen participants for our interviews. We selected the interviewees based on the following criteria: the interviewee (1) creates conceptual diagrams on a frequent basis and (2) uses digital diagramming tools to create these diagrams. 
 
 Because we had more potential interviewees than we originally envisioned (64 in all), we used a saturation method~\cite{socialResearchMethods} to determine the number of participants. We conducted several batches of interviews (with 2-3 interviews per batch consisting of diverse participants), and did a preliminary analysis of the transcripts from each batch. When the analysis stopped revealing new insights, we stopped interviewing more participants. 
 
-\subsubsection{Semi-structured Interviews}
+\subsection{Semi-structured Interviews}
  
 Interviews lasted between 30 and 80 minutes and were semi-structured. Interviews were conducted either in person (7 participants) or online using Skype (11 participants.) We encouraged participants to bring any digital and hand drawn diagrams that they had previously created that they could share with us. We also encouraged them to have a pen and paper (or a whiteboard) available to draw during the interview. 
 
@@ -87,13 +87,13 @@ User interface design & P5\\
 Architecture & P8 \\ 
 K-12 education & P15 \\ 
 \end{tabular}
-\caption{Interview participants' primary domains}
+\caption{Interview participants' primary domains.}
 \label{tbl:participants}
 \end{table}
 \end{center}
 
-\subsubsection{Analysis}
-Interviews were video recorded and transcribed using either human or machine transcription. The first two authors then manually validated and corrected any transcription errors.
+\subsection{Analysis}
+Interviews were video recorded and transcribed using either human or machine transcription. We\footnote{The first two authors of \citetitle{naturalDiagramming}\cite{naturalDiagramming}} then manually validated and corrected any transcription errors.
 
 We employed thematic analysis methods \cite{thematicAnalysisInPsych} to analyze interview transcripts. The first two authors began by conducting an open coding session and discussed initial insights for every batch of interviews. Then, following all interviews, the authors discussed the codes and created a coding guide with operationalized definitions of codes. Using the agreed coding guide, one of the authors did a second phase of coding. While conducting the second coding phase, the author also summarized the transcripts using sticky notes containing highlights of the interview sessions. All authors then reviewed both the codebook with the sticky notes to further refine the set of codes.
 
@@ -417,7 +417,7 @@ Another way to model abstract and topological relationships is using high-level 
 
 % Exploration of diagram layouts can require significant manual effort and impose cognitive load on diagrammers. Since constraints are high-level and semantically closer to diagrammers' cognitive units, they can be leveraged to automatically explore design alternatives from succinct specifications. In addition to the fixed set of constraints provided by CAD tools, diagrammers can benefit significantly from a natural diagramming tool that lets them specify and customize high-level constraints. Supporting more global constraints such as symmetry and overlapping can further paramatrize parts or the entire diagram, rather than geometries in the CAD case. 
 
-\section{Conclusion and Future Work}
+\section{Summary}
 
 Conceptual diagrams are essential for understanding concepts, communicating ideas, and improving instructions effectively in many fields. This chapter provides the first empirical study of how domain experts create conceptual diagrams.
 
@@ -425,6 +425,6 @@ Our results demonstrate \emph{representation finding} as a vital step in the dia
 
 Based on our results, we introduce the concept of \textbf{natural diagramming} and four opportunities for natural diagramming support: exploration support, representation salience, live engagement, and vocabulary correspondence. For each of them, we discussed how recent advances from various research communities can help improve existing tools and design future tools.
 
-Future work can leverage the substantial amount of conceptual diagrams that exist in the wild and perform large-scale analysis to gain a more quantitative understanding of existing diagrams. Similarly, it is possible to leverage the large number of current diagramming tools, some of which support a subset of natural diagramming. In particular, it may be possible to isolate and quantify the benefits of each opportunity of natural diagramming introduced in this chapter by analysing existing tools. A deeper, more systematic analysis of the relationships and trade-offs among the four natural diagramming opportunities may further inform tool designers to make design decisions more critically. Further, this study does not focus on collaboration support for conceptual diagramming. Future work may explore how to support, for instance, \textit{vocabulary correspondence} when multiple diagrammers from diverse backgrounds collaborate on a single conceptual diagram. 
+% Future work can leverage the substantial amount of conceptual diagrams that exist in the wild and perform large-scale analysis to gain a more quantitative understanding of existing diagrams. Similarly, it is possible to leverage the large number of current diagramming tools, some of which support a subset of natural diagramming. In particular, it may be possible to isolate and quantify the benefits of each opportunity of natural diagramming introduced in this chapter by analyzing existing tools. A deeper, more systematic analysis of the relationships and trade-offs among the four natural diagramming opportunities may further inform tool designers to make design decisions more critically. Further, this study does not focus on collaboration support for conceptual diagramming. Future work may explore how to support, for instance, \textit{vocabulary correspondence} when multiple diagrammers from diverse backgrounds collaborate on a single conceptual diagram. 
 
 Natural diagramming embodies our vision for future diagramming tools---tools that seamlessly and naturally translate diagrammers' high-level ideas to beautiful and illustrative diagrams. This chapter articulates a concrete vision for systems designers to create more effective diagramming tools. In subsequent chapters, we present \Penrose{} (\cref{chp:penrose}) and \Edgeworth{} (\cref{chp:edgeworth,chp:edgeworth-eval}), two tools designed with this vision in mind.
