@@ -7,7 +7,7 @@ In this chapter, we discuss three studies to evaluate various aspects of \Edgewo
 
 
 \begin{itemize}
-    \item\textbf{Reliability} (\ref{rq:mut}): Can \Edgeworth reliably generate translation problems with relatively few variations required?
+    \item\textbf{Reliability} (\ref{rq:mut}): Can \Edgeworth reliably generate translation problems within relatively few diagram variations?
     \item\textbf{Efficiency} (\ref{rq:eff}): comparing with a conventional drawing tool, are authors more efficient at making translation problems using \Edgeworth? 
     \item\textbf{Ecological validity} (\ref{rq:eco}): Do real-world instructors consider \Edgeworth-generated translation problems to be useful? 
 \end{itemize}
@@ -30,7 +30,7 @@ The goal of \Edgeworth is to generate enough diagram variations to assemble a fo
 
 For \ref{rq:mut}, we define ``relatively few variations'' to be 10 diagrams, and consider \Edgeworth to have generated a translation problem in $n$ variations if at that point we have (possibly including the original diagram) at least one \textbf{Correct} diagram, at least one \textbf{Incorrect} diagram, and in total at least four diagrams that are either \textbf{Correct} or \textbf{Incorrect}.
 
-We used \Edgeworth to generate 10 diagrams per problem for all 31 problems in the translation problem dataset (\cref{sec:edgeworth-case-studies}), which yielded 310 diagrams in total. To evaluate this coding scheme, we randomly sampled 2 problems from each of our 3 domains, for 60 generated diagrams total. The first two authors each coded all 60 of those sample diagrams, after which we calculated the Cohen's $\kappa$ \cite{cohen1960coefficient} statistic. Then with the assumption that our coding scheme has reasonable inter-rater reliability, at least one author~\footnote{The study is conducted jointly with authors of~\citet{ni_edgeworth_2024}.} coded all remaining diagrams, allowing us to determine the number of our prompts for which \Edgeworth was able to successfully generate a multiple-choice problem. The coding results are included in supporting files.
+We used \Edgeworth to generate 10 diagrams per problem for all 31 problems in the translation problem dataset (\cref{sec:edgeworth-case-studies}), which yielded 310 diagrams in total. To evaluate this coding scheme, we randomly sampled 2 problems from each of our 3 domains, for 60 generated diagrams total. The first two authors each coded all 60 of those sample diagrams, after which we calculated the Cohen's $\kappa$ \cite{cohen1960coefficient} statistic. Then with the assumption that our coding scheme has reasonable inter-rater reliability, at least one author\footnote{The study is conducted jointly with authors of~\citet{ni_edgeworth_2024}.} coded all remaining diagrams, allowing us to determine the number of our prompts for which \Edgeworth was able to successfully generate a multiple-choice problem. The coding results are included in \cref{app:reliability}.
 
 \subsection{Results}
 
@@ -245,7 +245,7 @@ We recruited domain expert educators of chemistry, geometry, and graph theory. E
     \label{tab:demographics}
 \end{table}
 
-Each expert participated in a 60- to 90-minute session via video conferencing, which was recorded with their consent. At the start of each session, we demonstrated the workflow of \Edgeworth end-to-end, as described in \cref{sec:edgeworth-workflow}, on one problem outside of the expert's domain. For the remainder of the session, we asked the expert to assemble problems from the \Edgeworth output of two to four problem prompts randomly sampled from the translation problem dataset (\cref{sec:edgeworth-case-studies}) in their domain. Per prompt, the expert rated 10 diagram variations based on the categories described in \cref{sec:reliability-method}. In addition, we asked participants to provide more granular feedback on diagram quality. After rating the diagram variations, they were asked to pick diagrams to assemble a four-choice diagrammatic translation problem. After the problem was assembled and shown on the interface, we asked (1) if they would use the problem in their instruction and (2) how they would author the diagram using their own workflow. The full study protocol is included in supporting files.
+Each expert participated in a 60- to 90-minute session via video conferencing, which was recorded with their consent. At the start of each session, we demonstrated the workflow of \Edgeworth end-to-end, as described in \cref{sec:edgeworth-workflow}, on one problem outside of the expert's domain. For the remainder of the session, we asked the expert to assemble problems from the \Edgeworth output of two to four problem prompts randomly sampled from the translation problem dataset (\cref{sec:edgeworth-case-studies}) in their domain. Per prompt, the expert rated 10 diagram variations based on the categories described in \cref{sec:reliability-method}. In addition, we asked participants to provide more granular feedback on diagram quality. After rating the diagram variations, they were asked to pick diagrams to assemble a four-choice diagrammatic translation problem. After the problem was assembled and shown on the interface, we asked (1) if they would use the problem in their instruction and (2) how they would author the diagram using their own workflow. The full study protocols for both the chemistry and geometry group are included in \cref{app:edgeworth-user-study-protocol}.
 
 % \subsection{Existing Problem Authoring and Diagramming Processes}
 
@@ -294,14 +294,16 @@ In their geometry course, E2 said that their textbook's diagrams \quotei{get dra
 % However, for simpler molecules, E1 cautioned that might mislead students to think that \quotei{they are different structures when they really are the same.} 
 E5 found isomorphic planar graphs to be particularly useful because students find them \quotei{painstaking to visualize when they just started.} E5 planned to use \Edgeworth to \quotei{draw a graph that doesn't look like it could be planar first, but then untangle it to show that the graph is actually planar.}
 
+% \cref{sec:problem-generation} further discusses this possibility in the context of existing template-based problem generation tools.
+
+
+
 \section{Limitations of the Studies}
 
 We discuss some limitations to the studies presented in this chapter. 
 
 % \subsection{Sample Size and Generalizability}
 % The sample sizes in the user study and expert walkthrough were relatively small, with only 16 participants in the user study and 9 expert educators in the walkthrough sessions. This limited number of participants may not fully represent the broader population of educators or the variety of instructional contexts in which \Edgeworth might be applied. Consequently, the generalizability of the findings to other domains, educational settings, or different types of diagrammatic problems is limited.
-
-
 
 \subsection{Ecological Validity}
 
@@ -319,7 +321,7 @@ Participants in the user study were provided with brief tutorials on using \Edge
 
 % \subsection{Technical Constraints and Evolution}
 
-Both \Penrose and \Edgeworth are still under development, and the studies were conducted on particular versions of them. As they evolve, with potential updates and improvements, the findings presented here might become outdated. Future research would need to re-evaluate the tool's performance and usability in light of new changes. 
+Both \Penrose and \Edgeworth are still under development, and the studies were conducted on particular versions of them. As they evolve, with potential updates and improvements, the findings presented here might become outdated. Future research would need to re-evaluate the tool's performance and usability in light of new changes. \cref{sec:penrose-limitations} and \cref{sec:limitations} discuss the specifics of \Penrose's and \Edgeworth's system limitations.
 
 \subsection{Authoring Speed vs. Problem Quality}
 
@@ -334,9 +336,63 @@ Both \Penrose and \Edgeworth are still under development, and the studies were c
 
 Participants in the user study described in \cref{sec:edgeworth-user-study} were not screened for their prior experience nor expertise in diagrammatic problem authoring. In fact, a majority of them are undergraduate students. Therefore, their judgment of what makes a good problem (or lack thereof) might influence the task performance data reported in \cref{sec:edgeworth-user-study}. Theoretically, to get through the tasks, participants could pick incorrect diagrams at random using \Edgeworth, or make minimal edits to the correct diagram to get alternatives using Google Drawings. To address this limitation of the user study, we conducted  expert demonstration walkthroughs \cref{sec:expert-feedback} to gain a deeper understanding of the ecological validity of \Edgeworth-generated problems.
 
-During the user study, we did in fact observe participants taking shortcuts in both conditions. Here we show some examples of them and contrast them with the experts' opinions. For instance, \cref{fig:edgeworth-user-study-shortcuts} (top) shows P4's pattern of making small edits to the correct diagram to quickly produce incorrect diagrams. These edits avoids moving many diagram components around while maintaining a good layout. The similar layouts of atoms and bonds contrast experts' feedback on isomorphic diagrams (\cref{sec:isomorphic-diagrams}, \eg \quotei{some students get stuck into thinking that the concept is only communicated when the diagram is drawn [exactly] that way.} by E2). As another example for \Edgeworth, \cref{fig:edgeworth-user-study-shortcuts} (bottom) shows two diagrams selected by a participant as suitable incorrect answers for chemistry prompt 1 (\textit{Which of the following diagrams shows the correct Lewis structure for \ensuremath{\mathrm{CH_2O}}?}) in \cref{fig:edgeworth-user-study-tasks}. Per their feedback in \cref{sec:edgeworth-expert-standards}, E3 would not accept ``Mutated Diagram \#6'' in the figure as a good incorrect options, because it \quotei{violated the octet rule in egregious or blatantly egregious way.}~\footnote{The Carbon (C) atom in the diagram has 6 valance electrons, 2 double bonds, and one single bond, which is way beyond the expected 8 electrons and bonds combined per the octet rule.} Notably, as we discussed in \cref{sec:edgeworth-expert-standards}, experts did not agree on a single standard of high problem quality among themselves. 
+During the user study, we did in fact observe participants taking shortcuts in both conditions. Here we show some examples of them and contrast them with the experts' opinions. For instance, \cref{fig:edgeworth-user-study-shortcuts} (top) shows P4's pattern of making small edits to the correct diagram to quickly produce incorrect diagrams. These edits avoids moving many diagram components around while maintaining a good layout. The similar layouts of atoms and bonds contrast experts' feedback on isomorphic diagrams (\cref{sec:isomorphic-diagrams}, \eg \quotei{some students get stuck into thinking that the concept is only communicated when the diagram is drawn [exactly] that way.} by E2). As another example for \Edgeworth, \cref{fig:edgeworth-user-study-shortcuts} (bottom) shows two diagrams selected by a participant as suitable incorrect answers for chemistry prompt 1 (\textit{Which of the following diagrams shows the correct Lewis structure for \ensuremath{\mathrm{CH_2O}}?}) in \cref{fig:edgeworth-user-study-tasks}. Per their feedback in \cref{sec:edgeworth-expert-standards}, E3 would not accept ``Mutated Diagram \#6'' in the figure as a good incorrect options, because it \quotei{violated the octet rule in egregious or blatantly egregious way.}\footnote{The Carbon (C) atom in the diagram has 6 valance electrons, 2 double bonds, and one single bond, which is way beyond the expected 8 electrons and bonds combined per the octet rule.} Notably, as we discussed in \cref{sec:edgeworth-expert-standards}, experts did not agree on a single standard of high problem quality among themselves. 
 
 Overall, while participants took shortcuts in both user study conditions, we do not know how much impact their quality standards have on the task performance. Importantly, there is not a single standard for ``good'' judgment of problem quality, as the expert demonstration walkthroughs showed a diversity of standards among experienced educators. Therefore, future research is needed to tease out (1) what is an acceptable quality standard for diagrammatic translation problems and (2) the effect of problem quality on authoring speed of diagrammatic problems. 
+
+\section{Limitations of the \Edgeworth System}
+\label{sec:limitations}
+
+In this section, we further discuss some limitations of the \Edgeworth system in general.
+
+\subsection{Numerical and textual variations}
+
+\Edgeworth cannot produce numerical and textual variations like traditional problem generators~\cite{aleven_cognitive_2006, ASSISTment} do. It is, however, possible to build this functionality on top of \Edgeworth to produce further problem variations. 
+
+\subsection{Usability of UI components}
+
+The design presented in \cref{sec:edgeworth-system-design} focuses on generating diagram variations and selecting diagram mutants to create problems. We use the \Substance language and \Penrose's textual interface without modification. Any limitations of \Substance and its UI are inherited by \Edgeworth. We use standard Material UI elements\footnote{\url{https://mui.com/}} to allow users to configure \Edgeworth (\eg a standard text box for changing diagram variations in \cref{fig:edgeworth-interface}\uilabel{c}). While these components might be usable as-is, they are not designed explicitly for the problem authoring workflow. 
+
+\subsection{New domains of instruction}
+\label{sec:extension}
+
+As shown in \cref{sec:edgeworth-mutation}, the design of the \Edgeworth mutator is domain-agnostic, as the mutation operators do not require any domain-specific knowledge to produce mutants. However, improving \Style requires domain expertise. Therefore, future \Edgeworth authors may not have the technical background or the time to invest in a new \Style program, which might prohibit them from using \Edgeworth if the domain is not well supported by the \Penrose ecosystem. However, as noted in \cref{chp:penrose}, the effort to build \Penrose stylesheets for new domains is only necessary once per domain and not once per diagram or problem.
+
+\subsection{Mismatches with the author's intents} 
+
+The \Edgeworth mutator can be sensitive to both the example diagram and the mutator configuration (\cref{sec:edgeworth-mutation}). For instance, a statement in the user-provided \Substance program might be particularly more suitable for mutations than others (perhaps because it contributes to the correctness of the problem.) Under- or over-specifying mutations in the configuration might lead to a pool of ``noisy'' diagrams. When these diagrams don't satisfy the needs of the author (\eg missing counterexamples that are important for an educational goal), the author can only generate another pool of mutants and hope to get better ones. For example, suppose an author would like to create translation problems that test students' knowledge of improper subsets, especially the fact that if $A \subseteq B$, $A = B$ is allowed. Using the \Edgeworth mutator, the author first creates a \Substance program:
+
+\begin{center}
+\begin{verbatim}
+Set A, B, C
+SubSet(B, A)
+Subset(C, A)
+\end{verbatim}
+    
+\end{center}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{assets/appendix/edgeworth-bad-output.pdf}
+    \caption{A screenshot of the \Edgeworth interface, after generating examples for a translation problem focusing on improper subsets. Because of randomness, the pool of mutant diagrams aren't suitable for this problem.}
+    \label{fig:edgeworth-bad-output}
+\end{figure}
+
+The author then clicks ``Generate Diagrams.'' Ideally, \Edgeworth should generate a set of examples of the subset relations that include the edge cases of $A = B$, $A = C$, or $B = C$, and counterexamples of $B \not\subseteq A$ or $C \not\subseteq A$. 
+
+However, the output from \Edgeworth seems too random (\cref{fig:edgeworth-bad-output}). There are acceptable counterexamples, but none of the diagrams include pedagogically useful cases such as:
+
+\begin{center}
+\begin{verbatim}
+Set A, B, C
+SubSet(B, A)
+Subset(C, A)
+Equal(B, C)
+\end{verbatim}
+\end{center}
+
+In other words, the author cannot express their intent easily with the current version of \Edgeworth and may have trouble finding good mutants if they intend to create specific types of examples. We discuss the possibility of augmenting \Edgeworth with domain-specific knowledge, and allowing the user to express their pedagogical intents in \cref{sec:knowledge}
+
 
 \section{Summary}
 

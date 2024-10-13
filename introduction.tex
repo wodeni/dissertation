@@ -61,21 +61,21 @@ I investigated how experts create diagrams via semi-structured interviews (\cref
 To support representational salience, I designed a tool called \Penrose (\cref{chp:penrose}). Diagrams made in \Penrose contain the \emph{source information} of diagram design: using \Penrose, diagram authors encode domain-specific concepts and how to visually represent them in plain-text languages. \Penrose generates diagrams from this encoding through automatic layout. I demonstrate the effectiveness and generality of the system by showing how it can be used to encode visual representations across a wide range of domains:
 
 \refstepcounter{rqcounter}\label{rq:expressiveness}
-\boxtext{\textbf{\therqcounter:} How effectively can \Penrose's language-based specification express a wide range of diagramming domains without requiring significant modification to the system's core design? }
+\boxtext{\textbf{\therqcounter:} Can \Penrose's language-based specification express a wide range of diagramming domains without requiring significant modification to the system's core design? }
 
 \Penrose has several potential audiences of users and use cases. I chose to validate its usefulness for making diagrammatic problems because:
 
 \begin{itemize}
-    \item the learning sciences literature provides ample evidence for the use of them~\cite{multipleReps, mayer_multimedia_2002, blum_combining_1998}.
-    \item by making diagrammatic problems using \Penrose, problem authors can inform us about the ecological validity of \Penrose-generated diagrams.
+    \item the learning sciences literature provides ample evidence for the use of diagrammatic problems~\cite{multipleReps, mayer_multimedia_2002, blum_combining_1998}.
+    \item by making diagrammatic problems using \Penrose, problem authors provide feedback on the ecological validity of \Penrose-generated diagrams.
     \item problem authors are a concrete user group that have high demand for more diagrams and use them for social good.
 \end{itemize}
 
-Atop \Penrose, I built \Edgeworth, a tool designed to help educators easily create visual problems (\cref{chp:edgeworth}). \Edgeworth works in two main ways: firstly, it takes a single diagram from the user and systematically alters it to produce many variations, which the educator can then choose from to create multiple problems. Secondly, it automates the layout of diagrams using \Penrose, ensuring consistent visual quality without the need for manual adjustments. To assess \Edgeworth, I aim to answer the following research questions about various aspects of the system:
+Atop \Penrose, I built \Edgeworth, a tool designed to help educators easily create visual problems (\cref{chp:edgeworth}). \Edgeworth works in two main ways: firstly, it takes a single diagram from the user and systematically alters it to produce many \emph{diagram variations}, which the educator can then choose from to create multiple problems. Secondly, it automates the layout of diagrams using \Penrose, ensuring consistent visual quality without the need for manual adjustments. To assess \Edgeworth, I aim to answer the following research questions about various aspects of the system:
 
 \boxtext{
 \refstepcounter{rqsupcounter}\label{rq:mut}
-\textbf{\therqsupcounter~Reliability:} Can \Edgeworth reliably generate translation problems with relatively few variations required?
+\textbf{\therqsupcounter~Reliability:} Can \Edgeworth reliably generate translation problems within relatively few diagram variations?
 
 \refstepcounter{rqsupcounter}\label{rq:eff}
 \textbf{\therqsupcounter~Efficiency:} Comparing with a conventional drawing tool, are authors more efficient at making translation problems using \Edgeworth? 

@@ -39,7 +39,8 @@
 \usepackage{graphicx}
 \usepackage{amsmath}
 % \usepackage[numbers,sort]{natbib}
-\usepackage{subfigure}
+% \usepackage{subfigure}
+\usepackage{subcaption}
 \hypersetup{
 pageanchor=true,plainpages=false,bookmarksnumbered,
 pdfborder=0 0 0,  %removes outlines around hyper links in online display
@@ -247,12 +248,25 @@ pdfborder=0 0 0,  %removes outlines around hyper links in online display
 }
 
 \lstdefinelanguage{Sub-geom}{
-  morekeywords={Table, Chair, BeerMug, Tavern, Plate, Point, Midpoint, Bisector, Triangle, Right, Obtuse, Acute, Angle, Line, Segment, Square, Rectangle, On, Parallel, PerpendicularBisector, Ray, Disjoint, Altitude, Endpoint, On, Perpendicular},
+  morekeywords={Table, Chair, BeerMug, Tavern, Plate, Point, Midpoint, Bisector, Triangle, Right, Obtuse, Acute, Angle, Line, Segment, Square, Rectangle, On, Parallel, PerpendicularBisector, Ray, Disjoint, Altitude, Endpoint, On, Perpendicular, InteriorAngle},
   morecomment=[l][\color{gray}]{--}
 }
 
+\lstdefinelanguage{Sub-graph}{
+  morekeywords={Node, Edge, for, in, where},
+  morecomment=[l][\color{gray}]{--}
+}
 \lstdefinelanguage{Sty-LA}{
   morekeywords={Vector, VectorSpace, Scalar, LinearMap, Arrow, Rectangle, Arc, Dot, AnchorPoint, CurlyBrace, Parallelogram, Line, global, forall, where, above, below, with, ensure, encourage, override, layer, ALL, CANVAS, delete},
+  morecomment=[l][\color{gray}]{--}
+}
+\lstdefinelanguage{Sty-Staged}{
+  morekeywords={in, except},
+  morecomment=[l][\color{gray}]{--}
+}
+
+\lstdefinelanguage{Sty-Geom}{
+  morekeywords={Point, Vector, VectorSpace, Scalar, LinearMap, Arrow, Rectangle, Arc, Dot, AnchorPoint, CurlyBrace, Parallelogram, Line, global, forall, where, above, below, with, ensure, encourage, override, layer, ALL, CANVAS, delete, const},
   morecomment=[l][\color{gray}]{--}
 }
 
@@ -282,7 +296,7 @@ pdfborder=0 0 0,  %removes outlines around hyper links in online display
 }
 
 \lstdefinelanguage{Sty-RT}{
-  morekeywords={Diagram, LightSource, Camera, PathType, Path, VertexType, BounceType, DiffuseBounce, SpecularBounce, GlossyBounce, InList, Sublist, sample, PathVertex, Path, InVP, Hits, PathType, DiffuseObject, PathEdge, SpecularObject, Arrow, Rectangle, Arc, Dot, AnchorPoint, CurlyBrace, Parallelogram, Line, Tick, DoubleArrow, Bracket, Region, Curve, Paren, global, forall, where, above, below, with, ensure, encourage, override, layer, ALL, CANVAS, delete, Auto, optimized, plugin},
+  morekeywords={Diagram, LightSource, Camera, PathType, Path, VertexType, BounceType, DiffuseBounce, SpecularBounce, GlossyBounce, InList, Sublist, sample, PathVertex, Path, InVP, Hits, PathType, DiffuseObject, PathEdge, SpecularObject, Arrow, Rectangle, Arc, Dot, AnchorPoint, CurlyBrace, Parallelogram, Line, Tick, DoubleArrow, Bracket, Region, Curve, Paren, global, forall, where, above, below, with, ensure, encourage, override, layer, ALL, CANVAS, delete, Auto, optimized, plugin,scalar,vec2,vec3,shape,Polygon,Scene},
   morecomment=[l][\color{gray}]{--}
 }
 
@@ -420,9 +434,18 @@ pdfborder=0 0 0,  %removes outlines around hyper links in online display
 % Make sure that full names of authors are used
 % \DeclareNameAlias{author}{given-family}
 \addbibresource{zotero.bib}
+\addbibresource{others.bib}
 
 % subsubsection numbering
 \setcounter{secnumdepth}{3}
+
+
+% appendix
+\usepackage{lscape}        % For landscape pages
+\usepackage{longtable}     % For tables that span multiple pages
+\usepackage{pdfpages}
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -430,10 +453,7 @@ pdfborder=0 0 0,  %removes outlines around hyper links in online display
 % Provides a draft mark at the top of the document. 
 % \draftstamp{\today}{DRAFT}
 
-% 
-
-
-\begin {document} 
+\begin{document} 
 \frontmatter
 
 %initialize page style, so contents come out right (see bot) -mjz
@@ -441,15 +461,6 @@ pdfborder=0 0 0,  %removes outlines around hyper links in online display
 
 \title{ 
 {\bf Authoring conceptual diagrams by codifying visual representations}}
-
-% Authoring conceptual diagrams
-% Authoring conceptual diagrams by codifying visual representations
-% Authoring conceptual diagrams by encoding visual representations
-
-% Representationally saliant diagramming tools
-% Beautiful diagrams and how to make them
-% 
-
 \author{Wode ``Nimo'' Ni 倪沃德}
 \date{\today}
 \Year{2024}
@@ -469,7 +480,7 @@ Shriram Krishnamurthi, Brown University\\
 % copyright notice generated automatically from Year and author.
 % permission added if \permission{} given.
 
-% \keywords{Stuff, More Stuff}
+\keywords{Diagramming,Diagrammatic Problems,Visual Representations}
 
 \maketitle
 
@@ -492,9 +503,9 @@ Atop \Penrose, I built \Edgeworth, a tool designed to help educators easily crea
 \Penrose and \Edgeworth demonstrate that codifying visual representations allow diagrams authors to reuse their design effort, produce new diagrams faster, and thus make diagrams at a larger scale.
 \end{abstract}
 
-% \begin{acknowledgments}
-% TODO
-% \end{acknowledgments}
+\begin{acknowledgments}
+\input{acknowledgements}
+\end{acknowledgments}
 
 
 \tableofcontents
@@ -523,8 +534,8 @@ Atop \Penrose, I built \Edgeworth, a tool designed to help educators easily crea
 %
 % Other than that, just make it look good...
 
-
 % \input{prelude}
+
 \chapter{Introduction}
 \label{chp:introduction}
 \input{introduction}
@@ -540,7 +551,6 @@ Atop \Penrose, I built \Edgeworth, a tool designed to help educators easily crea
 \chapter[\Penrose: From Notations to Beautiful Diagrams]{\Penrose: From Notations to Beautiful Diagrams\footnote{
 This chapter is adapted from ``\citefield{penrose}{title}''~\cite{penrose}.}}
 \label{chp:penrose}
-
 \input{penrose}
 
 \chapter[\Edgeworth: Diagrammatic Problem Authoring at Scale]{\Edgeworth: Diagrammatic Problem Authoring at Scale\footnote{This chapter is adapted from Sections 1 to 5 of ``\citefield{ni_edgeworth_2024}{title}''~\cite{ni_edgeworth_2024}.}}
@@ -555,8 +565,18 @@ This chapter is adapted from ``\citefield{penrose}{title}''~\cite{penrose}.}}
 \label{chp:conclusion}
 \input{conclusion}
 
-% \appendix
-% \include{appendix}
+\appendix
+\input{appendix/diagrammer-interview-protocol}
+\input{appendix/penrose-registry}
+\input{appendix/edgeworth-formative-interview-protocol}
+\input{appendix/edgeworth-problems}
+\input{appendix/edgeworth-reliability-eval-coding}
+\input{appendix/edgeworth-user-study-protocol}
+\input{appendix/edgeworth-expert-demonstration-walkthrough}
+
+
+
+% \input{appendix/dinoshade-style}
 
 \backmatter
 

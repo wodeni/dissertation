@@ -421,18 +421,18 @@ Vector `x2` @\label{lin:VectorBacktick}@ { override `x2`.shape.color = Colors.gr
 \subsubsection{Selectors}
 \label{sec:Selectors}
 
-A selector uses pattern matching to specify which objects will be styled by a rule.  Unlike regular expressions, selectors do not match literal strings of \Substance{} code, but rather objects and relationships in the context defined by this code.  A simple example is a selector that matches every instance of a type, indicated by the \inlineSTY{\keyword{forall}} keyword.  For instance, \cref{lin:VectorSpaceRule} matches all vector spaces.  In subsequent declarations, \inlineSTY{\texttt{U}} refers to the vector space \inlineSUB{\texttt{X}} from the \Substance\ program.  The \inlineSTY{\keyword{where}} keyword restricts matches to objects that satisfy one or more relationships; \eg \cref{lin:OrthogonalRule} matches all pairs of orthogonal vectors.  One can also match by name using backticks; \eg \cref{lin:VectorBacktick} matches only the vector \inlineSUB{\texttt{x2}}.  Selectors could be enriched in the future to allow other statements from first-order logic (such as \(\exists\), disjunctions, and conjunctions).
+A selector uses pattern matching to specify which objects will be styled by a rule.  Unlike regular expressions, selectors do not match literal strings of \Substance{} code, but rather objects and relationships in the context defined by this code.  A simple example is a selector that matches every instance of a type, indicated by the \inlineSTY{\keyword{forall}} keyword.  For instance, Line~\ref{lin:VectorSpaceRule} matches all vector spaces.  In subsequent declarations, \inlineSTY{\texttt{U}} refers to the vector space \inlineSUB{\texttt{X}} from the \Substance\ program.  The \inlineSTY{\keyword{where}} keyword restricts matches to objects that satisfy one or more relationships; \eg Line~\ref{lin:OrthogonalRule} matches all pairs of orthogonal vectors.  One can also match by name using backticks; \eg Line~\ref{lin:VectorBacktick} matches only the vector \inlineSUB{\texttt{x2}}.  Selectors could be enriched in the future to allow other statements from first-order logic (such as \(\exists\), disjunctions, and conjunctions).
 
 \subsubsection{Cascading}
 \label{sec:Cascading}
 
-A cascading mechanism allows rules to be refined for more specialized objects or relationships.  For example, the selector in \cref{lin:VectorBacktick} matches a specific vector, refining an earlier rule that applies to all vectors.  Rule precedence is determined by order in the \Style{} file, and later rules can refer to any previously defined \emph{field} (\cref{sec:Fields}).  The \inlineSTY{\keyword{override}} keyword (\cref{lin:OverrideVectorColor}) hints that a rule will modify an existing field, otherwise the compiler issues a warning.
+A cascading mechanism allows rules to be refined for more specialized objects or relationships.  For example, the selector in Line~\ref{lin:VectorBacktick} matches a specific vector, refining an earlier rule that applies to all vectors.  Rule precedence is determined by order in the \Style{} file, and later rules can refer to any previously defined \emph{field} (\cref{sec:Fields}).  The \inlineSTY{\keyword{override}} keyword (Line~\ref{lin:OverrideVectorColor}) hints that a rule will modify an existing field, otherwise the compiler issues a warning.
 
 
 \subsubsection{Fields}
 \label{sec:Fields}
 
-The visual representation of an object is specified by creating \emph{fields} that are assigned \emph{values} (\cref{sec:ValuesAndExpressions}).  For instance, in Lines \ref{lin:VectorIsALittleArrow}--\ref{lin:VectorIsALittleArrowEnd} a field called \inlineSTY{\texttt{u.arrow}} is created and assigned an expression describing an arrow.  Fields are created on assignment and can have any name not conflicting with a reserved word.  Fields not naturally associated with a single object can also be assigned locally to a rule. For instance, \cref{lin:OrthogonalShape} is used to draw a right angle mark between any pair of orthogonal vectors.  Every object automatically has fields \inlineSTY{\texttt{name}} and \inlineSTY{\texttt{label}} storing its \Substance{} name and label string (\resp), as well as any field created via a constructor (\cref{sec:TheDomainSchema}).
+The visual representation of an object is specified by creating \emph{fields} that are assigned \emph{values} (\cref{sec:ValuesAndExpressions}).  For instance, in Lines \ref{lin:VectorIsALittleArrow}--\ref{lin:VectorIsALittleArrowEnd} a field called \inlineSTY{\texttt{u.arrow}} is created and assigned an expression describing an arrow.  Fields are created on assignment and can have any name not conflicting with a reserved word.  Fields not naturally associated with a single object can also be assigned locally to a rule. For instance, Line~\ref{lin:OrthogonalShape} is used to draw a right angle mark between any pair of orthogonal vectors.  Every object automatically has fields \inlineSTY{\texttt{name}} and \inlineSTY{\texttt{label}} storing its \Substance{} name and label string (\resp), as well as any field created via a constructor (\cref{sec:TheDomainSchema}).
 
 
 \subsubsection{Properties}
@@ -445,12 +445,12 @@ The visual representation of an object is specified by creating \emph{fields} th
 \subsubsection{Values and Expressions}
 \label{sec:ValuesAndExpressions}
 
-Atomic \emph{values} can be combined to form \emph{expressions}.  For instance, Lines \ref{lin:VectorSpaceConstantsBegin}--\ref{lin:VectorSpaceConstantsEnd} assign values, whereas Lines \ref{lin:VSArrowGeometryBegin}--\ref{lin:VSArrowGeometryEnd} assign composite expressions involving inline computation.  \cref{lin:VectorLabelColor} specifies value via a \emph{path}, \ie, a sequence of expressions separated by \inlineSTY{\texttt{.}} characters; such assignments are made by reference.  Expressions can also access values from plugins (\cref{sec:PlugIns}).  A very important construct is \emph{pending values}, denoted by a \inlineSTY{\texttt{?}} as in \cref{lin:PendingArrowEnd}.  This line specifies that the location of the arrow endpoint is not fixed and will be automatically determined by the solver (\cref{sec:LayoutEngine}).
+Atomic \emph{values} can be combined to form \emph{expressions}.  For instance, Lines \ref{lin:VectorSpaceConstantsBegin}--\ref{lin:VectorSpaceConstantsEnd} assign values, whereas Lines \ref{lin:VSArrowGeometryBegin}--\ref{lin:VSArrowGeometryEnd} assign composite expressions involving inline computation.  Line~\ref{lin:VectorLabelColor} specifies value via a \emph{path}, \ie, a sequence of expressions separated by \inlineSTY{\texttt{.}} characters; such assignments are made by reference.  Expressions can also access values from plugins (\cref{sec:PlugIns}).  A very important construct is \emph{pending values}, denoted by a \inlineSTY{\texttt{?}} as in Line~\ref{lin:PendingArrowEnd}.  This line specifies that the location of the arrow endpoint is not fixed and will be automatically determined by the solver (\cref{sec:LayoutEngine}).
 
 \subsubsection{Constraints and Objectives}
 \label{sec:ConstraintsAndObjectives}
 
-Constraints and objectives describe how pending values should behave.  In particular, the \inlineSTY{\keyword{ensure}} keyword defines a hard constraint that the diagram must satisfy. For instance, \cref{lin:OrthogonalConstraint} specifies that two orthogonal vectors must be drawn at right angles.  The \inlineSTY{\keyword{encourage}} keyword specifies a relationship that should be satisfied as much as possible. For instance, \cref{lin:LabelObjective} asks that the label for a vector be placed close to its endpoint. These expressions are translated into constraints and energy functions that make up a numerical optimization problem (\cref{sec:Solver}).
+Constraints and objectives describe how pending values should behave.  In particular, the \inlineSTY{\keyword{ensure}} keyword defines a hard constraint that the diagram must satisfy. For instance, Line~\ref{lin:OrthogonalConstraint} specifies that two orthogonal vectors must be drawn at right angles.  The \inlineSTY{\keyword{encourage}} keyword specifies a relationship that should be satisfied as much as possible. For instance, Line~\ref{lin:LabelObjective} asks that the label for a vector be placed close to its endpoint. These expressions are translated into constraints and energy functions that make up a numerical optimization problem (\cref{sec:Solver}).
 
 
 \section{Layout engine}
@@ -529,7 +529,18 @@ The ASTs are combined to define a \emph{computational graph} that encodes operat
 \subsection{Solver}
 \label{sec:Solver}
 
-The optimization graphs produced by the compiler describe an optimization problem in standard form, \ie, minimization of an objective function subject to equality and inequality constraints~\cite[Section 4.1]{convexOptimization}.  Such problems may be solved with many standard methods. We currently use an \emph{exterior point method}~\cite{hiroshi_primal-dual_2010} that starts with an infeasible point and pushes it toward a feasible configuration via progressively stiffer penalty functions---mirroring a process often used by hand (\cref{sec:OptimizationBasedSynthesis}).  Moreover, the exterior point mehod is an appropriate choice since (i) a feasible starting point is typically not known (\cref{fig:OptimizationProgress}), and (ii) by converting constraints into progressively stiffer penalty functions, we can use descent algorithms that do not directly support constrained optimization.  In particular, we use L-BFGS with a line search strategy suitable for nonsmooth objectives~\cite{Lewis:2009:NOB}.  Given the rich structure of our optimization graphs, which can be linked back to program semantics, there are plenty of opportunities to improve this generic strategy, such as decomposing the problem into smaller pieces that can be independently optimized, or employing an SMT solver to find a feasible initial state.
+The optimization graphs produced by the compiler describe an optimization problem in standard form, \ie, minimization of an objective function subject to equality and inequality constraints~\cite[Section 4.1]{convexOptimization}.  Such problems may be solved with many standard methods. We currently use an \emph{exterior point method}~\cite{hiroshi_primal-dual_2010} that starts with an infeasible point and pushes it toward a feasible configuration via progressively stiffer penalty functions---mirroring a process often used by hand (\cref{sec:OptimizationBasedSynthesis}). Specifically, \Penrose encodes constraints as nonnegative penalty functions \(\mathcal{P}_1, \ldots, \mathcal{P}_l: \mathbb{R}^m \to \mathbb{R}_{\geq 0}\) each of which equal $0$ if and only if the constraint is satisfied. Objectives are energy terms  \(\mathcal{E}_1, \ldots, \mathcal{E}_k\). Overall, the \Penrose layout engine solves an optimization problem:%
+\begin{equation}
+   \label{eq:MainProblem}
+       \min_{\vec p \in \mathbb{R}^m} \sum_{i=1}^k \mathcal{E}_i(\vec p)  \quad  \text{s.t.} \quad \sum_{i=1}^l \mathcal{P}_i(\vec p) = 0.
+\end{equation}%
+The exterior point method~\citep{hiroshi_primal-dual_2010} to pose this problem as a sequence of unconstrained optimization problems, where constraints are iteratively stiffened over layout steps: 
+\begin{equation}
+   \label{eq:ExteriorPointProblem}
+   \min_{\vec p \in \mathbb{R}^m} \sum_{i=1}^k \mathcal{E}_i(\vec p) + c_n\sum_{i=1}^l \mathcal{P}_i^2(\vec p), \quad n = 0, 1, 2, \cdots
+\end{equation}% 
+
+The exterior point method is an appropriate choice since (i) a feasible starting point is typically not known (\cref{fig:OptimizationProgress}), and (ii) by converting constraints into progressively stiffer penalty functions, we can use descent algorithms that do not directly support constrained optimization. In particular, we use L-BFGS with a line search strategy suitable for nonsmooth objectives~\cite{Lewis:2009:NOB}.  Given the rich structure of our optimization graphs, which can be linked back to program semantics, there are plenty of opportunities to improve this generic strategy, such as decomposing the problem into smaller pieces that can be independently optimized, or employing an SMT solver to find a feasible initial state.
 
 \begin{figure}[t]
    \centering
@@ -836,7 +847,7 @@ Finally, the diagram specification enables us to build ``staged'' diagrams, such
 
 In mathematics, complexity is built up by composing simple statements. The mapping defined by a \Style{} program automatically lifts this \emph{compositionality} to the visual setting. That is, it enables \Substance\ writers to compose logical statements to build up visual complexity without explicit effort from the \Style{} programmer.  A good analogy is procedural \emph{L-systems}~\cite{Prusinkiewicz:2012:ABP}. Although a graphics programmer can directly write code to recursively apply spatial transformations, it saves effort to first generate strings in a grammar, then systematically translate these strings into graphical transformations.
 
-In \Penrose{}, examples from linear algebra demonstrate compositionality.  The \Style{} declaration on \cref{lin:VectorIsALittleArrowEnd} of \cref{fig:style_linalg} defines the visual icon for a vector (a 2D arrow).  Suppose we now want to illustrate \emph{linear maps}, denoted by \(f\), which have two defining properties: linearity of vector addition (\(f(u+v) = f(u)+f(v)\) for all vectors \(u,v\)) and homogeneity of scalar multiplication (\(f(cu) = cf(u)\) for all vectors \(u\) and scalars \(c\)).  Successive \Style\ rules cascade on \cref{fig:style_linalg} to define how these logical operations  should be mapped to visual transformations.  For example, application of a linear map \(f\) is represented by a literal $2 \times 2$ matrix-vector multiply; the image vector \(f(u)\) also inherits the color of the argument \(u\). The map itself is visually represented by a labeled arrow, and the domain and target spaces by coordinate planes on either side. The \Style{} programmer need not compose these directives explicitly; the compiler does the tedious job of translating \Substance{} statements (\cref{fig:linearMap}, \figloc{top}) into a composition of graphical statements that define a diagram (\cref{fig:linearMap}, \figloc{bottom}).  Moreover, since the \Style{} program faithfully represents the underlying mathematics, we observe the expected properties, \eg the arrow for \(f(u_1+u_2)\) is the same as the arrow for \(f(u_1)+f(u_2)\).  Automatically checking consistency of the visual representation based on analysis of a richer \Domain{} schema would be an interesting topic for future work.
+In \Penrose{}, examples from linear algebra demonstrate compositionality.  The \Style{} declaration on Line~\ref{lin:VectorIsALittleArrowEnd} of \cref{fig:style_linalg} defines the visual icon for a vector (a 2D arrow).  Suppose we now want to illustrate \emph{linear maps}, denoted by \(f\), which have two defining properties: linearity of vector addition (\(f(u+v) = f(u)+f(v)\) for all vectors \(u,v\)) and homogeneity of scalar multiplication (\(f(cu) = cf(u)\) for all vectors \(u\) and scalars \(c\)).  Successive \Style\ rules cascade on \cref{fig:style_linalg} to define how these logical operations  should be mapped to visual transformations.  For example, application of a linear map \(f\) is represented by a literal $2 \times 2$ matrix-vector multiply; the image vector \(f(u)\) also inherits the color of the argument \(u\). The map itself is visually represented by a labeled arrow, and the domain and target spaces by coordinate planes on either side. The \Style{} programmer need not compose these directives explicitly; the compiler does the tedious job of translating \Substance{} statements (\cref{fig:linearMap}, \figloc{top}) into a composition of graphical statements that define a diagram (\cref{fig:linearMap}, \figloc{bottom}).  Moreover, since the \Style{} program faithfully represents the underlying mathematics, we observe the expected properties, \eg the arrow for \(f(u_1+u_2)\) is the same as the arrow for \(f(u_1)+f(u_2)\).  Automatically checking consistency of the visual representation based on analysis of a richer \Domain{} schema would be an interesting topic for future work.
 
 % (addition, scaling, and application of linear maps)
 % \setlength{\columnsep}{1em}
@@ -1119,8 +1130,313 @@ We are optimistic about our ability to improve the optimization speed, since we 
 
 % Specialized software for visualizing logical relationships in one domain: Group Explorer, euclid.js, chemical diagram software, Mermaid, UML diagrams,etc.
 
+\section{Open-Source Development}
+\label{sec:penrose-open-source}
 
-\section{Discussion and Future Work}
+The \Penrose{} system has been open-sourced since 2017 and is still in active development as of the writing of this dissertation. In this section, we briefly discuss the evolution of the system implementation, the open-source development infrastructure for \Penrose, and the open-source community. 
+
+\subsection{Evolution of the implementation}
+
+At the time of the publication of \cite{penrose} in 2020, the core system was written in Haskell, which is connected via WebSocket to a web editor written in TypeScript. Between 2020 and 2024, the core has gone through major rewrites from Haskell to TypeScript, and the editor has been completely rewritten. Some features such as the notation statements~\cref{sec:TheDomainSchema} and the plugin system~\cref{sec:PlugIns} have been deprecated, while new features have been added such as staged layout\footnote{\url{https://penrose.cs.cmu.edu/blog/staged-layout}} and indexed statements in \Substance{}\footnote{\url{https://penrose.cs.cmu.edu/docs/ref/substance/indexed-statements}}. Some of recently added features are discussed in \cref{sec:penrose-limitations}.
+
+\subsection{Development infrastructure} 
+
+Like many modern open-source tools, the \Penrose source code is hosted on GitHub and community discussion happens on a Discord server. \Penrose is organized as a monolithic GitHub repository which includes the website, all core libraries, command-line tools, and documentation. On GitHub, contributors and core team members track issues, submit pull requests, and review code openly. All other discussions take place on a Discord server that is open to the public. The repository contains unit tests for various modules of \Penrose such as the compilers, optimizer, and standard library functions. For end-to-end testing, we have built a benchmark suite of diagrams in the \Penrose format. Our CI workflow runs a test script that renders all diagrams in the suite and collects performance metadata. A sample of the output of the CI workflow can be found in \cref{app:registry-benchmark} and \cref{app:registry-diagram}. Test suites are integrated deeply within our DevOps infrastructure. After each commit, GitHub Actions workflows run every test, render diagrams from the benchmark suite, and collect performance data. In addition to testing, GitHub Actions also deploy the \Penrose documentation site~\cite{penrose-docs}, an online IDE~\cite{penrose-ide}, and npm packages~\cite{penrose-npm}. 
+
+\subsection{Open-source community} 
+
+The \Penrose open-source project\footnote{\url{https://github.com/penrose/penrose}} has already accumulated a sizable community, with around 7000 subscribers to our mailing list, over 1800 followers on X\footnote{\url{https://x.com/UsePenrose}}, and over 400 members in the \Penrose Discord server. The community consists of technical contributors, domain experts, and end-users. To date, we are most successful at engaging software engineering contributors in the community. 
+
+One example of such community effort is \texttt{ProofWidgets}, an extensible library of proof visualization UI components. Using \texttt{ProofWidgets} in the Lean editor plugin, Lean users can interact with domain-specific, reference-preserving visualizations (i.e., \textit{presentations}) of elements in Lean programs~\cite{nawrocki_extensible_2023}. A notable example of such a visualization shipped~\footnote{\url{https://github.com/leanprover-community/mathlib4/pull/3583}} in Lean \texttt{mathlib4} is in Figure~\ref{fig:lean-penrose}, which builds on atop \Penrose{} and visualizes equalities of morphisms in a category as a Penrose-generated commutative diagram with interactive labels that link to expressions in the source program. In addition to the commutative diagram widget, \texttt{ProofWidgets} also includes \Penrose{}-based widgets for monodial categories, Euclidean geometry (Figure~\ref{fig:lean-euclidean}), and set theory (Figure~\ref{fig:lean-venn}). 
+
+
+
+% \begin{figure}[h]
+% \includegraphics[width=\textwidth]{assets/lean-penrose.pdf}
+% \caption{A target type in the language of category theory is selected. The statement is displayed
+% as a sequence of commutative diagrams connected by implication arrows. This diagram is generated with \Penrose{}.}
+% \label{fig:lean-penrose}
+% \end{figure}
+
+% \begin{figure}[h]
+% \includegraphics[width=\textwidth]{assets/lean-euclidean.pdf}
+% \caption{A widget for Euclidean geometry proofs independently developed by the Lean community. On top of the \Penrose{}-generated geometry diagram, the proof widget provides code actions (``insert'') for generating code in the Lean source program to complete the proof.}
+% \label{fig:lean-euclidean}
+% \end{figure}
+
+% \begin{figure}[h]
+% \includegraphics[width=\textwidth]{assets/lean-venn.pdf}
+% \caption{A proof of the transitive property of subset relations in Lean with an Euler diagram generated from the hypotheses. In this case, the user is trying to prove $R \subseteq U$ given $S \subseteq U$ and $R \subseteq S$. Selecting the hypotheses shows the goal visually. Toggling the irrelevant condition $T \subseteq U$ will show that it has no effect on the result of the goal visually.}
+
+
+The marriage of Lean and \Penrose{} is enabled by the shared goal of extensibility based on web technologies: \Penrose{} has a plain-text format and flexible JavaScript core designed to be easily integrated other platforms, and \texttt{ProofWidgets} is designed to render any JavaScript-based components. These design decisions led to simple integration at the technical level. The Lean wrapper for \Penrose{} only imports the \texttt{@penrose/core} NPM package, and make a few API calls to compile the \Penrose{} source. No additional glue code was needed. For example, the following is an excerpt of the Lean code for the Euler diagram widget, where \texttt{<PenroseDiagram/>} is the Lean wrapper for API calls to the JavaScript \texttt{@penrose/core} to compile, optimize, and render the given \Penrose{} trio. 
+
+The first demo of \texttt{ProofWidgets} is built independently by the Lean community. The \Penrose{} team took notice and reached out to collaborate on the first commutative diagram widget, which required some additional features such as new arrowhead styles and staged layout. After the initial contact, the rest of the community continued to build other domains (e.g., Euler diagrams for set theory and Euclidean geometry diagrams) independently. 
+
+\begin{figure}[h!]
+    \centering
+    \begin{subfigure}{\textwidth}
+        \centering
+        \includegraphics[width=.8\textwidth]{assets/lean-penrose.pdf}
+        \caption{A target type in the language of category theory is selected. The statement is displayed as a sequence of commutative diagrams connected by implication arrows. This diagram is generated with \Penrose{}.}
+        \label{fig:lean-penrose}
+    \end{subfigure}
+    
+    \begin{subfigure}{\textwidth}
+        \centering
+        \includegraphics[width=.8\textwidth]{assets/lean-euclidean.pdf}
+        \caption{A widget for Euclidean geometry proofs independently developed by the Lean community. On top of the \Penrose{}-generated geometry diagram, the proof widget provides code actions (``insert'') for generating code in the Lean source program to complete the proof.}
+        \label{fig:lean-euclidean}
+    \end{subfigure}
+    
+    \begin{subfigure}{\textwidth}
+        \centering
+        \includegraphics[width=.8\textwidth]{assets/lean-venn.pdf}
+        \caption{A proof of the transitive property of subset relations in Lean with an Euler diagram generated from the hypotheses. In this case, the user is trying to prove $R \subseteq U$ given $S \subseteq U$ and $R \subseteq S$. Selecting the hypotheses shows the goal visually. Toggling the irrelevant condition $T \subseteq U$ will show that it has no effect on the result of the goal visually.}
+        \label{fig:lean-venn}
+    \end{subfigure}
+    
+    \caption{Various diagrams generated with \Penrose{} and widgets for Lean proofs: (a) commutative diagrams in category theory, (b) Euclidean geometry proof widget, and (c) Euler diagram for subset relations.}
+    \label{fig:lean-combined}
+\end{figure}
+
+
+\section{Limitations, Recent Developments, and Future Work}
+\label{sec:penrose-limitations}
+
+\Penrose{} has several limitations that make interesting topics for future work. In this section, we discuss the system's limitations in language expressiveness, layout optimization, and extensibility in depth, and present possible directions for future work. This section also describes some improvements to \Penrose{} since the publication of \cite{penrose}.
+
+\subsection{Language expressiveness}
+
+While we showed a wide range of domains that \Penrose{} can express in \cref{sec:ExamplesandEvaluation}, the \Domain, \Substance, and \Style\ languages are limited in what they can express. Here we discuss some limitations for each language:
+
+\paragraph{\inlineDSL{\Domain{}}} Unlike theorem provers that formalize mathematics, the \Domain{} schema~(\cref{sec:TheDomainSchema}) in \Penrose{} only attempts to let user codify diagram-specific constructs for diagramming. Therefore, \inlineDSL{\texttt{\keyword{type}}}, \inlineDSL{\texttt{\keyword{predicate}}}, and \inlineDSL{\texttt{\keyword{function}}} are simplistic approximation of \emph{sorts}, \emph{relations}, and \emph{operations} in mathematics~\cite{avigad_design_2020}. As an example, \Domain{} \inlineDSL{\texttt{\keyword{predicates}}} captures mathematical predicates~\cite{stoll_set_2012} partially. Mathematical predicates often have important properties such as reflexivity, transitivity, and symmetry. For instance, \inlineDSL{\texttt{\keyword{predicate} SingleBond(Atom, Atom)}} is symmetric, so \inlineSUB{\texttt{SingleBond(H, O)}} should be equivalent to \inlineSUB{\texttt{SingleBond(O, H)}}. However, since \Penrose{} does not support symmetry, \inlineSTY{\texttt{\keyword{forall} Hydrogen H; Oxygen O \texttt{\keyword{where}} SingleBond(O, H)}} will not match the \inlineSUB{\texttt{SingleBond(H, O)}}. Currently, symmetry for binary predicates is implemented in \Penrose{} (\inlineDSL{\texttt{\keyword{symmetric predicate} SingleBond(Atom, Atom)}}), but \Penrose{} still does not support other mathematical properties such as transitivity.
+
+% notation is limited
+The \inlineDSL{\keyword{notation}} mechanism implemented as of \cite{penrose} is a simple macro system that simply replace tokens based on the specification. As a result, it is limited in the types of syntax extensions it allows. For instance, Unicode operators such as $\perp$ in 
+
+\begin{center}
+\inlineDSL{\texttt{\keyword{notation} "v1 $\perp$ v2" $\sim$ "Orthogonal(v1,v2)"}}
+\end{center}
+
+\noindent need to be defined and tokenized by the lexers in the \Penrose{} compiler. In addition, after the tokens are defined manually,  \inlineDSL{\keyword{notation}} does not compose operators unambiguously due to the lack of precedence and associativity in the specification. Currently, this syntax extension mechanism remains unimplemented in \Penrose{} \texttt{v4.0.0-alpha.3}. A future full implementation would let the user extend the compiler with new tokens and expressions, akin to the \texttt{notation} mechanism in Coq\footnote{\url{https://coq.inria.fr/doc/V8.19.0/refman/user-extensions/syntax-extensions.html}}. 
+
+% (\inlineDSL{\texttt{\keyword{notation} "Vector v $\in$ V" $\sim$ "Vector a; In(a,U)"}}).
+
+\paragraph{\inlineSUB{\Substance{}}} The design of \Substance{} presented in \cref{sec:TheSubstanceLanguage} does not capture some common notational conventions in mathematics and many other STEM fields. \inlineDSL{\keyword{notation}} in \Domain lets users extend the syntax of \Substance{} with some limitations. However, these syntax extensions do not systematically capture the types of \textit{program transformations} frequently demanded by \Penrose{} users. Here we discuss the case of generating additional \Substance{} objects from one. In the Euclidean geometry, a triangle is made up of 3 points, 3 line segments, and 3 interior angles. In traditional mathematics, once a triangle is constructed, it is obvious that the points, segments, and angles can be used automatically. Instead, users have to declare all of them in the Euclidean geometry domain (\cref{sec:Geometry}):
+
+\vspace{1em}
+\begin{mdframed}[style=SUBCode]
+\begin{lstlisting}[language=Sub-geom,escapechar=@]
+Point A, B, C@\label{lin:points}@
+Triangle ABC := Triangle(A, B, C)@\label{lin:tri}@
+Segment AB := Segment(A, B)
+Segment BC := Segment(B, C)
+Segment CA := Segment(C, A)
+Angle aABC := InteriorAngle(A, B, C)
+Angle aBAC := InteriorAngle(B, A, C)
+Angle aACB := InteriorAngle(A, C, B)
+EqualLength(AB, BC)
+EqualAngle(aABC, aBAC)
+\end{lstlisting}
+\end{mdframed}
+\vspace{1em}
+
+Ideally, we want \Penrose to know that the segments, point, and angles should be created automatically whenever a \inlineSUB{\keyword{Triangle}} is initialized in \Substance. For example, Lines~\ref{lin:points}--\ref{lin:tri} should be sufficient to generate all of the angles and segments. To achieve this, the \Domain{} writer effectively needs to encode this program transformation systematically. The \Domain{} notations do not let the user perform string manipulation on the variable names such as generating \inlineSUB{\texttt{aABC}} from \inlineSUB{\texttt{ABC}}. To systematically support program transformations, future work need to consider expanding the \inlineDSL{\keyword{notation}} mechanism, or introduce a more general specification format for syntax extension and program transformations in \Domain{}.
+
+In other examples, we observed that \Substance{} users sometimes wanted to declare a large number of objects and needed to manually write many lines like so:
+
+\vspace{1em}
+\begin{minipage}{.45\linewidth}
+\begin{mdframed}[style=SUBCode]
+\begin{lstlisting}[language=Sub-graph,escapechar=@]
+Node n0
+Node n1
+-- ...98 more nodes
+Node n100
+Edge e0 := MakeEdge(n0, n1)
+Edge e1 := MakeEdge(n0, n2)
+-- ...97 more edges
+Edge e99 := MakeEdge(n0, n100)
+\end{lstlisting}
+\end{mdframed}
+\end{minipage}\hfill
+\begin{minipage}{.45\linewidth}
+   \includegraphics[width=\linewidth]{assets/penrose/star-graph.png} 
+\end{minipage}
+\vspace{1em}
+
+Conceptually, the content of \Substance{} program can be stated mathematically as: a star spectral graph with 101 nodes consists of a central node \( N_0 \) and 100 peripheral nodes \( N_1, N_2, \dots, N_{100} \), where the edge set is given by \( E = \{(N_0, N_i) : 1 \leq i \leq 100\} \). Therefore, we have added support for \emph{sequences} in \Substance{}\footnote{\url{https://penrose.cs.cmu.edu/docs/ref/substance/indexed-statements}}, which simplifies the program above to the following:
+
+\vspace{1em}
+\begin{mdframed}[style=SUBCode]
+\begin{lstlisting}[language=Sub-graph,escapechar=@]
+Node n_i for i in [0, 100]
+Edge e_j := MakeEdge(n_0, n_j) for j in [1, 100]
+\end{lstlisting}
+\end{mdframed}
+\vspace{1em}
+
+\Substance{} sequences is a practical design decision that attempted to balance the naturalness of the \Substance{} notation and its utility for diagramming. Future work will need to study the limitations of \Substance{} more systematically, survey existing notational conventions, and test design alternatives with users to extend \Substance{} to be more expressive and natural for diagrammers. 
+
+\paragraph{\inlineSTY{\Style{}}}  In the current version of \Penrose{}, authors can reuse geometric and layout primitives (\cref{sec:ConstraintsAndObjectives}) to create new \Style{} programs, and users consume these programs by writing different \Substance{} programs with them. Each \Style{} program is standalone and self-contained, meaning that everything from the styling of points to the color palettes must be defined within that program. In practice, this means that common visual design patterns are copied and pasted both within and between \Style{} files. Additionally, it is common for individual diagrams within a domain to have customized visual elements to draw focus or illustrate a concept. Currently, the only way to override the domain-wide visual style in \Penrose{} is by using workarounds that involve more copying/pasting code in \Style{}. These two limitations result in repetitive and lengthy programs that require high effort to edit and maintain, even for expert \Penrose{} users. For instance, examples in the geometry (\cref{sec:Geometry}) and meshes (\cref{sec:Meshes}) domains both include circles with nearby text labels. In the current version of \Penrose{}, the user will need to declare the circle, label, and constraints in every \Style{} program like so:
+\vspace{1em}
+% \begin{minipage}{.45\linewidth}
+\begin{mdframed}[style=STYCode]
+\begin{lstlisting}[language=Sty-geom,escapechar=@]
+const {
+  pointRadius = 4.0
+  labelPadding = 30.0
+}
+forall Point p {
+  p.icon = Circle { center: (?, ?) }
+  p.text = Equation { string : p.label }
+  ensure signedDistance(p.text, p.vec) == const.textPadding + const.pointRadius 
+}
+\end{lstlisting}
+\end{mdframed}
+% \end{minipage}\hfill
+% \begin{minipage}{.45\linewidth}
+\begin{center}
+\includegraphics[width=.7\linewidth]{assets/penrose/shared-point.png}
+\end{center}
+% \end{minipage}
+\vspace{1em}
+
+\noindent \Penrose{} currently supports a fixed set of visual elements that roughly correspond to the primitives supported by SVG.\footnote{https://penrose.cs.cmu.edu/docs/ref/style/shapes-overview} Further, \Style{} does not support functions or custom objects. As a result, the definition of ``a circle with a nearby label around'' must be re-declared not only for every \Style{} program, but also every occurrence within the same \Style{} program. Currently, proposals include adding a generic object type for reusing shape properties and allowing function declarations in \Style{}.\footnote{\url{https://github.com/penrose/penrose/issues/924}} Future work will need to explore design alternatives to allow better reusability and parametrization of shapes properties and \Style{} selector blocks.
+
+Another source of verbosity in \Style{} is the lack of support for iteration and collections. For instance, within a selector block, \Style{} writers have no choice but to repeat statements for some common graphics operations. For instance, in an reproduction of the \texttt{dinoshade} (a common OpenGL/GLUT example) using \Penrose{}, the \Style{} writer had to repeat the declaration of the 99 faces of the dinosaur geometry:
+
+\begin{mdframed}[style=STYCode]
+\begin{lstlisting}[language=Sty-RT,escapechar=@]
+-- from dinoshade.style
+-- compute the color for the first polygon
+vec3 C0 = (ambient + (1-ambient)*max(0, dot((N[0][0],N[0][1],N[0][2]),L))) * D.skinColor
+
+-- draw the first polygon
+shape f0 = Polygon {
+  points: [ (p[0][0],p[0][1]), (p[1][0],p[1][1]), (p[2][0],p[2][1]), (p[3][0],p[3][1]) ]
+  fillColor: rgba( C0[0], C0[1], C0[2], D.alpha )
+  strokeColor: D.wireColor
+  strokeWidth: wireWidth
+  ensureOnCanvas: false
+  opacity: max( .2, -cross2D( (p[1][0],p[1][1])-(p[0][0],p[0][1]), (p[2][0],p[2][1])-(p[0][0],p[0][1]) ))
+}
+vec3 C1 = (ambient + (1-ambient)*max(0, dot((N[1][0],N[1][1],N[1][2]),L))) * G.skinColor
+shape f1 = Polygon {
+  points: [ (p[1][0],p[1][1]), (p[4][0],p[4][1]), (p[5][0],p[5][1]), (p[2][0],p[2][1]) ]
+  fillColor: rgba( C1[0], C1[1], C1[2], G.alpha )
+  strokeColor: G.wireColor
+  strokeWidth: wireWidth
+  ensureOnCanvas: false
+  strokeLinejoin: "round"
+  opacity: max( .2, -cross2D( (p[4][0],p[4][1])-(p[1][0],p[1][1]), (p[5][0],p[5][1])-(p[1][0],p[1][1]) ))
+}
+-- ...97 more declarations of polygons
+\end{lstlisting}
+\end{mdframed}
+
+\includegraphics[width=.9\linewidth]{assets/penrose/dinoshade.png}
+
+\noindent The \Style{} writer, Keenan Crane, summarizes this issue well in the \texttt{README} document for this example\footnote{\url{https://github.com/penrose/penrose/tree/main/packages/examples/src/dinoshade}}:
+
+\begin{quote}
+An even bigger blemish [of \Style{}] (in this case a really big one!) is that there is currently no way to emit a list of shapes, such as a list of \texttt{Polygon}s, given a list of indices into a point list—as with standard OpenGL mechanisms like \texttt{glDrawArrays()}. Moreover, \Style has no looping semantics that would enable us to draw one polygon at a time from a list, a la ``immediate mode'' in legacy OpenGL. Instead, we need to draw the polygons explicitly, one at a time, resulting in an extremely long Style program! 
+\end{quote}
+
+\noindent Indeed, \texttt{dinoshade.style} has 1190 lines of code, 999 of which are repeated \texttt{Polygon} declarations. Therefore, future work should explore designs of iterations and collections to \Style{} to improve its expressiveness.
+
+% However, visual representations in different domains often share common visual components and layout patterns. 
+
+
+% Further, common visual techniques are widely used in diagramming to convey domain-independent concepts, such as using varying opacity or line weight to highlight parts of a diagram, maintaining layout consistency across multiple diagrams to form a visual narrative, or using sliders or other widgets to drive real-time physical simulations in interactive webpages. It seems natural to separate out these common patterns into their own components, suggesting that \Penrose's existing reusability of visual representations in \Style{} does not provide sufficient flexibility for the needs of digital diagrammers.
+
+
+% \begin{itemize}
+%     \item \Style expressiveness: conditionals, loops, discrete things, procedural layout. currently one-way constraint and simultaneous equations. example: creating grids and data visualization. new shapes, no way to reuse properties. 
+%     \item Additionally, the system currently supports only a fixed set of objectives, constraints, functions, graphical primitives, and renderers, as detailed in~\cref{sec:Implementation}. and \Style\ might be extended to provide greater flexibility, \eg{} via user-defined priorities on objectives.
+%     \item  However, our software architecture does not present major roadblocks to greater extensibility, such as enabling programmers to define constraints inline or emit output for other targets such as 3D or interactive platforms. The system also presents opportunities to study questions of usability, learnability, and debugging, such as the natural way that \Style\ users might want to express spatial layout constraints and the learning curve for different classes of users. 
+% \end{itemize}
+
+\subsection{Layout Optimization}
+
+The cost of optimization is the biggest bottleneck in our pipeline, as seen in \cref{sec:PerformanceEvaluation}, which is not surprising given that \Penrose{} currently use a ``catch-all'' solver. As described in \cref{sec:Solver}, the layout optimizer attempts to reduce a global energy at every optimization step (Equation~\ref{eq:ExteriorPointProblem}). This approach, while flexible and general, imposes a high computational demand on the optimizer, as it has more degrees of freedom and more energy terms in the layout problem. In practice, we observed that certain layout problems can be decomposed into smaller ones, and solving smaller layout problems sequentially can improve the optimizer's performance and solution quality. For instance, consider a diagram depicting the \emph{incenter}\footnote{The \textit{incenter} of a triangle is the point where the three angle bisectors intersect. It is equidistant from all sides of the triangle, and serves as the center of the incircle, the circle that is tangent to all three sides of the triangle.} of a triangle in the Euclidean geometry domain:
+
+\vspace{1em}
+\begin{minipage}{.5\linewidth}
+\begin{mdframed}[style=SUBCode]
+\begin{lstlisting}[language=Sub-geom,escapechar=@]
+Point J, K, L, P, m
+Let JKL := Triangle(J, K, L)
+Incenter(P, JKL)
+Let KL := Segment(K, L)
+Collinear(K, m, L)
+Let PLM := Triangle(P, L, m)
+Angle PML := InteriorAngle(P, m, L)
+RightMarked(PML)
+AutoLabel J, K, L, P, m
+\end{lstlisting}
+\end{mdframed}
+\end{minipage}\hfill
+\begin{minipage}{.4\linewidth}
+   \includegraphics[width=\linewidth]{assets/penrose/Triangle Incenter.png} 
+\end{minipage}
+\vspace{1em}
+
+Conceptually, this diagram illustrates the incenter $P$ of $\triangle JKL$, where $P$ is equidistant from the triangle's sides. The layout problem can be broken down into:
+
+\begin{itemize}
+    \item  Lay out points $J$, $K$, and $L$ to form a non-degenerate triangle, a triangle where all three sides have positive length and no angle is $0$ degrees. 
+    \item  Compute the location of the incenter $P$ of $\triangle JKL$.
+    \item Lay out point $m$ on $\overline{KL}$.
+    \item Lay out $\overline{mP}$ perpendicular to $\overline{KL}$.
+    \item Lay out all point labels so they are close to the points.
+    \item If the label is for a triangle vertex, make sure it's outside of the triangle.
+\end{itemize}
+
+\noindent Aside from the location of $P$, everything else is optimized. The current \Penrose optimizer attempts to achieve all of the above concurrently. As a result, \Penrose will try to keep the labels close to the points in every frame of the layout animation. This led to slow layout optimization and visually worse layouts at times. 
+
+In practice, we observed that when using WYSIWYG tools to draw diagrams, diagrammers often lay out parts of a diagram before others. Inspired by this observation, we implemented \textbf{layout stages} in \Penrose to let diagrammers decompose the layout problem in \Style{} into consecutive stages that comprise of subsets of the degrees of freedom and constraints. The layout stages are optionally defined at the top level as a list of names in Style:
+
+\begin{center}
+\noindent\inlineSTY{\texttt{layout = [shape, label, overall]}}
+\end{center}
+
+In Style blocks, inputs and constraints can be associated with stages via the \inlineSTY{\keyword{in}} and \inlineSTY{\keyword{except}} keywords.
+
+\vspace{1em}
+\begin{mdframed}[style=STYCode]
+\begin{lstlisting}[language=Sty-Staged,escapechar=@]
+-- `a` can be altered by the layout engine in the `shape` stage
+a = ? in shape
+-- `b` can be altered in both `shape` and `overall` stages
+b = ? in [shape, overall]
+-- this is equivalent to above
+c = ? except label
+-- if not specified, a variable participates in all stages
+d = ? in [shape, label, overall]
+e = ?
+-- the same thing can be done to constraints and objectives
+ensure a == 20 in shape
+encourage c > 20 except label
+\end{lstlisting}
+\end{mdframed}
+\vspace{1em}
+
+Using layout stages, we rewrote the Euclidean geometry \Style program to stage shape layout before label layout, and observed better performance and layout quality in practice. However, exposing staging at the language level also introduces some potential pitfalls. For instance, one may write a staging Style that's impossible to optimize for. Notably, this issue is not unique to layout stages. In general, it's possible to specify unsolvable layout problems in \Style. Future work need to experiment with detecting infeasible layout specification in general. In addition, as discussed in \cref{sec:PerformanceEvaluation}, the computational graph associated with the layout problem may provide opportunities for automatically staging the layout problem and employing accelerations such as Barnes-Hut~\cite{Barnes:1986:barneshut} for all-pairs in the layout optimizer. 
+
+% Generally, \Style's design is that the program semantics provide rich information about the structure of the optimization problem. This structure should make it possible to adopt highly effective problem-specific optimization strategies of the kind described in \cref{sec:OptimizationBasedSynthesis} and \cref{sec:PerformanceEvaluation}, \eg{} analyzing the computation graph to break down the diagram into smaller constituent pieces.
+
+% Beyond finding local minima, we are excited about different design modalities enabled by exploring the constraint space defined by the \Style{} program, such as sampling a diverse set of examples or interpolating between different layouts to create animations.
+
+\subsection{Extensibility}
+\label{sec:penrose-extensibility-limitation}
+
+The plugin mechanism is designed to let \Penrose{} users leverage external code. The implementation of the design presented in \cref{sec:PlugIns} executes Shell scripts from the Haskell core. Since the rewrite of \Penrose{} to TypeScript in 2020, this feature is no longer supported since this exact implementation would not work in web browsers.
+A practical limitation of the plugin approach is that \Penrose{} users need to install local dependencies and write the necessary glue code to connect the external programs (e.g. a regular expression parser for light path expressions in \cref{sec:RayTracing}\footnote{\url{https://github.com/penrose/penrose/blob/416c29abe8c7265a302f53153132327154335ce2/examples/plugins/regex/regex.py}}) to \Penrose{}. Recognizing this limitation, future work may consider an alternative in which the \Penrose{} languages are embedded in the ecosystem of another host language, \ie embedded domain-specific languages (EDSLs). By relying on the host language's module system and package ecosystem, \Penrose{} code can then be interleaved with calls to external programs more seamlessly. This approach may improve the portability of \Penrose{} diagram with plugins. An early experiment of a \Penrose{} EDSL in TypeScript, \textsc{Bloom}, has been released\footnote{\url{https://penrose.cs.cmu.edu/blog/bloom}} but is out of the scope of this dissertation.
+
+
+\section{Summary}
 \label{sec:DiscussionandFutureWork}
 
 % Examples of good conclusions:
@@ -1165,15 +1481,9 @@ We are optimistic about our ability to improve the optimization speed, since we 
 % It's possible that the right levels of abstraction, the interfaces between layers of the system, and ways of expressing the ideas haven't been designed.
 % However, we think our system offers some concrete suggestions in this direction.
 
-Effectively communicating mathematical ideas remains a major challenge for students, educators, and researchers alike. \Penrose\ provides a step toward understanding the abstractions needed to build general-purpose diagramming tools that connect a concise specification of mathematical content with powerful tools for visual synthesis.  In our experience, centering the design around \emph{mappings} from logical to visual objects leads to a system that is both flexible and scalable.  Moreover, providing a clean separation between content and presentation lays a foundation for meaningful interaction techniques for making diagrams.
+Effectively communicating mathematical ideas remains a major challenge for students, educators, and researchers alike. In this chapter, we discussed, \Penrose{}, a step toward understanding the abstractions needed to build general-purpose diagramming tools that connect a concise specification of mathematical content with powerful tools for visual synthesis. We showed that centering the design around \emph{mappings} from logical to visual objects leads to a system that is both flexible and scalable. Moreover, providing a clean separation between content and presentation lays a foundation for meaningful interaction techniques for making diagrams. In the next chapter, we will present an application of \Penrose{} in the education domain.
 
-The system has several limitations that make interesting topics for future work. For example, the \Domain, \Substance, and \Style\ languages are limited in what they can express. Thus, \Substance\ might be extended with more constructs from mathematical language, such as anonymous expressions, and \Style\ might be extended to provide greater flexibility, \eg{} via user-defined priorities on objectives. Additionally, the system currently supports only a fixed set of objectives, constraints, functions, graphical primitives, and renderers, as detailed in~\cref{sec:Implementation}. However, our software architecture does not present major roadblocks to greater extensibility, such as enabling programmers to define constraints inline or emit output for other targets such as 3D or interactive platforms. The system also presents opportunities to study questions of usability, learnability, and debugging, such as the natural way that \Style\ users might want to express spatial layout constraints and the learning curve for different classes of users. 
 
-The cost of optimization is the biggest bottleneck in our pipeline, as seen in \cref{sec:PerformanceEvaluation}, which is not surprising given that we currently use a ``catch-all'' solver.  A nice feature of our design is that the program semantics provide rich information about the structure of the optimization problem.  This structure should make it possible to adopt highly effective problem-specific optimization strategies of the kind described in \cref{sec:OptimizationBasedSynthesis} and \cref{sec:PerformanceEvaluation}, \eg{} analyzing the computation graph to break down the diagram into smaller constituent pieces.  Beyond finding local minima, we are excited about different design modalities enabled by exploring the constraint space defined by the \Style{} program, such as sampling a diverse set of examples or interpolating between different layouts to create animations.
-
-Finally, there is no reason that the basic design of \Penrose{} must be applied only to mathematical diagrams. Many other fields, such as law, chemistry, and biology, all deal with non-quantitative information comprised of intricate logical relationships.  We believe that an extensible and expressive system for assigning visual interpretations to such information provides a powerful tool for seeing the big picture.
-
-% Currently, for instance, objectives and constraints must be added by the user at the system level, rather than to individual \Style{} programs. 
 % Likewise, the system assumes a particular rendering frontend (currently 2D vector graphics).
 % Another direction for future work is to make it easier for users to extend the capabilities of the system itself, for example by extending the standard library of objectives, constraints, functions, graphical primitives, plugins, and renderers.
 
