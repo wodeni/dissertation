@@ -116,7 +116,7 @@ The resulting system effectively models diagram generation as a compilation proc
    \centering
    %\includegraphics{assets/penroseRetargeting.pdf}
    \begin{minipage}[c]{.30\linewidth}
-   \caption{By specifying diagrams in terms of abstract relationships rather than explicit graphical directives, they are easily adapted to a wide variety of use cases.  Here we use identical \Penrose{} code to generate ray tracing diagrams for several targets (\cref{sec:RayTracing}).  Though the arrangement and number of objects changes in each example, the meaning remains the same.\label{fig:Retargeting}}
+   \caption{By specifying diagrams in terms of abstract relationships rather than explicit graphical directives, they are easily adapted to a wide variety of use cases.  Here we use identical \Penrose{} code to generate ray tracing diagrams for several targets (\cref{sec:RayTracing}). The \Style{} program for this domain makes use of a plugin that expands the regular expression for light paths based on the canvas size, \ie small canvases get fewer bounces in the light path. Though the arrangement and number of objects changes in each example, the meaning remains the same.\label{fig:Retargeting}}
   \end{minipage}\hfill
   \begin{minipage}[c]{.6\linewidth}
    \begin{overpic}{assets/penrose/Retargeting.pdf}
@@ -1015,7 +1015,7 @@ To make these examples in \Penrose{}, we follow a pattern similar to the discret
    % p3 := Sample(t3)
    \centering
    \includegraphics[scale=1.5]{assets/penrose/rt-multiple-paths.pdf}
-   \caption{When drawing ray tracing diagrams by hand, it can be difficult to construct geometry that permits the desired path types.  Here we jointly optimize path and scene geometry to match multiple path types simultaneously.  Shown are several diagrams generated for the same program.\label{fig:rt-multiple-paths}}
+   \caption{When drawing ray tracing diagrams by hand, it can be difficult to construct geometry that permits the desired path types.  Here we jointly optimize path and scene geometry to match multiple path types simultaneously.  Shown are several diagrams generated for the same program. A specular reflection (\texttt{S}) is represented as a mirror reflection, whereas a diffuse reflection (\texttt{D}) is represented as a bounce off of one of the walls. \label{fig:rt-multiple-paths}}
 \end{figure}
 
 

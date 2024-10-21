@@ -163,8 +163,7 @@ Given an example diagram, \Edgeworth performs several rounds of mutation generat
 
 To generate a single mutation, \Edgeworth makes a weighted choice (line~\ref{line:kind}) of the mutation kinds and enumerates all possible mutations for the chosen kind: \textbf{Add} enumerates all possible statements to add (line~\ref{line:add}); \textbf{Delete} randomly deletes an existing statement (line~\ref{line:delete}); \textbf{Edit} enumerates all possible edits for all statements (line~\ref{line:statements}) and picks one of them randomly (line~\ref{line:edit}). The randomness of \Edgeworth is controlled by a single random generator seed.
 
-Users can specify filter sets under the ``Advanced options'' section of the UI, shown in \cref{fig:edgeworth-interface}\uilabel{i}\uilabel{j}. The filters default to ``All,'' which indicates that the mutator may change any statement in the example diagram. While this precise configuration may be useful, we ended up not using them in our evaluation (\cref{chp:edgeworth-eval}) and instead achieving our results using only \Edgeworth's simpler core set of configuration options, i.e., weights on mutation operators.
-
+Users can specify filter sets under the ``Advanced options'' section of the UI, shown in \cref{fig:edgeworth-interface}\uilabel{i}\uilabel{j}. The filters default to ``All,'' which indicates that the mutator may change any statement in the example diagram. While these precise configuration options may be useful, we ended up not using them in our evaluation (\cref{chp:edgeworth-eval}) and instead achieving our results using only \Edgeworth's simpler core set of configuration options, i.e., weights $a$, $d$, and $e$ on mutation operators in \cref{alg:mutation}. In \cref{sec:chemistry,sec:edgeworth-geometry,sec:graphs}, we discuss the weight configurations for each domain implemented in a translation problem dataset.
 
 
 \section{Translation Problem Dataset}
@@ -188,7 +187,7 @@ We choose problems from existing textbooks or online courses and follow the proc
 
 We reproduced 31 problems in total. Since creating the example diagram (\cref{sec:create-scenario}) took the most time in this process, we report statistics on the example diagrams here. 
 
-On average, \Edgeworth's diagram notation is compact and simple. The description for example diagrams are 14.7 lines of code ($\sigma = 4.57$) and 109.9 tokens ($\sigma = 48.6$). In contrast, the average SVG source of these same diagrams have 454.7 lines of code ($\sigma = 184.3$) and 1290.4 tokens ($\sigma = 650.4$). This indicates that \Edgeworth provides a concise and compact textual representation of diagrams across all three domains.
+On average, \Edgeworth's diagram notation (\ie the \Substance language) is compact and simple. The description for example diagrams are 14.7 lines of code ($\sigma = 4.57$) and 109.9 tokens ($\sigma = 48.6$). In contrast, the average SVG source of these same diagrams have 454.7 lines of code ($\sigma = 184.3$) and 1290.4 tokens ($\sigma = 650.4$). This indicates that \Edgeworth provides a concise and compact textual representation of diagrams across all three domains.
 
 \subsection{Euclidean Geometry}
 \label{sec:edgeworth-geometry}
