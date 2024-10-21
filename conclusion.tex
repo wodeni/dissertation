@@ -18,13 +18,31 @@ This thesis makes several significant contributions to the study of diagramming,
     
 \end{itemize}
 
-\section{Natural Diagramming and \Penrose}
-
-TODO It's really about representation salience, but here are the rest of them:
 
 \section{Future work}
 
 We now discuss potential future directions for \Penrose, \Edgeworth, and diagramming tool research in general. 
+
+\section{Natural diagramming}
+
+In \cref{sec:natural-diagramming}, we introduced four design opportunities for building \emph{natural} diagramming tools that let diagrammers ``express their ideas in the same way they think about them'' \cite{myers_natural_2004}:
+
+\begin{itemize}
+  \item \textbf{Representation Salience} emphasizes the importance of treating visual representations as first-class entities, enabling diagrammers to manipulate and reuse them effectively.
+  \item \textbf{Exploration Support} helps users ideate and refine diagrams, moving fluidly between high-level design choices and detailed refinements.
+  \item \textbf{Live Engagement} bridges the gap between direct manipulation and abstraction, providing immediate visual feedback and enhancing user control.
+  \item \textbf{Vocabulary Correspondence} allows diagramming tools to align closely with users' mental models and domain-specific design vocabulary.
+\end{itemize}
+
+\Penrose is a platform that embodies \textbf{representation salience} by treating visual representations as first-class entities, achieved through domain-specific languages (\Domain, \Substance, and \Style) that decouple the abstract content from its visual representation in a diagram. We showed in \cref{chp:penrose} that this separation allows the visual representation to be developed once in \Style and reused for different diagram contents specified by \Substance programs. In \Penrose, \Style translates \Substance programs into layout optimization problems (\cref{sec:LayoutEngine}) that can be solved automatically (\cref{sec:OptimizationBasedSynthesis}) to yield design alternatives that preserves the \Style-specified visual relationships. Leveraging the reusability and relation-preserving layout of \Style, we have built \Edgeworth on top of \Penrose to generate diagrammatic multiple choice problems by mutating \Substance programs (\cref{chp:edgeworth}). Though the content-style separation can be found in many systems such as \TeX\ and HTML/CSS, \Edgeworth is one of few empirical demonstrations that shows this separation, an implementation of representation salience, demonstratively improve authoring efficiency (\cref{chp:edgeworth-eval}).
+
+Although \Penrose and \Edgeworth are not intentionally designed to take advantage of the rest of the natural diagramming opportunities, they do show promising directions and reveal design challenges to further improve diagramming tools along the directions of \textbf{exploration support}, \textbf{live engagement}, and \textbf{vocabulary correspondence}. Here we discuss some empirical observations from the open-source development (\cref{sec:penrose-open-source}) and our daily usage, in order to shed light on future work. 
+
+In \Penrose, the separation of \Substance, \Style, and \Domain enables users to effectively design their own domain-specific languages and thereby improves \textbf{vocabulary correspondence} to their diagramming domains. As we noted in \cref{sec:penrose-limitations}, the core grammar of \Substance does impose limits to how closely \Substance can model domain-specific notational conventions (\eg custom symbols and deriving multiple statements from one). Future work should examine existing syntax extension and metaprogramming mechanisms in languages such as Standard ML, Haskell, Coq, and Lean, and domain-specific languages for various domains~(\eg DSLs for linear algebra~\cite{li_i_2021}, mesh processing~\cite{li_imesh_2024}, sewn quilts~\cite{clark_homotopy_2023}, and many more in the DSL literature), in order to design a flexible and usable mechanism for building custom notations in \Penrose. Another aspect of vocabulary correspondence is in \Style: instead of specifying numerical coordinates and sizes, \Style writers write high-level constraints such as \texttt{disjoint} and \texttt{contains}. In our experience, these constraints appear to be more natural to specify in many cases, as they are closer to how we tend to describe spatial relations in natural language.~\cite{pan_human-computer_2023} Future work needs to systematically examine the naturalness and usability of \Style's constraint-based layout specification and potentially compare them with alternate approaches such as direct manipulation, template-based programming, and sampling to further investigate our observation.
+
+The addition of the layout optimizer in the \Penrose system often extends the feedback loop in the authoring process, but also presents opportunities to improve \textbf{live engagement} of diagramming tools. First, the layout optimizer takes time to compute layout, delaying the visual feedback of any changes to the \Penrose source programs by up to seconds (\cref{sec:PerformanceEvaluation,app:registry-benchmark}). Second, the high-level nature of \Style makes it more challenging to achieve \textit{programmatic direct manipulation}. Systems such as Sketch-n-Sketch~\cite{Sketch-n-Sketch} bidirectionally synchronize changes to both the source program and rendered diagram because the internal representations (SVG source and manipulable graphical elements on the canvas) are relatively close to each other in terms of granularity, \eg a \texttt{<circle>} corresponds to a rendered circle on the interface. \Penrose's \Style, on the other hand, is a higher-level specification that matches on a set of all possible \Substance programs. Therefore, any change to the rendered diagram needs to be interpreted by the system and reflected to other diagram instances. There is, though, potential benefits to having the layout optimizer because it can help preserve visual relationships when the user interacts with the diagram. We discuss future directions on this topic in \cref{sec:interactive-diagram}.
+
+The design of \Style presents new opportunities and challenges for \textbf{exploration support}. As showcased in examples such as \cref{fig:ThreeEuclideanStyles}, \cref{fig:set-styles} and \cref{fig:substance-fn-images}, the separation of \Style and \Substance allows the user to explore styling alternatives of the same diagram content, which is typically difficult to do in traditional drawing tools without having to re-do the entire diagram. On the other hand, refining styling for one diagram instance may be challenging with \Style, as the diagramming is effectively programming a family of diagram when changing \Style. Future work should investigate how users interact with \Penrose when (1) designing multiple \Style alternatives concurrently and (2) iterating on one specific \Style to inform future work on \Style. 
 
 \subsection{Composable visual representations}
 
@@ -88,6 +106,7 @@ We note a few challenges with the aforementioned approach. First, LLMs may need 
 % \Edgeworth provides a mixed-initiative~\cite{allen1999mixedinitiative} experience: authors focus on specifying the content and the general direction of variations, while \Edgeworth fully automates the details of variation generation and layout. 
 
 \subsection{Interactive diagrams}
+\label{sec:interactive-diagram}
 
 
 Diagrams live in the context of surrounding text, overlaid annotations, and human gestures. The web opens up opportunities for even richer in-context interaction. In education, though students spend more time on digital platforms, they often see diagrams that are presented exactly as before: pixelated, static, and ornamental. In contrast with a static diagram, a semantics-preserving interactive diagram allows students to rapidly explore alternatives, understand the underlying rules of a visual representation, and receive instant feedback on their actions~\cite{koedinger_learning_2015}. Meaningful interaction with diagrams helps students move from passive recognition to active synthesis of visual representations~\cite{bloomRevised}.
