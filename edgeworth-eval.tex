@@ -336,7 +336,7 @@ Both \Penrose and \Edgeworth are still under development, and the studies were c
 
 Participants in the user study described in \cref{sec:edgeworth-user-study} were not screened for their prior experience nor expertise in diagrammatic problem authoring. In fact, a majority of them are undergraduate students. Therefore, their judgment of what makes a good problem (or lack thereof) might influence the task performance data reported in \cref{sec:edgeworth-user-study}. Theoretically, to get through the tasks, participants could pick incorrect diagrams at random using \Edgeworth, or make minimal edits to the correct diagram to get alternatives using Google Drawings. To address this limitation of the user study, we conducted  expert demonstration walkthroughs \cref{sec:expert-feedback} to gain a deeper understanding of the ecological validity of \Edgeworth-generated problems.
 
-During the user study, we did in fact observe participants taking shortcuts in both conditions. Here we show some examples of them and contrast them with the experts' opinions. For instance, \cref{fig:edgeworth-user-study-shortcuts} (top) shows P4's pattern of making small edits to the correct diagram to quickly produce incorrect diagrams. These edits avoids moving many diagram components around while maintaining a good layout. The similar layouts of atoms and bonds contrast experts' feedback on isomorphic diagrams (\cref{sec:isomorphic-diagrams}, \eg \quotei{some students get stuck into thinking that the concept is only communicated when the diagram is drawn [exactly] that way.} by E2). As another example for \Edgeworth, \cref{fig:edgeworth-user-study-shortcuts} (bottom) shows two diagrams selected by a participant as suitable incorrect answers for chemistry prompt 1 (\textit{Which of the following diagrams shows the correct Lewis structure for \ensuremath{\mathrm{CH_2O}}?}) in \cref{fig:edgeworth-user-study-tasks}. Per their feedback in \cref{sec:edgeworth-expert-standards}, E3 would not accept ``Mutated Diagram \#6'' in the figure as a good incorrect options, because it \quotei{violated the octet rule in egregious or blatantly egregious way.}\footnote{The Carbon (C) atom in the diagram has 6 valance electrons, 2 double bonds, and one single bond, which is way beyond the expected 8 electrons and bonds combined per the octet rule.} Notably, as we discussed in \cref{sec:edgeworth-expert-standards}, experts did not agree on a single standard of high problem quality among themselves. 
+During the user study, we did in fact observe participants taking shortcuts in both conditions. Here we show some examples of them and contrast them with the experts' opinions. For instance, \cref{fig:edgeworth-user-study-shortcuts} (top) shows P4's pattern of making small edits to the correct diagram to quickly produce incorrect diagrams. These edits avoid moving many diagram components around while maintaining a good layout. The similar layouts of atoms and bonds contrast experts' feedback on isomorphic diagrams (\cref{sec:isomorphic-diagrams}, \eg \quotei{some students get stuck into thinking that the concept is only communicated when the diagram is drawn [exactly] that way.} by E2). As another example for \Edgeworth, \cref{fig:edgeworth-user-study-shortcuts} (bottom) shows two diagrams selected by a participant as suitable incorrect answers for chemistry prompt 1 (\textit{Which of the following diagrams shows the correct Lewis structure for \ensuremath{\mathrm{CH_2O}}?}) in \cref{fig:edgeworth-user-study-tasks}. Per their feedback in \cref{sec:edgeworth-expert-standards}, E3 would not accept ``Mutated Diagram \#6'' in the figure as a good incorrect options, because it \quotei{violated the octet rule in egregious or blatantly egregious way.}\footnote{The Carbon (C) atom in the diagram has 6 valance electrons, 2 double bonds, and one single bond, which is way beyond the expected 8 electrons and bonds combined per the octet rule.} Notably, as we discussed in \cref{sec:edgeworth-expert-standards}, experts did not agree on a single standard of high problem quality among themselves. 
 
 Overall, while participants took shortcuts in both user study conditions, we do not know how much impact their quality standards have on the task performance. Importantly, there is not a single standard for ``good'' judgment of problem quality, as the expert demonstration walkthroughs showed a diversity of standards among experienced educators. Therefore, future research is needed to tease out (1) what is an acceptable quality standard for diagrammatic translation problems and (2) the effect of problem quality on authoring speed of diagrammatic problems. 
 
@@ -359,40 +359,70 @@ The design presented in \cref{sec:edgeworth-system-design} focuses on generating
 As shown in \cref{sec:edgeworth-mutation}, the design of the \Edgeworth mutator is domain-agnostic, as the mutation operators do not require any domain-specific knowledge to produce mutants. However, improving \Style requires domain expertise. Therefore, future \Edgeworth authors may not have the technical background or the time to invest in a new \Style program, which might prohibit them from using \Edgeworth if the domain is not well supported by the \Penrose ecosystem. However, as noted in \cref{chp:penrose}, the effort to build \Penrose stylesheets for new domains is only necessary once per domain and not once per diagram or problem.
 
 \subsection{Mismatches with the author's intents} 
+\label{sec:edgeworth-limit-intent}
 
-The \Edgeworth mutator can be sensitive to both the example diagram and the mutator configuration (\cref{sec:edgeworth-mutation}). For instance, a statement in the user-provided \Substance program might be particularly more suitable for mutations than others (perhaps because it contributes to the correctness of the problem.) Under- or over-specifying mutations in the configuration might lead to a pool of ``noisy'' diagrams. When these diagrams don't satisfy the needs of the author (\eg missing counterexamples that are important for an educational goal), the author can only generate another pool of mutants and hope to get better ones. For example, suppose an author would like to create translation problems that test students' knowledge of improper subsets, especially the fact that if $A \subseteq B$, $A = B$ is allowed. Using the \Edgeworth mutator, the author first creates a \Substance program:
+\Edgeworth provides a mixed-initiative~\cite{allen1999mixedinitiative} workflow: authors focus on specifying the content and the general direction of variations through the example scenario, while \Edgeworth fully automates the details of variation generation and layout. The evaluation studies presented in \cref{chp:edgeworth-eval} showed that this workflow improves authoring speed and can produce useful diagrams to educators already. In this section, we focus on the current state of \Edgeworth's outputs and propose future work for improving problem quality.
 
-\begin{center}
-\begin{verbatim}
-Set A, B, C
-SubSet(B, A)
-Subset(C, A)
-\end{verbatim}
+As discussed in \cref{sec:expert-feedback}, experts used terms like \quotei{obviously incorrect} (E6) and \quotei{less obvious} (E1) to characterize the quality of problem options in a multiple-choice translation problem. Based on their feedback, we divide these options into four categories: given a set of mathematical statements describing logical entities and their relationships, a diagram can be associated with them in one of the following ways:
+
+\vspace{0.5em}
+\begin{figure}[h]
+\begin{minipage}[b]{0.48\linewidth}
+$\bullet$ \textbf{Example}: the diagram represents the math statements, \ie all the statements hold true in the diagram. 
+    \vspace{3pt}
     
-\end{center}
+$\bullet$ \textbf{Counterexample}: the diagram clearly violates the math statements, \ie one or more statements are false in the diagram.
+    \vspace{3pt}
+    
+$\bullet$ \textbf{Positive edge case}: the diagram is an example of the math statements, but contains extraneous entities and/or more specialized relationships. 
+    \vspace{3pt}
+    
+$\bullet$ \textbf{Negative edge case}: the diagram is a counterexample, but only requires a few changes to become an example.
+\end{minipage}
+\hfill
+\begin{minipage}[b]{0.45\linewidth}
+    \centering
+    \includegraphics[width=\textwidth]{assets/appendix/definitions-examples.pdf}
+\end{minipage}
+\end{figure}
 
 \begin{figure}
     \centering
     \includegraphics[width=\linewidth]{assets/appendix/edgeworth-bad-output.pdf}
-    \caption{A screenshot of the \Edgeworth interface, after generating examples for a translation problem focusing on improper subsets. Because of randomness, the pool of mutant diagrams aren't suitable for this problem.}
+    \caption{A screenshot of the \Edgeworth interface, after generating examples for a translation problem focusing on improper subsets. The first pool of mutants isn't suitable for this problem.}
     \label{fig:edgeworth-bad-output}
 \end{figure}
 
-The author then clicks ``Generate Diagrams.'' Ideally, \Edgeworth should generate a set of examples of the subset relations that include the edge cases of $A = B$, $A = C$, or $B = C$, and counterexamples of $B \not\subseteq A$ or $C \not\subseteq A$. 
+Using \Edgeworth, the author creates an example scenario and \Edgeworth's mutator generates a set of diagrams. When these diagrams don't satisfy the needs of the author (\eg missing counterexamples that are important for an educational goal), the author can only generate more variations and hope to get better ones. For example, suppose an author would like to create problems that test students' knowledge of improper subsets, especially the fact that if $A \subseteq B$, $A = B$ is allowed. Using the \Edgeworth, the author first creates a \Substance program and clicks ``Generate Diagrams.'' 
 
-However, the output from \Edgeworth seems too random (\cref{fig:edgeworth-bad-output}). There are acceptable counterexamples, but none of the diagrams include pedagogically useful cases such as:
-
-\begin{center}
-\begin{verbatim}
+\noindent\hspace*{\fill}
+\begin{minipage}[c]{0.23\columnwidth}
+\begin{mdframed}[style=SUBCode]
+\begin{lstlisting}[language=Sub-SET,escapechar=@,numbers=none]
 Set A, B, C
-SubSet(B, A)
-Subset(C, A)
+IsSubset(B, A)
+IsSubset(C, A)
+\end{lstlisting}
+\end{mdframed}
+\end{minipage}
+\hspace*{\fill}
+
+Ideally, \Edgeworth should generate a set of examples of the subset relations that include the edge cases of $A = B$, $A = C$, or $B = C$, and counterexamples of $B \not\subseteq A$ or $C \not\subseteq A$. However, those particular mutated programs are extremely unlikely to be generated by \Edgeworth. The default \Edgeworth output for this scenario is show in  \cref{fig:edgeworth-bad-output}. There are useful counterexamples, but none of the diagrams include edge cases such as:
+
+\noindent\hspace*{\fill}
+\begin{minipage}[c]{0.23\columnwidth}
+\begin{mdframed}[style=SUBCode]
+\begin{lstlisting}[language=Sub-SET,escapechar=@,numbers=none]
+Set A, B, C
+IsSubset(B, A)
+IsSubset(C, A)
 Equal(B, C)
-\end{verbatim}
-\end{center}
+\end{lstlisting}
+\end{mdframed}
+\end{minipage}
+\hspace*{\fill}
 
-In other words, the author cannot express their intent easily with the current version of \Edgeworth and may have trouble finding good mutants if they intend to create specific types of examples. We discuss the possibility of augmenting \Edgeworth with domain-specific knowledge, and allowing the user to express their pedagogical intents in \cref{sec:knowledge}
-
+\noindent In our experience, it is not uncommon for\Edgeworth to miss important edge cases. In addition, the author cannot express their intent easily with the current version of \Edgeworth and may have trouble finding good mutants if they intend to create specific types of examples. We discuss the possibility of augmenting \Edgeworth with domain-specific knowledge, and allowing the user to express their pedagogical intents in \cref{sec:knowledge}
 
 \section{Summary}
 

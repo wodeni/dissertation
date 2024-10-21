@@ -64,9 +64,9 @@ Because we had more potential interviewees than we originally envisioned (64 in 
 
 \subsection{Semi-structured Interviews}
  
-Interviews lasted between 30 and 80 minutes and were semi-structured. Interviews were conducted either in person (7 participants) or online using Skype (11 participants.) We encouraged participants to bring any digital and hand drawn diagrams that they had previously created that they could share with us. We also encouraged them to have a pen and paper (or a whiteboard) available to draw during the interview. 
+Interviews lasted between 30 and 80 minutes and were semi-structured. Interviews were conducted either in person (7 participants) or online using Skype (11 participants.) We encouraged participants to bring any digital and hand drawn diagrams that they had previously created that they could share with us. We also encouraged them to have a pen and paper (or a whiteboard) available to draw during the interview. Table \ref{tbl:participants} includes all the participants categorized by the primary focus of their work.
 
-Four of the interviewers are involved in the development of \Penrose{}~\cite{DSLDI, OBT}, a new diagramming tool. Our initial interview questions were developed to inform \Penrose{}'s design. The focus of the interviews eventually broadened to participants' past experience diagramming (using the critical incident technique~\cite{criticalIncident}), tool preferences, and reuse practices. The full interview protocol can be found in \cref{app:interview-protocol}. Example questions from our script are: (``\textit{What is the last diagram you made?}'' and ``\textit{What is the diagram you are most proud of?}''), accompanied by appropriate follow-up questions and requests for participants to share diagrams under discussion. Table \ref{tbl:participants} includes all the participants categorized by the primary focus of their work.
+Four of the interviewers are involved in the development of \Penrose{}~\cite{DSLDI, OBT}, a new diagramming tool. Our initial interview questions were developed to inform \Penrose{}'s design. The focus of the interviews eventually broadened to participants' past experience diagramming (using the critical incident technique~\cite{criticalIncident}), tool preferences, and reuse practices. The full interview protocol can be found in \cref{app:interview-protocol}. Example questions from our script include: ``\textit{What is the last diagram you made?}'' and ``\textit{What is the diagram you are most proud of?}'' These questions are accompanied by appropriate follow-up questions and requests for participants to share diagrams under discussion. 
 
 \begin{center}
 \begin{table}
@@ -75,17 +75,17 @@ Four of the interviewers are involved in the development of \Penrose{}~\cite{DSL
 \begin{tabular}{l|l}
 Domain & Participant \\ \hline
 Abstract algebra & P1, P17 \\ 
-Category theory & P4\\ 
-Discrete mathematics & P14 \\ 
-Computer graphics & P16, P6, P10, P3 \\ 
 Algorithms & P12 \\ 
-Topology & P7 \\ 
-Human-computer interaction & P13, P18 \\ 
-Programming language theory & P11 \\ 
-Software engineering & P9, P2\\ 
-User interface design & P5\\ 
 Architecture & P8 \\ 
+Category theory & P4 \\ 
+Computer graphics & P16, P6, P10, P3 \\ 
+Discrete mathematics & P14 \\ 
+Human-computer interaction & P13, P18 \\ 
 K-12 education & P15 \\ 
+Programming language theory & P11 \\ 
+Software engineering & P9, P2 \\ 
+Topology & P7 \\ 
+User interface design & P5 \\ 
 \end{tabular}
 \caption{Interview participants' primary domains.}
 \label{tbl:participants}
@@ -110,12 +110,14 @@ In this section, we present the results from our analysis of the interview data.
 
 \subsection{Representation finding}
 
-When illustrating a concept visually, a crucial step is to decide how every abstract object will be represented graphically. For example, Larkin and Simon, in their classic paper ``Why a Diagram is (Sometimes) Worth Ten Thousand Words,'' chose to represent forces with arrows in the diagram shown in Figure~\ref{fig:forcediagram}b~\cite{whyDiagramWorth}. This step, which we call \textit{representation finding}, is crucial to diagram effectiveness. If Larkin and Simon had represented forces using concentric circles with different radii instead of arrows (Figure~\ref{fig:forcediagram}c), the directionality of the forces would be lost. If they had represented forces with chocolate bars with different lengths (Figure~\ref{fig:forcediagram}d), the diagram would have been inconsistent with other physics diagrams and the extraneous detail would have distracted from the core purpose. 
+When illustrating a concept visually, a crucial step is to decide how every abstract object will be represented graphically. For example, Larkin and Simon, in their classic paper ``Why a Diagram is (Sometimes) Worth Ten Thousand Words,'' chose to represent forces with arrows in the diagram shown in Figure~\ref{fig:forcediagram}b~\cite{whyDiagramWorth}. \cref{fig:forcediagram}b is a \emph{free body diagram} common in physics for representing external forces acting on an isolated object to analyze its motion or equilibrium. \cref{fig:forcediagram} reduces the mass of the cart to a point, and visualize the forces exerted on the cart as arrows in opposite directions and different magnitudes. \cref{fig:forcediagram}c and \cref{fig:forcediagram}d, on the other hand, are not good visual representations of the same forces. \cref{fig:forcediagram}c only encodes the magnitudes but not the directions of the forces. \cref{fig:forcediagram}d visualizes forces as chocolate bars, which are nonstandard in physics and can be distracting to the readers.
+
+This step of determining a good visual representation, which we call \textit{representation finding}, is crucial to diagram effectiveness. If Larkin and Simon had represented forces using concentric circles with different radii instead of arrows (Figure~\ref{fig:forcediagram}c), the directionality of the forces would be lost. If they had represented forces with chocolate bars with different lengths (Figure~\ref{fig:forcediagram}d), the diagram would have been inconsistent with other physics diagrams and the extraneous detail would have distracted from the core purpose. 
 
 \begin{figure}
     \centering
     \includegraphics[width=8cm]{assets/interviews/larkin-simon-labeled.pdf}
-    \caption{A good visual representation (b) of forces on a truck (a) is easily understandable, whereas (c) loses essential information and (d) is non-standard and harder to understand.}
+    \caption{Consider a truck moving rightward (a, adopted from \cite{whyDiagramWorth}) on the ground, and visualize the forces that are exerted to cart B. A good visual representation (b) of forces on cart B is easily understandable, where the dot represents the cart and the arrows represent the forces exerted on it. On the other hand, (c) loses essential information and (d) is non-standard and harder to understand.}
     \label{fig:forcediagram}
 \end{figure}
 
@@ -162,16 +164,16 @@ Sketching plays an important role in generating new visual representations or ch
 
 When participants eventually chose to move to a digital medium, their choice of tool was systematic, if not conscious. Specifically, we found participants' preferred either  programming-language based (PL) tools or  direct-manipulation based (DM) ones. Below, we analyze the reasons for their preferences. 
     
-\subsubsection{People choose DM tools for faster feedback and global control}
+\subsubsection{Diagrammers choose DM tools for faster feedback and global control}
 DM tools were often described as ``easier'' and thus have lower barriers to entry when compared with PL tools.  One particularly common reason for choosing DM tools was the need to place shapes in relations with other shapes, which is difficult to do without immediate visual feedback.
 
     \itquote{So I like [a DM tool] because it gives me this very fine control over how things are aligned and when they're straight up and down.} (P2)
     
-Because of the synchronized visual preview, DM tools provide better support for \emph{global} control over diagram layout, i.e. the relationships among graphical primitives. Diagrammers used DM tools similar to how they used pen and paper, to offload their working memory~\cite{whyDiagramWorth}, but with the additional benefits provided by interactions supported by the tools:
+Because of the synchronized visual preview, DM tools provide better support for \emph{global} control over diagram layout, \ie the relationships among graphical primitives. Diagrammers used DM tools similar to how they used pen and paper, to offload their working memory~\cite{whyDiagramWorth}, but with the additional benefits provided by interactions supported by the tools:
 
  \itquote{I'm trying to draw things down on the papers [or DM tools] because my head is getting crowded and I need to be able to keep track of everything on [digital] paper and be able to interact with it the same way I would in my head.} (P7)
 
-\subsubsection{People choose programming languages for better abstraction and local control}
+\subsubsection{Diagrammers choose programming languages for better abstraction and local control}
 
 Comparing to the easy \emph{global} control provided by DM tools, PL tools make \textit{local} control easier: they let users control \emph{local} placements of shapes by specifying exact pixel coordinates:
 
@@ -237,7 +239,7 @@ In theory, standard version control systems such as \texttt{git} \cite{git} make
     
 \subsubsection{Diagrammers organize reuse libraries by representation}
 
-The most common form of library we saw diagrammers maintain was a ``cheat sheet''. Cheat sheets are configuration files that contain low-level parameters such as line-weight settings and hexadecimal strings of colors (P3, P6, P13). Diagrammers used cheat sheets to reduce stylistic inconsistencies and to simplify the repetitive, manual tasks in the diagramming process with cheat sheets.  For instance, one participant said: 
+The most common form of library we saw diagrammers maintain was a ``cheat sheet,'' an example of which shown in \cref{fig:cheatsheet}. Cheat sheets are configuration files that contain low-level parameters such as line-weight settings and hexadecimal strings of colors (P3, P6, P13). Diagrammers used cheat sheets to reduce stylistic inconsistencies and to simplify the repetitive, manual tasks in the diagramming process with cheat sheets.  For instance, one participant said: 
 
     \itquote{Usually I have this little \texttt{txt} file where I basically remember the color so I have the color codes for primary and secondary [objects]... I saved the [line] width as well for primary secondary [objects], and that's kind of like my cheat sheet that I reuse.} (P3)
     
@@ -310,7 +312,7 @@ The results discussed above suggest unique strengths and weaknesses of existing 
 Exploration pervades the diagramming process for making conceptual diagrams, from choosing representation to determining stylistic details. We characterize two types of exploratory activities by adopting terms from Goel~\cite{sketchesOfThought}: (a) \emph{Lateral transformations} involve ideation and exploration at the high-level to broaden the design space, \eg{} finding the appropriate visual representation for forces in Figure~\ref{fig:forcediagram}. (b) \emph{Vertical transformations} 
  are more detailed refinements to a pre-determined visual representation, such as deciding the arrowhead style in Figure~\ref{fig:forcediagram}b.
 
-Sketching is an important, if not necessary, part of the design process~\cite{BuxtonBook}. Our participants produced physical sketches to explore design alternatives before transitioning to digital tools, which are perceived as a medium of higher commitment. They performed this type of exploration by looking at prior work and multiple alternatives \emph{laterally}. Early informal sketches naturally affords lateral transformations~\cite{sketchesOfThought}. 
+Sketching is an important part of the design process~\cite{BuxtonBook}. Our participants produced physical sketches to explore design alternatives before transitioning to digital tools, which are perceived as a medium of higher commitment. They performed this type of exploration by looking at prior work and multiple alternatives \emph{laterally}. Early informal sketches naturally affords lateral transformations~\cite{sketchesOfThought}. 
 
 Diagrammers also attempt to leverage precision, automation, and abstraction afforded by digital tools. After the visual representation stabilizes, they move to digital tools and refine this determinate representation, i.e. \emph{vertically} refine their design. Unfortunately, existing tools do not provide sufficient flexibility to support even small vertical changes. Whereas DM tools require significant manual efforts to propagate local changes, PL tools require a high upfront cost to create abstractions that reduce future repetition. As a result, our participants described various \latin{ad hoc}~workarounds to perform common activities for exploration such as backtracking, versioning, and reuse in both PL and DM tools. 
 
@@ -332,7 +334,7 @@ Finally, in addition to better support for history management, another approach 
 Constructing and interpreting representations are crucial skills for learning new concepts and developing domain expertise~\cite{ainsworth_drawing_2011}. Many of our participants track prior representations, curate reuse libraries, search for ones created by others, and inventively create new ones in their \emph{representation finding} phase. This suggests an opportunity for natural diagramming tools that support \textbf{representation salience}, treating visual representations as first-class entities and providing operations to easily interact with them. 
 
 % Connection with the results
-Bret Victor uses the analogy of climbing ``up'' (\emph{abstraction}) and ``down'' (\emph{concretization}) the \emph{ladder of abstraction} to characterize the process of understanding complex systems using visual representations~\cite{ladderOfAbstraction}. Abstraction and parametrization of diagrams allows fast generation of families of similar diagrams, which can be used in multiple places or serve as a set of design alternatives. In existing tools without easy access to abstraction constructs, generating design alternatives can be a time-consuming  manual process. Our participants use existing abstraction constructs such as macros and functions to encode representations, but they tend to be highly personalized and brittle solutions. As a result, these custom abstractions are rarely scalable or composable, as one frequent TikZ user said \textit{``macros are terrible, [I make macros that are] 20 or 30 braces deep... it's just hard to write and edit.''} (P11) In addition, these poor abstractions still require significant time investment and force diagrammers to concretize concepts manually instead. Consequently, diagrammers' representational encodings are scattered in manually curated personal libraries, online examples, and cheatsheets of lower-level elements.
+Bret Victor uses the analogy of climbing ``up'' (\emph{abstraction}) and ``down'' (\emph{concretization}) the \emph{ladder of abstraction} to characterize the process of understanding complex systems using visual representations~\cite{ladderOfAbstraction}. Abstraction and parametrization of diagrams allows fast generation of families of similar diagrams, which can be used in multiple places or serve as a set of design alternatives. In existing tools without easy access to abstraction constructs, generating design alternatives can be a time-consuming  manual process. Our participants use existing abstraction constructs such as macros and functions to encode representations, but they tend to be highly personalized and brittle solutions. As a result, these custom abstractions are rarely scalable or composable, as one frequent TikZ user said \textit{``macros are terrible, [I make macros that are] 20 or 30 braces deep... it's just hard to write and edit.''} (P11) In addition, these poor abstractions still require significant time investment and force diagrammers to concretize concepts manually. Consequently, diagrammers' representational encodings are scattered in manually curated personal libraries, online examples, and cheatsheets of lower-level elements.
 
 % Problem statement
 For visual representation to be \emph{salient}, both the underlying structures and mappings to visual elements need to be encoded in the diagramming system explicitly. Further, these encodings must be specified with \emph{manageable, scalable, and composable abstraction constructs} that allow diagrammers to move ``up'' and ``down'' the ladder of abstraction easily.
@@ -340,7 +342,7 @@ For visual representation to be \emph{salient}, both the underlying structures a
 % Howto
 The management of visual representations at different levels of abstraction can be seen in many fields. For instance, Gross \cite{cocktailNapkins}~tackles the problem of the fixed low-level representations of computer-aided design (CAD) tool by supporting gradual transition from sketches to more structured diagrams and suggesting concrete representations given early conceptual sketches. Data visualization tools such as Dashiki~\cite{dashiki} and Draco~\cite{Draco} can manage of multiple representations of the underlying data. 
 
-The lack of representation salience often manifest in highly \emph{viscous} diagramming tools that operate on low-level primitives and lose deeper \emph{semantics} of graphical components. To solve this problem in data visualization, the \emph{grammar of graphics}~\cite{wilkinson_grammar_2012} formalizes a rich set of operations to transform data into visual components. For mathematical diagrams, \textsc{Penrose}~\cite{DSLDI} includes two domain-specific languages that decouple visual representations from declaration of abstract objects and encode visual representations by pattern-matching on the objects and declaring visual elements. Apart from these domain-specific solutions above, however, conceptual diagramming tools still lack a general and accessible approach to specify problem domains and the visual representations thereof. 
+The lack of representation salience often manifest in highly \emph{viscous} diagramming tools that operate on low-level primitives and lose deeper \emph{semantics} of graphical components. To solve this problem in data visualization, the \emph{grammar of graphics}~\cite{wilkinson_grammar_2012} formalizes a rich set of operations to transform data into visual components. For mathematical diagrams, \Penrose (\cref{chp:penrose}) includes two domain-specific languages that decouple visual representations from declaration of abstract objects and encode visual representations by pattern-matching on the objects and declaring visual elements. Apart from these domain-specific solutions above, however, conceptual diagramming tools still lack a general and accessible approach to specify problem domains and the visual representations thereof. 
 
 \subsection{Live Engagement}
 

@@ -285,6 +285,11 @@ pdfborder=0 0 0,  %removes outlines around hyper links in online display
   morecomment=[l][\color{gray}]{--}
 }
 
+\lstdefinelanguage{Sub-SET-new}{
+  morekeywords={AutoLabel, Pt, Label, NoLabel, All, Default, Set, Equal, Subset, NotIntersecting},
+  morecomment=[l][\color{gray}]{--}
+}
+
 \lstdefinelanguage{Sty-RA}{
   morekeywords={Reals, Real, Interval, Function, Differentiable, Diff, Discontinuous, Point, Pt, LeftBounded, LeftClopen, Open, Bounded, Arrow, Rectangle, Arc, Dot, AnchorPoint, CurlyBrace, Parallelogram, Line, Tick, DoubleArrow, Bracket, Region, Curve, Paren, global, forall, where, above, below, with, ensure, encourage, override, layer, ALL, CANVAS, delete, Auto, optimized},
   morecomment=[l][\color{gray}]{--}
@@ -309,6 +314,17 @@ pdfborder=0 0 0,  %removes outlines around hyper links in online display
   morekeywords={Set, Point, Map, Intersection, Union, Subtraction, CartesianProduct, Difference, Subset, AddPoint, Apply, From, Empty, Nonempty, Intersect, Nonintersecting, IsSubset, NotSubset, PointIn, PointNotIn, Injection, Surjection, Bijection, global, forall, where, above, below, with, ensure, encourage, override, layer, ALL, CANVAS, delete},
   morecomment=[l][\color{gray}]{--}
 }
+
+\lstdefinelanguage{Sty-Sets-new}{
+  morekeywords={Set, Point, Map, Intersection, Union, Subtraction, CartesianProduct, Difference, Subset, AddPoint, Apply, From, Empty, Nonempty, Intersect, Nonintersecting, IsSubset, NotSubset, PointIn, PointNotIn, Injection, Surjection, Bijection, global, forall, where, above, below, with, ensure, encourage, override, layer, ALL, canvas, delete, forall, Circle, Equation},
+  morecomment=[l][\color{gray}]{--}
+}
+
+\lstdefinelanguage{Sty-Chem-new}{
+  morekeywords={Set, Point, Hydrogen, Oxygen, SingleBond Map, Intersection, Union, Subtraction, CartesianProduct, Difference, Subset, AddPoint, Apply, From, Empty, Nonempty, Intersect, Nonintersecting, IsSubset, NotSubset, PointIn, PointNotIn, Injection, Surjection, Bijection, global, forall, where, above, below, with, ensure, encourage, override, layer, ALL, canvas, delete, forall, Circle, Equation},
+  morecomment=[l][\color{gray}]{--}
+}
+
 
 \lstset{
   basicstyle=\small\ttfamily,
@@ -567,6 +583,7 @@ This chapter is adapted from ``\citefield{penrose}{title}''~\cite{penrose}.}}
 
 \appendix
 \input{appendix/diagrammer-interview-protocol}
+\input{appendix/penrose-walkthrough}
 \input{appendix/penrose-registry}
 \input{appendix/edgeworth-formative-interview-protocol}
 \input{appendix/edgeworth-problems}
