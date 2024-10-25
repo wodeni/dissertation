@@ -56,13 +56,13 @@
 \vbox to 2in{
 \vfill
 \begin{center}
-{\Large \strut \@title\par}
-\vfill
-{\large \begin{tabular}[t]{c}\@author\end{tabular}\par}
-\vfill
+{\LARGE \strut \@title\par}
+\vspace{2em}
+{\large\bf \begin{tabular}[t]{c}\@author\end{tabular}\par}
+\vspace{1em}
 {\sc \@trnumber\par}
 \smallskip
-{\large \@date\par}
+{\large October, 2024\par}
 \end{center}
 \vfill}
 \end{minipage}
@@ -77,6 +77,9 @@
     Pittsburgh, PA 15213
 \end{center}
 
+\vskip 2em
+\vspace{2em}
+
 \begin{center}
     {\bf Thesis Committee:} \\
     \@committee
@@ -85,7 +88,7 @@
 \begin{center}
     \em
     Submitted in partial fulfillment of the requirements \\
-    for the degree of Doctor of Philosophy.
+    for the degree of Doctor of Philosophy in Software Engineering.
 \end{center}
 
 

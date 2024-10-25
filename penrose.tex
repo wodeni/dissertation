@@ -20,18 +20,18 @@
    }
 \end{figure}
 
-Informed by the results from the interview study (\cref{chp:interviews}), we developed \Penrose, a language-based diagramming platform~\cite{penrose}. The core \Penrose system addresses \textbf{representation salience}: it has first-class support for creating and reusing visual representations. To accomplish this, \Penrose decomposes the concerns of diagramming into two domain-specific languages (DSLs) with distinct purposes: \Substance contains the mathematical content of the diagram. \Style explicitly specifies mappings from mathematical objects to visual icons. In contrast to tools that specify diagrams via direct manipulation or low-level graphics programming, \Penrose{} enables creation and exploration of diagrams that faithfully preserve the underlying mathematical meaning. \cref{sec:Introduction,sec:SystemDesign} explain the overall design goals; \cref{sec:LanguageFramework,sec:LayoutEngine} detail \Penrose{}'s language design and automatic layout engine that powers its runtime. \cref{sec:ExamplesandEvaluation} demonstrates the effectiveness and generality of the system by showing how it can be used to illustrate a diverse set of concepts from mathematics and computer graphics.
+Informed by the results from the interview study (\cref{chp:interviews}), we developed \Penrose, a language-based diagramming platform~\cite{penrose}. The core \Penrose system addresses \textbf{representation salience}: it has first-class support for creating and reusing visual representations. To accomplish this, \Penrose decomposes the concerns of diagramming into two domain-specific languages (DSLs) with distinct purposes: \Substance contains the mathematical content of the diagram. \Style explicitly specifies mappings from abstract objects to visual icons. In contrast to tools that specify diagrams via direct manipulation or low-level graphics programming, \Penrose{} enables creation and exploration of diagrams that faithfully preserve the underlying meaning. \cref{sec:Introduction,sec:SystemDesign} explain the overall design goals; \cref{sec:LanguageFramework,sec:LayoutEngine} detail \Penrose{}'s language design and automatic layout engine that powers its runtime. \cref{sec:ExamplesandEvaluation} demonstrates the effectiveness and generality of the system by showing how it can be used to illustrate a diverse set of concepts from mathematics and computer graphics.
 
 \section{Introduction}
 \label{sec:Introduction}
 
-A central goal of \Penrose{} is to lower the barrier to turning mathematical ideas into effective, high-quality visual diagrams.  In the same way that \TeX\ and \LaTeX\ have democratized mathematical writing by algorithmically codifying best practices of professional typesetters~\cite{Beeton:2016:CMT}, \Penrose{} aims to codify best practices of mathematical illustrators into a format that is reusable and broadly accessible.
+A central goal of \Penrose{} is to lower the barrier to turning ideas into effective, high-quality visual diagrams.  In the same way that \TeX\ and \LaTeX\ have democratized mathematical writing by algorithmically codifying best practices of professional typesetters~\cite{Beeton:2016:CMT}, \Penrose{} aims to codify best practices of illustrators into a format that is reusable and broadly accessible.
 
-Our approach is rooted in the natural separation in mathematics between abstract definitions and concrete representations. In particular, the \Penrose{} system is centered around the specification of a \emph{mapping} from mathematical objects to visual icons (\cref{sec:SystemDesign}).  Such mappings are expressed via domain-specific languages (DSLs) that reflect familiar mathematical notation and can be applied to obtain new capabilities that are difficult to achieve using existing tools (\cref{sec:related-systems}).  A key distinction is that \Penrose{} programs encode a \emph{family} of possible visualizations, rather than one specific diagram.  Hence, effort put into diagramming can easily be reused, modified, and generalized.  This approach has several broad-reaching benefits:
+Our approach is rooted in the natural separation in mathematics between abstract definitions and concrete representations. In particular, the \Penrose{} system is centered around the specification of a \emph{mapping} from abstract objects to visual icons (\cref{sec:SystemDesign}).  Such mappings are expressed via domain-specific languages (DSLs) that reflect familiar mathematical notation and can be applied to obtain new capabilities that are difficult to achieve using existing tools (\cref{sec:related-systems}).  A key distinction is that \Penrose{} programs encode a \emph{family} of possible visualizations, rather than one specific diagram. Hence, effort put into styling a diagram can be reused and generalized. This approach has several broad-reaching benefits:
 
 \begin{itemize}
    \item \textbf{Accessibility.} Novice users can generate diagrams by simply typing mathematical statements in familiar notation, leveraging the efforts of more expert package developers.
-   \item \textbf{Separation of content and presentation.} The ability to easily swap out different visual representations helps deepen understanding by illustrating the same mathematical concepts from many different visual perspectives.
+   \item \textbf{Separation of content and presentation.} The ability to easily swap out different visual representations helps deepen understanding by illustrating the same concepts from many different visual perspectives.
    \item \textbf{Evolution of collections.} Existing collections of diagrams can easily be improved and modified to meet the needs of a target platform, \eg{} desktop vs. mobile, different printing processes, or different language localizations.
    \item \textbf{Large-scale generation.} It becomes easy to generate large collections of illustrations to explore an idea, or to accompany, say, randomly-generated homework exercises.
    %\item \textbf{Interactive exploration.} Diagrams preserve a given set of relationships \emph{by construction}, and can hence be manipulated without violating the intended mathematical meaning.
@@ -43,11 +43,11 @@ Beyond describing the implementation of \Penrose{}, the purpose of this chapter 
 \label{sec:SystemDesign}
 
 
-Our aim is to build a system for converting abstract mathematical ideas into visual diagrams.  Choices about system design are guided by several specific goals, many of which are supported by interviews presented in \cref{chp:interviews}:
+Our aim is to build a system for converting abstract ideas into visual diagrams.  Choices about system design are guided by several specific goals, many of which are supported by interviews presented in \cref{chp:interviews}:
 \begin{enumerate}
-   \item Mathematical objects should be expressed in a familiar way.\refstepcounter{goalcounter}\label{gol:FamiliarNotation} % Later we say: what could be better than mathematical notation?
+   \item Abstract objects should be expressed in a familiar way.\refstepcounter{goalcounter}\label{gol:FamiliarNotation} % Later we say: what could be better than mathematical notation?
    \item The system should not be limited to a fixed set of domains.\refstepcounter{goalcounter}\label{gol:NoFixedDomains} % Many new domains in mathematics will undoubtedly be discovered in the coming years.
-   \item It should be possible to apply many different visualizations to the same mathematical content.\refstepcounter{goalcounter}\label{gol:ManyViz} % Because there are often many different ways to visually represent a given mathematical idea, i
+   \item It should be possible to apply many different visualizations to the same content.\refstepcounter{goalcounter}\label{gol:ManyViz} % Because there are often many different ways to visually represent a given mathematical idea, i
    \item There should be no inherent limit to visual sophistication.\refstepcounter{goalcounter}\label{gol:sophistication}  % The system should allow use of ``best in class'' graphical algorithms to generate diagrams.
    \item It should be fast enough to facilitate an iterative workflow.\refstepcounter{goalcounter}\label{gol:FastEnough}  % Overall we aim for performance commensurate with other document or presentation creation tools.
    \item Effort spent on diagramming should be generalizable and reusable.\refstepcounter{goalcounter}\label{gol:Reuse}
@@ -70,7 +70,7 @@ To achieve these goals, we take inspiration from the way diagrams are often draw
 \vspace{.5\baselineskip}\begin{mdframed}
 The two organizing principles of \Penrose{} are:
    \begin{enumerate}[label=(\roman*)]
-      \item to \textbf{specify} diagrams via a mapping from mathematical objects to visual icons, and
+      \item to \textbf{specify} diagrams via a mapping from abstract objects to visual icons, and
       \item to \textbf{synthesize} diagrams by solving an associated constrained optimization problem.
    \end{enumerate}
 \end{mdframed}\vspace{.5\baselineskip}
@@ -78,7 +78,7 @@ The two organizing principles of \Penrose{} are:
 
 Just as the occupant of Searle's ``Chinese room''---who, without understanding Chinese, follows instructions to manipulate symbols and appear as if they understand the language--- does not actually understand a foreign language~\cite{Cole:2014:CRA}, a system designed this way need not perform deep reasoning about mathematics. It simply does a translation.  We hence do not expect our system to solve all challenges of diagramming. Users are still responsible for, say,
 \begin{itemize}
-   \item choosing meaningful notation for a mathematical domain,
+   \item choosing meaningful notation for a domain,
    \item inventing a useful visual representation of that domain, and
    \item ensuring that diagrams correctly communicate meaning.
 \end{itemize}
@@ -130,7 +130,7 @@ The resulting system effectively models diagram generation as a compilation proc
 \end{figure}
 
 
-A major decision in \Penrose{} is to use programming languages to specify both mathematical objects and their visual representation.  Graphical (\eg sketch-based) specification would demand that users already know how to visualize abstract ideas, and it ties mathematical content to one specific visual representation, which conflicts with \ref{gol:ManyViz}.  A language-based specification provides the level of abstraction needed to separate content from visualization. This technique supports \ref{gol:FamiliarNotation}, since language is the most common means by which mathematical ideas are expressed.  From a system design point of view, a language-based encoding provides a unified representation for identifying and transforming mathematical objects throughout the pipeline.  Moreover, a language-based interface makes it easy for \Penrose{} to provide a \emph{platform} on which other diagramming tools can be built (as in \cref{sec:DevelopmentEnvironment} or \cref{sec:LargeScaleDiagramGeneration}).  One trade-off is that a language-based approach requires users to express themselves in formal mathematical or computational language, making it more difficult for (say) visual artists and designers to contribute new representations.
+A major decision in \Penrose{} is to use programming languages to specify both abstract objects and their visual representation.  Graphical (\eg sketch-based) specification would demand that users already know how to visualize abstract ideas, and it ties abstract content to one specific visual representation, which conflicts with \ref{gol:ManyViz}.  A language-based specification provides the level of abstraction needed to separate content from visualization. This technique supports \ref{gol:FamiliarNotation}, since language is the most common means by which ideas are expressed.  From a system design point of view, a language-based encoding provides a unified representation for identifying and transforming abstract objects throughout the pipeline.  Moreover, a language-based interface makes it easy for \Penrose{} to provide a \emph{platform} on which other diagramming tools can be built (as in \cref{sec:DevelopmentEnvironment} or \cref{sec:LargeScaleDiagramGeneration}).  One trade-off is that a language-based approach requires users to express themselves in formal mathematical or computational language, making it more difficult for (say) visual artists and designers to contribute new representations.
 
 \begin{figure}[b]
 % \vspace{-\baselineskip}
@@ -142,13 +142,13 @@ A major decision in \Penrose{} is to use programming languages to specify both m
   \end{minipage}\hfill
 \end{figure}
 
-A secondary decision is to split specification of mathematical content and visualization across two domain-specific languages: \Substance{} and \Style{}.  A good analogy is the relationship between HTML \cite{BernersLee:1995:HML}, which specifies content, and CSS~\cite{Lie:2005:CSS}, which describes how it is rendered.  A schema called \Domain{} (analogous to XML or JSON schemas) defines the mathematical domain of interest, supporting \ref{gol:NoFixedDomains}. A detailed walkthrough of an example trio of \Domain{}, \Substance{}, and \Style{} is included in \cref{app:penrose-trio-walkthrough}.  In line with \ref{gol:ManyViz}, this division allows the same styles to be reused for different content, and likewise, the same content to be displayed in many different styles.  Our goal is for this division to support an ecosystem where novice users can benefit from packages written by more experienced developers (\cref{fig:NoviceExpertUsers}).  Finally, as in mathematics, the ability to adopt user-defined, domain-specific notation (\cref{sec:MathematicalDomain}) enables efficient expression of complex relationships in a way that is both concise and easy to understand~\cite{Kosar:2012:PCD}.  Encoding ideas directly in the idiom of a problem domain often results in better program comprehension than (say) a sequence of library calls in a general-purpose language~\cite{van_deursen_domain-specific_2000}.  We discuss the scope and limitations of our languages in~\cref{sec:DiscussionandFutureWork}.
+A secondary decision is to split specification of abstract content and visualization across two domain-specific languages: \Substance{} and \Style{}.  A good analogy is the relationship between HTML \cite{BernersLee:1995:HML}, which specifies content, and CSS~\cite{Lie:2005:CSS}, which describes how it is rendered.  A schema called \Domain{} (analogous to XML or JSON schemas) defines the domain of interest, supporting \ref{gol:NoFixedDomains}. A detailed walkthrough of an example trio of \Domain{}, \Substance{}, and \Style{} is included in \cref{app:penrose-trio-walkthrough}.  In line with \ref{gol:ManyViz}, this division allows the same styles to be reused for different content, and likewise, the same content to be displayed in many different styles.  Our goal is for this division to support an ecosystem where novice users can benefit from packages written by more experienced developers (\cref{fig:NoviceExpertUsers}).  Finally, as in mathematics, the ability to adopt user-defined, domain-specific notation (\cref{sec:MathematicalDomain}) enables efficient expression of complex relationships in a way that is both concise and easy to understand~\cite{Kosar:2012:PCD}.  Encoding ideas directly in the idiom of a problem domain often results in better program comprehension than (say) a sequence of library calls in a general-purpose language~\cite{van_deursen_domain-specific_2000}.  We discuss the scope and limitations of our languages in~\cref{sec:DiscussionandFutureWork}.
 
 
 
 
 
-\subsubsection{Mathematical Domain (\Domain{})}
+\subsubsection{Diagramming Domain (\Domain{})}
 \label{sec:MathematicalDomain}
 
 \begin{figure}
@@ -164,7 +164,7 @@ One of our primary goals (\ref{gol:NoFixedDomains}) is to build a unified system
 
 Users can work in any area of mathematics by writing so-called \Domain{} schemas (\cref{sec:TheDomainSchema}) that define DSLs tailored to a given domain.  This design also empowers users to adopt their own notation and conventions for modeling the domain.  Use of domain- and user-specific notation reflects common practice in mathematical writing, where the meaning of a symbol is frequently overloaded depending on context.  Importantly, a \Domain{} schema is purely abstract: it does not define an internal representation for objects, nor does it give definitions to functions or predicates.  This level of abstraction is crucial for \ref{gol:ManyViz}, since it allows multiple visual representations to later be applied to objects from the same domain.
 
-\subsubsection{Mathematical Content (\Substance{})}
+\subsubsection{Abstract Content (\Substance{})}
 \label{sec:MathematicalContent}
 
 % P1: What should this language look like?  Why does our design look the way it does?  Use alternatives to motivate this.
@@ -195,7 +195,7 @@ Existing languages would be difficult to use in place of \Substance{} since they
 \end{figure}
 
 
-\subsubsection{Mathematical Visualization (\Style{})}
+\subsubsection{Visual Representation (\Style{})}
 \label{sec:MathematicalVisualization}
 
 % The \Style{} language is used to encode a generic mapping from mathematical objects or relationships that might appear in a \Substance{} program to their visual representation.
@@ -204,9 +204,9 @@ Existing languages would be difficult to use in place of \Substance{} since they
 The meaning of a diagram is largely conveyed by relative relationships rather than absolute coordinates.  Moreover, diagrams are often underconstrained: relationships needed to convey the intended meaning determine a \emph{family} of possible solutions, rather than a single unique diagram.  \Style{} hence adopts a constraint-based approach to graphical specification in the spirit of \emph{Sketchpad} \cite{sketchpad}: diagrams are built up from constraints and objectives (\cref{sec:ConstraintsAndObjectives}), then unspecified quantities are solved for via numerical optimization (\cref{sec:LayoutEngine}).  Though procedural definitions can still be used, the programmer need not provide absolute coordinates (as in imperative languages like \emph{PostScript} or \emph{OpenGL}).  Though an implicit specification can make output hard to predict, part of the allure of \Penrose{} is the potential to find interesting or surprising examples.  Moreover, the approach yields more concise code; for instance, \Style{} programs are much shorter than the SVG files they produce.
 
 % P3 What are the alternatives? APIs, visual programming
-An alternative design might be to use an application programming interface (API), though historically APIs have been eschewed for specification languages for good reason. Language provides far more concise expression of complex relationships---imagine styling an entire website via the DOM API's \texttt{getElementById()} and \texttt{setStyle()} methods, versus a few short lines of CSS. Visual programming languages (like \emph{LabView}~\cite{Elliott:2007:NIL} or \emph{Grasshopper}~\cite{McNeel:2010:GGM}) might suffice for basic specifications (\eg vectors should be drawn as arrows), but don't scale to more complex concepts that are easily expressed via language~\cite{Burnett:1995:SUV}.
+% An alternative design might be to use an application programming interface (API), though historically APIs have been eschewed for specification languages for good reason. Language provides far more concise expression of complex relationships---imagine styling an entire website via the DOM API's \texttt{getElementById()} and \texttt{setStyle()} methods, versus a few short lines of CSS. Visual programming languages (like \emph{LabView}~\cite{Elliott:2007:NIL} or \emph{Grasshopper}~\cite{McNeel:2010:GGM}) might suffice for basic specifications (\eg vectors should be drawn as arrows), but don't scale to more complex concepts that are easily expressed via language~\cite{Burnett:1995:SUV}.
 
-A key design challenge is identifying objects that appear in a \Substance{} program.  Objects in a given mathematical universe are distinguished not only by their type, but also by their relationships to other objects.  A widely-used mechanism for specifying such relationships is through CSS-like \emph{selectors}. \Style{} adopts a similar mechanism that performs pattern matching on the types, functions, and predicates appearing in a \Domain{} schema (\cref{sec:Selectors}).
+A key design challenge is identifying objects that appear in a \Substance{} program.  Objects in a given domain are distinguished not only by their type, but also by their relationships to other objects.  A widely-used mechanism for specifying such relationships is through CSS-like \emph{selectors}. \Style{} adopts a similar mechanism that performs pattern matching on the types, functions, and predicates appearing in a \Domain{} schema (\cref{sec:Selectors}).
 
 
 \subsection{Optimization-Based Synthesis}
@@ -222,7 +222,7 @@ The second major design decision in \Penrose{} is to use constrained optimizatio
 
 There are good reasons to believe that an optimization-based approach can scale to very complex diagrams.  First, attractive diagrams need not be optimal in a \emph{global} sense---they should simply not permit obvious \emph{local} improvements, such as text that could easily be moved closer to the item it labels. In fact, disparate local minima can provide useful examples that help build intuition (\cref{fig:enumerate-subsets}).  Second, even sophisticated diagrams have surprisingly few degrees of freedom in comparison to many modern optimization problems (\eg tens or hundreds, versus thousands or millions).  Finally, strategies employed by expert diagrammers can be applied to manage complexity, such as independently optimizing small components of a diagram (akin to nonlinear Gauss-Seidel), rather than optimizing all degrees of freedom simultaneously.
 
-In line with \ref{gol:NoFixedDomains} and \ref{gol:ManyViz}, an optimization-based approach can be applied generically and automatically for any user-defined domain and visual representation, without requiring programmers to think about the details of the layout process.  In our system, the optimization problem is defined using common-sense keywords (\cref{sec:ConstraintsAndObjectives}) in \Style\ and chaining together basic operations (\eg arithmetic).  Since the diagram specification is divorced from the details of the solver, optimization strategies can be changed and improved in future versions of the system while preserving compatibility with existing code.  The main cost of an optimization-based approach is that it puts demands on system design ``upstream'': all expressions used to define a visual style must be differentiable. As discussed in \cref{sec:Solver}, these requirements are largely satisfied via standard techniques (\eg{} by using \textit{automatic differentiation}).
+In line with \ref{gol:NoFixedDomains} and \ref{gol:ManyViz}, an optimization-based approach can be applied generically and automatically for any user-defined domain and visual representation, without requiring programmers to think about the details of the layout process.  In our system, the optimization problem is defined using common-sense keywords (\cref{sec:ConstraintsAndObjectives}) in \Style\ and chaining together basic operations (\eg arithmetic).  Since the diagram specification is divorced from the details of the solver, optimization strategies can be changed and improved in future versions of the system while preserving compatibility with existing code.\footnote{Note that similar to other software systems that evolve over time. Specific changes that alter the system defaults and assumptions (``breaking changes'') may break compatibility.}  The main cost of an optimization-based approach is that it puts demands on system design ``upstream'': all expressions used to define a visual style must be differentiable. As discussed in \cref{sec:Solver}, these requirements are largely satisfied via standard techniques (\eg{} by using \textit{automatic differentiation}).
 
 \begin{figure}[t]
    \begin{minipage}[c]{.5\linewidth}
@@ -263,9 +263,9 @@ The final design decision in \Penrose\ is to provide system-level extensibility 
 The \Penrose{} language framework comprises three languages that play different roles:
 
 \begin{itemize}
-   \item A \inlineDSL{\Domain{} schema} declares the objects, relationships, and notation available in a mathematical domain.
-   \item A \inlineSUB{\Substance{} program} makes specific mathematical assertions within some domain.
-   \item A \inlineSTY{\Style{} program} defines a generic mapping from mathematical statements in some domain to a visual representation.
+   \item A \inlineDSL{\Domain{} schema} declares the objects, relationships, and notation available in a domain.
+   \item A \inlineSUB{\Substance{} program} makes specific assertions within some domain.
+   \item A \inlineSTY{\Style{} program} defines a generic mapping from abstract statements in some domain to a visual representation.
 \end{itemize}
 
 A \emph{package} consisting of a \(\Domain{}\), and one or more compatible \(\Style{}\) programs, can be used to illustrate \Substance{} programs from a given domain (\cref{fig:HighLevelPipeline}).  Though some starter packages are provided for the examples discussed in~\cref{sec:ExamplesandEvaluation}, the real power of \Style{} and \Domain{} is that they enable \Penrose\ to be easily extended.  In this section we illustrate these languages via the running example of a linear algebra package (Figures~\ref{fig:domain_linalg} through \ref{fig:style_linalg}).  
@@ -302,14 +302,14 @@ notation "v1 $\perp$ v2" $\sim$ "Orthogonal(v1,v2)"
 ...
 \end{lstlisting}
 \end{mdframed}
-   \caption{A \Domain{} schema specifies the building blocks available in a given mathematical domain, as well as any associated syntactic sugar.  This schema (abbreviated) enumerates some basic constructs from linear algebra.\label{fig:domain_linalg}}
+   \caption{A \Domain{} schema specifies the building blocks available in a given domain, as well as any associated syntactic sugar.  This schema (abbreviated) enumerates some basic constructs from linear algebra.\label{fig:domain_linalg}}
 \end{figure}
 
 
 \subsection{The \Substance{} Language}
 \label{sec:TheSubstanceLanguage}
 
-Each statement in the \Substance\ language either (i) declares an object, (ii) specifies properties of an object, or (iii) specifies relationships among objects within some \Domain{} schema.  As in mathematics, not all attributes need be fully specified. For instance, one can talk about a point without giving it explicit coordinates. Together, these statements describe a \emph{context} that encloses all the mathematical objects and relationships that have been defined.
+Each statement in the \Substance\ language either (i) declares an object, (ii) specifies properties of an object, or (iii) specifies relationships among objects within some \Domain{} schema.  As in mathematics, not all attributes need be fully specified. For instance, one can talk about a point without giving it explicit coordinates. Together, these statements describe a \emph{context} that encloses all the abstract objects and relationships that have been defined.
 
 \begin{figure}
 \begin{minipage}[!t]{140pt}
@@ -554,7 +554,7 @@ Just as a human diagrammer might consider several initial arrangements, we rando
 
 \subsubsection{Failures and warnings}
 
-Since our language framework is quite general, a programmer might define difficult or impossible optimization problems.  Hence, we can't guarantee that \Penrose{} produces a valid diagram.  However, the system can provide feedback by simply printing an error message if any of the constraint values are nonzero.  The resulting invalid diagram might even provide useful visual intuition for why the \Style\ program failed (\cref{fig:sets-inconsistent}).
+Since our language framework is quite general, a programmer might define difficult or impossible optimization problems.  Hence, we can't guarantee that \Penrose{} produces a valid diagram.  However, the system may provide feedback by simply printing an error message if any of the constraint values are nonzero.\footnote{An earlier version of this feature exists in the \Penrose{} web editor (\cref{sec:DevelopmentEnvironment}, \url{https://github.com/penrose/penrose/pull/534}). The feature works by plugging the final optimized values back into the constraints and objectives to check for constraint satisfaction and report the final energy values for objectives. This feature is yet to be ported to the current version since the migration to TypeScript (\cref{sec:development-history}).}  The resulting invalid diagram might even provide useful visual intuition for why the \Style\ program failed (\cref{fig:sets-inconsistent}).
 
 \subsection{Plugins}
 \label{sec:PlugIns}
@@ -607,7 +607,7 @@ The \Penrose\ system is written in Haskell and the rendering frontend is written
 
 % \todo{Revise this introduction to discuss the broad claims}
 
-Our main goal for \Penrose\ was to create a system that can automatically generate diagrams from many different domains using familiar syntax. Here we examine our design by exploring examples from a variety of common domains in mathematics and computer graphics; we also do some basic performance analysis (\cref{sec:PerformanceEvaluation}). 
+Our main goal for \Penrose\ was to create a system that can automatically generate diagrams from many different domains using familiar syntax. Here we examine our design by exploring examples from a variety of common domains in mathematics and computer graphics; we also do some basic performance analysis (\cref{sec:PerformanceEvaluation}). These examples are developed by us\footnote{Authors of \cite{penrose}.} in an ad-hoc manner, and by no means cover all of scientific visualizations. However, we did strive to select a variety of domains. Generally speaking, this evaluation does not evaluate how general the system is for all potential diagramming domains---it merely showcases the system's capabilities in a diverse set of domains. 
 
 % All examples in the paper were generated automatically and were not manipulated by hand. However, due to small errors when converting our SVG output to the PDF format required by \texttt{pdflatex}, minor manual editing was required (\eg{} fixing broken transparency).
 
@@ -632,7 +632,9 @@ Our main goal for \Penrose\ was to create a system that can automatically genera
 \end{figure}
 % \end{wrapfigure}\vspace{-\baselineskip}
 
-A simple example that illustrates many principles of our system design is the domain of basic set theory---\cref{fig:set-styles} shows a complete listing for one of three possible styles.  Notice here the complete absence of explicit coordinates in both the \Substance{} and \Style{} code.  The other two \Style{} programs (not shown) either improve the visual styling, or shift to a different representation where subset inclusion is indicated by a tree-like drawing rather that overlapping disks.  Different representations are especially helpful for different types of examples---for instance, disks must shrink exponentially for deeply nested subsets (\cref{fig:set-life}, \figloc{left}), whereas a tree diagram remains easy to read (\cref{fig:set-life}, \figloc{right}). One limitation highlighted by this example is that the constraints and objectives appearing in \Style{} are not yet extensible within the language itself---for instance, the statement \inlineSTY{\keyword{ensure} \texttt{contains(y.shape,x.shape)}} translates to a fixed function on the centers and radii of the two disks.
+A simple example that illustrates many principles of our system design is the domain of basic set theory---\cref{fig:set-styles} shows a complete listing for one of three possible styles.\footnote{All 3 \Style programs as of \Penrose{} version \texttt{v4.0.0-alpha.3} are included in \cref{app:set-styles}.}  Notice here the complete absence of explicit coordinates in both the \Substance{} and \Style{} code.  The other two \Style{} programs either improve the visual styling, or shift to a different representation where subset inclusion is indicated by a tree-like drawing rather that overlapping disks.  Different representations are especially helpful for different types of examples---for instance, disks must shrink exponentially for deeply nested subsets (\cref{fig:set-life}, \figloc{left}), whereas a tree diagram remains easy to read (\cref{fig:set-life}, \figloc{right}). 
+
+% One limitation highlighted by this example is that the constraints and objectives appearing in \Style{} are not yet extensible within the language itself---for instance, the statement \inlineSTY{\keyword{ensure} \texttt{contains(y.shape,x.shape)}} translates to a fixed function on the centers and radii of the two disks. See more 
 
 This example also demonstrates the benefit of a more explicit type system, rather than, say, interpreting raw mathematical strings as in \TeX.  In particular, \cref{fig:enumerate-subsets} shows how a \Domain{} schema can be used with program synthesis techniques (\cref{sec:LargeScaleDiagramGeneration}) to automatically enumerate different \emph{logical} instantiations of the given \Substance{} code.  To make this example, there was no need to model sets as an explicit datatype (\eg\ a list of points) nor to assign semantics to these datatypes (such as the impossibility of two sets being both intersecting and nonintersecting). Instead, the program synthesizer can reason purely about the abstract types specified in the \Domain\ schema, letting the constraints defined in the \Style{} define the visual semantics. Thus, the program synthesizer can check if the generated code is valid by simply testing if the constraints defined in \Style{} all evaluate to zero for the optimized diagram.  This example captures an important aspect of our system design: the mapping defined by \Style{} programs not only provides a superficial visual interpretation, but also assigns deeper mathematical meaning.
 
@@ -895,7 +897,7 @@ v3 := c * v1 \end{lstlisting}
    \end{mdframed}
   \end{minipage}
 \includegraphics[width=\columnwidth]{assets/penrose/linearmap-add-scale.pdf}
-   \caption{Composition of mathematical statements naturally translates into composition of graphical transformations with no explicit programmer effort.  Here we compose linear maps, showing addition and scaling, to illustrate the two defining properties of linear maps.\label{fig:linearMap}}
+   \caption{Here we compose linear maps, showing addition and scaling, to illustrate the two defining properties of linear maps.\label{fig:linearMap}}
 \end{figure}
 
 
@@ -1140,6 +1142,7 @@ We are optimistic about our ability to improve the optimization speed, since we 
 The \Penrose{} system has been open-sourced since 2017 and is still in active development as of the writing of this dissertation. In this section, we briefly discuss the evolution of the system implementation, the open-source development infrastructure for \Penrose, and the open-source community. 
 
 \subsection{Evolution of the implementation}
+\label{sec:development-history}
 
 At the time of the publication of \cite{penrose} in 2020, the core system was written in Haskell, which is connected via WebSocket to a web editor written in TypeScript. Between 2020 and 2024, the core has gone through major rewrites from Haskell to TypeScript, and the editor has been completely rewritten. Some features such as the notation statements~\cref{sec:TheDomainSchema} and the plugin system~\cref{sec:PlugIns} have been deprecated, while new features have been added such as staged layout\footnote{\url{https://penrose.cs.cmu.edu/blog/staged-layout}} and indexed statements in \Substance{}\footnote{\url{https://penrose.cs.cmu.edu/docs/ref/substance/indexed-statements}}. Some of recently added features are discussed in \cref{sec:penrose-limitations}.
 
@@ -1449,6 +1452,30 @@ Using layout stages, we rewrote the Euclidean geometry \Style program to stage s
 
 The plugin mechanism is designed to let \Penrose{} users leverage external code. The implementation of the design presented in \cref{sec:PlugIns} executes Shell scripts from the Haskell core. Since the rewrite of \Penrose{} to TypeScript in 2020, this feature is no longer supported since this exact implementation would not work in web browsers.
 A practical limitation of the plugin approach is that \Penrose{} users need to install local dependencies and write the necessary glue code to connect the external programs (e.g. a regular expression parser for light path expressions in \cref{sec:RayTracing}\footnote{\url{https://github.com/penrose/penrose/blob/416c29abe8c7265a302f53153132327154335ce2/examples/plugins/regex/regex.py}}) to \Penrose{}. Recognizing this limitation, future work may consider an alternative in which the \Penrose{} languages are embedded in the ecosystem of another host language, \ie embedded domain-specific languages (EDSLs). By relying on the host language's module system and package ecosystem, \Penrose{} code can then be interleaved with calls to external programs more seamlessly. This approach may improve the portability of \Penrose{} diagram with plugins. An early experiment of a \Penrose{} EDSL in TypeScript, \textsc{Bloom}, has been released\footnote{\url{https://penrose.cs.cmu.edu/blog/bloom}} but is out of the scope of this dissertation.
+
+\subsection{Accessibility}
+\label{sec:Accessibility}
+
+\begin{figure}
+\centering
+\includegraphics[width=.8\textwidth]{assets/penrose/SloanLanguageLocalization.pdf}
+\caption{\Penrose{} may provide automatic re-layout for different diagram localizations.  For instance, the longer words found in German take up more space than the shorter words found in Japanese---requiring a substantially different layout. Performing new layouts by hand for each language can be time consuming, meaning that diagrams for other languages are often omitted or left un-translated.\label{fig:SloanLanguageLocalization}}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{assets/chapter-4/docs-tooltips.pdf}
+    \caption{Tools like ScholarPhi and Nota~\cite{scholarPhi, nota} use tooltips to help readers understand abstract symbols. Diagrams use even more symbolism and can be hard to understand. This figure is a mock-up of a lightweight markup language in the form of \Substance comments: the markup language has a markdown-like syntax, but allows splices of \Substance variables and runtime values. The mock-up shows a user interface that automatically display a tooltip stack that explains what each shape represents.\label{fig:tooltips}}
+\end{figure}
+
+It is important to specifically build diagramming tools for user communities with different abilities. While our existing work does not target making accessible diagrams nor make diagramming tools for accessible, we believe the \Penrose{} system architecture is well-suited to be extended to help build more accessible diagrams and diagramming tools. Here we highlight some opportunities we identified for future work:
+
+\begin{itemize}
+\item \textbf{Alt text (spatially localized).}
+Currently, the primary mechanism for supporting blind use of images on the internet is via ``alt text,'' which is a natural language description of the image that can be easily processed by a screen reader. Unfortunately, standard alt text does not allow blind users to take advantage of their spatial reasoning capabilities. \Penrose{} may auto-generate the standard alt text based on the input \Substance{} program. In addition, since we know what every shape in the diagram represents in the underlying content, \Penrose{} may provide localized tooltips that allow users to navigate a diagram with rich annotations (\cref{fig:tooltips}).  
+\item \textbf{Aural and tactile feedback.} --- For vision-impaired users, spatial diagrams can also be rendered via audio or tactile cues rather than visual mechanisms. We have prototyped a compilation path that enables audio to be associated with any class of mathematical object\footnote{see the \href{https://github.com/penrose/penrose/tree/main/packages/examples/src/penrose-sound}{penrose-sound example} for an early experiment}, and future work should explore and expand this capability. 
+\item \textbf{Language localization.} --- The standard mechanism for language localization on the web is for the website author to write versions of each segment of text on the page in every language they want to target. The same text in different languages takes more or less space, but standard text on the web is responsive by default, so the page layout usually looks reasonable in any language. However, the same is not true for diagrams. If you change a label in a standard diagram, all of the  shapes remain in place. This can mean that the labels can be misunderstood or hard to even see. Since \Penrose{} optimizes diagram layouts, one may produce different layouts for each language that appropriately sized labels in that language (\cref{fig:SloanLanguageLocalization}).
+\end{itemize}
 
 
 \section{Summary}

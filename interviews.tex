@@ -1,6 +1,6 @@
 \begin{figure}[h]
   \centering
-  \includegraphics[width=\textwidth]{assets/interviews/teaser-v2.pdf}
+  \includegraphics[width=\textwidth]{assets/interviews/teaser-v4.pdf}
   \caption{
       Diagrams explain concepts visually in many domains, \eg{}: (a) Diffie-Hellman key exchange with colors representing prime multiplication~\cite{wiki:crypto}. (b) Linking two views of the Klein 4-group~\cite{OBT}. (c) Unrolling a recurrent LSTM network~\cite{UnderstandLSTM}. (d) Natural numbers as 2D areas in a visual proof~\cite{SystemsOfThought}.
   }
@@ -58,7 +58,7 @@ For each of the opportunities, we survey existing techniques from relevant areas
 \label{sec:interview-methods}
 
 \subsection{Participants and Recruitment} 
-We conducted interviews with 18 participants (13 male, 5 female). Participants were recruited through posts on social media, and our research group website. Of these, four participants were university faculty, 10 were PhD students or postdocs, one was a professional masters student, one was a K-12 math instructor, one is an independent software developer, and one is an enterprise software engineer. Prospective participants filled out a survey which allowed us to screen participants for our interviews. We selected the interviewees based on the following criteria: the interviewee (1) creates conceptual diagrams on a frequent basis and (2) uses digital diagramming tools to create these diagrams. 
+We conducted interviews with 18 participants (13 male, 5 female). Participants were recruited through posts on social media, and our research group website. We screen participants by their usage of diagrams in their primary domain of knowledge work, and prioritized for a diversity of domains and participants' expertise in their domain. Of all 18 participants interviewed, four participants were university faculty, 10 were PhD students or postdocs, one was a professional masters student, one was a K-12 math instructor, one is an independent software developer, and one is an enterprise software engineer. Prospective participants filled out a survey which allowed us to screen participants for our interviews. We selected the interviewees based on the following criteria: the interviewee (1) creates conceptual diagrams on a frequent basis and (2) uses digital diagramming tools to create these diagrams. 
 
 Because we had more potential interviewees than we originally envisioned (64 in all), we used a saturation method~\cite{socialResearchMethods} to determine the number of participants. We conducted several batches of interviews (with 2-3 interviews per batch consisting of diverse participants), and did a preliminary analysis of the transcripts from each batch. When the analysis stopped revealing new insights, we stopped interviewing more participants. 
 
@@ -66,7 +66,7 @@ Because we had more potential interviewees than we originally envisioned (64 in 
  
 Interviews lasted between 30 and 80 minutes and were semi-structured. Interviews were conducted either in person (7 participants) or online using Skype (11 participants.) We encouraged participants to bring any digital and hand drawn diagrams that they had previously created that they could share with us. We also encouraged them to have a pen and paper (or a whiteboard) available to draw during the interview. Table \ref{tbl:participants} includes all the participants categorized by the primary focus of their work.
 
-Four of the interviewers are involved in the development of \Penrose{}~\cite{DSLDI, OBT}, a new diagramming tool. Our initial interview questions were developed to inform \Penrose{}'s design. The focus of the interviews eventually broadened to participants' past experience diagramming (using the critical incident technique~\cite{criticalIncident}), tool preferences, and reuse practices. The full interview protocol can be found in \cref{app:interview-protocol}. Example questions from our script include: ``\textit{What is the last diagram you made?}'' and ``\textit{What is the diagram you are most proud of?}'' These questions are accompanied by appropriate follow-up questions and requests for participants to share diagrams under discussion. 
+Four of the interviewers are involved in the development of \Penrose{} (\cref{chp:penrose}). Our initial interview questions were developed to inform \Penrose{}'s design. The focus of the interviews eventually broadened to participants' past experience diagramming (using the critical incident technique~\cite{criticalIncident}), tool preferences, and reuse practices. The full interview protocol can be found in \cref{app:interview-protocol}. Example questions from our script include: ``\textit{What is the last diagram you made?}'' and ``\textit{What is the diagram you are most proud of?}'' These questions are accompanied by appropriate follow-up questions and requests for participants to share diagrams under discussion. 
 
 \begin{center}
 \begin{table}
@@ -95,7 +95,7 @@ User interface design & P5 \\
 \subsection{Analysis}
 Interviews were video recorded and transcribed using either human or machine transcription. We\footnote{The first two authors of \citetitle{naturalDiagramming}\cite{naturalDiagramming}} then manually validated and corrected any transcription errors.
 
-We employed thematic analysis methods \cite{thematicAnalysisInPsych} to analyze interview transcripts. The first two authors began by conducting an open coding session and discussed initial insights for every batch of interviews. Then, following all interviews, the authors discussed the codes and created a coding guide with operationalized definitions of codes. Using the agreed coding guide, one of the authors did a second phase of coding. While conducting the second coding phase, the author also summarized the transcripts using sticky notes containing highlights of the interview sessions. All authors then reviewed both the codebook with the sticky notes to further refine the set of codes.
+We employed thematic analysis methods \cite{thematicAnalysisInPsych} to analyze interview transcripts. The first two authors began by conducting an open coding session and discussed initial insights for every batch of interviews. Then, following all interviews, the authors discussed the codes and created a coding guide with operationalized definitions of codes (see \cref{app:interview-codebook}). Using the agreed coding guide, one of the authors did a second phase of coding. While conducting the second coding phase, the author also summarized the transcripts using sticky notes containing highlights of the interview sessions. All authors then reviewed both the codebook with the sticky notes to further refine the set of codes.
 
 Finally, the authors analyzed the codes by clustering lower-level codes during multiple interactive discussion sessions. Through the higher-level clusters, a few themes with high numbers of codes emerged, such as \emph{Reuse} and \emph{Representation}. We present these themes and the resulting insights next.
 
@@ -110,7 +110,7 @@ In this section, we present the results from our analysis of the interview data.
 
 \subsection{Representation finding}
 
-When illustrating a concept visually, a crucial step is to decide how every abstract object will be represented graphically. For example, Larkin and Simon, in their classic paper ``Why a Diagram is (Sometimes) Worth Ten Thousand Words,'' chose to represent forces with arrows in the diagram shown in Figure~\ref{fig:forcediagram}b~\cite{whyDiagramWorth}. \cref{fig:forcediagram}b is a \emph{free body diagram} common in physics for representing external forces acting on an isolated object to analyze its motion or equilibrium. \cref{fig:forcediagram} reduces the mass of the cart to a point, and visualize the forces exerted on the cart as arrows in opposite directions and different magnitudes. \cref{fig:forcediagram}c and \cref{fig:forcediagram}d, on the other hand, are not good visual representations of the same forces. \cref{fig:forcediagram}c only encodes the magnitudes but not the directions of the forces. \cref{fig:forcediagram}d visualizes forces as chocolate bars, which are nonstandard in physics and can be distracting to the readers.
+When illustrating a concept visually, a crucial step is to decide how every abstract object will be represented graphically. For example, \citet{whyDiagramWorth} chose to represent forces with arrows in the diagram shown in Figure~\ref{fig:forcediagram}b~\cite{whyDiagramWorth}. \cref{fig:forcediagram}b is a \emph{free body diagram} common in physics for representing external forces acting on an isolated object to analyze its motion or equilibrium. \cref{fig:forcediagram} reduces the mass of the cart to a point, and visualize the forces exerted on the cart as arrows in opposite directions and different magnitudes. \cref{fig:forcediagram}c and \cref{fig:forcediagram}d, on the other hand, are not good visual representations of the same forces. \cref{fig:forcediagram}c only encodes the magnitudes but not the directions of the forces. \cref{fig:forcediagram}d visualizes forces as chocolate bars, which are nonstandard in physics and can be distracting to the readers.
 
 This step of determining a good visual representation, which we call \textit{representation finding}, is crucial to diagram effectiveness. If Larkin and Simon had represented forces using concentric circles with different radii instead of arrows (Figure~\ref{fig:forcediagram}c), the directionality of the forces would be lost. If they had represented forces with chocolate bars with different lengths (Figure~\ref{fig:forcediagram}d), the diagram would have been inconsistent with other physics diagrams and the extraneous detail would have distracted from the core purpose. 
 
@@ -194,7 +194,7 @@ The complexity of languages, however, incurs a higher upfront cost and steep lea
     \itquote{I'm willing to put in the effort, but it's like 20\% of the time is that, and like 80\% of the time is fighting with \LaTeX.} (P11)
 
 \subsubsection{Advanced diagrammers use PL tools to automate their diagramming workflows}
-In some cases, diagrammers find the need to create families of similar diagrams for the use of, for instance, writing a textbook or a problem set. A small number of our interviewees automated their diagramming workflow extensively by leveraging the abstraction affordances of PL tools. One automation pattern is to parameterize complex diagrams and generate multiple instances with variations to explore design alternatives and populate diagram collections:
+In some cases, diagrammers find the need to create families of similar diagrams for the use of, for instance, writing a textbook or a problem set. Three interviewees automated their diagramming workflow extensively by leveraging the abstraction affordances of PL tools. One automation pattern is to parameterize complex diagrams and generate multiple instances with variations to explore design alternatives and populate diagram collections:
 
     \itquote{If I invest the time upfront to just write it, parameterized by, and then I do the diagram in terms of $n$ and $k$. And then later I realize that, `Aw, $n=15$ and $k=4$ is just a mess!' Okay, I go to the top of the file and I set $n=12$ and $k=3$ and I re-render it and it looks like this, and I go, `That's what I want.' If I'm not sure, okay, let's try $n=10$, try that. You can just make a new diagram in 15 seconds instead of four hours, but they also demand more time and skills up front. If I'm just going to do one diagram, it's not worth it.} (P1)
 
@@ -255,7 +255,7 @@ This is one area where tool support was mostly lacking. For instance, participan
 
 More advanced diagrammers maintained collections of existing diagrams or diagram components, organized by representation. For instance, one participant keeps a document of previous visualizations, as shown in Figure~\ref{fig:library}: 
 
-    \itquote{I keep a document, that is almost all the TikZ diagrams I've ever had to because I find that they helped me think about how to represent diagrams for new situations.} (P7)
+    \itquote{I keep a document, that is almost all the TikZ diagrams I've ever had because I find that they helped me think about how to represent diagrams for new situations.} (P7)
 
 Another participant collects commonly used diagram components in a personal library:
 
@@ -305,7 +305,16 @@ Another participant collects commonly used diagram components in a personal libr
 \section{Implications: Natural Diagramming}
 \label{sec:natural-diagramming}
 
-The results discussed above suggest unique strengths and weaknesses of existing PL and DM diagramming tools. This section offers some possibilities to combine the strengths of PL and DM tools and create more intuitive and efficient next-generation tools. Just as previous work advocated for creating programming tools ``for people to express their ideas in the same way they think about them''~\cite{myers_natural_2004} as an opportunity for \emph{natural programming}, we advocate for creating diagramming tools for \textbf{natural diagramming}. Natural diagramming presents four distinct opportunities to leverage the strengths while alleviating the weaknesses of existing tools: exploration support, representation salience, live engagement, and vocabulary correspondence. We end the description of each of these natural diagramming opportunities by highlighting existing techniques that may be further developed to achieve it. 
+The results discussed above suggest unique strengths and weaknesses of existing PL and DM diagramming tools. This section offers some possibilities to combine the strengths of PL and DM tools and create more intuitive and efficient next-generation tools. Just as previous work advocated for creating programming tools ``for people to express their ideas in the same way they think about them''~\cite{myers_natural_2004} as an opportunity for \emph{natural programming}, we advocate for creating diagramming tools for \textbf{natural diagramming}. Natural diagramming presents four distinct opportunities to leverage the strengths while alleviating the weaknesses of existing tools: 
+
+\begin{itemize}
+  \item \textbf{Representation Salience} emphasizes the importance of treating visual representations as first-class entities, enabling diagrammers to manipulate and reuse them effectively.
+  \item \textbf{Exploration Support} helps users ideate and refine diagrams, moving fluidly between high-level design choices and detailed refinements.
+  \item \textbf{Live Engagement} bridges the gap between direct manipulation and abstraction, providing immediate visual feedback and enhancing user control.
+  \item \textbf{Vocabulary Correspondence} allows diagramming tools to align closely with users' mental models and domain-specific design vocabulary.
+\end{itemize}
+
+We end the description of each of these natural diagramming opportunities by highlighting existing techniques that may be further developed to achieve it. 
 
 \subsection{Exploration Support}
 

@@ -73,7 +73,7 @@ In this section, we use an example from high school geometry to demonstrate the 
 \subsubsection{Create an example diagram} 
 \label{sec:create-scenario}
 
-The author wants to write a problem about triangle congruence to assess students' understanding of the \textit{Side-Angle-Side} (SAS) rule. They want to create a translation problem including one diagram where the SAS rule is satisfied and three others where it is not. The author first describes an example diagram (\cref{fig:edgeworth-interface}\uilabel{b}) where this rule is satisfied. They construct a scenario involving two triangles: $\triangle DEC$ and $\triangle DEA$ share one side $DE$ and have two equal sides $EC$ and $EA$. $\angle CEB$ indicates that $AC$ and $BD$ are perpendicular and therefore $\angle DEC = \angle DEA$. Therefore, $\triangle DEC$ and $\triangle DEA$ are congruent by the SAS rule. Given this description, \Edgeworth lays out the diagram automatically (\cref{fig:edgeworth-interface}\uilabel{f}). 
+The author wants to write a problem about triangle congruence to assess students' understanding of the \textit{Side-Angle-Side} (SAS) rule. They want to create a translation problem including one diagram where the SAS rule is satisfied and three others where it is not. The author first describes an example diagram in the \Substance language (\cref{fig:edgeworth-interface}\uilabel{b}, \cref{sec:TheSubstanceLanguage}) where this rule is satisfied after selecting a combination of \Style and \Domain programs for a diagramming domain. They construct a scenario involving two triangles: $\triangle DEC$ and $\triangle DEA$ share one side $DE$ and have two equal sides $EC$ and $EA$. $\angle CEB$ indicates that $AC$ and $BD$ are perpendicular and therefore $\angle DEC = \angle DEA$. Therefore, $\triangle DEC$ and $\triangle DEA$ are congruent by the SAS rule. Given this description, \Edgeworth lays out the diagram automatically (\cref{fig:edgeworth-interface}\uilabel{f}). 
 
 \begin{center}
 \includegraphics[width=0.3\linewidth]{assets/edgeworth/edgeworth-ui-correct.pdf}
@@ -169,48 +169,36 @@ Users can specify filter sets under the ``Advanced options'' section of the UI, 
 \section{Translation Problem Dataset}
 \label{sec:edgeworth-case-studies}
 
-\begin{sidewaysfigure}
-    \centering
-    \includegraphics[width=\linewidth]{assets/edgeworth/problem-samples.pdf}
-    \caption{We used \Edgeworth to recast real-world problems as diagrammatic translation problems. Left: \textmd{Determine if triangles are congruent.}  Middle: \textmd{Identify the correct Lewis structure for hydrogen cyanide.} Right: \textmd{Identify graphs with Euler circuits.}}
-    \label{fig:edgeworth-problems}
-\end{sidewaysfigure}
+
 
 % motivation
 \Edgeworth's mutation-based approach is domain-agnostic: it simply applies generic program mutations on any \Substance program. Through collecting a dataset of translation problems in Euclidean geometry, general chemistry, and discrete mathematics, we evaluate if this approach is expressive enough for different instructional contexts in STEM. We selected these three domains because they have wide audiences in K-12 and higher education, making them rich sources for existing instructional material. Each domain also has a canonical visual representation that is explicitly taught to students. Therefore, students can benefit from visual practice in these domains.
 
 % procedure
-We choose problems from existing textbooks or online courses and follow the procedure outlined in \cref{sec:edgeworth-workflow} to recast each problem. All problems are included in \cref{app:translation-problem-dataset}.
+We choose problems from existing textbooks~\cite{rosen_discrete_1999,noauthor_holt_nodate} or online courses \cite{oli} and follow the procedure outlined in \cref{sec:edgeworth-workflow} to recast each problem. All problems are included in \cref{app:translation-problem-dataset}.
 
 \subsection{Summary Statistics}
 \label{sec:edgeworth-case-studies-summary}
 
-We reproduced 31 problems in total. Since creating the example diagram (\cref{sec:create-scenario}) took the most time in this process, we report statistics on the example diagrams here. 
+We reproduced 31 problems in total from existing textbooks~\cite{rosen_discrete_1999,noauthor_holt_nodate} or online courses \cite{oli}. Since creating the example diagram (\cref{sec:create-scenario}) took the most time in this process, we report statistics on the example diagrams here. 
 
 On average, \Edgeworth's diagram notation (\ie the \Substance language) is compact and simple. The description for example diagrams are 14.7 lines of code ($\sigma = 4.57$) and 109.9 tokens ($\sigma = 48.6$). In contrast, the average SVG source of these same diagrams have 454.7 lines of code ($\sigma = 184.3$) and 1290.4 tokens ($\sigma = 650.4$). This indicates that \Edgeworth provides a concise and compact textual representation of diagrams across all three domains.
 
 \subsection{Euclidean Geometry}
 \label{sec:edgeworth-geometry}
 
-% one-col 
-\begin{figure}[h]
+
+\begin{figure}[h!]
     \centering
-    \includegraphics[width=\linewidth]{assets/edgeworth/geometry-grid.png}
-    \caption{\textmd{The first ten diagram variations generated by \Edgeworth for the problem shown in \cref{fig:edgeworth-problems} (left).}}
-    % \Description{This figure shows a grid of ten diagrams generated by Edgeworth given the example scenario in Figure 3 and 5. Some of the diagrams show congruent triangles DEA and DEC, while others show incongruent triangles.}
-    \label{fig:geometry-grid}
+    \includegraphics[width=\linewidth]{assets/edgeworth/geometry-problem.pdf}
+    \caption{An example problem in Holt \textit{Geometry}~\cite{holtGeometry} about triangle congruence (left) replicated in \Edgeworth (right). Colored shadings are added for clarity.}
+    \label{fig:geometry-problem}
 \end{figure}
 
-% \begin{figure}[h]
-%     \centering
-%     \includegraphics[width=\linewidth]{assets/geometry-problem.png}
-%     \caption{An example problem in Holt \textit{Geometry}~\cite{burger2007holt} about triangle congruence (left) replicated in \Edgeworth (right). Colored shadings are added for clarity.}
-%     \label{fig:geometry-problem}
-% \end{figure}
-We sample 17 Euclidean geometry problems from Holt \textit{Geometry} \cite{holtGeometry}, a high school geometry textbook. \cref{fig:edgeworth-problems} (left) shows an example problem. The textbook uses a consistent visual style of predominantly black line segments and dots with text labels. Most diagrammatic problems are presented as one diagram followed by one or more multiple-choice problems. We've recast the problems as diagrammatic translation problems.
+We sample 17 Euclidean geometry problems from Holt \textit{Geometry} \cite{holtGeometry}, a high school geometry textbook. \cref{fig:geometry-problem} shows an example problem. The textbook uses a consistent visual style of predominantly black line segments and dots with text labels. Most diagrammatic problems are presented as one diagram followed by one or more multiple-choice problems. We've recast the problems as diagrammatic translation problems.
 
 For this domain, we build on the existing geometry stylesheet from \Penrose \cite[Section~5.3]{penrose} for diagram layout. There are many different types of entities in geometry, and we found that \textbf{Add} tended to introduce elements to the diagram that obviously do not pertain to the question prompt.
-Through some trial-and-error, we settled on weighting deletions 20\%, edits 80\%, and adds 0\% to achieve reasonable results. The reason we weight edits higher than deletions is that many of our geometry problems ask about specific named points, and deletions can make the diagram invalid by removing points that are mentioned in the prompt.
+Through some trial-and-error, we settled on weighting deletions 20\%, edits 80\%, and adds 0\% to achieve reasonable results. The reason we weight edits higher than deletions is that many of our geometry problems ask about specific named points, and deletions can make the diagram invalid (\ie \Substance failing to be compiled by \Penrose) by removing points that are mentioned in the prompt.
 
 % \begin{wrapfigure}{r}{0.5\textwidth}
 % \begin{figure}
@@ -231,7 +219,7 @@ Through some trial-and-error, we settled on weighting deletions 20\%, edits 80\%
 %     \label{fig:congruence-example}
 % \end{figure}
 
-We use the problem in \cref{fig:edgeworth-problems} (lower-left) to demonstrate how \Edgeworth generates variations that are meaningful as problem options. In correct diagram to the prompt (Option 2), $\triangle DEC$ and $\triangle DEA$ are congruent by the Side-Angle-Side rule. In particular, they share a side ($DE$), the sides $AE$ and $EC$ appear to have equal length and are marked as such with a tick, and $\angle DEA$ and $\angle DEC$ are both right angles and therefore equal. 
+We use the problem in \cref{fig:geometry-problems} to demonstrate how \Edgeworth generates variations that are meaningful as problem options. In correct diagram to the prompt (Option 2), $\triangle DEC$ and $\triangle DEA$ are congruent by the Side-Angle-Side rule. In particular, they share a side ($DE$), the sides $AE$ and $EC$ appear to have equal length and are marked as such with a tick, and $\angle DEA$ and $\angle DEC$ are both right angles and therefore equal. 
 
 \begin{center}
    \includegraphics[width=.3\linewidth]{assets/edgeworth/congruent-triangles-opt-2.pdf}
@@ -239,7 +227,7 @@ We use the problem in \cref{fig:edgeworth-problems} (lower-left) to demonstrate 
 
 
 % The diagram in \cref{fig:congruence-example} is replicated as Option 2 in \cref{fig:edgeworth-problems}. 
-Option 4 in \cref{fig:edgeworth-problems} involves mutating the scenario by removing the right angle marker which makes it impossible to prove that $\angle DEA$ and $\angle DEC$ are equal. This is an example of the \textbf{Delete} mutation described in Section \ref{sec:edgeworth-mutation}. The angle appears to be a right angle in Option 3, so this option might serve as a good distractor for students still learning the distinction between the appearance of angles and their markings.
+Option 4 in \cref{fig:geometry-problems} involves mutating the scenario by removing the right angle marker which makes it impossible to prove that $\angle DEA$ and $\angle DEC$ are equal. This is an example of the \textbf{Delete} mutation described in Section \ref{sec:edgeworth-mutation}. The angle appears to be a right angle in Option 3, so this option might serve as a good distractor for students still learning the distinction between the appearance of angles and their markings.
 
 \begin{center}
    \includegraphics[width=.3\linewidth]{assets/edgeworth/congruent-triangles-opt-4.pdf}
@@ -252,7 +240,16 @@ Option 3 involves mutating Option 2 by editing which sides have equal length. In
    \includegraphics[width=.3\linewidth]{assets/edgeworth/congruent-triangles-opt-3.pdf}
 \end{center}
 
-\cref{fig:geometry-grid} shows the first 10 variations \Edgeworth generated from the example diagram. To create our problem, shown in \cref{fig:edgeworth-problems} (left), we selected the original diagram and two incorrect variations (numbers 1 and 8), plus another variation in an extended pool (number 16). As shown in \cref{fig:geometry-grid}, there are many other viable answer choices in the first 10 variations. Many of the diagrams involve extra details that are irrelevant to the problem, like the circle in number 6 or the vector above point B in number 2. These extra details can be pedagogically useful for teaching students to filter irrelevant information in the domain. Some of the other diagrams are very obviously incorrect, like number 10 which doesn't show a blue triangle, or number 7 where the blue triangle is much larger than the orange triangle; these can be useful for building confidence when students are first learning. 
+\cref{fig:geometry-grid} shows the first 10 variations \Edgeworth generated from the example diagram. To create our problem, shown in \cref{fig:geometry-problem}, we selected the original diagram and two incorrect variations (numbers 1 and 8), plus another variation in an extended pool (number 16). As shown in \cref{fig:geometry-grid}, there are many other viable answer choices in the first 10 variations. Many of the diagrams involve extra details that are irrelevant to the problem, like the circle in number 6 or the vector above point B in number 2. These extra details can be pedagogically useful for teaching students to filter irrelevant information in the domain. Some of the other diagrams are very obviously incorrect, like number 10 which doesn't show a blue triangle, or number 7 where the blue triangle is much larger than the orange triangle; these can be useful for building confidence when students are first learning. 
+
+% one-col 
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{assets/edgeworth/geometry-grid.png}
+    \caption{\textmd{The first ten diagram variations generated by \Edgeworth for the problem shown in \cref{fig:geometry-problem}.}}
+    % \Description{This figure shows a grid of ten diagrams generated by Edgeworth given the example scenario in Figure 3 and 5. Some of the diagrams show congruent triangles DEA and DEC, while others show incongruent triangles.}
+    \label{fig:geometry-grid}
+\end{figure}
 
 % We assembled these problems from the diagrams alone. We did not look at the changes made to the textual scenario, and we do not expect our users to look at those textual changes. 
 
@@ -271,12 +268,12 @@ Option 3 involves mutating Option 2 by editing which sides have equal length. In
 \subsection{General Chemistry: Lewis Structures}
 \label{sec:chemistry}
 
-% \begin{figure}[h]
-%     \centering
-%     \includegraphics[width=\linewidth]{assets/chemistry-problem.png}
-%     \caption{An example problem in general chemistry that asks the student to identify the correct Lewis structure for HCN.}
-%     \label{fig:chem-problem}
-% \end{figure}
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=\linewidth]{assets/edgeworth/chemistry-problem.pdf}
+    \caption{An example problem in general chemistry that asks the student to identify the correct Lewis structure for HCN.}
+    \label{fig:chem-problem}
+\end{figure}
 
 We chose 7 chemistry problems on Lewis structure from an online General Chemistry 1 course \cite{oli}. These problems test students' understanding of how atoms bond together based on formal charges. The module introduces students to the \textit{octet rule}: the tendency of main group atoms to form enough bonds to obtain eight valence electrons. Lewis structure diagrams show bonds among atoms and valence electrons on atoms typically following the octet rule. 
 
@@ -293,17 +290,17 @@ We extend the existing \Penrose chemistry stylesheet to include notation and lay
 
 To configure \Edgeworth for this domain, we weight edits 100\%. We exclusively weight on edits because we observed that variations of molecules never add or delete atoms and bonds. Although valence electrons may be added or deleted, they are modeled as predicates that can be edited to change the number of electrons for an atom (\eg \sub{ZeroDots(H)} $\rightarrow$ \sub{TwoDots(H)}) via a \textbf{Replace Function} mutation operation. 
 
-Figure~\ref{fig:edgeworth-problems} (middle) shows an \Edgeworth Lewis structure problem for hydrogen cyanide. In the original problem, the third option is correct. The \Edgeworth version shows the correct diagram as option 1. Incorrect choices for this problem can be generated via mutation. For instance, if a student forgets that nitrogen must have eight surrounding electrons, they might choose the bottom-left option, which was generated by removing the valence electrons around nitrogen. Or, if a student does not know that hydrogen should only have two electrons instead of eight, they might select the top-right choice, which was generated by mutating the number of electrons around hydrogen from zero to six. Finally, if a student does not know that free electrons should be minimized, they might pick the bottom-right diagram, which was generated by mutating up the number of electrons around carbon and nitrogen and changing the triple bond to a double bond.
+\cref{fig:chem-problem} shows an \Edgeworth Lewis structure problem for hydrogen cyanide. In the original problem, the third option is correct. The \Edgeworth version shows the correct diagram as option 1. Incorrect choices for this problem can be generated via mutation. For instance, if a student forgets that nitrogen must have eight surrounding electrons, they might choose the bottom-left option, which was generated by removing the valence electrons around nitrogen. Or, if a student does not know that hydrogen should only have two electrons instead of eight, they might select the top-right choice, which was generated by mutating the number of electrons around hydrogen from zero to six. Finally, if a student does not know that free electrons should be minimized, they might pick the bottom-right diagram, which was generated by mutating up the number of electrons around carbon and nitrogen and changing the triple bond to a double bond.
 
 \subsection{Discrete Math: Graphs}
 \label{sec:graphs}
 
-% \begin{figure}[h]
-%     \centering
-%     \includegraphics[width=\linewidth]{assets/graph-problem.png}
-%     \caption{An example problem that asks the student to identify graphs with Euler circuits.}
-%     \label{fig:chem-problem}
-% \end{figure}
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=\linewidth]{assets/edgeworth/graph-problem.pdf}
+    \caption{An example problem that asks the student to identify graphs with Euler circuits.}
+    \label{fig:graph-problem}
+\end{figure}
 
 We draw 7 graph theory problems from the ``Graphs'' chapter of \textit{Discrete Mathematics and Its Applications} \cite[Chapter~10]{rosen1999discrete}.  We model our visual representation after the style used in the textbook because students are already accustomed to recognizing graph diagrams in this style. We created a new \Penrose stylesheet for four subdomains of graphs (directed vs not, and multigraph vs not). For each of these subdomains, \Edgeworth automatically lays out graph nodes, edges, loops, arrows, and labels in configurations that minimize confusing overlap of diagram elements. 
 % The book defines six subdomains in Section 10.1, of which we use four:
@@ -317,12 +314,12 @@ We draw 7 graph theory problems from the ``Graphs'' chapter of \textit{Discrete 
 
 To configure \Edgeworth for the graph domain, we weight additions 50\%, deletions 40\%, and edits 10\%. We disfavor edits in this domain because most of them are not useful: \textbf{Replace Function} is inapplicable for any of our graph subdomains, and \textbf{Swap Arguments} only applies to directed graphs. \textbf{Replace Arguments} is meaningful, but most desirable mutations for graphs are better represented by the addition or deletion of edges and nodes. For instance, a bipartite graph can become not-so by adding edges, or a strongly-connected graph can become not-so by deleting edges. 
 
-Figure~\ref{fig:edgeworth-problems} (right) shows an \Edgeworth problem asking which of four directed graphs have an Euler circuit\footnote{An Euler circuit is a path in a graph that starts and ends at the same vertex and visits every edge exactly once.}. The example scenario shown as option 4 does not have an Euler circuit, as can be seen by observing that the sum of $a$'s in-degree and out-degree is odd. In contrast, for option 3 generated by deleting edge $(a, d)$, every node has an even sum of in-degree and out-degree, and indeed there does exist an Euler circuit. This condition on degree is only sufficient for undirected graphs, though; the diagram in the top-right is generated by flipping edge $(b, c)$ from the bottom-left diagram, but does not have an Euler circuit, thwarting the simple degree counting heuristic. Finally, the simple diagram in the top-left is generated by deleting $d$ and trivially has an Euler circuit. 
+\cref{fig:graph-problem} shows an \Edgeworth problem asking which of four directed graphs have an Euler circuit\footnote{An Euler circuit is a path in a graph that starts and ends at the same vertex and visits every edge exactly once.}. The example scenario shown as option 4 does not have an Euler circuit, as can be seen by observing that the sum of $a$'s in-degree and out-degree is odd. In contrast, for option 3 generated by deleting edge $(a, d)$, every node has an even sum of in-degree and out-degree, and indeed there does exist an Euler circuit. This condition on degree is only sufficient for undirected graphs, though; the diagram in the top-right is generated by flipping edge $(b, c)$ from the bottom-left diagram, but does not have an Euler circuit, thwarting the simple degree counting heuristic. Finally, the simple diagram in the top-left is generated by deleting $d$ and trivially has an Euler circuit. 
 
 \section{Summary}
 
 The chapter introduces \Edgeworth, a tool designed to aid the authoring of diagrammatic problems for educators in STEM. Recognizing the importance of representational fluency--the ability to understand and translate between different forms of representation such as diagrams, symbols, and text--\Edgeworth addresses the challenge educators face in manually creating and maintaining visual content for instructional purposes. By allowing educators to create a single example diagram, \Edgeworth automatically generates numerous variations, simplifying the process of developing diagrammatic problem sets. 
 
-The chapter also covers the system design of \Edgeworth{} and its program mutation techniques for generating diagram variations. \Edgeworth's approach is domain-agnostic, making it adaptable across various instructional contexts. To show \Edgeworth's flexibility and expressiveness, we gather a translation problem dataset from Euclidean geometry, general chemistry, and discrete mathematics.
+The chapter also covers the system design of \Edgeworth{} and its program mutation techniques for generating diagram variations. \Edgeworth's approach is domain-agnostic, making it adaptable across various instructional contexts. To show \Edgeworth's flexibility and expressiveness, we gather a translation problem dataset from Euclidean geometry, general chemistry, and discrete mathematics. In the next chapter, we discuss three studies that evaluate various aspects of \Edgeworth.
 
 

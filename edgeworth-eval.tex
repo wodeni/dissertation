@@ -30,7 +30,7 @@ The goal of \Edgeworth is to generate enough diagram variations to assemble a fo
 
 For \ref{rq:mut}, we define ``relatively few variations'' to be 10 diagrams, and consider \Edgeworth to have generated a translation problem in $n$ variations if at that point we have (possibly including the original diagram) at least one \textbf{Correct} diagram, at least one \textbf{Incorrect} diagram, and in total at least four diagrams that are either \textbf{Correct} or \textbf{Incorrect}.
 
-We used \Edgeworth to generate 10 diagrams per problem for all 31 problems in the translation problem dataset (\cref{sec:edgeworth-case-studies}), which yielded 310 diagrams in total. To evaluate this coding scheme, we randomly sampled 2 problems from each of our 3 domains, for 60 generated diagrams total. The first two authors each coded all 60 of those sample diagrams, after which we calculated the Cohen's $\kappa$ \cite{cohen1960coefficient} statistic. Then with the assumption that our coding scheme has reasonable inter-rater reliability, at least one author\footnote{The study is conducted jointly with authors of~\citet{ni_edgeworth_2024}.} coded all remaining diagrams, allowing us to determine the number of our prompts for which \Edgeworth was able to successfully generate a multiple-choice problem. The coding results are included in \cref{app:reliability}.
+We used \Edgeworth to generate 10 diagrams per problem for all 31 problems in the translation problem dataset (\cref{sec:edgeworth-case-studies}), which yielded 310 diagrams in total. To evaluate this coding scheme, we randomly sampled 2 problems from each of our 3 domains, for 60 generated diagrams total. The first two authors each coded all 60 of those sample diagrams, after which we calculated the Cohen's $\kappa$ \cite{cohen1960coefficient} statistic ($\kappa=1$). Then with the assumption that our coding scheme has reasonable inter-rater reliability, at least one author\footnote{The study is conducted jointly with authors of~\citet{ni_edgeworth_2024}.} coded all remaining diagrams, allowing us to determine the number of our prompts for which \Edgeworth was able to successfully generate a multiple-choice problem. The coding results are included in \cref{app:reliability}.
 
 \subsection{Results}
 
@@ -77,7 +77,7 @@ To answer \ref{rq:eff}, we conduct an experiment that compares \Edgeworth agains
 
 \subsubsection{Participants}
 
-We recruited 16 participants through advertisement in the university community (e.g. emails and Slack channels). Participants were screened to have some past experience using digital drawing tools. All participants reported that they have used Google Drawings and/or equivalent tools to make diagrams in the past.
+We recruited 16 participants through advertisement in the university community (e.g. emails and Slack channels). Participants were screened to have some past experience using digital drawing tools. All participants reported that they have used Google Drawings and/or equivalent tools to make diagrams in the past. 3 out of 16 participants are Software Engineering Ph.D. students from Carnegie Mellon University and 13 participants are undergraduate students participating in an Research Experiences for Undergraduates program at Carnegie Mellon. All students have previously taken at least an introductory computer science course.
 
 \subsubsection{Tasks}
 \label{sec:edgeworth-user-tasks}
@@ -157,7 +157,7 @@ Geometry  & correct   & \Penrose        & 390.94s & 0.81  & 390.94s \\ \cline{3-
           & incorrect & \Edgeworth      & 257.25s & 10.00 & 25.73s  \\ \cline{3-6} 
           &           & Google Drawings & 549.38s & 7.38  & 100.90s \\ \hline
 \end{tabular}
-\caption{Summary of Average Time, Diagram Count, and Time Per Diagram by Domain for both chemistry and geometry domains, and two segments of each task (\cref{sec:edgeworth-user-tasks}).}
+\caption{Summary of Average Time, Diagram Count, and Time Per Diagram by Domain for both chemistry and geometry domains, and two segments of each task (\cref{sec:edgeworth-user-tasks}). Each participant produces up to 1 correct diagram first and then up to 10 incorrect diagrams. The time data reported under ``correct'' segment are for the correct diagram and the time for ``incorrect'' segment are for the incorrect diagrams.}
 \label{tab:edgeworth-user-study-timing}
 \end{table}
 
