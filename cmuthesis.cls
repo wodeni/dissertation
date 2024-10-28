@@ -15,6 +15,7 @@
 
 \def\title#1{\gdef\@title{#1}}
 \def\author#1{\gdef\@author{#1}}
+\def\authorChinese#1{\gdef\@authorChinese{#1}}
 \def\date#1{\gdef\@date{#1}}
 \def\Year#1{\gdef\@Year{#1}}
 \def\trnumber#1{\gdef\@trnumber{#1}}
@@ -59,10 +60,11 @@
 {\LARGE \strut \@title\par}
 \vspace{2em}
 {\large\bf \begin{tabular}[t]{c}\@author\end{tabular}\par}
+{\large\bf \begin{tabular}[t]{c}\@authorChinese\end{tabular}\par}
 \vspace{1em}
 {\sc \@trnumber\par}
 \smallskip
-{\large October, 2024\par}
+{\large October 2024\par}
 \end{center}
 \vfill}
 \end{minipage}
@@ -113,11 +115,12 @@
   {\cleardoublepage \thispagestyle{empty} \vspace*{\stretch{1}} \begin{center} \em}
   {\end{center} \vspace*{\stretch{3}} \clearpage}
 
-
 \newenvironment{psuedochapter}[1]
   {
-%   \cleardoublepage
-  \clearpage
+  % LaTeX can be amazingly confusing
+  % https://tex.stackexchange.com/questions/65698/newpage-clearpage-and-cleardoublepage-not-working
+  \null\cleardoublepage
+  % \clearpage
   \thispagestyle{empty}
   \vspace*{\stretch{1}} 
   \begin{center} \large {\bf #1} \end{center}

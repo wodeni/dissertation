@@ -1,6 +1,6 @@
 %for a more compact document, add the option openany to avoid
 %starting all chapters on odd numbered pages
-\documentclass[12pt]{cmuthesis}
+\documentclass[12pt,openright,twoside,final]{cmuthesis}
 
 % This is a template for a CMU thesis.  It is 18 pages without any content :-)
 % The source for this is pulled from a variety of sources and people.
@@ -477,16 +477,18 @@ pdfborder=0 0 0,  %removes outlines around hyper links in online display
 
 \title{ 
 {\bf Authoring Conceptual Diagrams by Codifying Visual Representations}}
-\author{Wode ``Nimo'' Ni 倪沃德}
+\author{Wode ``Nimo'' Ni}
+\authorChinese{倪沃德}
 \date{\today}
 \Year{2024}
-\trnumber{CMU-S3D-24-XXX}
+\trnumber{CMU-S3D-24-110}
 
 \committee{
-Kenneth Koedinger and Joshua Sunshine, Carnegie Mellon University, Co-chairs \\
-Brad Myers, Carnegie Mellon University \\
-Titus Barik, Apple\\
-Shriram Krishnamurthi, Brown University\\
+Kenneth Koedinger (Co-chair) \\
+Joshua Sunshine (Co-chair) \\
+Brad Myers \\
+Titus Barik (Apple)\\
+Shriram Krishnamurthi (Brown University)\\
 \trnumber{}
 }
 
@@ -504,7 +506,9 @@ Shriram Krishnamurthi, Brown University\\
 To the pool gods.
 \end{dedication}
 
+
 \pagestyle{plain} % for toc, was empty
+
 
 \begin{abstract}
 
@@ -519,6 +523,7 @@ Atop \Penrose, I built \Edgeworth, a tool designed to help educators easily crea
 \Penrose and \Edgeworth demonstrate that codifying visual representations allow diagrams authors to reuse their design effort, produce new diagrams faster, and thus make diagrams at a larger scale.
 \end{abstract}
 
+\null\cleardoublepage
 % \begin{acknowledgments}
 \input{acknowledgements}
 % \end{acknowledgments}
