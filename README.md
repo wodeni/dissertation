@@ -8,8 +8,6 @@ The thesis defense talk was held on September 26, 2024. Checkout the talk here:
 
 [YouTube Link](https://youtu.be/gVZJc7_0T14?si=nQD6q5CS39DsR_RM)
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/gVZJc7_0T14?si=VtESLOEa2ZKqYNoq" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-
 ## Open-source software
 
 Most of the software mentioned in the document can be found in the [`penrose/penrose`](https://github.com/penrose/penrose) GitHub repository. Visit [https://penrose.cs.cmu.edu](https://penrose.cs.cmu.edu) for more on Penrose.
