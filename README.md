@@ -1,10 +1,10 @@
 # Authoring Conceptual Diagrams by Codifying Visual Representations
 
-This is the source for "Authoring Conceptual Diagrams by Codifying Visual Representations," the Ph.D. dissertation of [Wode "Nimo" Ni](https://wodenimoni.com). The document is submitted in October, 2024. 
+This is the source for "Authoring Conceptual Diagrams by Codifying Visual Representations," the Ph.D. dissertation by [Wode "Nimo" Ni](https://wodenimoni.com). The document is submitted in October, 2024. 
 
 ## Defense talk
 
-The thesis defense talk was held on September 26, 2024. Checkout the talk here:
+The thesis defense talk was held on September 26, 2024. Check out the talk here:
 
 [YouTube Link](https://youtu.be/gVZJc7_0T14?si=nQD6q5CS39DsR_RM)
 
