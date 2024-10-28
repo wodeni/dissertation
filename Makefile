@@ -20,7 +20,7 @@ pdf: $(MAIN).tex
 
 # Clean auxiliary files
 clean:
-	rm -f *.aux *.bbl *.blg *.log *.out *.toc *.bcf *.run.xml *.lof *.lot *.blx.bib
+	rm -f *.aux *.bbl *.blg *.log *.out *.toc *.bcf *.run.xml *.lof *.lot *.blx.bib *.cb *.cb2
 
 # Clean all generated files including PDF
 distclean: clean
