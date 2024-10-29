@@ -98,7 +98,7 @@
 
 \@ifundefined{@permission}{\@copyrightnotice{Copyright \copyright\ \@Year\ \@author}}{\@copyrightnotice{Copyright \copyright\ \@Year\ \@author. \@permission}}
 
-\@ifundefined{@support}{}{{\medskip\footnotesize\noindent\@support\par}}
+\@ifundefined{@support}{}{{\medskip\scriptsize\noindent\@support\par}}
 
 \@ifundefined{@disclaimer}{}{{\medskip\footnotesize\noindent\@disclaimer\par}}
 
